@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 11, 2014 5:04:18 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.DServiziFunzioni" table="d_servizi_funzioni" catalog="anagraficabs">
+        <composite-id name="id" class="com.ddway.anagraficaBS.model.db.DServiziFunzioniId">
+            <key-property name="codiBusinessService" type="int">
+                <column name="CODI_BUSINESS_SERVICE" />
+            </key-property>
+            <key-property name="codiAnagraficaInfap" type="int">
+                <column name="CODI_ANAGRAFICA_INFAP" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

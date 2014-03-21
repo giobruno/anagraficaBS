@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 11, 2014 5:01:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.DProcessi" table="d_processi" catalog="anagraficabs">
+        <id name="codiProcesso" type="int">
+            <column name="CODI_PROCESSO" />
+            <generator class="assigned" />
+        </id>
+        <property name="textSiglaProcesso" type="string">
+            <column name="TEXT_SIGLA_PROCESSO" length="50" />
+        </property>
+        <property name="descProcesso" type="string">
+            <column name="DESC_PROCESSO" length="250" />
+        </property>
+        <set name="DServiziProcessis" table="d_servizi_processi" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODI_PROCESSO" not-null="true" />
+            </key>
+            <one-to-many class="com.ddway.anagraficaBS.model.db.DServiziProcessi" />
+        </set>
+    </class>
+</hibernate-mapping>

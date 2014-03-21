@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 11, 2014 5:01:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.DServiziProcessi" table="d_servizi_processi" catalog="anagraficabs">
+        <composite-id name="id" class="com.ddway.anagraficaBS.model.db.DServiziProcessiId">
+            <key-property name="codiBusinessService" type="int">
+                <column name="CODI_BUSINESS_SERVICE" />
+            </key-property>
+            <key-property name="codiProcesso" type="int">
+                <column name="CODI_PROCESSO" />
+            </key-property>
+            <key-property name="codiCategoriaMac" type="int">
+                <column name="CODI_CATEGORIA_MAC" />
+            </key-property>
+            <key-property name="codiCategoriaInf" type="int">
+                <column name="CODI_CATEGORIA_INF" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="DProcessi" class="com.ddway.anagraficaBS.model.db.DProcessi" update="false" insert="false" fetch="select">
+            <column name="CODI_PROCESSO" not-null="true" />
+        </many-to-one>
+        <many-to-one name="DBusinessServices" class="com.ddway.anagraficaBS.model.db.DBusinessServices" update="false" insert="false" fetch="select">
+            <column name="CODI_BUSINESS_SERVICE" not-null="true" />
+        </many-to-one>
+        <property name="misuTempoRisoluzioneD" type="java.lang.Long">
+            <column name="MISU_TEMPO_RISOLUZIONE_D" precision="10" scale="0" />
+        </property>
+        <property name="misuTempoRisoluzioneH" type="java.lang.Long">
+            <column name="MISU_TEMPO_RISOLUZIONE_H" precision="10" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

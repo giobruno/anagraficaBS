@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 11, 2014 5:01:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.DDipartimenti" table="d_dipartimenti" catalog="anagraficabs">
+        <id name="codiDipartimento" type="int">
+            <column name="CODI_DIPARTIMENTO" />
+            <generator class="assigned" />
+        </id>
+        <property name="textSiglaDipartimento" type="string">
+            <column name="TEXT_SIGLA_DIPARTIMENTO" length="10" />
+        </property>
+        <property name="descDipartimento" type="string">
+            <column name="DESC_DIPARTIMENTO" length="50" />
+        </property>
+        <set name="DBusinessServiceses" table="d_business_services" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODI_DIPARTIMENTO" not-null="true" />
+            </key>
+            <one-to-many class="com.ddway.anagraficaBS.model.db.DBusinessServices" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 11, 2014 5:01:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.DAnagraficaInfap" table="d_anagrafica_infap" catalog="anagraficabs">
+        <id name="codiAnagraficaInfap" type="int">
+            <column name="CODI_ANAGRAFICA_INFAP" />
+            <generator class="assigned" />
+        </id>
+        <property name="codiArea" type="int">
+            <column name="CODI_AREA" not-null="true" />
+        </property>
+        <property name="codiApplicazione" type="int">
+            <column name="CODI_APPLICAZIONE" not-null="true" />
+        </property>
+        <property name="codiFunzione" type="int">
+            <column name="CODI_FUNZIONE" not-null="true" />
+        </property>
+        <set name="DBusinessServiceses" table="d_servizi_funzioni" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODI_ANAGRAFICA_INFAP" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.ddway.anagraficaBS.model.db.DBusinessServices">
+                <column name="CODI_BUSINESS_SERVICE" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

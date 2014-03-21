@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="dataSourceAnagrafica" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/dataSourceAnagraficaBS" />
+	</bean>
+	
+	<!-- <bean id="dataSourceAnagrafica" class ="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
+		p:driverClass="${jdbcanagrafica.driverClassName}"
+		p:jdbcUrl="${jdbcanagrafica.url}" 
+		p:user="${jdbcanagrafica.username}"
+		p:password="${jdbcanagrafica.password}" 
+		p:acquireIncrement="${c3p0.acquireIncrement}" 
+        p:minPoolSize="${c3p0.minPoolSize}" 
+        p:maxPoolSize="${c3p0.maxPoolSize}" 
+        p:maxIdleTime="${c3p0.maxIdleTime}"/>   
+		
+		 -->
+
+</beans>
