@@ -2,7 +2,7 @@
 
 <body onload='document.form.j_username.focus();'>
 
-<div class="Content bgA3">
+<div class="ContentHome bgA3">
 
 	<c:if test="${not empty error}">
 		<div class="errorblock">

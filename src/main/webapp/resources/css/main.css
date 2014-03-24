@@ -485,6 +485,22 @@ textarea {
 	margin-top: 20px;
 	}
 	
+	#container {
+	   min-height:100%;
+	   position:relative;
+	}	
+	
+	#headerHome {
+	    background-color: #004D8B ;
+	    height: 80px;
+	    margin-left: 0px;
+	    border-bottom: 3px #ECE5B6 solid;
+	}
+	
+	div.logoImage{
+    margin-left:0px;
+    text-align:left;
+	}
 	
 	#header
 	{
@@ -1385,14 +1401,21 @@ textarea {
 	.Page .Content
 	{
 		float:left;
-		width: 81%;	
-		height 100%;	
+		width: 81%;				
 		min-width:900px;
 		margin: 0px -200px 15px 0px;
 		min-height: 390px;
 	
 		
 		/*border-bottom: 1px solid #6cabd0;*/
+	}
+	
+	.Page .ContentHome
+	{
+		float:left;
+		width: 100%;			
+		margin: 0px 0px 15px 0px;
+		min-height: 400px;		
 	}
 	
 	.Page .Right
@@ -2629,9 +2652,10 @@ margin: 0 10% 0 10%;
 .div-table-caption{display:table-caption;}
 
 .div-table-row{display:table-row;}
+.div-table-row-center{display:table-row;vertical-align: middle;}
 
 .div-table-col{display:table-cell; padding: 3.5px; vertical-align: middle;}
-.div-table-col-center{display:table-cell;  text-align: center;}
+.div-table-col-center{display:table-cell;  text-align: center;vertical-align: middle;}
 .div-table-col-right{display:table-cell;  text-align: right;}
 
 .fieldset-small-left {  width:46%; float:left; position:relative}

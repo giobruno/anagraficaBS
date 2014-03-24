@@ -1,18 +1,18 @@
-<div class="Content bgA3">
+<div class="ContentHome bgA3">
 
-<fieldset>
+
 <div class="div-table-centrata">
 
 	
-	<div class="div-table-row">
-		<div class="div-table-col">
+	<div class="div-table-row-center">
+		<div class="div-table-col-center">
 		
 		<a href="login">LOGIN</a>
 		</div>
 		
 		</div>
 	</div>
-</fieldset>
+
 					
 					
 					 </div>
