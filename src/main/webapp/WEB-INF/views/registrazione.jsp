@@ -35,7 +35,7 @@
 			</div>
 			<div class="div-table-row">
 				<div class="div-table-col">Conferma Password:</div>
-				<div class="div-table-col"><input type='password' name='confermapassword' id="confermapassword">
+				<div class="div-table-col"><input type='password' name='confermaPassword' id="confermaPassword">
 				</div>
 			</div>
 			<div class="div-table-row">
