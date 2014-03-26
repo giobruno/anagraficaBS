@@ -2,12 +2,8 @@ package com.ddway.anagraficaBS.security;
 
 import java.io.Serializable;
 
-public class Role implements Serializable{
-
+public class Role implements Serializable{	
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 515582662343313848L;
 	private String id;
 	private String role;
