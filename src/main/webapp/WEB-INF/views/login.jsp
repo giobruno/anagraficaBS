@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body onload='document.form.j_username.focus();'>
-
+ 
 <div class="ContentHome bgA3">
 
 	<c:if test="${not empty error}">
