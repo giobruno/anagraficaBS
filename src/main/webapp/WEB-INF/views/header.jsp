@@ -5,14 +5,13 @@
 		<div id="container">
 				
 			<!-- HEADER -->
-			<div id="headerHome">					
-					<div class="logoImage">
-                  	   <img src="resources/img/tesoro.jpg" alt="Ministero delle Economie e delle Finanze"/>
-              		  </div>
-					
-					<!-- 	<div ><img style="position: absolute;" src="resources/img/tesoro.jpg">  -->
-					</div>
-				
+			<div id="headerHome">
+							
+					<div class="logoImagePart1"></div>
+					<div class="logoImagePart2"></div>
+					  <!-- <div ><img style="position: absolute;" src="resources/img/tesoro.jpg">  -->
+			</div>
+				 
 			</div>
 			
 		<!-- 	<sec:authorize access="hasRole('ROLE_USER')" >	
@@ -33,7 +32,7 @@
 
 													
 	   
-			<!-- END HEADER -->
+			<!-- END HEADER
 			<div class="footerWrap" align="center">
 		<footer class="bgB2">
 				<div id="quickMenu">
@@ -42,5 +41,5 @@
 			</footer>
 	
 		</div>
-		
+		 -->
 		
