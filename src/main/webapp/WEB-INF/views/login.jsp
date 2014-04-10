@@ -10,6 +10,16 @@
 			${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 		</div>
 	</c:if>
+	
+	<c:if test="${presenzaMessaggio == 'si'}" >
+	<div class="div-table-row">
+				<div class="div-table-col">
+					<p class="visualizzaForm">${messaggio}</p>
+				</div>
+			</div>
+	
+	</c:if>
+	
    <fieldset>
 	<form name='form' action="<c:url value='/j_spring_security_check' />" method='POST'>
  

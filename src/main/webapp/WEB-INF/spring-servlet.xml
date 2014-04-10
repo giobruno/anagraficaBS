@@ -43,6 +43,7 @@
 	</bean>
 	
 	<context:annotation-config />
+	
 	<context:component-scan base-package="com.ddway.anagraficaBS" />
 	
 	 <!--  Abilita il caching attraverso annotazioni  -->
@@ -64,25 +65,25 @@
 	
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-		p:location="/WEB-INF/hibernate.properties" />     	
-		 
- 	<bean id="dataSourceAnagrafica" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/dataSourceAnagraficaBS" />
-	</bean>
-	
+		p:location="/WEB-INF/hibernate.properties" />     	 	
 	
 	<bean id="sessionFactoryAnagraficaBS" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSourceAnagrafica" />
 		 <property name="mappingResources">
-                <list>                		
-                        <value>/database_model/DAnagraficaInfap.hbm.xml</value>
-                        <value>/database_model/DBusinessServices.hbm.xml</value>
+                <list>  
+                		<value>/database_model/Authorities.hbm.xml</value>
+                		<value>/database_model/DBusinessServices.hbm.xml</value>              		
+                        <value>/database_model/DCategorieInfr.hbm.xml</value>
+                        <value>/database_model/DCategorieMac.hbm.xml</value>
                         <value>/database_model/DDipartimenti.hbm.xml</value>
                         <value>/database_model/DModelApplicativi.hbm.xml</value>
                         <value>/database_model/DProcessi.hbm.xml</value>
                         <value>/database_model/DServiziFunzioni.hbm.xml</value>
-                        <value>/database_model/DServiziProcessi.hbm.xml</value>
-                        <value>/database_model/DUtenti.hbm.xml</value>                                                                           
+                        <value>/database_model/DServiziModel.hbm.xml</value>
+                        <value>/database_model/DServiziProcessi.hbm.xml</value> 
+                        <value>/database_model/Roles.hbm.xml</value>
+                        <value>/database_model/Users.hbm.xml</value>       
+                        <value>/database_model/VInfap.hbm.xml</value>                                                                         
                 </list>
         </property>
 		<property name="hibernateProperties">
@@ -105,6 +106,6 @@
 
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactoryAnagraficaBS" />
-	</bean>			
+	</bean>				
 	
 </beans>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 3, 2014 4:51:06 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.VInfap" table="v_infap" catalog="anagraficabs">
+        <composite-id name="id" class="com.ddway.anagraficaBS.model.db.VInfapId">
+            <key-property name="codiArea" type="long">
+                <column name="CODI_AREA" />
+            </key-property>
+            <key-property name="codiApplicazione" type="long">
+                <column name="CODI_APPLICAZIONE" />
+            </key-property>
+            <key-property name="codiFunzione" type="long">
+                <column name="CODI_FUNZIONE" />
+            </key-property>
+            <key-property name="descArea" type="string">
+                <column name="DESC_AREA" length="5" />
+            </key-property>
+            <key-property name="descApplicazione" type="string">
+                <column name="DESC_APPLICAZIONE" length="13" />
+            </key-property>
+            <key-property name="descFunzione" type="string">
+                <column name="DESC_FUNZIONE" length="10" />
+            </key-property>
+            <key-property name="dataInizioAssociazione" type="string">
+                <column name="DATA_INIZIO_ASSOCIAZIONE" length="10" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

@@ -35,8 +35,8 @@ public class DataSourceServiceImpl implements IDataSourceService {
 	}
 	
 	@Transactional
-	public void updateSql(String queryString){
-		iDataSourceDao.updateSql(queryString);
+	public int updateSql(String queryString, String[] parameters){
+		return iDataSourceDao.updateSql(queryString,parameters);
 	}
 	
 	@Transactional

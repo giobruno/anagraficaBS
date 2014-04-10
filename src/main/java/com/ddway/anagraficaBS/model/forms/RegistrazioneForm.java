@@ -1,6 +1,6 @@
 package com.ddway.anagraficaBS.model.forms;
 
-public class Registrazione {
+public class RegistrazioneForm {
 	
 	private String nome;
 	private String cognome;
@@ -9,12 +9,17 @@ public class Registrazione {
 	private String password;
 	private String confermaPassword;
 	
-	public Registrazione(){};
+	public RegistrazioneForm(){}
 	
-	public Registrazione(String nome, String password){
+	public RegistrazioneForm(String nome, String cognome,
+			String user,String email,String password,String confermaPassword){
 		
 		this.nome = nome;
+		this.cognome = password;
+		this.user = user;
+		this.email = email;
 		this.password = password;
+		this.confermaPassword = confermaPassword;
 	}
 
 	public String getNome() {
@@ -23,14 +28,6 @@ public class Registrazione {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getCognome() {
@@ -55,6 +52,14 @@ public class Registrazione {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getConfermaPassword() {

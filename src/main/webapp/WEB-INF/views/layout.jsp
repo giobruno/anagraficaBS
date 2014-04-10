@@ -16,7 +16,12 @@
     
 	  <link rel="stylesheet" href="resources/css/normalize.css"/>
       <link rel="stylesheet" href="resources/css/fonts.css"/>
-      <link rel="stylesheet" href="resources/css/main.css"/>           
+      <link rel="stylesheet" href="resources/css/main.css"/>     
+      <script src="resources/js/jquery-1.9.1.min.js"></script>
+      <script src="resources/js/maxlength.js"></script>
+      <script src="resources/js/abilita_selectbox.js"></script>
+      <script src="resources/js/caricaApplicazioni.js"></script>
+      <script src="resources/js/check_tutti.js"></script>     
   </head>
 <body >
 

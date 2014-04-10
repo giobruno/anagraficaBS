@@ -92,8 +92,8 @@
 				<div class="ContentHome bgA3">
 					
 					
-					 <p><b><ul><font color="blue">Accesso all'applicazione non consentito!</font>
-				
+					 <p><b><ul><font color="blue">ERRORE 403! Accesso all'applicazione non consentito!</font>
+					 <p> <a href='javascript:history.back()'>Torna alla pagina precedente</a> </p> 
 				</div>
 			
 				

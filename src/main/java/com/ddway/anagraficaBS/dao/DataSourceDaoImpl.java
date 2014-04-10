@@ -77,16 +77,25 @@ private static final Logger log = LoggerFactory.getLogger(DataSourceDaoImpl.clas
 		}
 	
 	@Override
-	public void updateSql(String queryString){
+	public int updateSql(String queryString, String[] parameters){
 		log.info("Start DataSourceDaoImpl.updateSql method");
+		
+		int numRighe;
+		
 		try {
-			Query query = sessionFactoryAnagraficaBS.getCurrentSession().createQuery(queryString);				
+			Query query = sessionFactoryAnagraficaBS.getCurrentSession().createQuery(queryString);	
+			
+			for (int i = 0; i < parameters.length; i++) {
+				query.setParameter(i+1, parameters[i]);
+			}
+			numRighe = query.executeUpdate();
 			log.info("DataSourceDaoImpl.updateSql successful");			
 		}catch (RuntimeException re){
 			log.error("DataSourceDaoImpl.updateSql failed", re);
 			re.printStackTrace();
 			throw re;
 			}
+		return numRighe;
 	}
 	
 	@Override

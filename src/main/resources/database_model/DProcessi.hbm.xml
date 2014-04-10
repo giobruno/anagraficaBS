@@ -1,18 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 11, 2014 5:01:02 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Apr 3, 2014 4:51:06 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.ddway.anagraficaBS.model.db.DProcessi" table="d_processi" catalog="anagraficabs">
-        <id name="codiProcesso" type="int">
+        <id name="codiProcesso" type="java.lang.Integer">
             <column name="CODI_PROCESSO" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="textSiglaProcesso" type="string">
             <column name="TEXT_SIGLA_PROCESSO" length="50" />
         </property>
         <property name="descProcesso" type="string">
             <column name="DESC_PROCESSO" length="250" />
+        </property>
+        <property name="dataValiditaInizio" type="date">
+            <column name="DATA_VALIDITA_INIZIO" length="0" />
+        </property>
+        <property name="dataValiditaFine" type="date">
+            <column name="DATA_VALIDITA_FINE" length="0" />
         </property>
         <set name="DServiziProcessis" table="d_servizi_processi" inverse="true" lazy="true" fetch="select">
             <key>

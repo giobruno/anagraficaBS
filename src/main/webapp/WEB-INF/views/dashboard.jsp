@@ -2,6 +2,15 @@
 
 <div class="Content bgA3">
 
+<c:if test="${presenzaMessaggio == 'si'}" >
+	<div class="div-table-row">
+				<div class="div-table-col">
+					<p class="visualizzaForm">${messaggio}</p>
+				</div>
+			</div>
+	
+	</c:if>
+
 <fieldset>
 <div class="div-table-centrata">
 

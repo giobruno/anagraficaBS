@@ -33,7 +33,7 @@
 
 													
 	   
-			<!-- END HEADER -->
+			<!-- END HEADER 
 			<div class="footerWrap" align="center">
 		<footer class="bgB2">
 				<div id="quickMenu">
@@ -42,5 +42,5 @@
 			</footer>
 	
 		</div>
-		
+		-->
 		

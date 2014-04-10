@@ -10,7 +10,7 @@ public interface IDataSourceDao {
 	public void delete(Object bean);
 	public void insertOrUpdate(Object bean);
 	public void update(Object beanName);
-	public void updateSql(String queryString);
+	public int updateSql(String queryString, String[] parameters);
 	public Object genericquery(String query);
 	public Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
 	public Object findbyId(Object id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;

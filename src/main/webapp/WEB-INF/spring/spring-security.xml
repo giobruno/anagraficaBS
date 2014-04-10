@@ -13,7 +13,14 @@
 		<form-login login-processing-url="/j_spring_security_check" login-page="/login" default-target-url="/dashboard" authentication-failure-url="/loginfailed" />
 		<logout delete-cookies="JSESSIONID" invalidate-session="true" logout-success-url="/" logout-url="/j_spring_security_logout"/>
 		
-		<intercept-url pattern="/dashboard**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/home*" access="permitAll" />
+		<intercept-url pattern="/login*" access="permitAll" />
+		<intercept-url pattern="/formRegistrazione*" access="permitAll" />
+		<intercept-url pattern="/formBusinessService" access="hasRole('STANDARD')" />
+		<intercept-url pattern="/formProcesso" access="hasRole('STANDARD')" />
+		<intercept-url pattern="/formAssociazioneBSProcesso" access="hasRole('STANDARD')" />
+		<intercept-url pattern="/formAssociazioneBSFunzUtente" access="hasRole('STANDARD')" />
+		<intercept-url pattern="/dashboard" access="hasRole('STANDARD')" />
 		
 	<!-- 	<intercept-url pattern="/" access="permitAll" />		
 		<intercept-url pattern="/*" access="hasRole('ROLE_USER')" />             
@@ -35,8 +42,8 @@
 					from users where USERNAME=?" 
 				
 				authorities-by-username-query="
-					select u.username, a.authority from users u, authorities a 
-					where u.user_id = a.user_id and u.username =?  " 					
+					select u.username, r.rolename from users u, authorities a, roles r
+					where u.user_id = a.user_id and a.role_id = r.role_id and u.username = ?" 					
 			/>
 		</authentication-provider>
 	</authentication-manager>

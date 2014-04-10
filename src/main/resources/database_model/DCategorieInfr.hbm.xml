@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 3, 2014 4:51:06 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.DCategorieInfr" table="d_categorie_infr" catalog="anagraficabs">
+        <id name="codiCategoriaInfr" type="int">
+            <column name="CODI_CATEGORIA_INFR" />
+            <generator class="assigned" />
+        </id>
+        <property name="descCategoriaInfr" type="string">
+            <column name="DESC_CATEGORIA_INFR" length="50" />
+        </property>
+        <property name="flagInfrLavSol" type="java.lang.Boolean">
+            <column name="FLAG_INFR_LAV_SOL" />
+        </property>
+        <set name="DServiziProcessis" table="d_servizi_processi" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODI_CATEGORIA_INFR" not-null="true" />
+            </key>
+            <one-to-many class="com.ddway.anagraficaBS.model.db.DServiziProcessi" />
+        </set>
+    </class>
+</hibernate-mapping>

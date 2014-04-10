@@ -8,9 +8,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
  
 @Controller
 public class LoginController {
@@ -18,42 +18,52 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
  
 	@RequestMapping(value="/dashboard", method = RequestMethod.GET)
-	public String dashboard(ModelMap model, HttpSession session, HttpServletRequest request) { 
+	public ModelAndView dashboard(ModelAndView model, HttpSession session, HttpServletRequest request) { 
 		logger.info("Inizio metodo LoginController.dashboard!");
 		
+		Authentication auth;	
+		User user; 
+		String name; 
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		try{
+			auth = SecurityContextHolder.getContext().getAuthentication();		
+			user = (User) auth.getPrincipal();
+			name = user.getUsername();
 		
-		User user = (User) auth.getPrincipal();
-		String name = user.getUsername();
-	
-		model.addAttribute("username", name);
-		model.addAttribute("message", "Spring Security login + database example");
-		return "dashboard"; 
+			model.addObject("username", name);
+			model.addObject("message", "Benvenuti sull'anagrafica dei servizi di business");
+			model.setViewName("dashboard");
+		}catch(Exception e){
+			logger.error(e.getMessage()+" on LoginController.dashboard");
+		}
+		return model;
 	}
  
 	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public String login(ModelMap model) {
+	public ModelAndView login(ModelAndView model) {
 		logger.info("Inizio metodo LoginController.login!");
- 
-		return "login";
+		
+		model.setViewName("login");
+		return model;
  
 	}
 	
 	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
-	public String loginfailed(ModelMap model) {
+	public ModelAndView loginfailed(ModelAndView model) {
 		logger.info("Inizio metodo LoginController.loginfailed!");
  
-		model.addAttribute("error", "true");
-		return "login";
+		model.addObject("error", "true");
+		model.setViewName("login");
+		return model;
  
 	}
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public String logout(ModelMap model) {
+	public ModelAndView logout(ModelAndView model) {
 		logger.info("Inizio metodo LoginController.logout!");
  
-		return "login";
+		model.setViewName("home");
+		return model;
  
 	}
 	
