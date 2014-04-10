@@ -62,7 +62,7 @@
 							
 							<c:forEach items="${businessServiceList}" var="item" >
 							<div class="div-table-row">				
-								<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.textNomeBusinessService}</a></div>								
+								<div class="div-table-col-center"><a href="dettaglioBusinessService?codiBusinessService=${item.codiBusinessService}">${item.textNomeBusinessService}</a></div>								
 								<div class="div-table-col-center"><a href="modificaBusinessServiceForm?codiBusinessService=${item.codiBusinessService}"><img src="resources/img/iconeModifica2.jpg"  width="30" height="20" title="Modifica Business Service"></a></div>
 								<div class="div-table-col-center"><a href="cancellaBusinessService?codiBusinessService=${item.codiBusinessService}"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Business Service"></a></div>
 							</div>

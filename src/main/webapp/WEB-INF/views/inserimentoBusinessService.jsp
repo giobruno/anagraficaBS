@@ -33,20 +33,7 @@
 		
 		<legend>Compila il seguente form per inserire un nuovo Business Service</legend>		
 		
-		<div class="div-table">	
-		<div class="div-table-row">
-					    	<div class="div-table-col"><label for="codiDipartimento"> <img src="resources/img/query.png" alt="" title="">&nbsp;Dipartimento*:</label></div>
-							<div class="div-table-col">
-								<form:select path="codiDipartimento" id="codiDipartimento" name="codiDipartimento" style="width:180px">
-									<form:option value="" label="--" />
-									<form:options items="${dipartimentiList}" 
-										itemValue="codiDipartimento"
-										itemLabel="textSiglaDipartimento" />										
-								</form:select>
-							</div>							
-							<div class="div-table-col"><p class="erroreForm"><form:errors path="codiDipartimento"/> </p></div>
-			</div>
-				
+		<div class="div-table">					
 			<div class="div-table-row">
 				<div class="div-table-col"><label for="textNomeBusinessService"> <img src="resources/img/query.png" alt="" title="">&nbsp;Nome del Business Service*:</label></div>
 				<div class="div-table-col"><form:input style="width:297px"  maxlength="50"  id="textNomeBusinessService" path="textNomeBusinessService"/>
@@ -70,7 +57,19 @@
 				<div class="div-table-col"><form:input style="width:297px"  maxlength="50"  id="textUrlBusinessService" path="textUrlBusinessService"/>
 				</div>
 				<div class="div-table-col"><p class="erroreForm"><form:errors path="textUrlBusinessService"/>&nbsp; </p></div>	
-			</div>			
+			</div>		
+			<div class="div-table-row">
+					    	<div class="div-table-col"><label for="codiDipartimento"> <img src="resources/img/query.png" alt="" title="">&nbsp;Dipartimento*:</label></div>
+							<div class="div-table-col">
+								<form:select path="codiDipartimento" id="codiDipartimento" name="codiDipartimento" style="width:180px">
+									<form:option value="" label="--" />
+									<form:options items="${dipartimentiList}" 
+										itemValue="codiDipartimento"
+										itemLabel="textSiglaDipartimento" />										
+								</form:select>
+							</div>							
+							<div class="div-table-col"><p class="erroreForm"><form:errors path="codiDipartimento"/> </p></div>
+			</div>	
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiModelApplicativo"> <img src="resources/img/query.png" alt="" title="">&nbsp;Model Applicativo*:</label></div>
 			<div class="div-table-col">

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ddway.anagraficaBS.model.db.DBusinessServices;
 import com.ddway.anagraficaBS.model.db.DServiziFunzioni;
 import com.ddway.anagraficaBS.model.db.DServiziModel;
+import com.ddway.anagraficaBS.model.db.DServiziProcessi;
 import com.ddway.anagraficaBS.model.db.VInfap;
 import com.ddway.anagraficaBS.model.forms.AssociazioneBSFunzUtenteForm;
 import com.ddway.anagraficaBS.model.forms.BusinessServiceForm;
@@ -422,9 +423,16 @@ public class BusinessServiceController {
 	public ModelAndView dettaglioBusinessService(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.dettaglioBusinessService!");
 			
+		String codiBusinessService;
+		
 		try{
-			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
-			model.addObject("businessServiceList", businessServiceList);
+			codiBusinessService = request.getParameter("codiBusinessService");
+			DBusinessServices businessService = (DBusinessServices) gestioneDataBase.getBusinessServices(codiBusinessService);
+			List<DServiziFunzioni> dServiziFunzioniList = gestioneDataBase.getListaAssociazioniFunzioniUtenteBS(codiBusinessService);
+			List<DServiziProcessi> dserviziProcessiList = gestioneDataBase.getListaAssociazioniProcessiBS(codiBusinessService);
+			model.addObject("dServiziFunzioniList", dServiziFunzioniList);
+			model.addObject("dserviziProcessiList", dserviziProcessiList);
+			model.addObject("businessService", businessService);
 			model.setViewName("dettaglioBusinessService");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.dettaglioBusinessService");

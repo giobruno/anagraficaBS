@@ -61,7 +61,7 @@ public class CaricaSelect {
 		return selectLists;	
 	}
 	
-	@Cacheable(value="selectLists",key="#sezione")
+	
 	public  HashMap<String, List> getSelectsInserimentoAssociazioneBSFunzUtente(String sezione) throws Exception{
 		log.debug("Start CaricaSelect.getSelectsInserimentoAssociazioneBSFunzUtente method");
 		
@@ -82,7 +82,7 @@ public class CaricaSelect {
 		return selectLists;	
 	}
 	
-	@Cacheable(value="selectLists",key="#sezione")
+	
 	public  HashMap<String, List> getSelectsInserimentoAssociazioneBSProcesso(String sezione) throws Exception{
 		log.debug("Start CaricaSelect.getSelectsInserimentoAssociazioneBSProcesso method");
 		

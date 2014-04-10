@@ -3,8 +3,6 @@ package com.ddway.anagraficaBS.utility;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
-import org.apache.taglibs.bsf.expression;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -364,5 +362,37 @@ public class GestioneDataBase {
 				throw e;
 			}
 			return elencoProcessi.get(0);	
+		}
+		
+		@Transactional
+		public  List<DServiziFunzioni> getListaAssociazioniFunzioniUtenteBS(String codiBusinessService) throws Exception{
+			log.debug("Start GestioneDataBase.getListaAssociazioniFunzioniUtenteBS method");
+			
+			List<DServiziFunzioni> elencoFunzioni;
+			String query = "from com.ddway.anagraficaBS.model.db.DServiziFunzioni tab where tab.id.codiBusinessService = '"+codiBusinessService+"'";
+			
+			try{		
+				elencoFunzioni = (List<DServiziFunzioni>) dataSourceService.genericquery(query);				
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getListaAssociazioniFunzioniUtenteBS");
+				throw e;
+			}
+			return elencoFunzioni;	
+		}
+		
+		@Transactional
+		public  List<DServiziProcessi> getListaAssociazioniProcessiBS(String codiBusinessService) throws Exception{
+			log.debug("Start GestioneDataBase.getListaAssociazioniProcessiBS method");
+			
+			List<DServiziProcessi> elencoProcessi;
+			String query = "from com.ddway.anagraficaBS.model.db.DServiziProcessi tab where tab.id.codiBusinessService = '"+codiBusinessService+"'";
+			
+			try{		
+				elencoProcessi = (List<DServiziProcessi>) dataSourceService.genericquery(query);				
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getListaAssociazioniProcessiBS");
+				throw e;
+			}
+			return elencoProcessi;	
 		}
 	}
