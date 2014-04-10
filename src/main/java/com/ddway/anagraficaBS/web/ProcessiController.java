@@ -72,7 +72,7 @@ public class ProcessiController {
 		return model; 
 	}
 	
-	@RequestMapping(value="/inserimentoProcesso", method = RequestMethod.POST, params="Invia")
+	@RequestMapping(value="/inserimentoProcesso", method = RequestMethod.POST, params="Salva")
 	public ModelAndView inserimentoProcesso(ProcessoForm processoForm, BindingResult errors, ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo ProcessiController.inserimentoprocesso!");
 		
@@ -86,7 +86,9 @@ public class ProcessiController {
 			gestioneDataBase.inserisciProcesso(dProcessi);
 			model.addObject("presenzaMessaggio","si");
 			model.addObject("message","Il nuovo processo è stato inserito con successo!");
-			model.setViewName("dashboard");
+			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
+			model.addObject("processiList", processiList);
+			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on ProcessiController.inserimentoprocesso");
 		}
@@ -94,10 +96,12 @@ public class ProcessiController {
 	}
 	
 	@RequestMapping(value="/inserimentoProcesso", method = RequestMethod.POST, params="Annulla")
-	public ModelAndView formProcessoAnnulla(ModelAndView model) { 
+	public ModelAndView formProcessoAnnulla(ModelAndView model) throws Exception { 
 		logger.info("Inizio metodo ProcessiController.formProcessoAnnulla!");		
 		
-		model.setViewName("dashboard");
+		List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
+		model.addObject("processiList", processiList);
+		model.setViewName("elencoProcessi");
 		return model; 
 	}
 	
@@ -119,7 +123,7 @@ public class ProcessiController {
 		return model;
 	}
 	
-	@RequestMapping(value="/inserimentoAssociazioneBSProcesso", method = RequestMethod.POST, params="Invia")
+	@RequestMapping(value="/inserimentoAssociazioneBSProcesso", method = RequestMethod.POST, params="Associa")
 	public ModelAndView inserimentoAssociazioneBSProcesso(AssociazioneBSProcessoForm associazioneBSProcessoForm, BindingResult errors, ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo ProcessiController.inserimentoAssociazioneBSProcesso!");
 		
@@ -138,7 +142,9 @@ public class ProcessiController {
 			gestioneDataBase.inserisciAssociazioneBSProcesso(dServiziProcessi);			
 			model.addObject("presenzaMessaggio","si");
 			model.addObject("message","L'associazione Business Service - Processo è stata inserita con successo!");
-			model.setViewName("dashboard");
+			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
+			model.addObject("businessServiceList", businessServiceList);
+			model.setViewName("elencoBusinessService");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on ProcessiController.inserimentoAssociazioneBSProcesso");
 		}
@@ -149,8 +155,14 @@ public class ProcessiController {
 	public ModelAndView inserimentoAssociazioneBSProcessoAnnulla(ModelAndView model) { 
 		logger.info("Inizio metodo ProcessiController.inserimentoAssociazioneBSProcessoAnnulla!");		
 		
-		model.setViewName("dashboard");
-		return model; 
+		try{
+			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
+			model.addObject("businessServiceList", businessServiceList);
+			model.setViewName("elencoBusinessService");
+		}catch(Exception e){
+			logger.error(e.getMessage()+" on BusinessServiceController.visualizzaElencoBusinessServices");
+		}
+		return model;
 	}
 	
 	@RequestMapping(value="/visualizzaElencoProcessi", method = RequestMethod.GET)
@@ -204,18 +216,26 @@ public class ProcessiController {
 			session.removeAttribute("processoOld");
 			model.addObject("presenzaMessaggio","si");
 			model.addObject("message","Il Processo è stato modificato con successo!");
-			model.setViewName("dashboard");
+			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
+			model.addObject("processiList", processiList);
+			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaProcesso!");
 		}
 		return model;
 	}
 	
-	@RequestMapping(value="/modificaProcesso", method = RequestMethod.GET, params="Annulla")
+	@RequestMapping(value="/modificaProcesso", method = RequestMethod.POST, params="Annulla")
 	public ModelAndView modificaProcessoAnnulla(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.modificaProcessoAnnulla!");
 			
-		model.setViewName("dashboard");
+		try{
+			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
+			model.addObject("processiList", processiList);
+			model.setViewName("elencoProcessi");
+		}catch(Exception e){
+			logger.error(e.getMessage()+" on BusinessServiceController.visualizzaElencoProcessi");
+		}
 		return model;
 	}
 	
@@ -232,7 +252,9 @@ public class ProcessiController {
 			gestioneDataBase.cancellaProcesso(processo);
 			model.addObject("presenzaMessaggio","si");
 			model.addObject("message","Il Processo è stato cancellato con successo!");
-			model.setViewName("dashboard");
+			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
+			model.addObject("processiList", processiList);
+			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.cancellaProcesso");
 		}

@@ -97,7 +97,9 @@
 	
 	<div class="div-table-row">
 				<div class="div-table-col">
-				<p class="erroreForm"><form:errors/> </p></div></div>
+					<p class="erroreForm"><form:errors path="*"/> </p>
+				</div>
+		</div>
 			<div class="div-table-row">
 				<div class="div-table-col"></div>
 	</div>

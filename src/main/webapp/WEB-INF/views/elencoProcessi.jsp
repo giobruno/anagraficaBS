@@ -13,10 +13,18 @@
 		</div>
 	</div>	
 	
-	<div class="div-table-row">
-		<div class="div-table-col-left">
-						<a href="formProcesso"><button>Inserisci un nuovo Processo</button></a>						
+	
+	<div class="div-table-centrata">
+		<div class="div-table-row">
+			<div style="text-align: right;"><a href="formProcesso" ><button>Inserisci un nuovo Processo</button></a>	</div>
 		</div>
+		<c:if test="${presenzaMessaggio == 'si'}" >	
+		<div class="div-table-row">
+					<div class="div-table-col">
+						<p class="visualizzaForm" style="color:red;">${message}</p>
+					</div>
+				</div>	
+	</c:if>
 	</div>
 	
 	<div class="div-table-centrata">
@@ -54,8 +62,8 @@
 							<div class="div-table-row">				
 								<div class="div-table-col-center"><a href="">${item.textSiglaProcesso}</a></div>	
 								<div class="div-table-col-center"><a href="">${item.descProcesso}</a></div>							
-								<div class="div-table-col-center"><a href="modificaProcessoForm?codiProcesso=${item.codiProcesso}"><img src="resources/img/iconeModifica.png"  width="30" height="20" title="Modifica Processo"></a></div>
-								<div class="div-table-col-center"><a href="cancellaProcesso?codiProcesso=${item.codiProcesso}"><img src="resources/img/iconeCancella.png"  width="30" height="20" title="Cancella Processo"></a></div>
+								<div class="div-table-col-center"><a href="modificaProcessoForm?codiProcesso=${item.codiProcesso}"><img src="resources/img/iconeModifica2.jpg"  width="30" height="20" title="Modifica Processo"></a></div>
+								<div class="div-table-col-center"><a href="cancellaProcesso?codiProcesso=${item.codiProcesso}"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Processo"></a></div>
 							</div>
 							</c:forEach>
 						</div> 
@@ -63,7 +71,6 @@
 					  </div>
 				 	 
 	</div>
-	
 	
 	</div>
 	 
@@ -89,9 +96,10 @@
 	
 	<div class="div-table-row">
 	<div class="div-table-col-center" >					
-					<a href="home"><input TYPE="button" name="Esci" VALUE="Esci"></a>
+					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Annulla"></a>
 	</div>	
 	</div>
+	
 	 </div>     
 </div>
 		

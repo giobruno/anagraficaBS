@@ -379,7 +379,7 @@ textarea {
 	
 	.bgB2
 	{
-		background: #062551;
+		background: #004D8B;
 	}
 	
 	.bgA2
@@ -1404,7 +1404,7 @@ textarea {
 		width: 81%;				
 		min-width:900px;
 		margin: 0px -200px 15px 0px;
-		min-height: 460px;
+		min-height: 440px;
 	
 		
 		/*border-bottom: 1px solid #6cabd0;*/
@@ -1416,7 +1416,7 @@ textarea {
 		width: 100%;	
 		height: 70%;		
 		margin: 0px 0px 15px 0px;
-		min-height: 460px;		
+		min-height: 440px;		
 	}
 	
 	.Page .Right
@@ -1439,7 +1439,7 @@ textarea {
 		padding: 2px 0;
 		overflow: hidden;
 		
-		text-align: center;
+		text-align: right;
 		
 		background: #004D8B;
 		border-top: 1px solid rgb(10, 24, 58);

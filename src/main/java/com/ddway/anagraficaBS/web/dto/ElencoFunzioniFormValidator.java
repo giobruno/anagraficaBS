@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import com.ddway.anagraficaBS.model.forms.ElencoFunzioniForm;
 
@@ -24,7 +23,11 @@ public class ElencoFunzioniFormValidator implements Validator {
     	
     	ElencoFunzioniForm form = (ElencoFunzioniForm) target;
     	
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "funzioniDaInserire", "field.required", "Required field");
+    	if(form.getFunzioniDaInserire() == null || form.getFunzioniDaInserire().isEmpty())
+    		errors.reject("field.required", "Required field");
+//    		rejectValue("funzioniDaInserire", "field.required", "Required field");    	
+    	
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "funzioniDaInserire", "field.required", "Required field");        
        }
    
 }

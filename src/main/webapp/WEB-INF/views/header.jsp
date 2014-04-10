@@ -33,14 +33,14 @@
 
 													
 	   
-			<!-- END HEADER 
-			<div class="footerWrap" align="center">
-		<footer class="bgB2">
-				<div id="quickMenu">
-				
-				</div>
+			<!-- END HEADER -->
+			<div class="footerWrap">
+		<footer class="bgB2" >				
+				 	<sec:authorize access="hasRole('STANDARD')" >	
+				 	<c:url value="j_spring_security_logout" var="logoutUrl"/><a href="${logoutUrl}" id="logout" style="color:white;font-weight:bold;">Logout</a> 				
+				</sec:authorize> 			
 			</footer>
 	
 		</div>
-		-->
+		
 		

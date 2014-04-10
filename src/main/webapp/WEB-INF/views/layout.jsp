@@ -30,6 +30,7 @@
 <div class="PageWrapBis" id="central">	
 <div class="Page">
 <tiles:insertAttribute name="menu" />
+</br>
 <tiles:insertAttribute name="body" />				
 </div>
 </div>

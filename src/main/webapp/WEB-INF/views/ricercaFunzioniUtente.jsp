@@ -76,9 +76,7 @@
 							<input TYPE="submit" name="Annulla" VALUE="Annulla">							
 						</div>
 		</div>	
-		<div class="div-table-row">
-							<div class="div-table-col">
-							<p class="erroreForm"><form:errors path="codiArea"/> </p></div></div>
+		
 						<div class="div-table-row">
 							<div class="div-table-col"></div>
 						</div>
@@ -91,6 +89,24 @@
 									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
 					</div>
 					</div>
+					</br>
+					</br>
+					<div class="div-table-row">
+							<div class="div-table-col">
+								<p class="erroreForm"><form:errors path="codiArea"/> </p>
+							</div>
+					</div>
+					
+					<c:if test="${presenzaMessaggio == 'si'}" >	
+					<div class="div-table-center">
+							<div class="div-table-row">
+						<div class="div-table-col">
+							<p class="visualizzaForm" style="color:red;">${message}</p>
+					</div>
+				</div>	
+				</div>
+	</c:if>
+				
 					</div>		
 		
  

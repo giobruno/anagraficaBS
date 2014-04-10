@@ -10,7 +10,7 @@
 	
 	<http auto-config="true" use-expressions="true" security-context-repository-ref="secContextRepository">		
 	
-		<form-login login-processing-url="/j_spring_security_check" login-page="/login" default-target-url="/dashboard" authentication-failure-url="/loginfailed" />
+		<form-login login-processing-url="/j_spring_security_check" login-page="/login" default-target-url="/visualizzaElencoBusinessServices" authentication-failure-url="/loginfailed" />
 		<logout delete-cookies="JSESSIONID" invalidate-session="true" logout-success-url="/" logout-url="/j_spring_security_logout"/>
 		
 		<intercept-url pattern="/home*" access="permitAll" />
@@ -21,6 +21,10 @@
 		<intercept-url pattern="/formAssociazioneBSProcesso" access="hasRole('STANDARD')" />
 		<intercept-url pattern="/formAssociazioneBSFunzUtente" access="hasRole('STANDARD')" />
 		<intercept-url pattern="/dashboard" access="hasRole('STANDARD')" />
+		<intercept-url pattern="/visualizzaElencoBusinessServices" access="hasRole('STANDARD')" />
+		<intercept-url pattern="/visualizzaElencoProcessi" access="hasRole('STANDARD')" />
+		
+		
 		
 	<!-- 	<intercept-url pattern="/" access="permitAll" />		
 		<intercept-url pattern="/*" access="hasRole('ROLE_USER')" />             

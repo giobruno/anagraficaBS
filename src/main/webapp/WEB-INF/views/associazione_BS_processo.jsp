@@ -309,7 +309,7 @@
 						<div class="div-table-col-center" >
 						
 						<input type="reset" name="Cancella" value="Cancella"/>
-						<input type="submit" name="Invia"  value="Invia" />							
+						<input type="submit" name="Associa"  value="Associa" />							
 						<input type="submit" name="Annulla"  value="Annulla" />
 					</div>
 				</div>
