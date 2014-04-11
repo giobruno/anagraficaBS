@@ -21,7 +21,8 @@
       <script src="resources/js/maxlength.js"></script>
       <script src="resources/js/abilita_selectbox.js"></script>
       <script src="resources/js/caricaApplicazioni.js"></script>
-      <script src="resources/js/check_tutti.js"></script>     
+      <script src="resources/js/check_tutti.js"></script>
+      <script src="resources/js/mostraMessaggio.js"></script>          
   </head>
 <body >
 

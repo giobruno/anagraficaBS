@@ -13,11 +13,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.ddway.anagraficaBS.model.db.DBusinessServices;
-import com.ddway.anagraficaBS.model.db.DServiziFunzioni;
-import com.ddway.anagraficaBS.model.db.DServiziModel;
-import com.ddway.anagraficaBS.model.db.DServiziProcessi;
-import com.ddway.anagraficaBS.model.db.VInfap;
+
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap;
 import com.ddway.anagraficaBS.model.forms.AssociazioneBSFunzUtenteForm;
 import com.ddway.anagraficaBS.model.forms.BusinessServiceForm;
 import com.ddway.anagraficaBS.model.forms.ElencoFunzioniForm;
@@ -124,6 +125,7 @@ public class BusinessServiceController {
 			}
 			}catch(Exception e){
 				logger.error(e.getMessage()+" on BusinessServiceController.inserimentoBusinessService");
+				throw e;
 			}
 			return model; 		
 	}
@@ -343,7 +345,7 @@ public class BusinessServiceController {
 			selectboxes = caricaSelect.getSelectsInserimentoBusinessService("formBusinessService");
 			codiBusinessService = request.getParameter("codiBusinessService");
 			businessService = (DBusinessServices) gestioneDataBase.getBusinessServices(codiBusinessService);
-			dServiziModel = (DServiziModel) gestioneDataBase.getModelApplicativo(codiBusinessService);
+			dServiziModel = (DServiziModel) gestioneDataBase.getModelApplicativoFromDServiziModel(codiBusinessService+"");
 			popolaModelForms.popolaBusinessServiceForm(businessService, dServiziModel,businessServiceFormAutoWired);
 			session.setAttribute("businessServiceFormOld", businessService);
 			model.addObject("businessServiceForm", businessServiceFormAutoWired);

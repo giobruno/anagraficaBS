@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.ddway.anagraficaBS.model.db.DBusinessServices;
-import com.ddway.anagraficaBS.model.db.DCategorieInfr;
-import com.ddway.anagraficaBS.model.db.DCategorieMac;
-import com.ddway.anagraficaBS.model.db.DDipartimenti;
-import com.ddway.anagraficaBS.model.db.DModelApplicativi;
-import com.ddway.anagraficaBS.model.db.DProcessi;
-import com.ddway.anagraficaBS.model.db.VInfap;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap;
 import com.ddway.anagraficaBS.service.IDataSourceService;
 
 
@@ -50,9 +50,9 @@ public class CaricaSelect {
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
 		try{		
-			List<DDipartimenti> dipartimentiList = (List<DDipartimenti>) getlistvalues("from com.ddway.anagraficaBS.model.db.DDipartimenti tab order by tab.textSiglaDipartimento");
+			List<DDipartimenti> dipartimentiList = (List<DDipartimenti>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti tab order by tab.textSiglaDipartimento");
 			selectLists.put("dipartimentiList", dipartimentiList);	
-			List<DModelApplicativi> modelApplicativiList = (List<DModelApplicativi>) getlistvalues("from com.ddway.anagraficaBS.model.db.DModelApplicativi tab order by tab.descModelApplicativo");	
+			List<DModelApplicativi> modelApplicativiList = (List<DModelApplicativi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab order by tab.descModelApplicativo");	
 			selectLists.put("modelApplicativiList", modelApplicativiList);				
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoBusinessService");
@@ -67,13 +67,13 @@ public class CaricaSelect {
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
 		try{
-			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) getlistvalues("from com.ddway.anagraficaBS.model.db.DBusinessServices tab order by tab.descBusinessService");
+			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab order by tab.descBusinessService");
 			selectLists.put("businessServiceList", businessServiceList);	
-			List<VInfap> codiAreaList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.VInfap tab order by tab.id.descArea");	
+			List<VInfap> codiAreaList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descArea");	
 			selectLists.put("codiAreaList", codiAreaList);
-			List<VInfap> codiApplicazioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.VInfap tab order by tab.id.descApplicazione");	
+			List<VInfap> codiApplicazioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descApplicazione");	
 			selectLists.put("codiApplicazioneList", codiApplicazioneList);
-			List<VInfap> codiFunzioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.VInfap tab order by tab.id.descFunzione");	
+			List<VInfap> codiFunzioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descFunzione");	
 			selectLists.put("codiFunzioneList", codiFunzioneList);
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSFunzUtente");
@@ -88,13 +88,13 @@ public class CaricaSelect {
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
 		try{
-			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) getlistvalues("from com.ddway.anagraficaBS.model.db.DBusinessServices tab order by tab.descBusinessService");
+			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab order by tab.descBusinessService");
 			selectLists.put("businessServiceList", businessServiceList);		
-			List<DProcessi> codiProcessoList = (List<DProcessi>) getlistvalues("from com.ddway.anagraficaBS.model.db.DProcessi tab order by tab.descProcesso");
+			List<DProcessi> codiProcessoList = (List<DProcessi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi tab order by tab.descProcesso");
 			selectLists.put("codiProcessoList", codiProcessoList);		
-			List<DCategorieMac> codiCategoriaMacList = (List<DCategorieMac>) getlistvalues("from com.ddway.anagraficaBS.model.db.DCategorieMac tab order by tab.descCategoriaMac");
+			List<DCategorieMac> codiCategoriaMacList = (List<DCategorieMac>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac tab order by tab.descCategoriaMac");
 			selectLists.put("codiCategoriaMacList", codiCategoriaMacList);		
-			List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.DCategorieInfr tab order by tab.descCategoriaInfr");
+			List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr tab order by tab.descCategoriaInfr");
 			selectLists.put("codiCategoriaInfrList", codiCategoriaInfrList);
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSProcesso");
@@ -109,9 +109,9 @@ public class CaricaSelect {
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
 		try{				
-			List<VInfap> codiAreaList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.VInfap tab order by tab.id.descArea");	
+			List<VInfap> codiAreaList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descArea");	
 			selectLists.put("codiAreaList", codiAreaList);
-//			List<VInfap> codiApplicazioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.VInfap tab order by tab.id.descApplicazione");	
+//			List<VInfap> codiApplicazioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descApplicazione");	
 //			selectLists.put("codiApplicazioneList", codiApplicazioneList);			
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSFunzUtente");
@@ -123,7 +123,7 @@ public class CaricaSelect {
 	public  List<VInfap> getApplicazioniList() throws Exception{
 		log.debug("Start CaricaSelect.getApplicazioniList method");
 		
-		List<VInfap> codiApplicazioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.VInfap tab order by tab.id.descApplicazione");
+		List<VInfap> codiApplicazioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descApplicazione");
 		return codiApplicazioneList;
 	}	
 	

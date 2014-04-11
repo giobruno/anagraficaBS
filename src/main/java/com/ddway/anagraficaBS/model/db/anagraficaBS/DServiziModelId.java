@@ -1,0 +1,67 @@
+package com.ddway.anagraficaBS.model.db.anagraficaBS;
+
+import java.util.Date;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class DServiziModelId implements java.io.Serializable {
+
+	private int codiBusinessService;
+	private Date dataInizioAssociazione;
+
+	public DServiziModelId() {
+	}
+
+	public DServiziModelId(int codiBusinessService, Date dataInizioAssociazione) {
+		this.codiBusinessService = codiBusinessService;
+		this.dataInizioAssociazione = dataInizioAssociazione;
+	}
+
+	public int getCodiBusinessService() {
+		return this.codiBusinessService;
+	}
+
+	public void setCodiBusinessService(int codiBusinessService) {
+		this.codiBusinessService = codiBusinessService;
+	}
+
+	public Date getDataInizioAssociazione() {
+		return this.dataInizioAssociazione;
+	}
+
+	public void setDataInizioAssociazione(Date dataInizioAssociazione) {
+		this.dataInizioAssociazione = dataInizioAssociazione;
+	}
+
+	public boolean equals(Object other) {
+		if ((this == other))
+			return true;
+		if ((other == null))
+			return false;
+		if (!(other instanceof DServiziModelId))
+			return false;
+		DServiziModelId castOther = (DServiziModelId) other;
+
+		return (this.getCodiBusinessService() == castOther
+				.getCodiBusinessService())
+				&& ((this.getDataInizioAssociazione() == castOther
+						.getDataInizioAssociazione()) || (this
+						.getDataInizioAssociazione() != null
+						&& castOther.getDataInizioAssociazione() != null && this
+						.getDataInizioAssociazione().equals(
+								castOther.getDataInizioAssociazione())));
+	}
+
+	public int hashCode() {
+		int result = 17;
+
+		result = 37 * result + this.getCodiBusinessService();
+		result = 37
+				* result
+				+ (getDataInizioAssociazione() == null ? 0 : this
+						.getDataInizioAssociazione().hashCode());
+		return result;
+	}
+
+}

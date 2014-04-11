@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ddway.anagraficaBS.model.db.DBusinessServices;
-import com.ddway.anagraficaBS.model.db.DProcessi;
-import com.ddway.anagraficaBS.model.db.DServiziModel;
-import com.ddway.anagraficaBS.model.db.DServiziProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi;
 import com.ddway.anagraficaBS.model.forms.AssociazioneBSProcessoForm;
 import com.ddway.anagraficaBS.model.forms.BusinessServiceForm;
 import com.ddway.anagraficaBS.model.forms.ProcessoForm;

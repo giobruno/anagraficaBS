@@ -4,12 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ddway.anagraficaBS.model.db.DBusinessServices;
-import com.ddway.anagraficaBS.model.db.DProcessi;
-import com.ddway.anagraficaBS.model.db.DServiziFunzioni;
-import com.ddway.anagraficaBS.model.db.DServiziFunzioniId;
-import com.ddway.anagraficaBS.model.db.DServiziModel;
-import com.ddway.anagraficaBS.model.db.DServiziProcessiId;
+
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioniId;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessiId;
 import com.ddway.anagraficaBS.model.forms.BusinessServiceForm;
 import com.ddway.anagraficaBS.model.forms.ProcessoForm;
 
@@ -36,11 +37,11 @@ public class PopolaModelForms {
 			if(dBusinessService != null && dServiziModel != null){
 				businessServiceForm.setCodiBusinessServiceOld(dBusinessService.getCodiBusinessService()+"");
 				businessServiceForm.setTextNomeBusinessService(dBusinessService.getTextNomeBusinessService());
-				businessServiceForm.setCodiDipartimento(dBusinessService.getCodiDipartimento()+"");
+				businessServiceForm.setCodiDipartimento(dBusinessService.getDDipartimenti().getCodiDipartimento()+"");
 				businessServiceForm.setDescBusinessService(dBusinessService.getDescBusinessService());
 				businessServiceForm.setPersRespBusinessService(dBusinessService.getPersRespBusinessService());
 				businessServiceForm.setTextUrlBusinessService(dBusinessService.getTextUrlBusinessService());
-				businessServiceForm.setCodiModelApplicativo(dServiziModel.getCodiModelApplicativo()+"");
+				businessServiceForm.setCodiModelApplicativo(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");
 				businessServiceForm.setFlagConvenzione(dBusinessService.getFlagConvenzione());								
 			}			
 		}catch(Exception e){

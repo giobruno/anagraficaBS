@@ -2,7 +2,8 @@ package com.ddway.anagraficaBS.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import com.ddway.anagraficaBS.model.db.Users;
+
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
 
 public class SecurityContext {
 

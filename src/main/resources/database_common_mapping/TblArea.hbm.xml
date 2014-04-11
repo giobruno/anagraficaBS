@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 12:55:21 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.common.TblArea" table="tbl_area" catalog="common">
+        <id name="idTblArea" type="java.lang.Integer">
+            <column name="id_tbl_area" />
+            <generator class="identity" />
+        </id>
+        <property name="scodeArea" type="string">
+            <column name="scode_area" length="4" not-null="true" unique="true" />
+        </property>
+        <property name="sdescrizione" type="string">
+            <column name="sdescrizione" length="300" />
+        </property>
+        <property name="dateStart" type="timestamp">
+            <column name="date_start" length="0" />
+        </property>
+        <property name="dateEnd" type="timestamp">
+            <column name="date_end" length="0" />
+        </property>
+        <property name="snote" type="string">
+            <column name="snote" length="300" />
+        </property>
+        <property name="idTblDipartim" type="java.lang.Integer">
+            <column name="id_tbl_dipartim" />
+        </property>
+        <property name="indAreaProg" type="java.lang.Character">
+            <column name="ind_area_prog" length="1" />
+        </property>
+        <property name="dateAgg" type="timestamp">
+            <column name="date_agg" length="0" />
+        </property>
+        <property name="sfunzAgg" type="string">
+            <column name="sfunz_agg" length="50" />
+        </property>
+        <property name="ienabled" type="int">
+            <column name="ienabled" not-null="true" />
+        </property>
+        <property name="iconfigured" type="java.lang.Integer">
+            <column name="iconfigured" />
+        </property>
+        <property name="notificaEmail" type="java.lang.Character">
+            <column name="notifica_email" length="1">
+                <comment>Il campo specifica se i processi possono inviare le email per l'area</comment>
+            </column>
+        </property>
+        <property name="istrutturacartelle" type="java.lang.Integer">
+            <column name="istrutturacartelle" />
+        </property>
+        <property name="iassegnatari" type="java.lang.Integer">
+            <column name="iassegnatari" />
+        </property>
+    </class>
+</hibernate-mapping>

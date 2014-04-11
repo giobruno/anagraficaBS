@@ -39,7 +39,7 @@
 
 	<authentication-manager>
 		<authentication-provider>
-			<jdbc-user-service data-source-ref="dataSourceAnagrafica"
+			<jdbc-user-service data-source-ref="dataSourceAnagraficaBS"
 				
 				users-by-username-query="
 					select username,password, enabled 

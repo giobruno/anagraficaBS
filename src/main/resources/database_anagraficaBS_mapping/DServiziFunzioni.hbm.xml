@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 10:46:31 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni" table="d_servizi_funzioni" catalog="anagraficabs">
+        <composite-id name="id" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioniId">
+            <key-property name="codiBusinessService" type="int">
+                <column name="CODI_BUSINESS_SERVICE" />
+            </key-property>
+            <key-property name="codiArea" type="int">
+                <column name="CODI_AREA" />
+            </key-property>
+            <key-property name="codiApplicazione" type="int">
+                <column name="CODI_APPLICAZIONE" />
+            </key-property>
+            <key-property name="codiFunzione" type="int">
+                <column name="CODI_FUNZIONE" />
+            </key-property>
+            <key-property name="dataInizioAssociazione" type="date">
+                <column name="DATA_INIZIO_ASSOCIAZIONE" length="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="DBusinessServices" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices" update="false" insert="false" fetch="select">
+            <column name="CODI_BUSINESS_SERVICE" not-null="true" />
+        </many-to-one>
+        <property name="descArea" type="string">
+            <column name="DESC_AREA" length="300" />
+        </property>
+        <property name="descApplicazione" type="string">
+            <column name="DESC_APPLICAZIONE" length="300" />
+        </property>
+        <property name="descFunzione" type="string">
+            <column name="DESC_FUNZIONE" length="300" />
+        </property>
+        <property name="dataFineAssociazione" type="date">
+            <column name="DATA_FINE_ASSOCIAZIONE" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

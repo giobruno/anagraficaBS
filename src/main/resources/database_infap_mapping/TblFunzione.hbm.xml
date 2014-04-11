@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 1:13:19 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.infap.TblFunzione" table="tbl_funzione" catalog="infap">
+        <id name="idTblFunzione" type="java.lang.Integer">
+            <column name="id_tbl_funzione" />
+            <generator class="identity" />
+        </id>
+        <property name="scodeAreaUtilizz" type="string">
+            <column name="scode_area_utilizz" length="4" not-null="true" />
+        </property>
+        <property name="scodeApplicazioneUtilizz" type="string">
+            <column name="scode_applicazione_utilizz" length="4" not-null="true" />
+        </property>
+        <property name="scodeAreaPropriet" type="string">
+            <column name="scode_area_propriet" length="4" not-null="true" />
+        </property>
+        <property name="scodeApplicazionePropriet" type="string">
+            <column name="scode_applicazione_propriet" length="4" not-null="true" />
+        </property>
+        <property name="scodeFunzione" type="string">
+            <column name="scode_funzione" length="6" not-null="true" />
+        </property>
+        <property name="sdescrizione" type="string">
+            <column name="sdescrizione" length="300" />
+        </property>
+        <property name="stipo" type="string">
+            <column name="stipo" length="8">
+                <comment>valori ammessi: TP, Batch o TP/Batch</comment>
+            </column>
+        </property>
+        <property name="snote" type="string">
+            <column name="snote" length="300" />
+        </property>
+        <property name="ibaseline" type="java.lang.Integer">
+            <column name="ibaseline" />
+        </property>
+        <property name="icaricamento" type="java.lang.Integer">
+            <column name="icaricamento" />
+        </property>
+        <property name="dateAgg" type="timestamp">
+            <column name="date_agg" length="0" />
+        </property>
+        <property name="sfunzAgg" type="string">
+            <column name="sfunz_agg" length="50" />
+        </property>
+        <property name="ienabled" type="java.lang.Integer">
+            <column name="ienabled" />
+        </property>
+    </class>
+</hibernate-mapping>

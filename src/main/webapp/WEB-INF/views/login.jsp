@@ -1,15 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<body onload='document.form.j_username.focus();'>
+<body onload='document.form.nome.focus();'>
 
-<div class="ContentHome bgA3">
+<div class="ContentHome bgA3">	
 
-	<c:if test="${not empty error}">
-		<div class="errorblock">
-			Your login attempt was not successful, try again.<br /> Caused :
-			${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-		</div>
-	</c:if>
+
 	
 	<c:if test="${presenzaMessaggio == 'si'}" >
 	<div class="div-table-row">
@@ -19,33 +15,118 @@
 			</div>
 	
 	</c:if>
-	
-   <fieldset>
+   
 	<form name='form' action="<c:url value='/j_spring_security_check' />" method='POST'>
- 
+	
+	<div class="div-table">
+	
+	<div class="div-table-row">
+	<div class="div-table-col">
+	
+	
+					
+	</div>
+	</div>
+	</div>
+		<div class="div-table-centrata">
+	<div class="div-table-row">
+	<div class="div-table-col">
+					</div>
+	</div>
+	
+			<div class="div-table-row">
+				<div class="div-table-col"></div>
+			</div>
+			<div class="div-table-row">
+				<div class="div-table-col"></div>
+			</div>
+	 <div class="div-table-row">
+ 	<div class="div-table-centrata">
+ 	<div class="div-table-centrata">
+ 	<p class="visualizzaFormLegend" align="center">Benvenuti sulla pagina di login!</p><br/><br/> 	
+ 	 
+		<fieldset >
+		
+		<legend>Compila i seguenti campi per effettuare il login!</legend>		
+		
 		<div class="div-table">	
 			<div class="div-table-row">
-				<div class="div-table-col">User:</div>
-				<div class="div-table-col"><input type='text' name='j_username' id="j_username">
-				</div>
+					    	<div class="div-table-col-center"><label for="j_username"> <img src="resources/img/query.png" alt="" title="">&nbsp;Username*:</label></div>
+							<div class="div-table-col-center"><input style="width:200px"  maxlength="150" id="j_username" nome="j_username"/></div>							
 			</div>
+			</br>
 			<div class="div-table-row">
-				<div class="div-table-col">Password:</div>
-				<div class="div-table-col"><input type='password' name='j_password' id="j_password">
-				</div>
+							<div class="div-table-col-center"><label for="j_password"> <img src="resources/img/query.png" alt="" title="">&nbsp;Password*:</label></div>
+							<div class="div-table-col-center"><input style="width:200px"  maxlength="150" type="password" id="j_password" nome="j_password"/>
+							
 			</div>
+			</div>	
+			
+			</div>
+			</fieldset>
+			
+			</br>
 			<div class="div-table-row">
-				<div class="div-table-col"><input name="login" type="submit" value="submit" />
-				</div>
+			<div class="div-table-col">
+									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
+					</div>
+					</div>
+					</br>
+					</br>
+					<c:if test="${not empty error}">
+						<div class="div-table-row">
+								<div class="div-table-col">
+									<div class="visualizzaForm" style="color:red;">Utente non trovato! Verifica l'esattezza di username e pasword!</div>
+								</div>
+						</div>
+				</c:if>
+			
 			</div>
+			</div>
+			</div>
+			
+			
 			<div class="div-table-row">
-				<div class="div-table-col"><input name="reset" type="reset" />
+			<div class="div-table-col">
+					 &nbsp;
+							</div>
+							</div>
+	
+	
+					<div class="div-table-row">
+						<div class="div-table-col-center" >
+				
+							<input type="reset" name="Cancella" value="Cancella"/>
+							<input type="submit" name="Registrati"  value="Accedi"/>
+							
+							
+							
+							<a href="home" ><input type="button" value="Annulla"></a>	
+						</div>						
+						
+					</div>
 				</div>
-			</div>
-		</div>
+	
+				
+							
+		
+	
+							
+						<div class="div-table-row">
+							<div class="div-table-col"></div>
+						</div>
+					</div>
+	 
+	 
+				 <div class="div-table"> 
+					<div class="div-table-row">
+					
+					</div>
+					</div>		
  
 	</form>
-	</fieldset>
+	
 	
 	</div>
 </body>
+

@@ -14,7 +14,7 @@
 	
 	<definition name="base.definition.nologged" template="/WEB-INF/views/layout_nologged.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />		
+		<put-attribute name="header" value="/WEB-INF/views/header_nologged.jsp" />		
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>		
@@ -35,7 +35,7 @@
 	</definition>
 	
 	<definition name="registrazione" extends="base.definition.nologged">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="registrazione" />
 		<put-attribute name="body" value="/WEB-INF/views/registrazione.jsp" />
 	</definition>
 	

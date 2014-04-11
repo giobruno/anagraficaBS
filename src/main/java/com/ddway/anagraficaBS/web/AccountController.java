@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.ddway.anagraficaBS.model.db.Users;
+
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
 import com.ddway.anagraficaBS.model.forms.RegistrazioneForm;
 import com.ddway.anagraficaBS.service.IDataSourceService;
 import com.ddway.anagraficaBS.utility.GestioneDataBase;
@@ -47,7 +48,7 @@ public class AccountController {
 		return model; 
 	}	
 	
-	@RequestMapping(value="/registrazione", method = RequestMethod.POST, params="Invia")
+	@RequestMapping(value="/registrazione", method = RequestMethod.POST, params="Registrati")
 	public ModelAndView registrazione(RegistrazioneForm registrazioneForm, BindingResult errors, ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo AccountController.registrazione!");
 		
@@ -72,7 +73,7 @@ public class AccountController {
 	public ModelAndView registrazioneAnnulla(ModelAndView model) { 
 		logger.info("Inizio metodo AccountController.registrazioneAnnulla!");		
 		
-		model.setViewName("dashboard");
+		model.setViewName("home");
 		return model; 
 	}
 }

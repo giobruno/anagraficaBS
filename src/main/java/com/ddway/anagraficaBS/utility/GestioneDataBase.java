@@ -8,16 +8,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.ddway.anagraficaBS.model.db.Authorities;
-import com.ddway.anagraficaBS.model.db.AuthoritiesId;
-import com.ddway.anagraficaBS.model.db.DBusinessServices;
-import com.ddway.anagraficaBS.model.db.DProcessi;
-import com.ddway.anagraficaBS.model.db.DServiziFunzioni;
-import com.ddway.anagraficaBS.model.db.DServiziModel;
-import com.ddway.anagraficaBS.model.db.DServiziModelId;
-import com.ddway.anagraficaBS.model.db.DServiziProcessi;
-import com.ddway.anagraficaBS.model.db.Users;
-import com.ddway.anagraficaBS.model.db.VInfap;
+
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Authorities;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.AuthoritiesId;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModelId;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap;
 import com.ddway.anagraficaBS.model.forms.BusinessServiceForm;
 import com.ddway.anagraficaBS.model.forms.ProcessoForm;
 import com.ddway.anagraficaBS.service.IDataSourceService;
@@ -42,13 +44,19 @@ public class GestioneDataBase {
 	@Autowired
 	DProcessi dProcessi;
 	
+	@Autowired
+	DServiziModel dServiziModel;
+	
+	@Autowired
+	DModelApplicativi dModelApplicativo;
+	
 	public GestioneDataBase() {}
 	
 	@Transactional
 	public void registraUtente(Users user) throws Exception{
 		log.info("Inizio metodo GestioneDataBase.registraUtente!");
 		
-		String query = "from com.ddway.anagraficaBS.model.db.Users tab order by tab.userId desc";		
+		String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.Users tab order by tab.userId desc";		
 		int idUser = 0;
 		
 		try{							
@@ -82,8 +90,8 @@ public class GestioneDataBase {
 	public int inserisciBusinessService(BusinessServiceForm businessServiceForm) throws Exception{
 		log.info("Inizio metodo GestioneDataBase.inserisciBusinessService!");
 		
-		String query = "from com.ddway.anagraficaBS.model.db.DBusinessServices tab order by tab.codiBusinessService desc";		
-		int codiBusinessService = 0;
+		String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab order by tab.codiBusinessService desc";		
+		int codiBusinessService = 0;		
 		
 		try{							
 			popolaModelDb.popolaDBusinessServiceBean(businessServiceForm,dBusinessService);
@@ -93,8 +101,9 @@ public class GestioneDataBase {
 			if(maxCodiBusinessService != null && !maxCodiBusinessService.isEmpty()){
 				dBusinessService = (DBusinessServices) maxCodiBusinessService.get(0);
 				codiBusinessService = dBusinessService.getCodiBusinessService();
+				dModelApplicativo = getModelApplicativoFromDModelApplicativi(businessServiceForm.getCodiModelApplicativo());
 			}
-			dataSourceService.insert(new DServiziModel(new DServiziModelId(codiBusinessService, new Date()),Integer.parseInt(businessServiceForm.getCodiModelApplicativo()),null));
+			dataSourceService.insert(new DServiziModel(new DServiziModelId(codiBusinessService, new Date()),dModelApplicativo,dBusinessService,null));
 		}catch(Exception e){
 			log.error(e.getMessage()+" on GestioneDataBase.inserisciBusinessService");
 			throw e;
@@ -115,13 +124,14 @@ public class GestioneDataBase {
 			popolaModelDb.popolaDBusinessServiceBean(businessServiceForm,dBusinessService);
 			dataSourceService.insert(dBusinessService);
 			
-			query = "from com.ddway.anagraficaBS.model.db.DBusinessServices tab order by tab.codiBusinessService desc";
+			query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab order by tab.codiBusinessService desc";
 			List<Object> maxCodiBusinessService = (List<Object>) dataSourceService.genericquery(query);
 			if(maxCodiBusinessService != null && !maxCodiBusinessService.isEmpty()){
 				dBusinessService = (DBusinessServices) maxCodiBusinessService.get(0);
 				codiBusinessService = dBusinessService.getCodiBusinessService();
+				dModelApplicativo = getModelApplicativoFromDModelApplicativi(businessServiceForm.getCodiModelApplicativo());
 			}
-			dataSourceService.insert(new DServiziModel(new DServiziModelId(codiBusinessService, new Date()),Integer.parseInt(businessServiceForm.getCodiModelApplicativo()),null));
+			dataSourceService.insert(new DServiziModel(new DServiziModelId(codiBusinessService, new Date()),dModelApplicativo,dBusinessService, null));
 		}catch(Exception e){
 			log.error(e.getMessage()+" on GestioneDataBase.modificaBusinessService");
 			throw e;
@@ -210,7 +220,7 @@ public class GestioneDataBase {
 		public String getDescApplicazione(int codiApplicazione) throws Exception{
 			log.info("Inizio metodo GestioneDataBase.getDescApplicazione!");		
 			
-			String query = "Select tab.id.descApplicazione from com.ddway.anagraficaBS.model.db.VInfap tab where tab.id.codiApplicazione = '"+codiApplicazione+"'";
+			String query = "Select tab.id.descApplicazione from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab where tab.id.codiApplicazione = '"+codiApplicazione+"'";
 			String descApplicazione = ""; 
 			
 			try{											
@@ -227,7 +237,7 @@ public class GestioneDataBase {
 		public String getDescArea(int codiArea) throws Exception{
 			log.info("Inizio metodo GestioneDataBase.getDescArea!");		
 			
-			String query = "Select tab.id.descArea from com.ddway.anagraficaBS.model.db.VInfap tab where tab.id.codiArea = '"+codiArea+"' order by tab.id.descFunzione";
+			String query = "Select tab.id.descArea from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab where tab.id.codiArea = '"+codiArea+"' order by tab.id.descFunzione";
 			String descArea = "";
 			
 			try{											
@@ -245,7 +255,7 @@ public class GestioneDataBase {
 		public String getDescFunzione(int codiFunzione) throws Exception{
 			log.info("Inizio metodo GestioneDataBase.getDescArea!");		
 			
-			String query = "Select tab.id.descFunzione from com.ddway.anagraficaBS.model.db.VInfap tab where tab.id.codiFunzione = '"+codiFunzione+"' order by tab.id.descFunzione";
+			String query = "Select tab.id.descFunzione from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab where tab.id.codiFunzione = '"+codiFunzione+"' order by tab.id.descFunzione";
 			String descFunzione = "";
 			
 			try{											
@@ -268,8 +278,8 @@ public class GestioneDataBase {
 			
 			try{			
 				if(codiApplicazione != null && !codiApplicazione.equalsIgnoreCase(""))
-					query = "from com.ddway.anagraficaBS.model.db.VInfap tab where tab.id.codiArea = '"+codiArea+"' and tab.id.codiApplicazione = '"+codiApplicazione+"' order by tab.id.descFunzione";
-				else query = "from com.ddway.anagraficaBS.model.db.VInfap tab where tab.id.codiArea = '"+codiArea+"' order by tab.id.descFunzione";
+					query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab where tab.id.codiArea = '"+codiArea+"' and tab.id.codiApplicazione = '"+codiApplicazione+"' order by tab.id.descFunzione";
+				else query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab where tab.id.codiArea = '"+codiArea+"' order by tab.id.descFunzione";
 				codiFunzioneList = (List<VInfap>) dataSourceService.genericquery(query);				
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.getListaFunzioniUtente");
@@ -283,12 +293,12 @@ public class GestioneDataBase {
 			log.debug("Start GestioneDataBase.getElencoBusinessServices method");
 			
 			List<DBusinessServices> elencoBusinessServices;
-			String query = "from com.ddway.anagraficaBS.model.db.DBusinessServices tab where tab.dataValiditaFine is null order by tab.descBusinessService";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataValiditaFine is null order by tab.descBusinessService";
 			
 			try{		
 				elencoBusinessServices = (List<DBusinessServices>) dataSourceService.genericquery(query);								
 			}catch(Exception e){
-				log.error(e.getMessage()+" on GestioneDataBase.getListaFunzioniUtente");
+				log.error(e.getMessage()+" on GestioneDataBase.getElencoBusinessServices");
 				throw e;
 			}
 			return elencoBusinessServices;	
@@ -299,7 +309,7 @@ public class GestioneDataBase {
 			log.debug("Start GestioneDataBase.getElencoProcessi method");
 			
 			List<DProcessi> elencoProcessi;
-			String query = "from com.ddway.anagraficaBS.model.db.DProcessi tab where tab.dataValiditaFine is null order by tab.descProcesso";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi tab where tab.dataValiditaFine is null order by tab.descProcesso";
 			
 			try{		
 				elencoProcessi = (List<DProcessi>) dataSourceService.genericquery(query);								
@@ -315,32 +325,50 @@ public class GestioneDataBase {
 			log.debug("Start GestioneDataBase.getBusinessServices method");
 			
 			List<DBusinessServices> elencoBusinessServices;
-			String query = "from com.ddway.anagraficaBS.model.db.DBusinessServices tab where tab.codiBusinessService = '"+cosiBusinessServise+"'";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.codiBusinessService = '"+cosiBusinessServise+"'";
 			
 			try{		
 				elencoBusinessServices = (List<DBusinessServices>) dataSourceService.genericquery(query);
 				if(elencoBusinessServices == null || elencoBusinessServices.isEmpty())
 					throw new Exception("Nessun Business Service trovato con il codice "+cosiBusinessServise);
 			}catch(Exception e){
-				log.error(e.getMessage()+" on GestioneDataBase.getListaFunzioniUtente");
+				log.error(e.getMessage()+" on GestioneDataBase.getBusinessServices");
 				throw e;
 			}
 			return elencoBusinessServices.get(0);	
 		}
 		
 		@Transactional
-		public  DServiziModel getModelApplicativo(String cosiBusinessServise) throws Exception{
-			log.debug("Start GestioneDataBase.getModelApplicativo method");
+		public  DServiziModel getModelApplicativoFromDServiziModel(String codiBusinessServise) throws Exception{
+			log.debug("Start GestioneDataBase.getModelApplicativoFromDServiziModel method");
 			
 			List<DServiziModel> modelApplicativoList;
-			String query = "from com.ddway.anagraficaBS.model.db.DServiziModel tab where tab.id.codiBusinessService = '"+cosiBusinessServise+"'";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel tab where tab.id.codiBusinessService = '"+codiBusinessServise+"'";
 			
 			try{		
 				modelApplicativoList = (List<DServiziModel>) dataSourceService.genericquery(query);
 				if(modelApplicativoList == null || modelApplicativoList.isEmpty())
-					throw new Exception("Nessun Model Applicativo trovato con il codice Business Service "+cosiBusinessServise);
+					throw new Exception("Nessun Model Applicativo trovato con il codice Business Service "+codiBusinessServise);
 			}catch(Exception e){
-				log.error(e.getMessage()+" on GestioneDataBase.getModelApplicativo");
+				log.error(e.getMessage()+" on GestioneDataBase.getModelApplicativoFromDServiziModel");
+				throw e;
+			}
+			return modelApplicativoList.get(0);	
+		}
+		
+		@Transactional
+		public  DModelApplicativi getModelApplicativoFromDModelApplicativi(String codiModelApplicativo) throws Exception{
+			log.debug("Start GestioneDataBase.getModelApplicativoFromDModelApplicativi method");
+			
+			List<DModelApplicativi> modelApplicativoList;
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab where tab.codiModelApplicativo = '"+codiModelApplicativo+"'";
+			
+			try{		
+				modelApplicativoList = (List<DModelApplicativi>) dataSourceService.genericquery(query);
+				if(modelApplicativoList == null || modelApplicativoList.isEmpty())
+					throw new Exception("Nessun Model Applicativo trovato con il codice Business Service "+codiModelApplicativo);
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getModelApplicativoFromDModelApplicativi");
 				throw e;
 			}
 			return modelApplicativoList.get(0);	
@@ -351,7 +379,7 @@ public class GestioneDataBase {
 			log.debug("Start GestioneDataBase.getProcesso method");
 			
 			List<DProcessi> elencoProcessi;
-			String query = "from com.ddway.anagraficaBS.model.db.DProcessi tab where tab.codiProcesso = '"+cosiProcesso+"'";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi tab where tab.codiProcesso = '"+cosiProcesso+"'";
 			
 			try{		
 				elencoProcessi = (List<DProcessi>) dataSourceService.genericquery(query);
@@ -369,7 +397,7 @@ public class GestioneDataBase {
 			log.debug("Start GestioneDataBase.getListaAssociazioniFunzioniUtenteBS method");
 			
 			List<DServiziFunzioni> elencoFunzioni;
-			String query = "from com.ddway.anagraficaBS.model.db.DServiziFunzioni tab where tab.id.codiBusinessService = '"+codiBusinessService+"'";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni tab where tab.id.codiBusinessService = '"+codiBusinessService+"'";
 			
 			try{		
 				elencoFunzioni = (List<DServiziFunzioni>) dataSourceService.genericquery(query);				
@@ -385,7 +413,7 @@ public class GestioneDataBase {
 			log.debug("Start GestioneDataBase.getListaAssociazioniProcessiBS method");
 			
 			List<DServiziProcessi> elencoProcessi;
-			String query = "from com.ddway.anagraficaBS.model.db.DServiziProcessi tab where tab.id.codiBusinessService = '"+codiBusinessService+"'";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiBusinessService = '"+codiBusinessService+"'";
 			
 			try{		
 				elencoProcessi = (List<DServiziProcessi>) dataSourceService.genericquery(query);				

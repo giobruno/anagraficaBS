@@ -18,6 +18,14 @@ public class HomeController {
 		
 		model.setViewName("home");
 		return model;
-	}	
+	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView home2(ModelAndView model) {
+		logger.info("Inizio metodo HomeController.home2!");			
+		
+		model.setViewName("home");
+		return model;
+	}
 	
 }

@@ -16,14 +16,14 @@
     
 	  <link rel="stylesheet" href="resources/css/normalize.css"/>
       <link rel="stylesheet" href="resources/css/fonts.css"/>
-      <link rel="stylesheet" href="resources/css/main.css"/>           
+      <link rel="stylesheet" href="resources/css/main.css"/>  
+      <script src="resources/js/mostraMessaggio.js"></script>           
   </head>
 <body>
 
 <tiles:insertAttribute name="header" />
 <div class="PageWrapBis" id="central">	
 <div class="Page">
-<br/>
 <tiles:insertAttribute name="body" />				
 </div>
 </div>

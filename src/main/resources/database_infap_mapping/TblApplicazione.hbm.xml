@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 1:13:19 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.infap.TblApplicazione" table="tbl_applicazione" catalog="infap">
+        <id name="idTblApplicazione" type="java.lang.Integer">
+            <column name="id_tbl_applicazione" />
+            <generator class="identity" />
+        </id>
+        <property name="scodeArea" type="string">
+            <column name="scode_area" length="4" not-null="true" />
+        </property>
+        <property name="scodeApplicazione" type="string">
+            <column name="scode_applicazione" length="4" not-null="true" />
+        </property>
+        <property name="sdescrizione" type="string">
+            <column name="sdescrizione" length="300" />
+        </property>
+        <property name="sdescrizioneBreve" type="string">
+            <column name="sdescrizione_breve" length="100" />
+        </property>
+        <property name="sindi" type="java.lang.Character">
+            <column name="sindi" length="1">
+                <comment>Indicatore di applicazione contata o censita (F= contata, C= censita)</comment>
+            </column>
+        </property>
+        <property name="stipo" type="java.lang.Character">
+            <column name="stipo" length="1">
+                <comment>Tipo di applicazione: G=Gestionale, C=Conoscitiva, W=Web</comment>
+            </column>
+        </property>
+        <property name="snote" type="string">
+            <column name="snote" length="300" />
+        </property>
+        <property name="scodeDipartim" type="string">
+            <column name="scode_dipartim" length="2" />
+        </property>
+        <property name="ibaseline" type="java.lang.Integer">
+            <column name="ibaseline" />
+        </property>
+        <property name="icaricamento" type="java.lang.Integer">
+            <column name="icaricamento" />
+        </property>
+        <property name="dateAgg" type="timestamp">
+            <column name="date_agg" length="0" />
+        </property>
+        <property name="sfunzAgg" type="string">
+            <column name="sfunz_agg" length="50" />
+        </property>
+        <property name="ienabled" type="java.lang.Integer">
+            <column name="ienabled" />
+        </property>
+    </class>
+</hibernate-mapping>

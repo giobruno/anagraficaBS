@@ -6,14 +6,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ddway.anagraficaBS.model.db.DBusinessServices;
-import com.ddway.anagraficaBS.model.db.DDipartimenti;
-import com.ddway.anagraficaBS.model.db.DProcessi;
-import com.ddway.anagraficaBS.model.db.DServiziFunzioni;
-import com.ddway.anagraficaBS.model.db.DServiziFunzioniId;
-import com.ddway.anagraficaBS.model.db.DServiziProcessi;
-import com.ddway.anagraficaBS.model.db.DServiziProcessiId;
-import com.ddway.anagraficaBS.model.db.Users;
+
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioniId;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessiId;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
 import com.ddway.anagraficaBS.model.forms.AssociazioneBSFunzUtenteForm;
 import com.ddway.anagraficaBS.model.forms.AssociazioneBSProcessoForm;
 import com.ddway.anagraficaBS.model.forms.BusinessServiceForm;
@@ -82,7 +83,7 @@ public class PopolaModelDb {
 		
 		try{
 			if(businessServiceForm != null){
-				dBusinessService.setCodiDipartimento(Integer.parseInt(businessServiceForm.getCodiDipartimento()));
+				dBusinessService.setDDipartimenti(new DDipartimenti(Integer.parseInt(businessServiceForm.getCodiDipartimento()),businessServiceForm.getTextNomeBusinessService(),businessServiceForm.getDescDipartimento(),null));
 				dBusinessService.setDescBusinessService(businessServiceForm.getDescBusinessService());
 				dBusinessService.setTextNomeBusinessService(businessServiceForm.getTextNomeBusinessService());
 				dBusinessService.setPersRespBusinessService(businessServiceForm.getPersRespBusinessService());

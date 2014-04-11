@@ -3,8 +3,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="dataSourceAnagrafica" class="org.springframework.jndi.JndiObjectFactoryBean">
+	<bean id="dataSourceAnagraficaBS" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName" value="java:comp/env/jdbc/dataSourceAnagraficaBS" />
+	</bean>
+	
+	<bean id="dataSourceCommon" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/dataSourceCommon" />
+	</bean>
+	
+	<bean id="dataSourceInfap" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/dataSourceInfap" />
 	</bean>
 	
 	<!-- <bean id="dataSourceAnagrafica" class ="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"

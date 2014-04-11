@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 10:46:31 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices" table="d_business_services" catalog="anagraficabs">
+        <id name="codiBusinessService" type="java.lang.Integer">
+            <column name="CODI_BUSINESS_SERVICE" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="DDipartimenti" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti" fetch="select">
+            <column name="CODI_DIPARTIMENTO" not-null="true" />
+        </many-to-one>
+        <property name="textNomeBusinessService" type="string">
+            <column name="TEXT_NOME_BUSINESS_SERVICE" length="100" />
+        </property>
+        <property name="descBusinessService" type="string">
+            <column name="DESC_BUSINESS_SERVICE" length="250" />
+        </property>
+        <property name="dataValiditaInizio" type="date">
+            <column name="DATA_VALIDITA_INIZIO" length="0" />
+        </property>
+        <property name="dataValiditaFine" type="date">
+            <column name="DATA_VALIDITA_FINE" length="0" />
+        </property>
+        <property name="persRespBusinessService" type="string">
+            <column name="PERS_RESP_BUSINESS_SERVICE" length="50" />
+        </property>
+        <property name="textUrlBusinessService" type="string">
+            <column name="TEXT_URL_BUSINESS_SERVICE" length="50" />
+        </property>
+        <property name="flagConvenzione" type="java.lang.Boolean">
+            <column name="FLAG_CONVENZIONE" />
+        </property>
+        <set name="DServiziProcessis" table="d_servizi_processi" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODI_BUSINESS_SERVICE" not-null="true" />
+            </key>
+            <one-to-many class="com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi" />
+        </set>
+        <set name="DServiziFunzionis" table="d_servizi_funzioni" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODI_BUSINESS_SERVICE" not-null="true" />
+            </key>
+            <one-to-many class="com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni" />
+        </set>
+        <set name="DServiziModels" table="d_servizi_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODI_BUSINESS_SERVICE" not-null="true" />
+            </key>
+            <one-to-many class="com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel" />
+        </set>
+    </class>
+</hibernate-mapping>

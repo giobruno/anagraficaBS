@@ -4,5 +4,13 @@
 <resource-ref>  
 <res-ref-name>jdbc/dataSourceAnagraficaBS</res-ref-name>  
 <jndi-name>java:/dataSourceAnagraficaBS</jndi-name>  
+</resource-ref>
+<resource-ref>  
+<res-ref-name>jdbc/dataSourceCommon</res-ref-name>  
+<jndi-name>java:/dataSourceCommon</jndi-name>  
+</resource-ref>
+<resource-ref>  
+<res-ref-name>jdbc/dataSourceInfap</res-ref-name>  
+<jndi-name>java:/dataSourceInfap</jndi-name>  
 </resource-ref>  
 </jboss-web> 

@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 1:13:19 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.infap.TblElementoFzDett" table="tbl_elemento_fz_dett" catalog="infap">
+        <id name="idTblElementoFzDett" type="java.lang.Integer">
+            <column name="id_tbl_elemento_fz_dett" />
+            <generator class="identity" />
+        </id>
+        <property name="scodeAreaUtilizz" type="string">
+            <column name="scode_area_utilizz" length="4" not-null="true" />
+        </property>
+        <property name="scodeApplicazioneUtilizz" type="string">
+            <column name="scode_applicazione_utilizz" length="4" not-null="true" />
+        </property>
+        <property name="scodeFunzioneUtilizz" type="string">
+            <column name="scode_funzione_utilizz" length="6" not-null="true" />
+        </property>
+        <property name="scodeAreaPropriet" type="string">
+            <column name="scode_area_propriet" length="4" not-null="true" />
+        </property>
+        <property name="scodeApplicazionePropriet" type="string">
+            <column name="scode_applicazione_propriet" length="4" not-null="true" />
+        </property>
+        <property name="scodeFunzionePropriet" type="string">
+            <column name="scode_funzione_propriet" length="6" not-null="true" />
+        </property>
+        <property name="scodeElementoFz" type="string">
+            <column name="scode_elemento_fz" length="9" not-null="true" />
+        </property>
+        <property name="scodeObiet" type="string">
+            <column name="scode_obiet" length="30" not-null="true" />
+        </property>
+        <property name="dateStart" type="timestamp">
+            <column name="date_start" length="0" not-null="true" />
+        </property>
+        <property name="dateEnd" type="timestamp">
+            <column name="date_end" length="0" />
+        </property>
+        <property name="iriusoInterno" type="java.lang.Integer">
+            <column name="iriuso_interno" />
+        </property>
+        <property name="iriusoEsterno" type="java.lang.Integer">
+            <column name="iriuso_esterno" />
+        </property>
+        <property name="stipo" type="string">
+            <column name="stipo" length="2">
+                <comment>valori ammessi: EI, EO, EQ</comment>
+            </column>
+        </property>
+        <property name="dnumeroDet" type="java.lang.Double">
+            <column name="dnumero_det" precision="22" scale="0" />
+        </property>
+        <property name="dnumeroFtr" type="java.lang.Double">
+            <column name="dnumero_ftr" precision="22" scale="0" />
+        </property>
+        <property name="stipoVers" type="string">
+            <column name="stipo_vers" length="4">
+                <comment>valori ammessi: ADD, CHGA, DEL</comment>
+            </column>
+        </property>
+        <property name="scomplessita" type="string">
+            <column name="scomplessita" length="1">
+                <comment>valori ammessi: A, M, B</comment>
+            </column>
+        </property>
+        <property name="dufp" type="java.lang.Double">
+            <column name="dufp" precision="22" scale="0" />
+        </property>
+        <property name="dufpRInt" type="java.lang.Double">
+            <column name="dufp_r_int" precision="22" scale="0" />
+        </property>
+        <property name="dufpREst" type="java.lang.Double">
+            <column name="dufp_r_est" precision="22" scale="0" />
+        </property>
+        <property name="ibaseline" type="java.lang.Integer">
+            <column name="ibaseline" />
+        </property>
+        <property name="icaricamento" type="java.lang.Integer">
+            <column name="icaricamento" />
+        </property>
+        <property name="ierr" type="java.lang.Integer">
+            <column name="ierr" />
+        </property>
+        <property name="dateAgg" type="timestamp">
+            <column name="date_agg" length="0" />
+        </property>
+        <property name="sfunzAgg" type="string">
+            <column name="sfunz_agg" length="50" />
+        </property>
+        <property name="ienabled" type="java.lang.Integer">
+            <column name="ienabled" />
+        </property>
+    </class>
+</hibernate-mapping>

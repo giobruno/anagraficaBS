@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 10:53:12 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.anagraficaBS.Authorities" table="authorities" catalog="anagraficabs">
+        <composite-id name="id" class="com.ddway.anagraficaBS.model.db.anagraficaBS.AuthoritiesId">
+            <key-property name="roleId" type="int">
+                <column name="ROLE_ID" />
+            </key-property>
+            <key-property name="userId" type="int">
+                <column name="USER_ID" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

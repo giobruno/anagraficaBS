@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 11, 2014 10:46:31 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi" table="d_servizi_processi" catalog="anagraficabs">
+        <composite-id name="id" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessiId">
+            <key-property name="codiBusinessService" type="int">
+                <column name="CODI_BUSINESS_SERVICE" />
+            </key-property>
+            <key-property name="codiProcesso" type="int">
+                <column name="CODI_PROCESSO" />
+            </key-property>
+            <key-property name="codiCategoriaMac" type="int">
+                <column name="CODI_CATEGORIA_MAC" />
+            </key-property>
+            <key-property name="codiCategoriaInfr" type="int">
+                <column name="CODI_CATEGORIA_INFR" />
+            </key-property>
+            <key-property name="dataInizioValidita" type="date">
+                <column name="DATA_INIZIO_VALIDITA" length="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="DProcessi" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi" update="false" insert="false" fetch="select">
+            <column name="CODI_PROCESSO" not-null="true" />
+        </many-to-one>
+        <many-to-one name="DCategorieInfr" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr" update="false" insert="false" fetch="select">
+            <column name="CODI_CATEGORIA_INFR" not-null="true" />
+        </many-to-one>
+        <many-to-one name="DBusinessServices" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices" update="false" insert="false" fetch="select">
+            <column name="CODI_BUSINESS_SERVICE" not-null="true" />
+        </many-to-one>
+        <many-to-one name="DCategorieMac" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac" update="false" insert="false" fetch="select">
+            <column name="CODI_CATEGORIA_MAC" not-null="true" />
+        </many-to-one>
+        <property name="orarioLavIni" type="time">
+            <column name="ORARIO_LAV_INI" length="0" />
+        </property>
+        <property name="orarioLavFine" type="time">
+            <column name="ORARIO_LAV_FINE" length="0" />
+        </property>
+        <property name="misuTmpLavorativo" type="string">
+            <column name="MISU_TMP_LAVORATIVO" length="50" />
+        </property>
+        <property name="misuTmpSolare" type="string">
+            <column name="MISU_TMP_SOLARE" length="50" />
+        </property>
+        <property name="dataFineValidita" type="string">
+            <column name="DATA_FINE_VALIDITA" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
