@@ -41,12 +41,12 @@
 		<div class="div-table">	
 			<div class="div-table-row">
 					    	<div class="div-table-col-center"><label for="j_username"> <img src="resources/img/query.png" alt="" title="">&nbsp;Username*:</label></div>
-							<div class="div-table-col-center"><input style="width:200px"  maxlength="150" id="j_username" nome="j_username"/></div>							
+							<div class="div-table-col-center"><input style="width:200px"  maxlength="150" id="j_username" name="j_username"/></div>							
 			</div>
 			</br>
 			<div class="div-table-row">
 							<div class="div-table-col-center"><label for="j_password"> <img src="resources/img/query.png" alt="" title="">&nbsp;Password*:</label></div>
-							<div class="div-table-col-center"><input style="width:200px"  maxlength="150" type="password" id="j_password" nome="j_password"/>
+							<div class="div-table-col-center"><input style="width:200px"  maxlength="150" type="password" id="j_password" name="j_password"/>
 							
 			</div>
 			</div>	
@@ -74,7 +74,7 @@
 						<div class="div-table-col-center" >
 				
 							<input type="reset" name="Cancella" value="Cancella"/>
-							<input type="submit" name="Registrati"  value="Accedi"/>
+							<input type="submit" name="Accedi"  value="Accedi"/>
 							
 							
 							
