@@ -3,18 +3,7 @@
 
 <body onload='document.form.nome.focus();'>
 
-<div class="ContentHome bgA3">	
-
-
-	
-	<c:if test="${presenzaMessaggio == 'si'}" >
-	<div class="div-table-row">
-				<div class="div-table-col">
-					<p class="visualizzaForm">${messaggio}</p>
-				</div>
-			</div>
-	
-	</c:if>
+<div class="ContentHome bgA3">		
    
 	<form name='form' action="<c:url value='/j_spring_security_check' />" method='POST'>
 	
@@ -71,19 +60,7 @@
 									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
 					</div>
 					</div>
-					</br>
-					</br>
-					<c:if test="${not empty error}">
-						<div class="div-table-row">
-								<div class="div-table-col">
-									<div class="visualizzaForm" style="color:red;">Utente non trovato! Verifica l'esattezza di username e pasword!</div>
-								</div>
-						</div>
-				</c:if>
-			
-			</div>
-			</div>
-			</div>
+					</br>	
 			
 			
 			<div class="div-table-row">
@@ -105,9 +82,29 @@
 						</div>						
 						
 					</div>
+					</br>				
+					<div class="div-table-row">
+					<c:if test="${presenzaMessaggio == 'si'}" >
+							<div class="div-table-row">
+								<div class="div-table-col">
+										<p class="visualizzaForm" style="color:red;">${messaggio}</p>
+								</div>
+							</div>
+	
+					</c:if>
+					<c:if test="${not empty error}">
+						<div class="div-table-row">
+								<div class="div-table-col">
+									<div class="visualizzaForm" style="color:red;">Utente non trovato! Verifica l'esattezza di username e pasword!</div>
+								</div>
+						</div>
+				</c:if>
+					
 				</div>
 	
-				
+				</div>
+			</div>
+			</div>
 							
 		
 	

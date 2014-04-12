@@ -402,6 +402,11 @@ textarea {
 		background: rgba(240, 247, 251, 0.5);
 	}
 	
+	.bgA6
+	{	  
+	  background:url(../img/sfondo_background.jpg) ;  		
+	}
+	
 	.bgAr3
 	{
 		background: #ffd6ab;
