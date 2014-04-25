@@ -4,7 +4,7 @@
 <div class="Content bgA3">
 	
  
-	<form:form name='form' action="inserimentoBusinessService" method='POST' commandName="businessServiceForm">
+	<form:form name='form' action="inserimentoBusinessService" method='GET' commandName="businessServiceForm">
 	 <div class="div-table">
 	
 	<div class="div-table-row">

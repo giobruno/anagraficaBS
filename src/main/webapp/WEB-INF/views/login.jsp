@@ -60,7 +60,12 @@
 									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
 					</div>
 					</div>
-					</br>	
+					</br>
+					<div class="div-table-row">
+						<div class="div-table-col">
+									<p class="visualizzaForm">Se non hai ancora un account, <a href="formRegistrazione">Registrati!</a></p>
+					</div>
+					</div>	
 			
 			
 			<div class="div-table-row">
@@ -95,7 +100,7 @@
 					<c:if test="${not empty error}">
 						<div class="div-table-row">
 								<div class="div-table-col">
-									<div class="visualizzaForm" style="color:red;">Utente non trovato! Verifica l'esattezza di username e pasword!</div>
+									<div class="visualizzaForm" style="color:red;">Utente non trovato! Verifica l'esattezza di username e pasword e assicurati che il tuo account sia abilitato!</div>
 								</div>
 						</div>
 				</c:if>

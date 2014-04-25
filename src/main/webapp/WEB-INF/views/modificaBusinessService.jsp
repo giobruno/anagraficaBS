@@ -4,7 +4,7 @@
 <div class="Content bgA3">
 	
  
-	<form:form name='form' action="modificaBusinessService" method='POST' commandName="businessServiceForm">
+	<form:form name='form' action="modificaBusinessService" method='GET' commandName="businessServiceForm">
 	 <div class="div-table">
 	
 	<div class="div-table-row">
@@ -86,8 +86,8 @@
 		<div class="div-table-row">
 				<div class="div-table-col"><label for="flagConvenzione"> <img src="resources/img/query.png" alt="" title="">&nbsp;Presenza convenzione*:</label></div>
 				<div class="div-table-col">			
-						<form:radiobutton  path="flagConvenzione" id="flagConvenzione" value="true" /><label for="flagConvenzione">&nbsp;SI</label>
-						<form:radiobutton path="flagConvenzione" id="flagConvenzione" value="false" /><label for="flagConvenzione">&nbsp;NO</label>
+						<form:radiobutton  path="flagConvenzione" id="flagConvenzione" value="true" disabled="true"/><label for="flagConvenzione">&nbsp;SI</label>
+						<form:radiobutton path="flagConvenzione" id="flagConvenzione" value="false" disabled="true"/><label for="flagConvenzione">&nbsp;NO</label>
 				</div>					
 			</div>
 		<form:hidden path="codiBusinessServiceOld" />
@@ -106,7 +106,7 @@
 					<div class="div-table-row">
 						<div class="div-table-col-center" >
 						
-						<input type="submit" name="Modifica"  value="Modifica" />							
+						<input type="submit" name="Modifica"  value="Modifica" onclick="return conferma('Sei sicuro di voler modificare il Business Service?')"/>							
 						<input type="submit" name="Annulla"  value="Annulla" />
 					</div>
 				</div>

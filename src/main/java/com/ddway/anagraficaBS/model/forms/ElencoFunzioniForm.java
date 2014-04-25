@@ -3,6 +3,8 @@ package com.ddway.anagraficaBS.model.forms;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
+import com.ddway.anagraficaBS.model.bean.TriplaInfap;
+
 
 @Service
 public class ElencoFunzioniForm {

@@ -32,8 +32,12 @@ public class AssociazioneBSProcessoFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavIniMinuti", "field.required", "Required field");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavFineOre", "field.required", "Required field");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavFineMinuti", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpLavorativo", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpSolare", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpLavorativoGiorni", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpLavorativoOre", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpLavorativoMinuti", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpSolareGiorni", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpSolareOre", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpSolareMinuti", "field.required", "Required field");
     
        }
 }

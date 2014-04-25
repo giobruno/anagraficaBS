@@ -22,7 +22,9 @@
       <script src="resources/js/abilita_selectbox.js"></script>
       <script src="resources/js/caricaApplicazioni.js"></script>
       <script src="resources/js/check_tutti.js"></script>
-      <script src="resources/js/mostraMessaggio.js"></script>          
+      <script src="resources/js/mostraMessaggio.js"></script> 
+      <script src="resources/js/confermaSubmit.js"></script>       
+      <script src="resources/js/compilaCampoUser.js"></script>   
   </head>
 <body >
 
@@ -31,6 +33,8 @@
 <div class="PageWrapBis" id="central">	
 <div class="Page">
 <tiles:insertAttribute name="menu" />
+</br>
+<tiles:insertAttribute name="alertSpace" />
 </br>
 <tiles:insertAttribute name="body" />				
 </div>

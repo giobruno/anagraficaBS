@@ -1409,7 +1409,7 @@ textarea {
 		width: 81%;				
 		min-width:900px;
 		margin: 0px -200px 15px 0px;
-		min-height: 440px;
+		min-height: 350px;
 	
 		
 		/*border-bottom: 1px solid #6cabd0;*/
@@ -1422,6 +1422,15 @@ textarea {
 		height: 70%;		
 		margin: 0px 0px 15px 0px;
 		min-height: 440px;		
+	}
+	
+	.Page .ContentAlertSpace
+	{
+		float:left;
+		width: 81%;				
+		min-width:900px;
+		margin: 0px -200px 15px 0px;
+		min-height: 70px;	
 	}
 	
 	.Page .Right
@@ -2847,4 +2856,14 @@ margin: 0 1% 0 1%;}
 
 .submit:ACTIVE {	
 	background-color: rgb(123,171,229);
+}
+
+#submit {
+  background-color: #FF8800; /* colore di sfondo    */
+  border: 2px solid #FCA800; /* bordo dell'elemento */
+  color: #fff;               /* colore del testo    */
+  font-weight: bold;         /* testo in grassetto  */
+  padding: 0;                /* padding             */
+  height: 25px;              /* altezza             */
+  width: 80px;               /* larghezza           */
 }

@@ -39,16 +39,20 @@
 		<fieldset>
 			<legend>Selezionare le funzioni da associare</legend>				
 							<table  width="100%"  border="0">
-							<tr>							
+							<tr>
+							<th><p class="visualizzaDesc">Area</p></th>
+							<th><p class="visualizzaDesc">Applicazione</p></th>							
 							<th><p class="visualizzaDesc">Funzione Utente</p></th>
 							<th><p class="visualizzaDesc">Seleziona</p></th>														
 
 							<tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
 							<c:forEach items="${funzioniList}" var="item" >
 							<tr>
-							<th>${item.id.descFunzione}</th>
+							<th>${item.descArea}</th>
+							<th>${item.descApplicazione}</th>
+							<th>${item.descFunzione}</th>
 							<th>	
-								<form:checkbox path="funzioniDaInserire" id="funzioniDaInserire"  value="${item.id.codiFunzione}"/>
+								<form:checkbox path="funzioniDaInserire" id="funzioniDaInserire"  value="${item.codiArea}/${item.descArea}/${item.codiApplicazione}/${item.descApplicazione}/${item.codiFunzione}/${item.descFunzione}"/>
 								<label for="funzioniDaInserire"></label>
 							</th>																					
 							</c:forEach> 					

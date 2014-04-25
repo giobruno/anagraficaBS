@@ -24,7 +24,7 @@ public class RicercaFunzioniUtenteFormValidator implements Validator {
     	
     	RicercaFunzioniUtenteForm form = (RicercaFunzioniUtenteForm) target;    	    	
        
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiArea", "field.required", "Required field");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiArea", "field.required", "Per effettuare la ricerca bosogna aver selezionato almeno l'Area!");
 //        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiApplicazione", "field.required", "Required field");
       
        }

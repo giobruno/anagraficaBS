@@ -62,7 +62,7 @@
 					<div class="div-table-row">
 						<div class="div-table-col-center" >			
 						
-						<input type="submit" name="Modifica"  value="Modifica" />							
+						<input type="submit" name="Modifica"  value="Modifica" onclick="return conferma('Sei sicuro di voler modificare questo proceso?')" />							
 						<input type="submit" name="Annulla"  value="Annulla" />
 					</div>
 				</div>

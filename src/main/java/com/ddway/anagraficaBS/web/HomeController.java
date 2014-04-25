@@ -1,5 +1,8 @@
 package com.ddway.anagraficaBS.web;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,14 @@ public class HomeController {
 		
 		model.setViewName("home");
 		return model;
+	}
+	
+	@RequestMapping(value="/elencoReport", method = RequestMethod.GET)
+	public ModelAndView elencoReport(ModelAndView model, HttpSession session, HttpServletRequest request) { 
+		logger.info("Inizio metodo ReportController.elencoReport!");
+		
+		model.setViewName("elencoReport");
+		return model; 
 	}
 	
 }

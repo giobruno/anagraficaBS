@@ -10,7 +10,7 @@
 
 
     <bean id="PdfReport"
-          class="com.ddway.anagraficaBS.utility.PdfReport">
+          class="com.ddway.anagraficaBS.web.report.PdfReport">
     </bean>
 
 </beans>

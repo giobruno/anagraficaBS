@@ -17,7 +17,8 @@
 	  <link rel="stylesheet" href="resources/css/normalize.css"/>
       <link rel="stylesheet" href="resources/css/fonts.css"/>
       <link rel="stylesheet" href="resources/css/main.css"/>  
-      <script src="resources/js/mostraMessaggio.js"></script>           
+      <script src="resources/js/mostraMessaggio.js"></script>   
+      <script src="resources/js/compilaCampoUser.js"></script>          
   </head>
 <body>
 

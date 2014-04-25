@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 11, 2014 10:46:31 AM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Apr 17, 2014 2:09:28 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi" table="d_servizi_processi" catalog="anagraficabs">
         <composite-id name="id" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessiId">
@@ -39,14 +39,14 @@
         <property name="orarioLavFine" type="time">
             <column name="ORARIO_LAV_FINE" length="0" />
         </property>
-        <property name="misuTmpLavorativo" type="string">
-            <column name="MISU_TMP_LAVORATIVO" length="50" />
+        <property name="misuTmpLavorativo" type="java.lang.Integer">
+            <column name="MISU_TMP_LAVORATIVO" />
         </property>
-        <property name="misuTmpSolare" type="string">
-            <column name="MISU_TMP_SOLARE" length="50" />
+        <property name="misuTmpSolare" type="java.lang.Integer">
+            <column name="MISU_TMP_SOLARE" />
         </property>
-        <property name="dataFineValidita" type="string">
-            <column name="DATA_FINE_VALIDITA" length="50" />
+        <property name="dataFineValidita" type="date">
+            <column name="DATA_FINE_VALIDITA" length="0" />
         </property>
     </class>
 </hibernate-mapping>

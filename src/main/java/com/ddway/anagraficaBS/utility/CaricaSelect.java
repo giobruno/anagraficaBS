@@ -8,14 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
-import com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap;
+import com.ddway.anagraficaBS.model.db.common.TblArea;
+import com.ddway.anagraficaBS.model.db.infap.TblApplicazione;
 import com.ddway.anagraficaBS.service.IDataSourceService;
 
 
@@ -27,7 +27,7 @@ public class CaricaSelect {
 	@Autowired
 	IDataSourceService iDataSourceService;
 	
-	protected  Object getlistvalues(String query) throws Exception{
+	protected  Object getlistvalues(String query, String objectToFind) throws Exception{
 		log.debug("Start CaricaSelect.getlistvalues method");	
 		
 		List<Object> selectLists = null;
@@ -35,7 +35,7 @@ public class CaricaSelect {
 			selectLists = (List<Object>) iDataSourceService.genericquery(query);
 			Iterator<Object> itr = selectLists.iterator();		
 		    if(!itr.hasNext()) {
-		    	throw new Exception("Valori della select non trovati sulla tabella");
+		    	throw new Exception("getlistvalues/Non risultano "+objectToFind+" presenti nel sistema!");
 		    	}
 		    }catch(Exception e){
 		    	log.error(e.getMessage());
@@ -44,15 +44,49 @@ public class CaricaSelect {
     return selectLists;
 	}	
 	
+	protected  Object getlistvaluesInfap(String query, String objectToFind) throws Exception{
+		log.debug("Start CaricaSelect.getlistvaluesInfap method");	
+		
+		List<Object> selectLists = null;
+		try{
+			selectLists = (List<Object>) iDataSourceService.genericqueryInfap(query);
+			Iterator<Object> itr = selectLists.iterator();		
+		    if(!itr.hasNext()) {
+		    	throw new Exception("getlistvalues/Non risultano "+objectToFind+" presenti nel sistema!");
+		    	}
+		    }catch(Exception e){
+		    	log.error(e.getMessage());
+		    	throw e;
+	}
+    return selectLists;
+	}
+	
+	protected  Object getlistvaluesCommon(String query, String objectToFind) throws Exception{
+		log.debug("Start CaricaSelect.getlistvaluesCommon method");	
+		
+		List<Object> selectLists = null;
+		try{
+			selectLists = (List<Object>) iDataSourceService.genericqueryCommon(query);
+			Iterator<Object> itr = selectLists.iterator();		
+		    if(!itr.hasNext()) {
+		    	throw new Exception("getlistvalues/Non risultano "+objectToFind+" presenti nel sistema!");
+		    	}
+		    }catch(Exception e){
+		    	log.error(e.getMessage());
+		    	throw e;
+	}
+    return selectLists;
+	}
+	
 	@Cacheable(value="selectLists",key="#sezione")
 	public  HashMap<String, List> getSelectsInserimentoBusinessService(String sezione) throws Exception{
 		log.debug("Start CaricaSelect.getSelectsInserimentoBusinessService method");
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
 		try{		
-			List<DDipartimenti> dipartimentiList = (List<DDipartimenti>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti tab order by tab.textSiglaDipartimento");
+			List<DDipartimenti> dipartimentiList = (List<DDipartimenti>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti tab order by tab.textSiglaDipartimento","Dipartimenti");
 			selectLists.put("dipartimentiList", dipartimentiList);	
-			List<DModelApplicativi> modelApplicativiList = (List<DModelApplicativi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab order by tab.descModelApplicativo");	
+			List<DModelApplicativi> modelApplicativiList = (List<DModelApplicativi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab order by tab.descModelApplicativo","Model Applicativi");	
 			selectLists.put("modelApplicativiList", modelApplicativiList);				
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoBusinessService");
@@ -62,25 +96,23 @@ public class CaricaSelect {
 	}
 	
 	
-	public  HashMap<String, List> getSelectsInserimentoAssociazioneBSFunzUtente(String sezione) throws Exception{
-		log.debug("Start CaricaSelect.getSelectsInserimentoAssociazioneBSFunzUtente method");
-		
-		HashMap<String, List> selectLists= new HashMap<String, List>();
-		try{
-			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab order by tab.descBusinessService");
-			selectLists.put("businessServiceList", businessServiceList);	
-			List<VInfap> codiAreaList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descArea");	
-			selectLists.put("codiAreaList", codiAreaList);
-			List<VInfap> codiApplicazioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descApplicazione");	
-			selectLists.put("codiApplicazioneList", codiApplicazioneList);
-			List<VInfap> codiFunzioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descFunzione");	
-			selectLists.put("codiFunzioneList", codiFunzioneList);
-		}catch(Exception e){
-			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSFunzUtente");
-			throw e;
-		}
-		return selectLists;	
-	}
+//	public  HashMap<String, List> getSelectsInserimentoAssociazioneBSFunzUtente(String sezione) throws Exception{
+//		log.debug("Start CaricaSelect.getSelectsInserimentoAssociazioneBSFunzUtente method");
+//		
+//		HashMap<String, List> selectLists= new HashMap<String, List>();
+//		try{
+//			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab order by tab.descBusinessService");
+//			selectLists.put("businessServiceList", businessServiceList);	
+//			List<TblArea> codiAreaList = (List<TblArea>) getlistvalues("from com.ddway.anagraficaBS.model.db.common.TblArea tab order by tab.sdescrizione");	
+//			selectLists.put("codiAreaList", codiAreaList);
+//			List<TblApplicazione> codiApplicazioneList = (List<TblApplicazione>) getlistvalues("from com.ddway.anagraficaBS.model.db.infap.TblApplicazione tab order by tab.sdescrizioneBreve");	
+//			selectLists.put("codiApplicazioneList", codiApplicazioneList);			
+//		}catch(Exception e){
+//			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSFunzUtente");
+//			throw e;
+//		}
+//		return selectLists;	
+//	}
 	
 	
 	public  HashMap<String, List> getSelectsInserimentoAssociazioneBSProcesso(String sezione) throws Exception{
@@ -88,13 +120,13 @@ public class CaricaSelect {
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
 		try{
-			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab order by tab.descBusinessService");
+			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null order by tab.descBusinessService","Business Services");
 			selectLists.put("businessServiceList", businessServiceList);		
-			List<DProcessi> codiProcessoList = (List<DProcessi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi tab order by tab.descProcesso");
+			List<DProcessi> codiProcessoList = (List<DProcessi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi tab where tab.dataFineValidita is null order by tab.descProcesso", "Processi" );
 			selectLists.put("codiProcessoList", codiProcessoList);		
-			List<DCategorieMac> codiCategoriaMacList = (List<DCategorieMac>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac tab order by tab.descCategoriaMac");
+			List<DCategorieMac> codiCategoriaMacList = (List<DCategorieMac>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac tab order by tab.descCategoriaMac","Categoria Mac");
 			selectLists.put("codiCategoriaMacList", codiCategoriaMacList);		
-			List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr tab order by tab.descCategoriaInfr");
+			List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr tab order by tab.descCategoriaInfr","Categoria Infr");
 			selectLists.put("codiCategoriaInfrList", codiCategoriaInfrList);
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSProcesso");
@@ -109,10 +141,8 @@ public class CaricaSelect {
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
 		try{				
-			List<VInfap> codiAreaList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descArea");	
-			selectLists.put("codiAreaList", codiAreaList);
-//			List<VInfap> codiApplicazioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descApplicazione");	
-//			selectLists.put("codiApplicazioneList", codiApplicazioneList);			
+			List<TblArea> codiAreaList = (List<TblArea>) getlistvaluesCommon("from com.ddway.anagraficaBS.model.db.common.TblArea tab order by tab.sdescrizione", "Aree");	
+			selectLists.put("codiAreaList", codiAreaList);			
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSFunzUtente");
 			throw e;
@@ -120,10 +150,10 @@ public class CaricaSelect {
 		return selectLists;		
 	}
 	
-	public  List<VInfap> getApplicazioniList() throws Exception{
+	public  List<TblApplicazione> getApplicazioniList(String codiArea) throws Exception{
 		log.debug("Start CaricaSelect.getApplicazioniList method");
 		
-		List<VInfap> codiApplicazioneList = (List<VInfap>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap tab order by tab.id.descApplicazione");
+		List<TblApplicazione> codiApplicazioneList = (List<TblApplicazione>) getlistvaluesInfap("from com.ddway.anagraficaBS.model.db.infap.TblApplicazione tab where tab.scodeArea = '"+codiArea+"' order by tab.sdescrizioneBreve", "Applicazioni");
 		return codiApplicazioneList;
 	}	
 	

@@ -4,7 +4,7 @@
 <div class="Content bgA3">
 	
  
-	<form:form name='form' action="ricercaFunzioniUtente" method='POST' commandName="ricercaFunzioniUtenteForm">
+	<form:form name='form' action="ricercaFunzioniUtente" method='GET' commandName="ricercaFunzioniUtenteForm">
 	 <div class="div-table">
 	
 	<div class="div-table-row">
@@ -41,9 +41,9 @@
 								<form:select  path="codiArea" id="codiArea" name="codiArea" style="width:180px">
 									<form:option value="" label="--" />
 									<form:options items="${codiAreaList}" 
-										itemValue="id.codiArea"
-										itemLabel="id.descArea" />	
-										<form:hidden path="descArea" value="${id.descArea}"/>										
+										itemValue="scodeArea"
+										itemLabel="sdescrizione" />	
+										<form:hidden path="descArea" value="${sdescrizione}"/>										
 								</form:select>
 							</div>							
 		
@@ -52,9 +52,9 @@
 								<form:select path="codiApplicazione" id="codiApplicazione" name="codiApplicazione" style="width:180px">
 									<form:option value="" label="--" />
 									<form:options items="${codiApplicazioneList}" 
-										itemValue="id.codiApplicazione"
-										itemLabel="id.descApplicazione" />	
-										<form:hidden path="descApplicazione" value="${id.descApplicazione}"/>									
+										itemValue="scodeApplicazione"
+										itemLabel="sdescrizioneBreve" />	
+										<form:hidden path="descApplicazione" value="${sdescrizioneBreve}"/>									
 								</form:select>
 							</div>
 							
@@ -97,7 +97,8 @@
 							</div>
 					</div>
 					
-					<c:if test="${presenzaMessaggio == 'si'}" >	
+					</form:form>	
+				<!-- 	<c:if test="${presenzaMessaggio == 'si'}" >	
 					<div class="div-table-center">
 							<div class="div-table-row">
 						<div class="div-table-col">
@@ -106,11 +107,50 @@
 				</div>	
 				</div>
 	</c:if>
+	 -->
+	 <c:if test="${dServiziFunzioniList != null}">
+	 <div class="div-table-centrata">				  
+	<div class="div-table-row">
+ 		<div class="div-table-col">
+		<fieldset>
+			<legend>Riepilogo Funzioni Utente Associate</legend>							
+						<div class="div-table">
+								</br>
+								<div class="div-table-row">						
+									<div class="div-table-col-center"><p class="visualizzaDesc">Area</p></div>	
+									<div class="div-table-col-center"><p class="visualizzaDesc">Applicazione</p></div>		 
+									<div class="div-table-col-center"><p class="visualizzaDesc">Funzione Utente</p></div>									
+								<!--  	<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>   	-->		 											
+								</div>
+							<div class="div-table-row">
+								<div class="div-table-col">
+								</div>
+							</div>		
+							
+							<c:forEach items="${dServiziFunzioniList}" var="item" >
+							<div class="div-table-row">				
+										<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.descArea}</a></div>	
+										<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.descApplicazione}</a></div>	
+										<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.descFunzione}</a></div>								
+							<!-- 	<div class="div-table-col-center"><a href="cancellaAssociazioneFunzioneUtente?codiFunzione=${item.id.codiFunzione}&codiArea=${item.id.codiArea}&codiApplicazione=${item.id.codiApplicazione}&codiBusinessService=${item.id.codiBusinessService}&dataInizioAssociazione=${item.id.dataInizioAssociazione}"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Funzione Utente"></a></div>  -->
+							</div>
+							</c:forEach>
+							</br>		
+							</div>
+							<div class="div-table">
+							<div class="div-table-centrata">								
+							</div>					
+						</div> 
+		 </fieldset>	
+		 </div>
+		 </div>
+		 </div>
+		 </br>
+		 
+		 </c:if>
 				
 					</div>		
 		
- 
-	</form:form>	
 	
 	</div>
 </body>

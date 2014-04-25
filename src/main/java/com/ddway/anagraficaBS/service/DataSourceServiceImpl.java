@@ -57,7 +57,17 @@ public class DataSourceServiceImpl implements IDataSourceService {
 	@Transactional
 	public Object genericquery(String query){
 		return iDataSourceDao.genericquery(query);
-	}	
+	}
+	
+	@Transactional
+	public Object genericqueryInfap(String query){
+		return iDataSourceDao.genericqueryInfap(query);
+	}
+	
+	@Transactional
+	public Object genericqueryCommon(String query){
+		return iDataSourceDao.genericqueryCommon(query);
+	}
 	
 	@Transactional
 	public List<Object> findByCriteriaDistinct(Object classe, String distinctList[], List<Restriction> restrictions){

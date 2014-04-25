@@ -69,7 +69,7 @@
         p:config-location="classpath:ehcache.xml" /> 
 	
 	<mvc:annotation-driven/>
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:messages" />
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>	
@@ -93,8 +93,7 @@
                         <value>/database_anagraficaBS_mapping/DServiziModel.hbm.xml</value>
                         <value>/database_anagraficaBS_mapping/DServiziProcessi.hbm.xml</value> 
                         <value>/database_anagraficaBS_mapping/Roles.hbm.xml</value>
-                        <value>/database_anagraficaBS_mapping/Users.hbm.xml</value>       
-                        <value>/database_anagraficaBS_mapping/VInfap.hbm.xml</value>                                                                         
+                        <value>/database_anagraficaBS_mapping/Users.hbm.xml</value>                                                                                                   
                 </list>
         </property>
 		<property name="hibernateProperties">

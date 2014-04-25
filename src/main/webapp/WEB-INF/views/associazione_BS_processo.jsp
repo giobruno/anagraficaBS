@@ -4,7 +4,7 @@
 <div class="Content bgA3">
 	
  
-	<form:form name='form' action="inserimentoAssociazioneBSProcesso" method='POST' commandName="associazioneBSProcessoForm">
+	<form:form name='form' action="inserimentoAssociazioneBSProcesso" method='GET' commandName="associazioneBSProcessoForm">
 	 <div class="div-table">
 	
 	<div class="div-table-row">
@@ -34,11 +34,11 @@
 		<legend>Compila il seguente form per inserire una nuova Associazione Business Service - Processo</legend>		
 		
 		<div class="div-table">	
-			
+			<c:set value="${associazioneBSProcessoForm.codiBusinessService != null && associazioneBSProcessoForm.codiBusinessService != '' ? true : false}" var="disabled"></c:set>
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiBusinessService"> <img src="resources/img/query.png" alt="" title="">&nbsp;Business Service*:</label></div>
 			<div class="div-table-col">
-								<form:select path="codiBusinessService" id="codiBusinessService" name="codiBusinessService" style="width:180px">
+								<form:select path="codiBusinessService" id="codiBusinessService" name="codiBusinessService" style="width:180px" disabled="${disabled}">
 									<form:option value="" label="--" />
 									<form:options items="${businessServiceList}" 
 										itemValue="codiBusinessService"
@@ -54,7 +54,7 @@
 									<form:option value="" label="--" />
 									<form:options items="${codiProcessoList}" 
 										itemValue="codiProcesso"
-										itemLabel="descProcesso" />										
+										itemLabel="textSiglaProcesso" />										
 								</form:select>
 							</div>
 							<div class="div-table-col"><p class="erroreForm"><form:errors path="codiProcesso"/> </p></div>
@@ -63,7 +63,7 @@
 			<div class="div-table-col"><label for="codiCategoriaMac"> <img src="resources/img/query.png" alt="" title="">&nbsp;Categoria Mac*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiCategoriaMac" id="codiCategoriaMac" name="codiCategoriaMac" style="width:180px">
-									<form:option value="" label="--" />
+									<form:option value="00" label="--" />
 									<form:options items="${codiCategoriaMacList}" 
 										itemValue="codiCategoriaMac"
 										itemLabel="descCategoriaMac" />										
@@ -75,7 +75,7 @@
 			<div class="div-table-col"><label for="codiCategoriaInfr"> <img src="resources/img/query.png" alt="" title="">&nbsp;Categoria Infr*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiCategoriaInfr" id="codiCategoriaInfr" name="codiCategoriaInfr" style="width:180px">
-									<form:option value="" label="--" />
+									<form:option value="00" label="--" />
 									<form:options items="${codiCategoriaInfrList}" 
 										itemValue="codiCategoriaInfr"
 										itemLabel="descCategoriaInfr" />										
@@ -178,7 +178,7 @@
 								
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiBusinessService"> <img src="resources/img/query.png" alt="" title="">&nbsp;Fine Orario Lavorativo*:</label></div>
+			<div class="div-table-col"><label for="orarioLavFine"> <img src="resources/img/query.png" alt="" title="">&nbsp;Fine Orario Lavorativo*:</label></div>
 			<div class="div-table-col">
 								<form:select path="orarioLavFineOre" id="orarioLavFineOre" name="orarioLavFineOre" style="width:50px">
 									<form:option value="00" label="00" />
@@ -269,29 +269,28 @@
 									<form:option value="59" label="59" />																			
 								</form:select>
 							</div>	
-			</div>			
-			<div class="div-table-row">
-				<div class="div-table-col"><label for="misuTmpLavorativo"> <img src="resources/img/query.png" alt="" title="">&nbsp;Orario Lavorativo*:</label></div>
-				<div class="div-table-col">
-								<form:radiobutton path="misuTmpLavorativo" id="misuTmpLavorativoSi" value="S" />
-								<label for="misuTmpLavorativoSi">Si</label>
-								<form:radiobutton path="misuTmpLavorativo" id="misuTmpLavorativoNo" value="N" />
-								<label for="misuTmpLavorativoNo">No</label>
-							</div>
-							<div class="div-table-col"><p class="erroreForm"><form:errors path="misuTmpLavorativo"/> </p></div>
-			</div>
-			<div class="div-table-row">
-				<div class="div-table-col"><label for="misuTmpSolare"> <img src="resources/img/query.png" alt="" title="">&nbsp;Orario Solare*:</label></div>
-				<div class="div-table-col">
-								<form:radiobutton path="misuTmpSolare" id="misuTmpSolareSi" value="S" />
-								<label for="misuTmpSolareSi">Si</label>
-								<form:radiobutton path="misuTmpSolare" id="misuTmpSolareNo" value="N" />
-								<label for="misuTmpSolareNo">No</label>
-							</div>
-							<div class="div-table-col"><p class="erroreForm"><form:errors path="misuTmpSolare"/> </p></div>
-			</div>
-				
+			</div>				
 			
+			<div class="div-table-row">			
+			<div class="div-table-col"><label for="misuTmpLavorativo"> <img src="resources/img/query.png" alt="" title="">&nbsp;Tempo Lavorativo*:</label></div>
+			<div class="div-table-col">
+			<!-- 		<label for="misuTmpSolare">Giorni</label><form:input style="width:50px"  maxlength="4"  id="misuTmpLavorativoGiorni" path="misuTmpLavorativoGiorni"/>   -->
+					<label for="misuTmpLavorativo">Ore</label><form:input style="width:50px"  maxlength="4"  id="misuTmpLavorativoOre" path="misuTmpLavorativoOre"/>
+					<label for="misuTmpLavorativo">Minuti</label><form:input style="width:50px"  maxlength="4"  id="misuTmpLavorativoMinuti" path="misuTmpLavorativoMinuti"/>
+			</div>
+			
+			</div>
+			
+			<div class="div-table-row">
+			<div class="div-table-col"><label for="misuTmpSolare"> <img src="resources/img/query.png" alt="" title="">&nbsp;Tempo Solare*:</label></div>
+			<div class="div-table-col">
+		<!-- 			<label for="misuTmpSolare">Giorni</label><form:input style="width:50px"  maxlength="4"  id="misuTmpSolareGiorni" path="misuTmpSolareGiorni"/>  -->
+					<label for="misuTmpSolare">Ore</label><form:input style="width:50px"  maxlength="4"  id="misuTmpSolareOre" path="misuTmpSolareOre"/>
+					<label for="misuTmpSolare">Minuti</label><form:input style="width:50px"  maxlength="4"  id="misuTmpSolareMinuti" path="misuTmpSolareMinuti"/>
+			</div>
+			
+			</div>		
+					
 		
 			</div>
 			</fieldset>

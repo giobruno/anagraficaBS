@@ -12,6 +12,8 @@ public interface IDataSourceService {
 	public void update(Object beanName);
 	public int updateSql(String queryString, String[] parameters);
 	public Object genericquery(String query);
+	public Object genericqueryInfap(String query);
+	public Object genericqueryCommon(String query);
 	public Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
 	public Object findbyId(Object id) throws InstantiationException, IllegalAccessException, ClassNotFoundException;
 	public List<Object> findAll(String beanName) throws InstantiationException, IllegalAccessException, ClassNotFoundException;	

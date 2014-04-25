@@ -35,12 +35,21 @@
 	   
 			<!-- END HEADER -->
 			<div class="footerWrap">
-		<footer class="bgB2" >				
-				 	<sec:authorize access="hasRole('STANDARD')" >	
-				 	<c:url value="j_spring_security_logout" var="logoutUrl"/><a href="${logoutUrl}" id="logout" style="color:white;font-weight:bold;">Logout</a> 				
-				</sec:authorize> 			
-			</footer>
-	
+		<footer class="bgB2" >	
+		<sec:authorize access="hasRole('STANDARD')" >
+		<div class="div-table">
+			<div class="div-table-row">
+				<div class="div-table-col-right">					
+					<div style="color:white;font-weight:bold;text-align:right;">Utente loggato: ${utente}</div>
+				</div>				 	
+				<div class="div-table-col-center">	
+				 			<c:url value="j_spring_security_logout" var="logoutUrl"/><a href="${logoutUrl}" id="logout" style="color:white;font-weight:bold;">Esci</a> 
+				</div>				
 		</div>
+	</div>		
+	</sec:authorize> 
+</footer>
+	
+</div>
 		
 		

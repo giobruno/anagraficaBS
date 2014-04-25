@@ -2,48 +2,34 @@ package com.ddway.anagraficaBS.web.report;
 
 import java.awt.Color;
 import java.io.FileOutputStream;
-import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
+
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
-import com.lowagie.text.Element;
 import com.lowagie.text.Font;
+import com.lowagie.text.HeaderFooter;
 import com.lowagie.text.Image;
-import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
-import com.lowagie.text.Rectangle;
-import com.lowagie.text.pdf.PdfPCell;
-import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-
-
-/**
- * Created with IntelliJ IDEA.
- * User: r.bruno@london.net-a-porter.com
- * Date: 25/11/2013
- * Time: 13:52
- * To change this template use File | Settings | File Templates.
- */
 
 public class PdfReport extends AbstractPdfView {
 //	
 //	
 //	
-//	private static Font titoloFont = new Font(Font.TIMES_ROMAN, 18,
-//		      Font.BOLD, Color.decode("#000088"));
-//	 private static Font sottoTitoloFont = new Font(Font.TIMES_ROMAN, 15,
-//		      Font.BOLD, Color.decode("#0000CC"));
-//	 private static Font baseFont = new Font(Font.TIMES_ROMAN, 12,
-//		      Font.NORMAL, Color.GRAY);
-//	 private static Font boldFont = new Font(Font.TIMES_ROMAN, 13,
-//		      Font.BOLD ,Color.BLACK);
-//	 private static Font boldFontRed = new Font(Font.TIMES_ROMAN, 12,
-//		      Font.BOLD ,Color.RED);
-//	 
+	private static Font titoloFont = new Font(Font.TIMES_ROMAN, 18,
+		      Font.BOLD, Color.decode("#000088"));
+	 private static Font sottoTitoloFont = new Font(Font.TIMES_ROMAN, 15,
+		      Font.BOLD, Color.decode("#0000CC"));
+	 private static Font baseFont = new Font(Font.TIMES_ROMAN, 12,
+		      Font.NORMAL, Color.GRAY);
+	 private static Font boldFont = new Font(Font.TIMES_ROMAN, 13,
+		      Font.BOLD ,Color.BLACK);
+	 private static Font boldFontRed = new Font(Font.TIMES_ROMAN, 12,
+		      Font.BOLD ,Color.RED);
+	 
 	@Override
     protected void buildPdfDocument(Map<String, Object> stringObjectMap, Document document, PdfWriter pdfWriter, HttpServletRequest request, HttpServletResponse response) throws Exception {
        
@@ -62,17 +48,24 @@ public class PdfReport extends AbstractPdfView {
 //		      document.setPageSize(pageSize);
 //			  
 //		    try{
-//		    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("iTextExample.pdf"));
-//		        document.open();
-//		    StringBuffer pathBuffer = request.getRequestURL();
-//		    String path = pathBuffer.toString();
-////		    System.out.println(path);
-//		    String[] indirizzo = path.split("mop");
-//		    Image logoBdap = Image.getInstance("/properties/logoBdapNew.jpg");
-//		     
+		    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("iTextExample.pdf"));
+		        document.open();
+		    StringBuffer pathBuffer = request.getRequestURL();
+		    String path = pathBuffer.toString();
+//		    System.out.println(path);
+		    String[] indirizzo = path.split("mop");
+		    Image logoBdap = Image.getInstance("/properties/logoBdapNew.jpg");
+		    logoBdap.scalePercent(90);
+		     
+//		    Paragraph par = new Paragraph();
+//		    par = new Paragraph();		   
+//	        par.add(new Chunk (logoBdap, 0, 0, true));
+//	        HeaderFooter header = new HeaderFooter(par, false);
+//	        header.setBorder(0);
+//	        document.setHeader(header); 
 //		    document.add(logoBdap);
-//		    document.add(new Paragraph("   "));
-//	        document.add(new Paragraph("   "));
+		    document.add(new Paragraph("   "));
+	        document.add(new Paragraph("   "));
 //		    	Paragraph titolo = new Paragraph("RIEPILOGO AGGIORNAMENTO DATI", titoloFont);
 //		    	titolo.setAlignment(Element.ALIGN_CENTER);
 //		        document.add(titolo);

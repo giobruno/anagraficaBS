@@ -8,6 +8,7 @@
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/views/menu.jsp" />
+		<put-attribute name="alertSpace" value="/WEB-INF/views/alertSpace.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
@@ -40,63 +41,88 @@
 	</definition>
 	
 	<definition name="dashboard" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="dashboard" />
 		<put-attribute name="body" value="/WEB-INF/views/dashboard.jsp" />
 	</definition>
 	
 	<definition name="associazione_BS_funzioneUtente" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="associazione_BS_funzioneUtente" />
 		<put-attribute name="body" value="/WEB-INF/views/associazione_BS_funzioneUtente.jsp" />
 	</definition>	
 		
 	<definition name="associazione_BS_processo" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="associazione_BS_processo" />
 		<put-attribute name="body" value="/WEB-INF/views/associazione_BS_processo.jsp" />
 	</definition>
 	
+	<definition name="modifica_associazione_BS_processo" extends="base.definition">
+		<put-attribute name="title" value="modifica_associazione_BS_processo" />
+		<put-attribute name="body" value="/WEB-INF/views/modifica_associazione_BS_processo.jsp" />
+	</definition>
+	
 	<definition name="inserimentoBusinessService" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="inserimentoBusinessService" />
 		<put-attribute name="body" value="/WEB-INF/views/inserimentoBusinessService.jsp" />
 	</definition>
 	
 	<definition name="inserimentoProcesso" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="inserimentoProcesso" />
 		<put-attribute name="body" value="/WEB-INF/views/inserimentoProcesso.jsp" />
 	</definition>
 	
 	<definition name="ricercaFunzioniUtente" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="ricercaFunzioniUtente" />
 		<put-attribute name="body" value="/WEB-INF/views/ricercaFunzioniUtente.jsp" />
 	</definition>
 	
 	<definition name="elencoFunzioniUtente" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="elencoFunzioniUtente" />
 		<put-attribute name="body" value="/WEB-INF/views/elencoFunzioniUtente.jsp" />
 	</definition>
 	
 	<definition name="elencoProcessi" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="elencoProcessi" />
 		<put-attribute name="body" value="/WEB-INF/views/elencoProcessi.jsp" />
 	</definition>
 	
 	<definition name="elencoBusinessService" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="elencoBusinessService" />
 		<put-attribute name="body" value="/WEB-INF/views/elencoBusinessService.jsp" />
 	</definition>
 	
 	<definition name="modificaBusinessService" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="modificaBusinessService" />
 		<put-attribute name="body" value="/WEB-INF/views/modificaBusinessService.jsp" />
 	</definition>
 	
 	<definition name="modificaProcesso" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="modificaProcesso" />
 		<put-attribute name="body" value="/WEB-INF/views/modificaProcesso.jsp" />
 	</definition>
 	
 	<definition name="dettaglioBusinessService" extends="base.definition">
-		<put-attribute name="title" value="login" />
+		<put-attribute name="title" value="dettaglioBusinessService" />
 		<put-attribute name="body" value="/WEB-INF/views/dettaglioBusinessService.jsp" />
+	</definition>
+	
+	<definition name="elencoUtenti" extends="base.definition">
+		<put-attribute name="title" value="elencoUtenti" />
+		<put-attribute name="body" value="/WEB-INF/views/elencoUtenti.jsp" />
+	</definition>
+	
+	<definition name="alertSpace" extends="base.definition">
+		<put-attribute name="title" value="alertSpace" />
+		<put-attribute name="body" value="/WEB-INF/views/alertSpace.jsp" />
+	</definition>
+	
+	<definition name="elencoReport" extends="base.definition">
+		<put-attribute name="title" value="elencoReport" />
+		<put-attribute name="body" value="/WEB-INF/views/elencoReport.jsp" />
+	</definition>
+	
+	<definition name="visualizzaAccount" extends="base.definition">
+		<put-attribute name="title" value="visualizzaAccount" />
+		<put-attribute name="body" value="/WEB-INF/views/visualizzaAccount.jsp" />
 	</definition>
 	
 </tiles-definitions>

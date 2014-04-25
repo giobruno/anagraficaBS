@@ -40,23 +40,23 @@
 		<div class="div-table">	
 			<div class="div-table-row">
 					    	<div class="div-table-col"><label for="nome"> <img src="resources/img/query.png" alt="" title="">&nbsp;Nome*:</label></div>
-							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="nome" path="nome"/></div>
+							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="nome" path="nome" onblur="getUser()"/></div>
 							<div class="div-table-col"><p class="erroreForm"><form:errors path="nome"/> </p></div>
 			</div>
 			<div class="div-table-row">
 							<div class="div-table-col"><label for="cognome"> <img src="resources/img/query.png" alt="" title="">&nbsp;Cognome*:</label></div>
-							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="cognome" path="cognome"/></div>
+							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="cognome" path="cognome" onblur="getUser()"/></div>
 							<div class="div-table-col"><p class="erroreForm"><form:errors path="cognome"/> </p></div>
 			
 			</div>
 			<div class="div-table-row">
 				<div class="div-table-col"><label for="user"> <img src="resources/img/query.png" alt="" title="">&nbsp;Nome Utente*:</label></div>
-				<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="user" path="user"/></div>
+				<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="user" path="user" readonly="true"/></div>
 				<div class="div-table-col"><p class="erroreForm"><form:errors path="user"/> </p></div>
 			</div>
 			<div class="div-table-row">
 				<div class="div-table-col"><label for="email"> <img src="resources/img/query.png" alt="" title="">&nbsp;Indirizzo email*:</label></div>
-				<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="email" path="email"/></div>
+				<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="email" path="email"  /></div>
 				<div class="div-table-col"><p class="erroreForm"><form:errors path="email"/> </p></div>
 			</div>
 			<div class="div-table-row">
@@ -77,6 +77,12 @@
 									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
 					</div>
 					</div>
+					</br>
+			<div class="div-table-row">
+						<div class="div-table-col">
+									<p class="visualizzaForm">Se hai già un account, <a href="login">Accedi!</a></p>
+					</div>
+					</div>	
 			
 			
 			</div>
@@ -98,10 +104,20 @@
 						<input type="submit" name="Annulla"  value="Annulla" />
 					</div>
 				</div>
+				
+				<c:if test="${presenzaMessaggio == 'si'}" >
+							<div class="div-table-row">
+								<div class="div-table-col">
+										<p class="visualizzaForm" style="color:red;">${messaggio}</p>
+								</div>
+							</div>
 	
+					</c:if>
+				
 				<div class="div-table-row">
 							<div class="div-table-col">
-							<p class="erroreForm"><form:errors path=""/> </p></div></div>
+							<p class="erroreForm"><form:errors path=""/> </p></div>
+						</div>
 						<div class="div-table-row">
 							<div class="div-table-col"></div>
 						</div>

@@ -8,22 +8,32 @@ public class AssociazioneBSFunzUtenteForm {
 	
 	private String codiBusinessService;
 	private String codiArea;
-	private String codiApplicazione;		
+	private String codiApplicazione;
+	private String codiFunzione;
 	private String descArea;
 	private String descApplicazione;
 	private List<String> funzioneList;	
 	
 	public AssociazioneBSFunzUtenteForm(){}
 	
-	public AssociazioneBSFunzUtenteForm(String codiBusinessService,String codiArea,String codiApplicazione,
+	public AssociazioneBSFunzUtenteForm(String codiBusinessService,String codiArea,String codiApplicazione,String codiFunzione,
 			String descArea,String descApplicazione,List<String> funzioneList){
 		
 		this.codiBusinessService = codiBusinessService;
 		this.codiArea = codiArea;
-		this.codiApplicazione = codiApplicazione;		
+		this.codiApplicazione = codiApplicazione;	
+		this.codiFunzione = codiFunzione;	
 		this.descArea = descArea;
 		this.descApplicazione = descApplicazione;
 		this.funzioneList = funzioneList;
+	}
+
+	public String getCodiFunzione() {
+		return codiFunzione;
+	}
+
+	public void setCodiFunzione(String codiFunzione) {
+		this.codiFunzione = codiFunzione;
 	}
 
 	public String getCodiBusinessService() {

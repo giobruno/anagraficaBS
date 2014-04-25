@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -11,9 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
+import com.ddway.anagraficaBS.utility.GestioneDataBase;
  
 @Controller
 public class LoginController {
+	
+	@Autowired
+	GestioneDataBase gestioneDataBase;
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
  
@@ -22,17 +29,15 @@ public class LoginController {
 		logger.info("Inizio metodo LoginController.dashboard!");
 		
 		Authentication auth;	
-		User user; 
-		String name; 
+		User user; 		
+		Users users;
 		
 		try{
 			auth = SecurityContextHolder.getContext().getAuthentication();		
-			user = (User) auth.getPrincipal();
-			name = user.getUsername();
-		
-			model.addObject("username", name);
-			model.addObject("message", "Benvenuti sull'anagrafica dei servizi di business");
-			model.setViewName("dashboard");
+			user = (User) auth.getPrincipal();			
+			users = (Users) gestioneDataBase.getUtenteByUserName(user.getUsername());
+			session.setAttribute("utente", users.getNome()+" "+users.getCognome());
+			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on LoginController.dashboard");
 		}

@@ -25,6 +25,12 @@ private static final Logger log = LoggerFactory.getLogger(DataSourceDaoImpl.clas
 	@Autowired
 	private SessionFactory sessionFactoryAnagraficaBS;
 	
+	@Autowired
+	private SessionFactory sessionFactoryInfap;
+	
+	@Autowired
+	private SessionFactory sessionFactoryCommon;
+	
 	@Override
 	public void insert(Object bean){		
 		log.info("Start DataSourceDaoImpl.insert method");
@@ -153,6 +159,34 @@ private static final Logger log = LoggerFactory.getLogger(DataSourceDaoImpl.clas
 			return query.list();
 		}catch (RuntimeException re){
 			log.error("DataSourceDaoImpl.genericquery failed", re);
+			re.printStackTrace();
+			throw re;
+			}
+	}
+	
+	@Override
+	public List<Object> genericqueryInfap(String queryString){
+		log.info("Start DataSourceDaoImpl.genericqueryInfap method");
+		try {
+			Query query = sessionFactoryInfap.getCurrentSession().createQuery(queryString);				
+			log.info("DataSourceDaoImpl.genericqueryInfap successful");
+			return query.list();
+		}catch (RuntimeException re){
+			log.error("DataSourceDaoImpl.genericqueryInfap failed", re);
+			re.printStackTrace();
+			throw re;
+			}
+	}
+	
+	@Override
+	public List<Object> genericqueryCommon(String queryString){
+		log.info("Start DataSourceDaoImpl.genericqueryCommon method");
+		try {
+			Query query = sessionFactoryCommon.getCurrentSession().createQuery(queryString);				
+			log.info("DataSourceDaoImpl.genericqueryCommon successful");
+			return query.list();
+		}catch (RuntimeException re){
+			log.error("DataSourceDaoImpl.genericqueryCommon failed", re);
 			re.printStackTrace();
 			throw re;
 			}

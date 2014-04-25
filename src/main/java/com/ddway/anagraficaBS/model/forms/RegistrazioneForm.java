@@ -2,24 +2,44 @@ package com.ddway.anagraficaBS.model.forms;
 
 public class RegistrazioneForm {
 	
+	private String userId;
 	private String nome;
 	private String cognome;
 	private String user;
 	private String email;
+	private String oldPassword;
 	private String password;
 	private String confermaPassword;
 	
 	public RegistrazioneForm(){}
 	
-	public RegistrazioneForm(String nome, String cognome,
-			String user,String email,String password,String confermaPassword){
+	public RegistrazioneForm(String userId,String nome, String cognome,
+			String user,String email,String oldPassword,String password,String confermaPassword){
 		
+		this.userId = userId;
 		this.nome = nome;
 		this.cognome = password;
 		this.user = user;
 		this.email = email;
+		this.oldPassword = oldPassword;
 		this.password = password;
 		this.confermaPassword = confermaPassword;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 
 	public String getNome() {

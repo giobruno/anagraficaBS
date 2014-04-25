@@ -1,9 +1,8 @@
 package com.ddway.anagraficaBS.model.forms;
 
-import java.util.Date;
-
 public class AssociazioneBSProcessoForm {
 	
+	private String codiBusinessServiceOld;
 	private String codiBusinessService;
 	private String codiProcesso;
 	private String codiCategoriaMac;
@@ -12,15 +11,20 @@ public class AssociazioneBSProcessoForm {
 	private String orarioLavIniMinuti;
 	private String orarioLavFineOre;
 	private String orarioLavFineMinuti;
-	private String misuTmpLavorativo;
-	private String misuTmpSolare;
+	private String misuTmpLavorativoGiorni;
+	private String misuTmpLavorativoOre;
+	private String misuTmpLavorativoMinuti;
+	private String misuTmpSolareGiorni;
+	private String misuTmpSolareOre;
+	private String misuTmpSolareMinuti;
 	
 	public AssociazioneBSProcessoForm(){}
 	
-	public AssociazioneBSProcessoForm(String codiBusinessService,String codiProcesso,String codiCategoriaMac,
+	public AssociazioneBSProcessoForm(String codiBusinessServiceOld,String codiBusinessService,String codiProcesso,String codiCategoriaMac,
 			String codiCategoriaInfr, String orarioLavIniOre, String orarioLavIniMinuti,String orarioLavFineOre, 
-			String orarioLavFineMinuti,String misuTmpLavorativo,String misuTmpSolare){
+			String orarioLavFineMinuti,String misuTmpLavorativoGiorni, String misuTmpLavorativoOre,String misuTmpLavorativoMinuti,String misuTmpSolareGiorni,String misuTmpSolareOre,String misuTmpSolareMinuti ){
 		
+		this.codiBusinessServiceOld = codiBusinessServiceOld;
 		this.codiBusinessService = codiBusinessService;
 		this.codiProcesso = codiProcesso;
 		this.codiCategoriaMac = codiCategoriaMac;
@@ -29,8 +33,22 @@ public class AssociazioneBSProcessoForm {
 		this.orarioLavIniMinuti  = orarioLavIniMinuti;
 		this.orarioLavFineOre = orarioLavFineOre;
 		this.orarioLavFineMinuti = orarioLavFineMinuti;
-		this.misuTmpLavorativo = misuTmpLavorativo;
-		this.misuTmpSolare = misuTmpSolare;		
+		this.misuTmpLavorativoGiorni = misuTmpLavorativoGiorni;
+		this.misuTmpLavorativoOre = misuTmpLavorativoOre;
+		this.misuTmpLavorativoMinuti = misuTmpLavorativoMinuti;
+		this.misuTmpSolareGiorni = misuTmpSolareGiorni;	
+		this.misuTmpSolareOre = misuTmpSolareOre;	
+		this.misuTmpSolareMinuti = misuTmpSolareMinuti;	
+	}
+	
+	
+
+	public String getCodiBusinessServiceOld() {
+		return codiBusinessServiceOld;
+	}
+
+	public void setCodiBusinessServiceOld(String codiBusinessServiceOld) {
+		this.codiBusinessServiceOld = codiBusinessServiceOld;
 	}
 
 	public String getCodiBusinessService() {
@@ -97,20 +115,51 @@ public class AssociazioneBSProcessoForm {
 		this.orarioLavFineMinuti = orarioLavFineMinuti;
 	}
 
-	public String getMisuTmpLavorativo() {
-		return misuTmpLavorativo;
+	public String getMisuTmpLavorativoGiorni() {
+		return misuTmpLavorativoGiorni;
 	}
 
-	public void setMisuTmpLavorativo(String misuTmpLavorativo) {
-		this.misuTmpLavorativo = misuTmpLavorativo;
+	public void setMisuTmpLavorativoGiorni(String misuTmpLavorativoGiorni) {
+		this.misuTmpLavorativoGiorni = misuTmpLavorativoGiorni;
 	}
 
-	public String getMisuTmpSolare() {
-		return misuTmpSolare;
+	public String getMisuTmpLavorativoOre() {
+		return misuTmpLavorativoOre;
 	}
 
-	public void setMisuTmpSolare(String misuTmpSolare) {
-		this.misuTmpSolare = misuTmpSolare;
-	}		
+	public void setMisuTmpLavorativoOre(String misuTmpLavorativoOre) {
+		this.misuTmpLavorativoOre = misuTmpLavorativoOre;
+	}
 
+	public String getMisuTmpLavorativoMinuti() {
+		return misuTmpLavorativoMinuti;
+	}
+
+	public void setMisuTmpLavorativoMinuti(String misuTmpLavorativoMinuti) {
+		this.misuTmpLavorativoMinuti = misuTmpLavorativoMinuti;
+	}
+
+	public String getMisuTmpSolareGiorni() {
+		return misuTmpSolareGiorni;
+	}
+
+	public void setMisuTmpSolareGiorni(String misuTmpSolareGiorni) {
+		this.misuTmpSolareGiorni = misuTmpSolareGiorni;
+	}
+
+	public String getMisuTmpSolareOre() {
+		return misuTmpSolareOre;
+	}
+
+	public void setMisuTmpSolareOre(String misuTmpSolareOre) {
+		this.misuTmpSolareOre = misuTmpSolareOre;
+	}
+
+	public String getMisuTmpSolareMinuti() {
+		return misuTmpSolareMinuti;
+	}
+
+	public void setMisuTmpSolareMinuti(String misuTmpSolareMinuti) {
+		this.misuTmpSolareMinuti = misuTmpSolareMinuti;
+	}	
 }

@@ -9,8 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.ddway.anagraficaBS.model.db.anagraficaBS.VInfap;
+import com.ddway.anagraficaBS.model.db.infap.TblApplicazione;
 import com.ddway.anagraficaBS.utility.CaricaSelect;
 
 @Controller
@@ -31,23 +30,23 @@ public class CaricaSelectController {
 			PrintWriter out = response.getWriter();		
 			response.setContentType("text/xml");
 			response.setHeader("Cache-Control", "no-cache");	
-			List<VInfap> codiApplicazioneList = (List<VInfap>) caricaSelect.getApplicazioniList();
+			List<TblApplicazione> codiApplicazioneList = (List<TblApplicazione>) caricaSelect.getApplicazioniList(codiArea);
 			out.println( applicazioniXml(codiApplicazioneList) );
 			out.close();		
 		}
 	}
 	
-	private String applicazioniXml(List<VInfap> applicazioni){
+	private String applicazioniXml(List<TblApplicazione> applicazioni){
 		log.debug("Start CaricaSelectController.applicazioniXml method");
 		  StringBuffer sb=new StringBuffer();
 		  sb.append("<elementi>");
-		  for(VInfap p:applicazioni){
+		  for(TblApplicazione p:applicazioni){
 		   sb.append("<elemento>");
 		   sb.append("<codice>");
-		   sb.append(p.getId().getCodiApplicazione());
+		   sb.append(p.getScodeApplicazione());
 		   sb.append("</codice>");
 		   sb.append("<descrizione>");
-		   sb.append(p.getId().getDescApplicazione());
+		   sb.append(p.getSdescrizioneBreve());
 		   sb.append("</descrizione>");
 		   sb.append("</elemento>");
 		  }
