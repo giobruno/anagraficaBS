@@ -82,10 +82,8 @@
 						</div> 
 		 </fieldset>					
 					  </div>
-					  </div>
-	<div class="div-table-centrata">				  
-	<div class="div-table-row">
- 		<div class="div-table-col">
+<c:if test="${businessService.flagConvenzione}">			  
+	<div class="div-table-row"> 		
 		<fieldset>
 			<legend>Funzioni Utente Associate al Business Service</legend>				
 						<div class="div-table">
@@ -96,7 +94,7 @@
 								</div>
 						</div>
 						<div class="div-table">
-								</br>
+								<br/>
 								<div class="div-table-row">						
 									<div class="div-table-col-center"><p class="visualizzaDesc">Area</p></div>	
 									<div class="div-table-col-center"><p class="visualizzaDesc">Applicazione</p></div>		 
@@ -111,23 +109,22 @@
 							
 							<c:forEach items="${dServiziFunzioniList}" var="item" >
 							<div class="div-table-row">				
-										<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.descArea}</a></div>	
-										<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.descApplicazione}</a></div>	
-										<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.descFunzione}</a></div>								
+										<div class="div-table-col-center">${item.descArea}</div>	
+										<div class="div-table-col-center">${item.descApplicazione}</div>	
+										<div class="div-table-col-center">${item.descFunzione}</div>								
 								<div class="div-table-col-center"><a href="cancellaAssociazioneFunzioneUtente?codiFunzione=${item.id.codiFunzione}&codiArea=${item.id.codiArea}&codiApplicazione=${item.id.codiApplicazione}&codiBusinessService=${businessService.codiBusinessService}&dataInizioAssociazione=${item.id.dataInizioAssociazione}" onclick="return conferma('Sei sicuro di voler cancellare questa funzione utente?')"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Funzione Utente"></a></div>
 							</div>
 							</c:forEach>
-							</br>		
+							<br/>	
 							</div>
 							<div class="div-table">
 							<div class="div-table-centrata">								
 							</div>					
 						</div> 
 		 </fieldset>	
-		 </div>
-		 </div>
-		 <div class="div-table-row">
-			 <div class="div-table-col">
+		 </div>		
+	</c:if>
+		 <div class="div-table-row">			 
 			 <fieldset>
 				<legend>Processi Associati al Business Service</legend>		
 				<div class="div-table">
@@ -137,7 +134,7 @@
 									</div>
 								</div>
 						</div>		
-						</br>
+						<br/>
 							<div class="div-table">
 									<div class="div-table-row">							 
 										<div class="div-table-col-center"><p class="visualizzaDesc">&nbsp;</p></div>	
@@ -163,7 +160,7 @@
 								</c:forEach>
 							</div> 
 			 </fieldset>					
-						  </div>
+						  
 					 
 					  </div>
 				 	 
@@ -174,10 +171,10 @@
 	<div class="div-table-row">
 	<div class="div-table-col">
 	</div></div>
-	
+	<br/>
 	<div class="div-table-row">
 	<div class="div-table-col-center" >							
-					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Annulla"></a>				
+					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Indietro"></a>				
 	</div>
 	
 	</div>

@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi;
 import com.ddway.anagraficaBS.model.forms.AssociazioneBSProcessoForm;
@@ -21,6 +20,7 @@ import com.ddway.anagraficaBS.model.forms.ProcessoForm;
 import com.ddway.anagraficaBS.service.IDataSourceService;
 import com.ddway.anagraficaBS.utility.CaricaSelect;
 import com.ddway.anagraficaBS.utility.GestioneDataBase;
+import com.ddway.anagraficaBS.utility.GestioneException;
 import com.ddway.anagraficaBS.utility.PopolaModelDb;
 import com.ddway.anagraficaBS.utility.PopolaModelForms;
 import com.ddway.anagraficaBS.web.dto.AssociazioneBSProcessoFormValidator;
@@ -65,6 +65,9 @@ public class ProcessiController {
 	@Autowired
 	PopolaModelForms popolaModelForms;
 	
+	@Autowired
+	GestioneException gestioneException;
+	
 	@RequestMapping(value="/formProcesso", method = RequestMethod.GET)
 	public ModelAndView formProcesso(ModelAndView model, HttpSession session, HttpServletRequest request) { 
 		logger.info("Inizio metodo ProcessiController.formProcesso!");
@@ -93,10 +96,7 @@ public class ProcessiController {
 			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on ProcessiController.inserimentoprocesso");
-			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","ERRORE DI SISTEMA! Riprovare oppure contattare l'amministratore");
-			model.setViewName("inserimentoProcesso");
-			return model;
+			gestioneException.gestisciException(model, e,"Processo");
 		}
 		return model;
 	}
@@ -105,9 +105,14 @@ public class ProcessiController {
 	public ModelAndView formProcessoAnnulla(ModelAndView model) throws Exception { 
 		logger.info("Inizio metodo ProcessiController.formProcessoAnnulla!");		
 		
-		List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
-		model.addObject("processiList", processiList);
-		model.setViewName("elencoProcessi");
+		try{
+			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
+			model.addObject("processiList", processiList);
+			model.setViewName("elencoProcessi");
+		}catch(Exception e){
+			logger.error(e.getMessage()+" on ProcessiController.formProcessoAnnulla");
+			gestioneException.gestisciException(model, e,"");
+		}
 		return model; 
 	}
 	
@@ -131,19 +136,8 @@ public class ProcessiController {
 			model.setViewName("associazione_BS_processo");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on ProcessiController.formAssociazioneBSProcesso");
-			String[] errorSplit = e.getMessage().split("/");
-			if(errorSplit[0].equalsIgnoreCase("getlistvalues")){
-//				List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();				
-					model.addObject("presenzaMessaggio","si");
-					model.addObject("message",errorSplit[1]);
-//				model.addObject("businessServiceList", businessServiceList);
-				model.setViewName("forward:/visualizzaElencoBusinessServices");
-				return model;
-			}		
-			else {
-				model.addObject("presenzaMessaggio","si");
-				model.addObject("message","ERRORE DI SISTEMA! Riprovare oppure contattare l'amministratore");
-			}
+			gestioneException.gestisciException(model, e,"");			
+			model.setViewName("forward:/visualizzaElencoBusinessServices");		
 		}
 		return model;
 	}
@@ -170,30 +164,24 @@ public class ProcessiController {
 			gestioneDataBase.inserisciAssociazioneBSProcesso(dServiziProcessi);			
 			model.addObject("presenzaMessaggio","si");
 			model.addObject("message","L'associazione Business Service - Processo è stata inserita con successo!");
-//			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
-//			model.addObject("businessServiceList", businessServiceList);
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 			session.removeAttribute("codiBusinessService");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on ProcessiController.inserimentoAssociazioneBSProcesso");
-			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","ERRORE DI SISTEMA! Riprovare oppure contattare l'amministratore");
-			model.setViewName("associazione_BS_processo");
-			return model;
+			gestioneException.gestisciException(model, e,"Associazione Business Service - Processo");
 		}
 		return model;
 	}
 	
-	@RequestMapping(value="/inserimentoAssociazioneBSProcesso", method = RequestMethod.POST, params="Annulla")
+	@RequestMapping(value="/inserimentoAssociazioneBSProcesso", method = RequestMethod.GET, params="Annulla")
 	public ModelAndView inserimentoAssociazioneBSProcessoAnnulla(ModelAndView model) { 
 		logger.info("Inizio metodo ProcessiController.inserimentoAssociazioneBSProcessoAnnulla!");		
 		
 		try{
-//			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
-//			model.addObject("businessServiceList", businessServiceList);
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.visualizzaElencoBusinessServices");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
@@ -212,6 +200,7 @@ public class ProcessiController {
 			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.visualizzaElencoProcessi");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
@@ -232,6 +221,7 @@ public class ProcessiController {
 			model.setViewName("modificaProcesso");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaProcessoForm");
+			gestioneException.gestisciException(model, e,"Processo");
 		}
 		return model;
 	}
@@ -258,6 +248,7 @@ public class ProcessiController {
 			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaProcesso!");
+			gestioneException.gestisciException(model, e,"Processo");
 		}
 		return model;
 	}
@@ -272,6 +263,7 @@ public class ProcessiController {
 			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.visualizzaElencoProcessi");
+			gestioneException.gestisciException(model, e,"Processo");
 		}
 		return model;
 	}
@@ -304,6 +296,7 @@ public class ProcessiController {
 			model.setViewName("modifica_associazione_BS_processo");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaAssociazioneBSProcesso");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
@@ -319,9 +312,12 @@ public class ProcessiController {
 		
 		try{		
 			modificaAssociazioneBSProcessoFormValidator.validate(associazioneBSProcessoForm, errors);
+			dServiziProcessiOld = (DServiziProcessi) session.getAttribute("dServiziProcessiOld");
 			if(errors.hasErrors()){
+				associazioneBSProcessoForm.setCodiBusinessService(dServiziProcessiOld.getId().getCodiBusinessService()+"");
 				selectboxes = caricaSelect.getSelectsInserimentoAssociazioneBSProcesso("formAssociazioneBSProcesso");
-				model.addAllObjects(selectboxes);
+				model.addAllObjects(selectboxes);				
+				model.addObject("associazioneBSProcessoForm", associazioneBSProcessoForm);
 				model.setViewName("modifica_associazione_BS_processo");
 				return model;
 			}			
@@ -332,18 +328,23 @@ public class ProcessiController {
 			model.setViewName("forward:/dettaglioBusinessService?codiBusinessService="+associazioneBSProcessoForm.getCodiBusinessServiceOld()+"&messaggio='L'associazione Business Service - Processo è stata modificata con successo!'");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on ProcessiController.modificaAssociazioneBSProcesso");
+			gestioneException.gestisciException(model, e,"Associazione Business Service - Processo");
 		}
 		return model;
 	}
 	
-	@RequestMapping(value="/modificaAssociazioneBSProcesso", method = RequestMethod.POST, params="Annulla")
-	public ModelAndView modificaAssociazioneBSProcessoAnnulla(ModelAndView model) { 
+	@RequestMapping(value="/modificaAssociazioneBSProcesso", method = RequestMethod.GET, params="Annulla")
+	public ModelAndView modificaAssociazioneBSProcessoAnnulla(ModelAndView model,HttpSession session) { 
 		logger.info("Inizio metodo ProcessiController.modificaAssociazioneBSProcessoAnnulla!");		
 		
-		try{			
-			model.setViewName("forward:/dettaglioBusinessService");
+		DServiziProcessi dServiziProcessiOld;
+		
+		try{
+			dServiziProcessiOld = (DServiziProcessi) session.getAttribute("dServiziProcessiOld");
+			model.setViewName("forward:/dettaglioBusinessService?codiBusinessService="+dServiziProcessiOld.getId().getCodiBusinessService());
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaAssociazioneBSProcessoAnnulla");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
@@ -369,6 +370,7 @@ public class ProcessiController {
 			model.setViewName("forward:/dettaglioBusinessService?messaggio=Il processo è stato cancellato con successo!");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.cancellaAssociazioneBSProcesso");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
@@ -391,6 +393,7 @@ public class ProcessiController {
 			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.cancellaProcesso");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}

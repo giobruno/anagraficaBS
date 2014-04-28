@@ -28,7 +28,8 @@
 				<div class="div-table-col"></div>
 			</div>
 	 <div class="div-table-row">
- 
+ 		<p class="erroreForm"><form:errors path="codiArea"/> </p>
+ 		<br/>
 		<fieldset>
 		
 		<legend>Selezionare almeno l'Area di appartenenza per ricercare le Funzioni Utente</legend>		
@@ -60,8 +61,13 @@
 							
 		</div>		
 		</div>
-		</fieldset>
-		
+		</fieldset>		
+		</div>
+		<br/>
+		<div class="div-table-row">
+					<div class="div-table-col">
+									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
+					</div>
 		</div>
 		
 		<div class="div-table-row">
@@ -84,16 +90,12 @@
 	 
 	 
 				 <div class="div-table"> 
-					<div class="div-table-row">
-					<div class="div-table-col">
-									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
-					</div>
-					</div>
-					</br>
-					</br>
+					
+					<br/>
+					<br/>
 					<div class="div-table-row">
 							<div class="div-table-col">
-								<p class="erroreForm"><form:errors path="codiArea"/> </p>
+								
 							</div>
 					</div>
 					
@@ -115,7 +117,7 @@
 		<fieldset>
 			<legend>Riepilogo Funzioni Utente Associate</legend>							
 						<div class="div-table">
-								</br>
+								<br/>
 								<div class="div-table-row">						
 									<div class="div-table-col-center"><p class="visualizzaDesc">Area</p></div>	
 									<div class="div-table-col-center"><p class="visualizzaDesc">Applicazione</p></div>		 
@@ -129,13 +131,13 @@
 							
 							<c:forEach items="${dServiziFunzioniList}" var="item" >
 							<div class="div-table-row">				
-										<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.descArea}</a></div>	
-										<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.descApplicazione}</a></div>	
-										<div class="div-table-col-center"><a href="dettaglioBusinessService">${item.descFunzione}</a></div>								
+										<div class="div-table-col-center">${item.descArea}</div>	
+										<div class="div-table-col-center">${item.descApplicazione}</div>	
+										<div class="div-table-col-center">${item.descFunzione}</div>								
 							<!-- 	<div class="div-table-col-center"><a href="cancellaAssociazioneFunzioneUtente?codiFunzione=${item.id.codiFunzione}&codiArea=${item.id.codiArea}&codiApplicazione=${item.id.codiApplicazione}&codiBusinessService=${item.id.codiBusinessService}&dataInizioAssociazione=${item.id.dataInizioAssociazione}"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Funzione Utente"></a></div>  -->
 							</div>
 							</c:forEach>
-							</br>		
+							<br/>		
 							</div>
 							<div class="div-table">
 							<div class="div-table-centrata">								
@@ -145,7 +147,7 @@
 		 </div>
 		 </div>
 		 </div>
-		 </br>
+		<br/>
 		 
 		 </c:if>
 				

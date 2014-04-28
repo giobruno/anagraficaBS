@@ -24,12 +24,12 @@ public class BusinessServiceFormValidator implements Validator {
     	
     	BusinessServiceForm form = (BusinessServiceForm) target;
     	
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiDipartimento", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textNomeBusinessService", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descBusinessService", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persRespBusinessService", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textUrlBusinessService", "field.required", "Required field");        
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiModelApplicativo", "field.required", "Required field");  
+    	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textNomeBusinessService", "field.required.textNomeBusinessService", "Required field");
+    	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descBusinessService", "field.required.descBusinessService", "Required field");
+    	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persRespBusinessService", "field.required.persRespBusinessService", "Required field");
+    	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textUrlBusinessService", "field.required.textUrlBusinessService", "Required field");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiDipartimento", "field.required.codiDipartimento", "Required field");                        
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiModelApplicativo", "field.required.codiModelApplicativo", "Required field");  
         
 //        if(form.getFlagConvenzione())
 //        	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiArea", "field.required", "Required field");

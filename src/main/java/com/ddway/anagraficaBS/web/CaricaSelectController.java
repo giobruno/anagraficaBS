@@ -9,8 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.ddway.anagraficaBS.model.db.infap.TblApplicazione;
 import com.ddway.anagraficaBS.utility.CaricaSelect;
+import com.ddway.anagraficaBS.utility.GestioneException;
 
 @Controller
 public class CaricaSelectController {
@@ -20,21 +23,28 @@ public class CaricaSelectController {
 	@Autowired
 	CaricaSelect caricaSelect;
 	
+	@Autowired
+	GestioneException gestioneException;
 	
 	@RequestMapping(value = "/caricaApplicazioni")
-	public void caricaRegioni(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void caricaRegioni(ModelAndView model,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		log.debug("Start CaricaSelectController.caricaApplicazioni method");
 		
 		String codiArea = request.getParameter("codiArea");
-		if(codiArea != null){
-			PrintWriter out = response.getWriter();		
-			response.setContentType("text/xml");
-			response.setHeader("Cache-Control", "no-cache");	
-			List<TblApplicazione> codiApplicazioneList = (List<TblApplicazione>) caricaSelect.getApplicazioniList(codiArea);
-			out.println( applicazioniXml(codiApplicazioneList) );
-			out.close();		
+		try{
+			if(codiArea != null){
+				PrintWriter out = response.getWriter();		
+				response.setContentType("text/xml");
+				response.setHeader("Cache-Control", "no-cache");	
+				List<TblApplicazione> codiApplicazioneList = (List<TblApplicazione>) caricaSelect.getApplicazioniList(codiArea);
+				out.println( applicazioniXml(codiApplicazioneList) );
+				out.close();
+				}
+			}catch(Exception e){
+				log.error(e.getMessage()+" on CaricaSelectController.caricaRegioni");
+				gestioneException.gestisciException(model, e,"");
+			}
 		}
-	}
 	
 	private String applicazioniXml(List<TblApplicazione> applicazioni){
 		log.debug("Start CaricaSelectController.applicazioniXml method");

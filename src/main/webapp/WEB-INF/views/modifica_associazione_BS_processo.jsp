@@ -28,7 +28,8 @@
 				<div class="div-table-col"></div>
 			</div>
 	 <div class="div-table-row">
- 
+ 		<p class="erroreForm"><form:errors path="*"/> </p>
+ 		<br/>
 		<fieldset >
 		
 		<legend>Compila il seguente form per inserire una nuova Associazione Business Service - Processo</legend>		
@@ -44,8 +45,7 @@
 										itemValue="codiBusinessService"
 										itemLabel="descBusinessService" />										
 								</form:select>&nbsp;
-							</div>
-				<div class="div-table-col"><p class="erroreForm"><form:errors path="codiBusinessService"/> </p></div>
+							</div>				
 		</div>		
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiProcesso"> <img src="resources/img/query.png" alt="" title="">&nbsp;Processo*:</label></div>
@@ -56,8 +56,7 @@
 										itemValue="codiProcesso"
 										itemLabel="descProcesso" />										
 								</form:select>
-							</div>
-							<div class="div-table-col"><p class="erroreForm"><form:errors path="codiProcesso"/> </p></div>
+							</div>							
 		</div>
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiCategoriaMac"> <img src="resources/img/query.png" alt="" title="">&nbsp;Categoria Mac*:</label></div>
@@ -68,8 +67,7 @@
 										itemValue="codiCategoriaMac"
 										itemLabel="descCategoriaMac" />										
 								</form:select>
-							</div>
-							<div class="div-table-col"><p class="erroreForm"><form:errors path="codiCategoriaMac"/> </p></div>
+							</div>							
 		</div>
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiCategoriaInfr"> <img src="resources/img/query.png" alt="" title="">&nbsp;Categoria Infr*:</label></div>
@@ -80,8 +78,7 @@
 										itemValue="codiCategoriaInfr"
 										itemLabel="descCategoriaInfr" />										
 								</form:select>
-							</div>	
-							<div class="div-table-col"><p class="erroreForm"><form:errors path="codiCategoriaInfr"/> </p></div>
+							</div>								
 		</div>
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="orarioLavIni"> <img src="resources/img/query.png" alt="" title="">&nbsp;Inizio Orario Lavorativo*:</label></div>
@@ -274,7 +271,7 @@
 			<div class="div-table-row">			
 			<div class="div-table-col"><label for="misuTmpLavorativo"> <img src="resources/img/query.png" alt="" title="">&nbsp;Tempo Lavorativo*:</label></div>
 			<div class="div-table-col">
-					<label for="misuTmpSolare">Giorni</label><form:input style="width:50px"  maxlength="4"  id="misuTmpLavorativoGiorni" path="misuTmpLavorativoGiorni"/>
+			<!--  		<label for="misuTmpSolare">Giorni</label><form:input style="width:50px"  maxlength="4"  id="misuTmpLavorativoGiorni" path="misuTmpLavorativoGiorni"/>  -->
 					<label for="misuTmpSolare">Ore</label><form:input style="width:50px"  maxlength="4"  id="misuTmpLavorativoOre" path="misuTmpLavorativoOre"/>
 					<label for="misuTmpSolare">Minuti</label><form:input style="width:50px"  maxlength="4"  id="misuTmpLavorativoMinuti" path="misuTmpLavorativoMinuti"/>
 			</div>
@@ -284,7 +281,7 @@
 			<div class="div-table-row">
 			<div class="div-table-col"><label for="misuTmpSolare"> <img src="resources/img/query.png" alt="" title="">&nbsp;Tempo Solare*:</label></div>
 			<div class="div-table-col">
-					<label for="misuTmpSolare">Giorni</label><form:input style="width:50px"  maxlength="4"  id="misuTmpSolareGiorni" path="misuTmpSolareGiorni"/>
+				<!-- 	<label for="misuTmpSolare">Giorni</label><form:input style="width:50px"  maxlength="4"  id="misuTmpSolareGiorni" path="misuTmpSolareGiorni"/>   -->
 					<label for="misuTmpSolare">Ore</label><form:input style="width:50px"  maxlength="4"  id="misuTmpSolareOre" path="misuTmpSolareOre"/>
 					<label for="misuTmpSolare">Minuti</label><form:input style="width:50px"  maxlength="4"  id="misuTmpSolareMinuti" path="misuTmpSolareMinuti"/>
 			</div>
@@ -294,9 +291,14 @@
 					<form:hidden path="codiBusinessServiceOld"/>
 		
 			</div>
-			</fieldset>
-			
+			</fieldset>			
 			</div>
+			<br/>
+			<div class="div-table-row">
+					<div class="div-table-col">
+									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
+					</div>
+					</div>
 			
 			<div class="div-table-row">
 			<div class="div-table-col">
@@ -310,25 +312,9 @@
 						<input type="submit" name="Modifica"  value="Modifica" onclick="return conferma('Sei sicuro di voler salvare le modifiche?')"/>							
 						<input type="submit" name="Annulla"  value="Annulla" />
 					</div>
-				</div>
-	
-				<div class="div-table-row">
-							<div class="div-table-col">
-							<p class="erroreForm"><form:errors path=""/> </p></div></div>
-						<div class="div-table-row">
-							<div class="div-table-col"></div>
-						</div>
-					</div>
-	 
-	 
-				 <div class="div-table"> 
-					<div class="div-table-row">
-					<div class="div-table-col">
-									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
-					</div>
-					</div>
+				</div>					
 					</div>		
-		
+					<br/>
  
 	</form:form>	
 	

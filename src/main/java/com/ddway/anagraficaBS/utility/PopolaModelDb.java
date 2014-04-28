@@ -16,10 +16,12 @@ import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioniId;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessiId;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
+import com.ddway.anagraficaBS.model.forms.AccountForm;
 import com.ddway.anagraficaBS.model.forms.AssociazioneBSFunzUtenteForm;
 import com.ddway.anagraficaBS.model.forms.AssociazioneBSProcessoForm;
 import com.ddway.anagraficaBS.model.forms.BusinessServiceForm;
 import com.ddway.anagraficaBS.model.forms.ElencoFunzioniForm;
+import com.ddway.anagraficaBS.model.forms.ModificaPasswordForm;
 import com.ddway.anagraficaBS.model.forms.ProcessoForm;
 import com.ddway.anagraficaBS.model.forms.RegistrazioneForm;
 import com.ddway.anagraficaBS.model.forms.RicercaFunzioniUtenteForm;
@@ -52,13 +54,51 @@ public class PopolaModelDb {
 					user.setUserId(Integer.parseInt(registrazioneForm.getUserId()));
 				user.setNome(registrazioneForm.getNome());
 				user.setCognome(registrazioneForm.getCognome());
-				user.setUsername(registrazioneForm.getUser());
+				user.setUsername(registrazioneForm.getUsername());
 				user.setEmail(registrazioneForm.getEmail());
 				user.setPassword(registrazioneForm.getPassword());							
 			}
 			
 		}catch(Exception e){
 			log.error(e.getMessage()+" on PopolaModelDb.popolaUsersBean!");
+			throw e;
+		}		
+	}
+	
+	public void popolaUsersBeanFromModificaPasswordForm(ModificaPasswordForm modificaPasswordForm, Users user) throws Exception{
+		log.info("Inizio metodo PopolaModelDb.popolaUsersBeanFromModificaPasswordForm!");
+		
+		try{
+			if(modificaPasswordForm != null){				
+				user.setUserId(Integer.parseInt(modificaPasswordForm.getUserId()));
+				user.setNome(modificaPasswordForm.getNome());
+				user.setCognome(modificaPasswordForm.getCognome());
+				user.setUsername(modificaPasswordForm.getUsername());
+				user.setEmail(modificaPasswordForm.getEmail());
+				user.setPassword(modificaPasswordForm.getPassword());							
+			}
+			
+		}catch(Exception e){
+			log.error(e.getMessage()+" on PopolaModelDb.popolaUsersBeanFromModificaPasswordForm!");
+			throw e;
+		}		
+	}
+	
+	public void popolaUsersBeanFromAccountForm(AccountForm accountForm, Users user) throws Exception{
+		log.info("Inizio metodo PopolaModelDb.popolaUsersBeanFromAccountForm!");
+		
+		try{
+			if(accountForm != null){	
+				user.setUserId(Integer.parseInt(accountForm.getUserId()));
+				user.setNome(accountForm.getNome());
+				user.setCognome(accountForm.getCognome());
+				user.setUsername(accountForm.getUsername());
+				user.setEmail(accountForm.getEmail());			
+				user.setPassword(accountForm.getPassword());
+			}
+			
+		}catch(Exception e){
+			log.error(e.getMessage()+" on PopolaModelDb.popolaUsersBeanFromAccountForm!");
 			throw e;
 		}		
 	}

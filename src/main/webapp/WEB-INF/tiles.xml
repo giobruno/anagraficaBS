@@ -15,7 +15,7 @@
 	
 	<definition name="base.definition.nologged" template="/WEB-INF/views/layout_nologged.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/views/header_nologged.jsp" />		
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />		
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>		
@@ -123,6 +123,21 @@
 	<definition name="visualizzaAccount" extends="base.definition">
 		<put-attribute name="title" value="visualizzaAccount" />
 		<put-attribute name="body" value="/WEB-INF/views/visualizzaAccount.jsp" />
+	</definition>
+	
+	<definition name="exception" extends="base.definition">
+		<put-attribute name="title" value="exception" />
+		<put-attribute name="body" value="/WEB-INF/views/exception.jsp" />
+	</definition>
+	
+	<definition name="modificaAccount" extends="base.definition">
+		<put-attribute name="title" value="modificaAccount" />
+		<put-attribute name="body" value="/WEB-INF/views/modificaAccount.jsp" />
+	</definition>
+	
+	<definition name="modificaPassword" extends="base.definition">
+		<put-attribute name="title" value="modificaPassword" />
+		<put-attribute name="body" value="/WEB-INF/views/modificaPassword.jsp" />
 	</definition>
 	
 </tiles-definitions>

@@ -15,12 +15,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
 import com.ddway.anagraficaBS.utility.GestioneDataBase;
+import com.ddway.anagraficaBS.utility.GestioneException;
  
 @Controller
 public class LoginController {
 	
 	@Autowired
 	GestioneDataBase gestioneDataBase;
+	
+	@Autowired
+	GestioneException gestioneException;
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
  
@@ -34,12 +38,14 @@ public class LoginController {
 		
 		try{
 			auth = SecurityContextHolder.getContext().getAuthentication();		
-			user = (User) auth.getPrincipal();			
+			user = (User) auth.getPrincipal();
+			session.setAttribute("username", user.getUsername());
 			users = (Users) gestioneDataBase.getUtenteByUserName(user.getUsername());
 			session.setAttribute("utente", users.getNome()+" "+users.getCognome());
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on LoginController.dashboard");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}

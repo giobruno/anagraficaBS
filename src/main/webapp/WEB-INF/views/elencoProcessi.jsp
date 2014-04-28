@@ -99,7 +99,7 @@
 	
 	<div class="div-table-row">
 	<div class="div-table-col-center" >					
-					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Annulla"></a>
+					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Homepage"></a>
 	</div>	
 	</div>
 	

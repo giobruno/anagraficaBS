@@ -23,8 +23,10 @@
 <body>
 
 <tiles:insertAttribute name="header" />
+
 <div class="PageWrapBis" id="central">	
 <div class="Page">
+<br/>
 <tiles:insertAttribute name="body" />				
 </div>
 </div>

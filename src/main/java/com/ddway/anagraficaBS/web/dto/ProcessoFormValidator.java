@@ -24,8 +24,8 @@ public class ProcessoFormValidator implements Validator {
     	
     	ProcessoForm form = (ProcessoForm) target;
     	
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textSiglaProcesso", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descProcesso", "field.required", "Required field");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textSiglaProcesso", "field.required.textSiglaProcesso", "Required field");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descProcesso", "field.required.descProcesso", "Required field");
     
        }
 }

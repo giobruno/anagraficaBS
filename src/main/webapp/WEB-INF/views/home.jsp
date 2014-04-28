@@ -1,9 +1,7 @@
 <div class="ContentHome" align="center">
-</br>
-</br>
-</br>
+<br/><br/><br/>
 	<div class="panelGeneric" style="width: 500px; height: 300px;" align="center">
-		<img alt="logo Anagrafica BS" src="resources/img/logo1.png" height="60">
+		<img alt="logo Anagrafica BS" src="resources/img/registry.png" height="60">
 		<div id="panelIn">
 			<div class="div-table-centrata" style="background:transparent; height: 100%;"> 
 				<div class="div-table-row-center"> 

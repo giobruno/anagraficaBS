@@ -33,9 +33,9 @@
 <div class="PageWrapBis" id="central">	
 <div class="Page">
 <tiles:insertAttribute name="menu" />
-</br>
+<br/>
 <tiles:insertAttribute name="alertSpace" />
-</br>
+<br/>
 <tiles:insertAttribute name="body" />				
 </div>
 </div>

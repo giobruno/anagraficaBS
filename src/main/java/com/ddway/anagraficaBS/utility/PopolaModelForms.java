@@ -17,8 +17,10 @@ import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessiId;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
+import com.ddway.anagraficaBS.model.forms.AccountForm;
 import com.ddway.anagraficaBS.model.forms.AssociazioneBSProcessoForm;
 import com.ddway.anagraficaBS.model.forms.BusinessServiceForm;
+import com.ddway.anagraficaBS.model.forms.ModificaPasswordForm;
 import com.ddway.anagraficaBS.model.forms.ProcessoForm;
 import com.ddway.anagraficaBS.model.forms.RegistrazioneForm;
 
@@ -71,15 +73,13 @@ public class PopolaModelForms {
 				associazioneBSProcessoForm.setCodiCategoriaInfr(dServiziProcessi.getDCategorieInfr().getCodiCategoriaInfr()+"");
 				associazioneBSProcessoForm.setCodiCategoriaMac(dServiziProcessi.getDCategorieMac().getCodiCategoriaMac()+"");
 				associazioneBSProcessoForm.setCodiProcesso(dServiziProcessi.getDProcessi().getCodiProcesso()+"");
-				associazioneBSProcessoForm.setOrarioLavIniOre("");	
-				associazioneBSProcessoForm.setOrarioLavIniMinuti("");
-				associazioneBSProcessoForm.setOrarioLavFineOre("");	
-				associazioneBSProcessoForm.setOrarioLavFineMinuti("");
-				associazioneBSProcessoForm.setMisuTmpLavorativoGiorni("");
-				associazioneBSProcessoForm.setMisuTmpLavorativoMinuti("");
-				associazioneBSProcessoForm.setMisuTmpLavorativoOre("");
-				associazioneBSProcessoForm.setMisuTmpSolareGiorni("");
-				associazioneBSProcessoForm.setMisuTmpSolareMinuti("");
+				associazioneBSProcessoForm.setOrarioLavIniOre(dServiziProcessi.getOrarioLavIni().getHours()+"");	
+				associazioneBSProcessoForm.setOrarioLavIniMinuti(dServiziProcessi.getOrarioLavIni().getMinutes()+"");
+				associazioneBSProcessoForm.setOrarioLavFineOre(dServiziProcessi.getOrarioLavFine().getHours()+"");	
+				associazioneBSProcessoForm.setOrarioLavFineMinuti(dServiziProcessi.getOrarioLavFine().getMinutes()+"");				
+				associazioneBSProcessoForm.setMisuTmpLavorativoMinuti(dServiziProcessi.getMisuTmpLavorativo().toString());
+				associazioneBSProcessoForm.setMisuTmpLavorativoOre("");				
+				associazioneBSProcessoForm.setMisuTmpSolareMinuti(dServiziProcessi.getMisuTmpSolare().toString());
 				associazioneBSProcessoForm.setMisuTmpSolareOre("");
 			}			
 		}catch(Exception e){
@@ -172,10 +172,45 @@ public class PopolaModelForms {
 				registrazioneForm.setNome(users.getNome());
 				registrazioneForm.setCognome(users.getCognome());				
 				registrazioneForm.setEmail(users.getEmail());		
-				registrazioneForm.setUser(users.getUsername());
+				registrazioneForm.setUsername(users.getUsername());
 			}
 		}catch(Exception e){
 			log.error(e.getMessage()+" on PopolaModelForms.popolaRegistrazioneForm!");
+			throw e;
+		}		
+	}	
+	
+	public void popolaModificaPasswordForm(Users users,ModificaPasswordForm modificaPasswordForm) throws Exception{
+		log.info("Inizio metodo PopolaModelForms.popolaModificaPasswordForm!");		
+		
+		try{
+			if(users != null){	
+				modificaPasswordForm.setUserId(users.getUserId().toString());
+				modificaPasswordForm.setNome(users.getNome());
+				modificaPasswordForm.setCognome(users.getCognome());				
+				modificaPasswordForm.setEmail(users.getEmail());		
+				modificaPasswordForm.setUsername(users.getUsername());
+			}
+		}catch(Exception e){
+			log.error(e.getMessage()+" on PopolaModelForms.popolaModificaPasswordForm!");
+			throw e;
+		}		
+	}	
+	
+	public void popolaAccountForm(Users user,AccountForm accountForm) throws Exception{
+		log.info("Inizio metodo PopolaModelForms.popolaAccountForm!");		
+		
+		try{
+			if(user != null){		
+				accountForm.setUserId(user.getUserId().toString());
+				accountForm.setNome(user.getNome());
+				accountForm.setCognome(user.getCognome());				
+				accountForm.setEmail(user.getEmail());		
+				accountForm.setUsername(user.getUsername());
+				accountForm.setPassword(user.getPassword());
+			}
+		}catch(Exception e){
+			log.error(e.getMessage()+" on PopolaModelForms.popolaAccountForm!");
 			throw e;
 		}		
 	}	

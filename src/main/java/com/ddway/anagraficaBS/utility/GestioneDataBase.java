@@ -201,9 +201,9 @@ public class GestioneDataBase {
 					dServiziModel.setDataFineAssociazione(new Date());
 					dataSourceService.update(dServiziModel);
 				}												
-			}
-			dataSourceService.insert(new DServiziModel (new DServiziModelId(codiBusinessService, new Date()), dBusinessService));
-//			dataSourceService.insert(new DServiziModel(new DServiziModelId(businessServiceFormOld.getCodiBusinessService(), new Date()),Integer.parseInt(businessServiceForm.getCodiModelApplicativo()), null));
+			}			
+//			dataSourceService.insert(new DServiziModel (new DServiziModelId(codiBusinessService, new Date()), dBusinessService));
+			dataSourceService.insert(new DServiziModel(new DServiziModelId(businessServiceFormOld.getCodiBusinessService(), new Date()),(DModelApplicativi)getModelApplicativo(businessServiceForm.getCodiModelApplicativo()),dBusinessService, null));
 		}catch(Exception e){
 			log.error(e.getMessage()+" on GestioneDataBase.modificaBusinessService");
 			throw e;
@@ -491,7 +491,9 @@ public class GestioneDataBase {
 			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.Users tab where tab.username != '"+username+"'  order by tab.nome";
 			
 			try{		
-				elencoUtenti = (List<Users>) dataSourceService.genericquery(query);								
+				elencoUtenti = (List<Users>) dataSourceService.genericquery(query);	
+				if(elencoUtenti == null || elencoUtenti.isEmpty())
+					throw new Exception("getlistvalues/Non risulta nessun Utente registrato nel sistema!");
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.getElencoUtenti");
 				throw e;

@@ -13,16 +13,26 @@
 		<form-login login-processing-url="/j_spring_security_check" login-page="/login" default-target-url="/dashboard" authentication-failure-url="/loginfailed" />
 		<logout delete-cookies="JSESSIONID" invalidate-session="true" logout-success-url="/" logout-url="/j_spring_security_logout"/>
 		
-		<intercept-url pattern="/home*" access="permitAll" />
-		<intercept-url pattern="/login*" access="permitAll" />
-		<intercept-url pattern="/formRegistrazione*" access="permitAll" />
-		<intercept-url pattern="/formBusinessService" access="hasRole('STANDARD')" />
+		
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/home" access="permitAll" />
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/loginfailed" access="permitAll" />
+		<intercept-url pattern="/richiestaDatiAccesso" access="permitAll" />
+		<intercept-url pattern="/resources/**" access="permitAll" />		
+		<intercept-url pattern="/formRegistrazione" access="permitAll" />
+		<intercept-url pattern="/registrazione" access="permitAll" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		
+	<!-- 	<intercept-url pattern="/formBusinessService" access="hasRole('STANDARD')" />
 		<intercept-url pattern="/formProcesso" access="hasRole('STANDARD')" />
 		<intercept-url pattern="/formAssociazioneBSProcesso" access="hasRole('STANDARD')" />
 		<intercept-url pattern="/formAssociazioneBSFunzUtente" access="hasRole('STANDARD')" />
 		<intercept-url pattern="/dashboard" access="hasRole('STANDARD')" />
 		<intercept-url pattern="/visualizzaElencoBusinessServices" access="hasRole('STANDARD')" />
-		<intercept-url pattern="/visualizzaElencoProcessi" access="hasRole('STANDARD')" />
+		<intercept-url pattern="/visualizzaElencoProcessi" access="hasRole('STANDARD')" />	
+	
+	 -->	
 		
 		
 		

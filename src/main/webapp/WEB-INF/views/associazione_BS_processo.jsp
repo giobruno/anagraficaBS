@@ -28,7 +28,8 @@
 				<div class="div-table-col"></div>
 			</div>
 	 <div class="div-table-row">
- 
+ 		<p class="erroreForm"><form:errors path="*"/> </p>
+ 		<br/>
 		<fieldset >
 		
 		<legend>Compila il seguente form per inserire una nuova Associazione Business Service - Processo</legend>		
@@ -44,8 +45,7 @@
 										itemValue="codiBusinessService"
 										itemLabel="descBusinessService" />										
 								</form:select>&nbsp;
-							</div>
-				<div class="div-table-col"><p class="erroreForm"><form:errors path="codiBusinessService"/> </p></div>
+								</div>				
 		</div>
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiProcesso"> <img src="resources/img/query.png" alt="" title="">&nbsp;Processo*:</label></div>
@@ -56,8 +56,7 @@
 										itemValue="codiProcesso"
 										itemLabel="textSiglaProcesso" />										
 								</form:select>
-							</div>
-							<div class="div-table-col"><p class="erroreForm"><form:errors path="codiProcesso"/> </p></div>
+							</div>							
 		</div>
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiCategoriaMac"> <img src="resources/img/query.png" alt="" title="">&nbsp;Categoria Mac*:</label></div>
@@ -68,8 +67,7 @@
 										itemValue="codiCategoriaMac"
 										itemLabel="descCategoriaMac" />										
 								</form:select>
-							</div>
-							<div class="div-table-col"><p class="erroreForm"><form:errors path="codiCategoriaMac"/> </p></div>
+							</div>							
 		</div>
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiCategoriaInfr"> <img src="resources/img/query.png" alt="" title="">&nbsp;Categoria Infr*:</label></div>
@@ -80,8 +78,7 @@
 										itemValue="codiCategoriaInfr"
 										itemLabel="descCategoriaInfr" />										
 								</form:select>
-							</div>	
-							<div class="div-table-col"><p class="erroreForm"><form:errors path="codiCategoriaInfr"/> </p></div>
+							</div>								
 		</div>
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="orarioLavIni"> <img src="resources/img/query.png" alt="" title="">&nbsp;Inizio Orario Lavorativo*:</label></div>
@@ -293,9 +290,14 @@
 					
 		
 			</div>
-			</fieldset>
-			
+			</fieldset>			
 			</div>
+			<br/>
+			<div class="div-table-row">
+					<div class="div-table-col">
+									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
+					</div>
+					</div>
 			
 			<div class="div-table-row">
 			<div class="div-table-col">
@@ -313,24 +315,7 @@
 					</div>
 				</div>
 	
-				<div class="div-table-row">
-							<div class="div-table-col">
-							<p class="erroreForm"><form:errors path=""/> </p></div></div>
-						<div class="div-table-row">
-							<div class="div-table-col"></div>
-						</div>
-					</div>
-	 
-	 
-				 <div class="div-table"> 
-					<div class="div-table-row">
-					<div class="div-table-col">
-									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
-					</div>
-					</div>
-					</div>		
-		
- 
+				<br/>				 
 	</form:form>	
 	
 	</div>

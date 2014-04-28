@@ -32,8 +32,26 @@
 	 <div class="div-table-row">
  	<div class="div-table-centrata">
  	<div class="div-table-centrata">
- 	<p class="visualizzaFormLegend" align="center">Benvenuti sulla pagina di login!</p><br/><br/> 	
- 	 
+ 	<p class="visualizzaFormLegend" align="center">Benvenuti sulla pagina di login!</p><br/><br/> 
+ 	<div class="div-table-row">
+					<c:if test="${presenzaMessaggio == 'si'}" >
+							<div class="div-table-row">
+								<div class="div-table-col">
+										<p class="visualizzaForm" style="color:red;">${message}</p>
+								</div>
+							</div>
+	
+					</c:if>
+					<c:if test="${not empty error}">
+						<div class="div-table-row">
+								<div class="div-table-col">
+									<div class="visualizzaForm" style="color:red;">Utente non trovato! Verifica l'esattezza di username e pasword e assicurati che il tuo account sia abilitato!</div>
+								</div>
+						</div>
+				</c:if>
+					
+				</div>	
+ 	 <br/>
 		<fieldset >
 		
 		<legend>Compila i seguenti campi per effettuare il login!</legend>		
@@ -43,7 +61,7 @@
 					    	<div class="div-table-col-center"><label for="j_username"> <img src="resources/img/query.png" alt="" title="">&nbsp;Username*:</label></div>
 							<div class="div-table-col-center"><input style="width:200px"  maxlength="150" id="j_username" name="j_username"/></div>							
 			</div>
-			</br>
+			<br/>
 			<div class="div-table-row">
 							<div class="div-table-col-center"><label for="j_password"> <img src="resources/img/query.png" alt="" title="">&nbsp;Password*:</label></div>
 							<div class="div-table-col-center"><input style="width:200px"  maxlength="150" type="password" id="j_password" name="j_password"/>
@@ -54,16 +72,21 @@
 			</div>
 			</fieldset>
 			
-			</br>
+			<br/>
 			<div class="div-table-row">
 			<div class="div-table-col">
 									<p class="visualizzaForm"> NB: I campi contrassegnati con * sono obbligatori</p>
 					</div>
 					</div>
-					</br>
+					<br/>
 					<div class="div-table-row">
 						<div class="div-table-col">
 									<p class="visualizzaForm">Se non hai ancora un account, <a href="formRegistrazione">Registrati!</a></p>
+					</div>
+					</div>
+					<div class="div-table-row">
+						<div class="div-table-col">
+									<p class="visualizzaForm">Hai dimenticato i dati per accedere al sistema? <a href="richiestaDatiAccesso">Richiedili subito!</a></p>
 					</div>
 					</div>	
 			
@@ -83,29 +106,12 @@
 							
 							
 							
-							<a href="home" ><input type="button" value="Annulla"></a>	
+							<a href="home" ><input type="button" value="Homepage"></a>	
 						</div>						
 						
 					</div>
-					</br>				
-					<div class="div-table-row">
-					<c:if test="${presenzaMessaggio == 'si'}" >
-							<div class="div-table-row">
-								<div class="div-table-col">
-										<p class="visualizzaForm" style="color:red;">${messaggio}</p>
-								</div>
-							</div>
-	
-					</c:if>
-					<c:if test="${not empty error}">
-						<div class="div-table-row">
-								<div class="div-table-col">
-									<div class="visualizzaForm" style="color:red;">Utente non trovato! Verifica l'esattezza di username e pasword e assicurati che il tuo account sia abilitato!</div>
-								</div>
-						</div>
-				</c:if>
+					<br/>				
 					
-				</div>
 	
 				</div>
 			</div>

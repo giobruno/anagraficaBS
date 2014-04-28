@@ -26,9 +26,10 @@
 				<div class="div-table-col"></div>
 			</div>
 	 <div class="div-table-row">
+	 <p class="visualizzaFormLegend">Elenco Reports</p><br/><br/> 	
  	<div class="div-table-centrata">
  	<div class="div-table-centrata">
- 	<p class="visualizzaFormLegend">Elenco Reports</p><br/><br/> 	
+ 	
  	 
 		<fieldset>
 			<legend>Elenco Reports</legend>				

@@ -101,7 +101,7 @@
 				
 						<input type="submit" name="Invia"  value="Invia" />	
 						<input type="reset" name="Cancella" value="Cancella"/>
-						<input type="submit" name="Annulla"  value="Annulla" />
+						<input type="submit" name="Annulla"  value="Homepage" />
 					</div>
 				</div>
 	

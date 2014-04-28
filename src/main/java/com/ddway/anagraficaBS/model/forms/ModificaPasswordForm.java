@@ -1,6 +1,6 @@
 package com.ddway.anagraficaBS.model.forms;
 
-public class RegistrazioneForm {
+public class ModificaPasswordForm {
 	
 	private String userId;
 	private String nome;
@@ -11,9 +11,9 @@ public class RegistrazioneForm {
 	private String password;
 	private String confermaPassword;
 	
-	public RegistrazioneForm(){}
+	public ModificaPasswordForm(){}
 	
-	public RegistrazioneForm(String userId,String nome, String cognome,
+	public ModificaPasswordForm(String userId,String nome, String cognome,
 			String username,String email,String oldPassword,String password,String confermaPassword){
 		
 		this.userId = userId;

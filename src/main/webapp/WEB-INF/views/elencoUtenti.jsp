@@ -47,8 +47,8 @@
 									<div class="div-table-col-center"><p class="visualizzaDesc">Nome</p></div>	
 									<div class="div-table-col-center"><p class="visualizzaDesc">Cognome</p></div>					
 									<div class="div-table-col-center"><p class="visualizzaDesc">Abilita</p></div>
-									<div class="div-table-col-center"><p class="visualizzaDesc">Invia Password</p></div>
-							<!-- 		<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>    -->
+								<!-- 	<div class="div-table-col-center"><p class="visualizzaDesc">Invia Password</p></div>
+									<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>    -->
 														
 								</div>
 							<div class="div-table-row">
@@ -69,8 +69,8 @@
 									<div class="div-table-col-center"><a href="abilitaUtente?userId=${item.userId}">
 									<img src="resources/img/nonAbilitato.jpg"  width="30" height="20" title="Abilita Utente"></a></div>
 								</c:if>
-								<div class="div-table-col-center"><a href="#"><img src="resources/img/inviaPassword.jpg"  width="30" height="20" title="Invia Password"></a></div>
-					<!-- 			<div class="div-table-col-center"><a href="cancellaUtente?userId=${item.userId}"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Utente"></a></div>     -->
+				<!-- 					<div class="div-table-col-center"><a href="#"><img src="resources/img/inviaPassword.jpg"  width="30" height="20" title="Invia Password"></a></div>
+							<div class="div-table-col-center"><a href="cancellaUtente?userId=${item.userId}"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Utente"></a></div>     -->
 							</div>
 							</c:forEach>
 						</div> 
@@ -103,10 +103,10 @@
 	
 	<div class="div-table-row">
 	<div class="div-table-col-center" >					
-					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Annulla"></a>
+					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Homepage"></a>
 	</div>		
 	</div>
-	</br>
+	<br/>
 	
 	 </div>     
 </div>

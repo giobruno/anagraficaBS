@@ -24,20 +24,18 @@ public class AssociazioneBSProcessoFormValidator implements Validator {
     	
     	AssociazioneBSProcessoForm form = (AssociazioneBSProcessoForm) target;    	
     	
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiBusinessService", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiProcesso", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiCategoriaMac", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiCategoriaInfr", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavIniOre", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavIniMinuti", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavFineOre", "field.required", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavFineMinuti", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpLavorativoGiorni", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpLavorativoOre", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpLavorativoMinuti", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpSolareGiorni", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpSolareOre", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "misuTmpSolareMinuti", "field.required", "Required field");
-    
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiBusinessService", "field.required.codiBusinessService", "Required field");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiProcesso", "field.required.codiProcesso", "Required field");
+        
+        if(form.getMisuTmpLavorativoMinuti().equalsIgnoreCase("") && form.getMisuTmpLavorativoOre().equalsIgnoreCase(""))
+        	errors.rejectValue("misuTmpLavorativoOre", "field.required.misuTmpLavorativoOre","field.required");
+        if(form.getMisuTmpSolareMinuti().equalsIgnoreCase("") && form.getMisuTmpSolareOre().equalsIgnoreCase(""))
+        	errors.rejectValue("misuTmpSolareOre", "field.required.misuTmpSolareOre","field.required");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiCategoriaMac", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiCategoriaInfr", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavIniOre", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavIniMinuti", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavFineOre", "field.required", "Required field");
+//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavFineMinuti", "field.required", "Required field");    
        }
 }

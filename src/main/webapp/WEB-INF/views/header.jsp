@@ -1,19 +1,30 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-		<!-- Homepage wrapper -->
+		<!-- Homepage wrapper 
 		<div id="container">
 				
-			<!-- HEADER -->
+			
 			<div id="headerHome">					
 					<div class="logoImage">
                   	   <img src="resources/img/tesoro.jpg" alt="Ministero delle Economie e delle Finanze"/>
-              		  </div>
+              		  </div>			
 					
-					<!-- 	<div ><img style="position: absolute;" src="resources/img/tesoro.jpg">  -->
 					</div>
 				
 			</div>
+			<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+			-->
+			
+
+
+
+<div id="header2">
+<div id="imgsx"></div>
+<div id="title">Anagrafica dei Servizi di Business</div>
+<div id="imgdx"></div>
+</div>
+
 			
 		<!-- 	<sec:authorize access="hasRole('ROLE_USER')" >	
 			<div id="login" class="fG2">	
@@ -25,10 +36,10 @@
 					</div>
 				</sec:authorize>  -->
 		
-		<!-- <div id="drop-menu" > -->
+		<!-- <div id="drop-menu" > 
 			<ul id="menu">
 				</ul>	
-			<!-- 	</div>  -->	
+			</div>  -->	
 					
 
 													
