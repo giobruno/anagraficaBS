@@ -14,22 +14,33 @@ public class ValidatorUtil {
 	private static Matcher matcher;
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final String FORMAT_PASSWORD_PATTERN = "((?=.*[0-9])(?=.*[a-zA-Z]).{8,})";
-	private static Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+	private static Pattern pattern_email = Pattern.compile(EMAIL_PATTERN);
     private static Pattern pattern_password_format = Pattern.compile(FORMAT_PASSWORD_PATTERN);
+    
+    private static final String NUMBER_PATTERN = "^[0-9]$";
+    private static Pattern pattern_number = Pattern.compile(NUMBER_PATTERN);
 	
 	public static void validateEmail(String fieldName,String email, Errors errors){
 		logger.info("Inizio metodo ValidatorUtil.validateEmail!");
-		matcher = pattern.matcher(email);
+		matcher = pattern_email.matcher(email);
 		if(!matcher.matches()){
 			errors.rejectValue(fieldName, "field.emailError");
 		}
 	}    
     
-    public static void validatePasswordFormat(String fieldName,String email, Errors errors){
+    public static void validatePasswordFormat(String fieldName,String password, Errors errors){
     	logger.info("Inizio metodo ValidatorUtil.validatePasswordFormat!");
-        matcher = pattern_password_format.matcher(email);
+        matcher = pattern_password_format.matcher(password);
         if(!matcher.matches()){
             errors.rejectValue(fieldName, "field.password");
+        }
+    }
+    
+    public static void validateNumberFormat(String fieldName,String number, Errors errors){
+    	logger.info("Inizio metodo ValidatorUtil.validateNumberFormat!");
+        matcher = pattern_number.matcher(number);
+        if(!matcher.matches()){
+            errors.rejectValue(fieldName, "field.errorFormat."+fieldName);
         }
     }
     

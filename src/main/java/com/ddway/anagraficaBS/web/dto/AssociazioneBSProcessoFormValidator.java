@@ -31,11 +31,17 @@ public class AssociazioneBSProcessoFormValidator implements Validator {
         	errors.rejectValue("misuTmpLavorativoOre", "field.required.misuTmpLavorativoOre","field.required");
         if(form.getMisuTmpSolareMinuti().equalsIgnoreCase("") && form.getMisuTmpSolareOre().equalsIgnoreCase(""))
         	errors.rejectValue("misuTmpSolareOre", "field.required.misuTmpSolareOre","field.required");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiCategoriaMac", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiCategoriaInfr", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavIniOre", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavIniMinuti", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavFineOre", "field.required", "Required field");
-//        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "orarioLavFineMinuti", "field.required", "Required field");    
+        
+        if(!form.getMisuTmpLavorativoOre().equalsIgnoreCase(""))
+        	ValidatorUtil.validateNumberFormat("misuTmpLavorativoOre", form.getMisuTmpLavorativoOre(), errors);
+        
+        if(!form.getMisuTmpLavorativoMinuti().equalsIgnoreCase(""))
+        	ValidatorUtil.validateNumberFormat("misuTmpLavorativoMinuti", form.getMisuTmpLavorativoMinuti(), errors);
+        
+        if(!form.getMisuTmpSolareOre().equalsIgnoreCase(""))
+        	ValidatorUtil.validateNumberFormat("misuTmpSolareOre", form.getMisuTmpSolareOre(), errors);
+        
+        if(!form.getMisuTmpSolareMinuti().equalsIgnoreCase(""))
+        	ValidatorUtil.validateNumberFormat("misuTmpSolareMinuti", form.getMisuTmpSolareMinuti(), errors);
        }
 }

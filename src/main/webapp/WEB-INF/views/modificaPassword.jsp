@@ -41,8 +41,8 @@
 		
 		<div class="div-table">							
 			<div class="div-table-row">
-						<div class="div-table-col"><label for="oldPassword"> <img src="resources/img/query.png" alt="" title="">&nbsp;Password Attuale*:</label></div>
-						<div class="div-table-col"><form:input style="width:200px"  type="password" maxlength="150" id="oldPassword" path="oldPassword"/></div>						
+						<div class="div-table-col"><label for="attualePassword"> <img src="resources/img/query.png" alt="" title="">&nbsp;Password Attuale*:</label></div>
+						<div class="div-table-col"><form:input style="width:200px"  type="password" maxlength="150" id="attualePassword" path="attualePassword"/></div>						
 			</div>	
 			<div class="div-table-row">
 						<div class="div-table-col"><label for="password"> <img src="resources/img/query.png" alt="" title="">&nbsp;Nuova Password*:</label></div>
@@ -59,6 +59,7 @@
 			<form:hidden path="cognome"/>
 			<form:hidden path="username"/>
 			<form:hidden path="email"/>
+			<form:hidden path="oldPassword"/>
 			<br/>
 			<div class="div-table-row">
 			<div class="div-table-col">

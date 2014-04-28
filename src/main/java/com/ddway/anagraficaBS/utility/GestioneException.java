@@ -10,13 +10,15 @@ public class GestioneException {
 	
 	private static final Logger log = LoggerFactory.getLogger(GestioneException.class);
 	
-	public void gestisciException(ModelAndView model, Exception e, String oggettoDuplicato){
+	public void gestisciException(ModelAndView model, Exception e, String message){
 		
 		String[] errorSplit = e.getMessage().split("/");
 		
+		if(message.equalsIgnoreCase(""))
+			message = "ERRORE: Si sta cercando di inserire un oggetto duplicato su una tabella del data base!";
 		model.addObject("presenzaMessaggio","si");
 		if(e.getCause().toString().equals("org.hibernate.exception.ConstraintViolationException: Could not execute JDBC batch update")){
-			model.addObject("message","Si sta cercando di inserire un oggetto '"+oggettoDuplicato+"' già presente nel sistema!");
+			model.addObject("message",message);
 			model.setViewName("exception");
 		}
 		else if(errorSplit[0].equalsIgnoreCase("getlistvalues"))

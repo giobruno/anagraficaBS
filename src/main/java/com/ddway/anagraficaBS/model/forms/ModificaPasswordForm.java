@@ -8,24 +8,35 @@ public class ModificaPasswordForm {
 	private String username;
 	private String email;
 	private String oldPassword;
+	private String attualePassword;
 	private String password;
 	private String confermaPassword;
 	
 	public ModificaPasswordForm(){}
 	
 	public ModificaPasswordForm(String userId,String nome, String cognome,
-			String username,String email,String oldPassword,String password,String confermaPassword){
+			String username,String email,String attualePassword,String oldPassword,String password,String confermaPassword){
 		
 		this.userId = userId;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;
 		this.email = email;
+		this.attualePassword = attualePassword;
 		this.oldPassword = oldPassword;
 		this.password = password;
 		this.confermaPassword = confermaPassword;
 	}
 	
+	
+	public String getAttualePassword() {
+		return attualePassword;
+	}
+
+	public void setAttualePassword(String attualePassword) {
+		this.attualePassword = attualePassword;
+	}
+
 	public String getUserId() {
 		return userId;
 	}

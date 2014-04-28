@@ -98,7 +98,7 @@
 				
 						<input type="reset" name="Cancella" value="Cancella"/>
 						<input type="submit" name="Registrati"  value="Registrati"/>							
-						<input type="submit" name="Annulla"  value="Homepage" />
+						<input type="submit" name="Annulla"  value="Annulla" />
 					</div>
 				</div>				
 				

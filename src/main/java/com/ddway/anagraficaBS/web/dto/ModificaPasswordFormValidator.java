@@ -24,9 +24,16 @@ public class ModificaPasswordFormValidator implements Validator {
     	
     	ModificaPasswordForm form = (ModificaPasswordForm) target;
     	
-    	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "oldPassword", "field.required.oldPassword", "Required field");
+    	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "attualePassword", "field.required.attualePassword", "Required field");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "field.required.nuova.password", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confermaPassword", "field.required.conferma.nuova.Password", "Required field");        
-
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confermaPassword", "field.required.conferma.nuova.Password", "Required field");
+        
+        if(!form.getAttualePassword().equalsIgnoreCase(""))
+        	if(!form.getAttualePassword().equalsIgnoreCase(form.getOldPassword()))
+        		errors.rejectValue("attualePassword", "field.attualePassword.errata","field.attualePassword.errata");
+        
+        if(!form.getPassword().equalsIgnoreCase("") && !form.getConfermaPassword().equalsIgnoreCase(""))
+        	if(!form.getPassword().equalsIgnoreCase(form.getConfermaPassword()))
+        		errors.rejectValue("confermaPassword", "field.confirmPassword.different","field.confirmPassword.different");
        }
 }

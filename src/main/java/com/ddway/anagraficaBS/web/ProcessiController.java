@@ -96,7 +96,7 @@ public class ProcessiController {
 			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on ProcessiController.inserimentoprocesso");
-			gestioneException.gestisciException(model, e,"Processo");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
@@ -168,7 +168,8 @@ public class ProcessiController {
 			session.removeAttribute("codiBusinessService");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on ProcessiController.inserimentoAssociazioneBSProcesso");
-			gestioneException.gestisciException(model, e,"Associazione Business Service - Processo");
+			gestioneException.gestisciException(model, e,"Il processo che si sta cercando di associare risulta già associato al Business Service selezionato!");
+			model.setViewName("forward:/formAssociazioneBSProcesso");
 		}
 		return model;
 	}
@@ -221,7 +222,7 @@ public class ProcessiController {
 			model.setViewName("modificaProcesso");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaProcessoForm");
-			gestioneException.gestisciException(model, e,"Processo");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
@@ -248,7 +249,7 @@ public class ProcessiController {
 			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaProcesso!");
-			gestioneException.gestisciException(model, e,"Processo");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
@@ -263,7 +264,7 @@ public class ProcessiController {
 			model.setViewName("elencoProcessi");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.visualizzaElencoProcessi");
-			gestioneException.gestisciException(model, e,"Processo");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
@@ -328,7 +329,8 @@ public class ProcessiController {
 			model.setViewName("forward:/dettaglioBusinessService?codiBusinessService="+associazioneBSProcessoForm.getCodiBusinessServiceOld()+"&messaggio='L'associazione Business Service - Processo è stata modificata con successo!'");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on ProcessiController.modificaAssociazioneBSProcesso");
-			gestioneException.gestisciException(model, e,"Associazione Business Service - Processo");
+			gestioneException.gestisciException(model, e,"Il processo che si sta cercando di associare risulta già associato al Business Service selezionato!");
+			model.setViewName("forward:/modificaAssociazioneBSProcessoForm");
 		}
 		return model;
 	}

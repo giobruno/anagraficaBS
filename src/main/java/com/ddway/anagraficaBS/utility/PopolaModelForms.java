@@ -190,6 +190,7 @@ public class PopolaModelForms {
 				modificaPasswordForm.setCognome(users.getCognome());				
 				modificaPasswordForm.setEmail(users.getEmail());		
 				modificaPasswordForm.setUsername(users.getUsername());
+				modificaPasswordForm.setOldPassword(users.getPassword());
 			}
 		}catch(Exception e){
 			log.error(e.getMessage()+" on PopolaModelForms.popolaModificaPasswordForm!");

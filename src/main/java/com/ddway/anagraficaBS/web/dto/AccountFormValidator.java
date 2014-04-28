@@ -29,7 +29,7 @@ public class AccountFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "field.required.username", "Required field");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required.email", "Required field");      
         
-//        validateEmail("email",form.getEmail(), errors);  
+        ValidatorUtil.validateEmail("email",form.getEmail(), errors);  
 //        validatePasswordFormat("password",form.getPassword(),errors);
 //
 //        if(StringUtils.hasText(form.getPassword()) && StringUtils.hasText(form.getConfermaPassword())) {

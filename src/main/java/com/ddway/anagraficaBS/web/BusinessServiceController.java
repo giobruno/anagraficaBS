@@ -129,7 +129,7 @@ public class BusinessServiceController {
 			}
 			}catch(Exception e){
 				logger.error(e.getMessage()+" on BusinessServiceController.inserimentoBusinessService");
-				gestioneException.gestisciException(model, e,"Business Service");
+				gestioneException.gestisciException(model, e,"");
 			}
 			return model; 		
 	}
@@ -263,7 +263,8 @@ public class BusinessServiceController {
 			model.setViewName("ricercaFunzioniUtente");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.inserisciFunzioniUtente");
-			gestioneException.gestisciException(model, e,"Associazione Business Service - Funzione utente");
+			gestioneException.gestisciException(model, e,"Si sta cercando di associare delle Funzioni Utente già associate al Business Service selezionato!");
+			model.setViewName("forward:/formRicercaFunzioniUtente");
 		}
 		return model; 
 	}
@@ -304,7 +305,7 @@ public class BusinessServiceController {
 			model.setViewName("elencoBusinessService");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on usinessServiceController.inserimentoAssociazioneBSFunzUtenteAnnulla!");
-			gestioneException.gestisciException(model, e,"Associazione Business Service - Funzione utente");
+			gestioneException.gestisciException(model, e,"");
 		}
 		return model; 
 	}
@@ -388,7 +389,7 @@ public class BusinessServiceController {
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaBusinessService!");
-			gestioneException.gestisciException(model, e, "Business Service");
+			gestioneException.gestisciException(model, e, "");
 		}
 		return model;
 	}
