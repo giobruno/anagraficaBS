@@ -100,6 +100,7 @@
 	<div class="div-table-row">
 	<div class="div-table-col-center" >					
 					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Homepage"></a>
+					<a href="reportController?report=3"><input TYPE="button" name="Stampa" VALUE="Stampa"></a>
 	</div>	
 	</div>
 	

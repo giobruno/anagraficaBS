@@ -3,7 +3,9 @@ package com.ddway.anagraficaBS.model.bean;
 public class BusinessServiceBean {
 	
 	private String codiBusinessService;
+	private String descBusinessService;
 	private String textSiglaDipartimento;
+	private String textUrlBusinessService;
 	private String textNomeBusinessService;	
 	private String persRespBusinessService;	
 	private String descModelApplicativo;
@@ -11,19 +13,38 @@ public class BusinessServiceBean {
 	
 	public BusinessServiceBean(){}
 	
-	public BusinessServiceBean(String codiBusinessService,
+	public BusinessServiceBean(String codiBusinessService,String descBusinessService,
 										String textSiglaDipartimento,
+										String textUrlBusinessService,
 										String textNomeBusinessService,
 										String persRespBusinessService,
 										String descModelApplicativo,
 										Boolean flagConvenzione){
 		
 		this.codiBusinessService = codiBusinessService;
+		this.descBusinessService = descBusinessService;
 		this.textNomeBusinessService = textNomeBusinessService;
+		this.textUrlBusinessService = textUrlBusinessService;
 		this.textSiglaDipartimento = textSiglaDipartimento;
 		this.persRespBusinessService = persRespBusinessService;
 		this.descModelApplicativo = descModelApplicativo;
 		this.flagConvenzione = flagConvenzione;
+	}
+	
+	public String getTextUrlBusinessService() {
+		return textUrlBusinessService;
+	}
+
+	public void setTextUrlBusinessService(String textUrlBusinessService) {
+		this.textUrlBusinessService = textUrlBusinessService;
+	}
+
+	public String getDescBusinessService() {
+		return descBusinessService;
+	}
+
+	public void setDescBusinessService(String descBusinessService) {
+		this.descBusinessService = descBusinessService;
 	}
 
 	public String getCodiBusinessService() {

@@ -89,7 +89,7 @@
 					</div>
 	 
 	 
-				 <div class="div-table"> 
+				
 					
 					<br/>
 					<br/>
@@ -152,7 +152,4 @@
 		 </c:if>
 				
 					</div>		
-		
-	
-	</div>
 </body>

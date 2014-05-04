@@ -41,6 +41,7 @@ public class CaricaSelectController {
 				out.close();
 				}
 			}catch(Exception e){
+				e.printStackTrace();
 				log.error(e.getMessage()+" on CaricaSelectController.caricaRegioni");
 				gestioneException.gestisciException(model, e,"");
 			}

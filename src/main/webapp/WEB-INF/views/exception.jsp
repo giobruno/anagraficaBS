@@ -32,7 +32,7 @@
 			<legend>Errore di sistema</legend>				
 						<div class="div-table">
 								<div class="div-table-row">							 
-									<div class="div-table-col-center"><p class="visualizzaDesc">ERRORE DI SISTEMA! Riprovare oppure contattare l'amministratore! <a href="#">amministratore.anagraficaBS@sogei.it</a></p></div>																						
+									<div class="div-table-col-center"><p class="erroreForm">ERRORE DI SISTEMA!</p> <p class="visualizzaDesc">Riprovare oppure contattare l'assistenza all'indirizzo <a href="mailto:assistenza.utilita@tesoro.it">assistenza.utilita@tesoro.it</a></p></div>																						
 								</div>
 								<br/>
 								<div class="div-table-row">													
@@ -44,7 +44,10 @@
 							</div>									
 						</div> 
 		 </fieldset>		
-		 </div></div></div></div>
+		 </div></div></div>
+		 
+		 
+		 </div>
 			
 	
 

@@ -81,6 +81,7 @@ public class AccountController {
 			model.addObject("messaggio","La registrazione è avvenuta con successo! Appena riceverai l'email di validazione del tuo account, potrai effettuare l'accesso!");
 			model.setViewName("login");		
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.registrazione");
 			gestioneException.gestisciException(model, e,"");						
 		}
@@ -107,6 +108,7 @@ public class AccountController {
 			model.addObject("utentiList", utentiList);	
 			model.setViewName("elencoUtenti");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.visualizzaElencoProcessi");
 			gestioneException.gestisciException(model, e,"");	
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
@@ -130,6 +132,7 @@ public class AccountController {
 			model.setViewName("visualizzaAccount");
 			return model; 
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.visualizzaAccount");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -152,6 +155,7 @@ public class AccountController {
 			model.setViewName("modificaAccount");
 			return model; 
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.modificaAccountForm");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -179,6 +183,7 @@ public class AccountController {
 			model.addObject("user", user);
 			model.setViewName("visualizzaAccount");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.modificaAccount");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -207,6 +212,7 @@ public class AccountController {
 			model.setViewName("modificaPassword");
 			return model; 
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.modificaPasswordForm");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -234,6 +240,7 @@ public class AccountController {
 			model.addObject("user", user);
 			model.setViewName("visualizzaAccount");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.modificaAccount");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -266,6 +273,7 @@ public class AccountController {
 			model.addObject("utentiList", utentiList);
 			model.setViewName("elencoUtenti");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.abilitaUtente");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -290,6 +298,7 @@ public class AccountController {
 			model.addObject("utentiList", utentiList);
 			model.setViewName("elencoUtenti");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.disabilitaUtente");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -314,6 +323,7 @@ public class AccountController {
 			model.addObject("utentiList", utentiList);
 			model.setViewName("elencoUtenti");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.cancellaUtente");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -332,6 +342,7 @@ public class AccountController {
 			model.addObject("message","La tua richiesta è stata inoltrata! A breve riceverai un'email all'indirizzo di posta elettronica utilizzato per registrarti, con i tuoi dati di accesso.");
 			model.setViewName("login");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.richiestaDatiAccesso");
 			gestioneException.gestisciException(model, e,"");
 		}

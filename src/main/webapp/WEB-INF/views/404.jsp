@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -20,50 +22,32 @@
   </head>
   <body>
  
-		<!-- Homepage wrapper -->
-		<div id="container">
-				
-			<!-- HEADER -->
-			<div id="headerHome">					
-					<div class="logoImage">
-                  	   <img src="resources/img/tesoro.jpg" alt="Ministero delle Economie e delle Finanze"/>
-              		  </div>
-					
-					<!-- 	<div ><img style="position: absolute;" src="resources/img/tesoro.jpg">  -->
-					</div>
-				
-			</div>
-			
-		<!-- 	<sec:authorize access="hasRole('ROLE_USER')" >	
-			<div id="login" class="fG2">	
-				 	<p  class="UserName">${username}&nbsp;</p> 						
-						<span class="Logout">						 
-						<c:url value="j_spring_security_logout" var="logoutUrl"/>
-							<a href="${logoutUrl}" id="logout"><img src="resources/img/bottone_esci.gif"></a> 																
-						</span> 						
-					</div>
-				</sec:authorize>  -->
-		
-		<!-- <div id="drop-menu" > -->
-			<ul id="menu">
-				</ul>	
-			<!-- 	</div>  -->	
-					
+<div id="header2">
+<div id="imgsx"></div>
+<div id="title">Anagrafica dei Servizi di Business</div>
+<div id="imgdx"></div>
+</div>
 
-													
-	   
-			<!-- END HEADER -->
-			<div class="footerWrap" align="center">
-		<footer class="bgB2">
-				<div id="quickMenu">
-				
-				</div>
-			</footer>
-	
-		</div>
 			
-	
+		<!-- END HEADER -->
+			<div class="footerWrap">
+		<footer class="bgB2" >	
+		<sec:authorize access="hasRole('STANDARD')" >
+		<div class="div-table">
+			<div class="div-table-row">
+				<div class="div-table-col-right">					
+					<div style="color:white;font-weight:bold;text-align:right;">Utente loggato: ${utente}</div>
+				</div>				 	
+				<div class="div-table-col-center">	
+				 			<c:url value="j_spring_security_logout" var="logoutUrl"/><a href="${logoutUrl}" id="logout" style="color:white;font-weight:bold;">Esci</a> 
+				</div>				
 		</div>
+	</div>		
+	</sec:authorize> 
+</footer>
+	
+</div>
+				
 		
 		<div class="PageWrapBis" id="central">	
 			<!-- MAIN PAGE -->
@@ -90,11 +74,54 @@
 				<br/>
 				
 				<div class="ContentHome bgA3">
-					
-					
-					 <p><b><ul><font color="blue">ERRORE 404! Accesso all'applicazione non consentito!</font>
-					 <p> <a href='javascript:history.back()'>Torna alla pagina precedente</a> </p> 
 				
+				<div class="div-table">
+	
+	<div class="div-table-row">
+	<div class="div-table-col">
+	
+	
+					
+	</div>
+	</div>
+	</div>
+		<div class="div-table-centrata">
+	<div class="div-table-row">
+	<div class="div-table-col">
+					</div>
+	</div>
+	
+			<div class="div-table-row">
+				<div class="div-table-col"></div>
+			</div>
+			<div class="div-table-row">
+				<div class="div-table-col"></div>
+			</div>
+	 <div class="div-table-row">
+ 	<div class="div-table-centrata"> 		
+ 	 
+		<fieldset>
+			<legend>Errore di sistema</legend>				
+						<div class="div-table">
+								<div class="div-table-row">							 
+									<div class="div-table-col-center"><p class="erroreForm">ERRORE 404!</p> <p class="visualizzaDesc">Riprovare oppure contattare l'assistenza all'indirizzo <a href="mailto:assistenza.utilita@tesoro.it">assistenza.utilita@tesoro.it</a></p></div>																						
+								</div>
+								<br/>
+								<div class="div-table-row">													
+									<div class="div-table-col-center"><a href="javascript:history.back()"><p class="visualizzaDesc">Torna alla pagina precedente!</p></a></div>													
+								</div>
+								<div class="div-table-row">
+								<div class="div-table-col">
+								</div>
+							</div>									
+						</div> 
+		 </fieldset>		
+		 </div></div></div>
+					
+					
+					 
+
+
 				</div>
 			
 				
@@ -108,11 +135,31 @@
 		<footer class="bgB2">
 				<div id="quickMenu">
 				
+				<table width="100%"  style="margin: 0px" cellspacing=0 cellpadding=0>
+		<tr height="13px">
+			<td align="left" >
+				<a href="#"  style="font-size: 10px; font-family: Verdana;color:white;font-weight:bold;"
+	onclick="return overlib('<table><tr><td class=label_value_footer align=right nowrap ><b>E-mail:</b></td><td class=label_value>Assistenza.utilita@tesoro.it</td></tr><tr><td align=right class=label_value_footer nowrap><b>Tel.:</b></td><td class=label_value>06 4761 2335</td></tr><tr><td></td><td class=label_value>06 4761 2013</td></tr><tr><td></td><td class=label_value>06 4761 2423</td></tr><tr><td></td><td class=label_value>06 4761 2348</td></tr><tr><td></td><td class=label_value>06 4761 2110</td></tr></table>', TEXTSIZE, '2', TEXTCOLOR, '#373737',  CELLPAD, '10',  STICKY, CAPTION, '&nbsp;:: ASSISTENZA ::', CAPTIONSIZE, '1', CLOSECLICK, CLOSESIZE, '1',SHADOW, WIDTH, 300, HEIGHT, 100, CENTERPOPUP, BGCOLOR, '#444444');"	 onmouseout="return nd();">
+	ASSISTENZA
+				</a>
+			</td>
+			<td align="center" width="70%" style="font-size: 11px; font-family: Verdana; color:white;font-weight:bold;">
+				Powered By Sogei S.p.A. - 2014
+			</td>
+			<td align="right" width="15%">
+				<a href="#"  style="font-size: 10px; font-family: Verdana;color:white;font-weight:bold;" onclick="return overlib('<table><tr><td align=center><a href=http://www.redhat.it target=_NEW ><img src=/big/images/redhat_icon.png border=0></a></td><td class=label_value nowrap>Sistema Operativo</td></tr><tr><td align=center><a href=http://www.apache.org target=_NEW ><img src=/big/images/apache2_icon.gif border=0></a></td><td class=label_value nowrap>Web Server</td></tr><tr><td align=center><a href=http://www.jboss.org target=_NEW ><img src=/big/images/jboss.jpg border=0></a></td><td class=label_value nowrap>Application Server</td></tr><tr><td align=center><a href=http://www.mysql.com target=_NEW ><img src=/big/images/mysql.gif border=0></a></td><td class=label_value>Database</td></tr><tr><td align=center><a href=http://struts.apache.org/ target=_NEW ><img src=/big/images/struts.jpg border=0></td><td class=label_value nowrap>Framework MVC</td></tr><tr><td align=center><a href=http://www.springframework.org target=_NEW ><img src=/big/images/spring.jpg border=0></a></td><td class=label_value nowrap>Transaction Manager</td></tr><tr><td align=center><a href=http://hibernate.org target=_NEW ><img src=/big/images/hibernate.jpg border=0></a></td><td class=label_value>ORM</td></tr><tr><td align=center><a href=http://www.bosrup.com/web/overlib/ target=_NEW ><img src=/big/images/overlib_icon.png border=0></a></td><td class=label_value nowrap>Tooltip Manager</td></tr><tr><td align=center><a href=http://www.opensymphony.com/osworkflow/ target=_NEW ><img src=/big/images/osworkflow.jpg border=0></a></td><td class=label_value nowrap>OSWorkflow</td></tr></table>', TEXTSIZE, '1', TEXTCOLOR, '#373737',  CELLPAD, '10',  STICKY, CAPTION, '&nbsp;:: CREDITS ::', CAPTIONSIZE, '1', CLOSECLICK, CLOSESIZE, '1',SHADOW, WIDTH, 300, HEIGHT, 200, CENTERPOPUP, BGCOLOR, '#000000');" onmouseout="return nd();"/ >
+				CREDITS
+				</a>&nbsp;&nbsp;
+			</td>
+		</tr>
+	</table>
+				
+				
 				</div>
 			</footer>
 	
 		</div>
-		<!-- END FOOTER -->
+		<!-- END FOOTER -->	
 						
 		
 		

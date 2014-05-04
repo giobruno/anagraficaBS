@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.ddway.anagraficaBS.model.bean.AssociazioneBSProcessoBean;
 import com.ddway.anagraficaBS.model.bean.BusinessServiceBean;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
@@ -121,6 +123,7 @@ public class PopolaModelForms {
 					associazioneBSProcessoBean.setDataInizioValidita(dServiziProcessi.getId().getDataInizioValidita());
 					associazioneBSProcessoBean.setDataFineValidita(dServiziProcessi.getDProcessi().getDataFineValidita() == null ? null: dServiziProcessi.getDProcessi().getDataFineValidita()+"");					
 					associazioneBSProcessoBean.setTextSiglaProcesso(dServiziProcessi.getDProcessi().getTextSiglaProcesso());
+					associazioneBSProcessoBean.setDescProcesso(dServiziProcessi.getDProcessi().getDescProcesso());
 					associazioneBSProcessoBeanList.add(associazioneBSProcessoBean);					
 				}
 			}			
@@ -131,6 +134,7 @@ public class PopolaModelForms {
 		
 	}
 	
+	@Transactional
 	public void popolaListaBusinessService(List<DBusinessServices> businessServiceList,List<BusinessServiceBean> businessServiceBeanList) throws Exception{
 		log.info("Inizio metodo PopolaModelForms.popolaListaBusinessService!");
 		
@@ -153,12 +157,37 @@ public class PopolaModelForms {
 					DServiziModel dServiziModel = gestioneDataBase.getModelApplicativoFromDServiziModel(dbusinessService.getCodiBusinessService()+"");
 					DModelApplicativi dModelApplicativo = gestioneDataBase.getModelApplicativoFromDModelApplicativi(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");
 					
-					businessServiceBean	.setDescModelApplicativo(dModelApplicativo.getDescModelApplicativo());		
+					businessServiceBean.setDescModelApplicativo(dModelApplicativo.getDescModelApplicativo());		
 					businessServiceBeanList.add(businessServiceBean);
 				}
 			}
 		}catch(Exception e){
 			log.error(e.getMessage()+" on PopolaModelForms.popolaListaBusinessService!");
+			throw e;
+		}		
+	}
+	
+	@Transactional
+	public void popolaBusinessServiceBean(DBusinessServices dbusinessService,BusinessServiceBean businessServiceBean) throws Exception{
+		log.info("Inizio metodo PopolaModelForms.popolaBusinessServiceBean!");
+		
+		try{
+			if(dbusinessService != null){							
+					businessServiceBean.setCodiBusinessService(dbusinessService.getCodiBusinessService()+"");
+					businessServiceBean.setDescBusinessService(dbusinessService.getDescBusinessService());
+					businessServiceBean.setTextNomeBusinessService(dbusinessService.getTextNomeBusinessService());
+					businessServiceBean.setTextUrlBusinessService(dbusinessService.getTextUrlBusinessService());
+					businessServiceBean.setPersRespBusinessService(dbusinessService.getPersRespBusinessService());
+					businessServiceBean.setFlagConvenzione(dbusinessService.getFlagConvenzione());
+					businessServiceBean.setTextSiglaDipartimento(dbusinessService.getDDipartimenti().getTextSiglaDipartimento());
+					
+					DServiziModel dServiziModel = gestioneDataBase.getModelApplicativoFromDServiziModel(dbusinessService.getCodiBusinessService()+"");
+					DModelApplicativi dModelApplicativo = gestioneDataBase.getModelApplicativoFromDModelApplicativi(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");
+					
+					businessServiceBean.setDescModelApplicativo(dModelApplicativo.getDescModelApplicativo());					
+			}
+		}catch(Exception e){
+			log.error(e.getMessage()+" on PopolaModelForms.popolaBusinessServiceBean!");
 			throw e;
 		}		
 	}

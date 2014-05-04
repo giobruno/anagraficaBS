@@ -9,8 +9,28 @@
 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd ">
 
 
-    <bean id="PdfReport"
-          class="com.ddway.anagraficaBS.web.report.PdfReport">
+    <bean id="PdfReport1"
+          class="com.ddway.anagraficaBS.web.report.PdfReport1">
+    </bean>
+    
+    <bean id="PdfReport2"
+          class="com.ddway.anagraficaBS.web.report.PdfReport2">
+    </bean>
+    
+    <bean id="PdfReport3"
+          class="com.ddway.anagraficaBS.web.report.PdfReport3">
+    </bean>
+    
+    <bean id="PdfReport4"
+          class="com.ddway.anagraficaBS.web.report.PdfReport4">
+    </bean>
+    
+    <bean id="PdfReport5"
+          class="com.ddway.anagraficaBS.web.report.PdfReport5">
+    </bean>
+    
+    <bean id="PdfReport6"
+          class="com.ddway.anagraficaBS.web.report.PdfReport6">
     </bean>
 
 </beans>

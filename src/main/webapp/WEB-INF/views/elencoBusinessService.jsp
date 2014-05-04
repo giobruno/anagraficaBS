@@ -12,9 +12,9 @@
 						<p class="visualizzaFormLegend">Elenco Business Services</p>						
 		</div>
 	</div>	
-	<div class="div-table-centrata">
+	<div class="div-table">
 	<div class="div-table-row">
-	<div style="text-align: right;"><a href="formBusinessService" ><button>Inserisci nuovo Business Service</button></a>	</div>
+	<div style="text-align: right;"><a href="formBusinessService" ><button>Inserisci nuovo Business Service</button></a>	</div>	
 	</div>
 	<!--   <c:if test="${presenzaMessaggio == 'si'}" >	
 	<div class="div-table-row">
@@ -30,7 +30,7 @@
 		</div>
 	</div>
 	
-	<div class="div-table-centrata">
+	<div class="div-table">
 
 	
 	<div class="div-table-row">
@@ -79,6 +79,13 @@
 						</div> 
 		 </fieldset>					
 					  </div>
+					  
+						 <br/>
+						<div class="div-table-row">
+								<div class="div-table-col-center" >							
+											<a href="reportController?report=2"><input TYPE="button" name="Stampa" VALUE="Stampa"></a>				
+								</div>	
+						</div>
 				 	 
 	</div>
 	

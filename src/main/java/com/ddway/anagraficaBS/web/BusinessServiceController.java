@@ -31,8 +31,10 @@ import com.ddway.anagraficaBS.model.forms.ElencoFunzioniForm;
 import com.ddway.anagraficaBS.model.forms.RicercaFunzioniUtenteForm;
 import com.ddway.anagraficaBS.service.IDataSourceService;
 import com.ddway.anagraficaBS.utility.CaricaSelect;
+import com.ddway.anagraficaBS.utility.GestioneControlli;
 import com.ddway.anagraficaBS.utility.GestioneDataBase;
 import com.ddway.anagraficaBS.utility.GestioneException;
+import com.ddway.anagraficaBS.utility.GestioneMail;
 import com.ddway.anagraficaBS.utility.PopolaModelDb;
 import com.ddway.anagraficaBS.utility.PopolaModelForms;
 import com.ddway.anagraficaBS.web.dto.BusinessServiceFormValidator;
@@ -78,7 +80,7 @@ public class BusinessServiceController {
 	PopolaModelForms popolaModelForms;
 	
 	@Autowired
-	GestioneException gestioneException;
+	GestioneException gestioneException;	
 	
 	@RequestMapping(value="/formBusinessService", method = RequestMethod.GET)
 	public ModelAndView formBusinessService(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
@@ -95,6 +97,7 @@ public class BusinessServiceController {
 			model.addObject("businessServiceForm", new BusinessServiceForm());
 			model.setViewName("inserimentoBusinessService");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.formBusinessService");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -128,6 +131,7 @@ public class BusinessServiceController {
 				model.setViewName("forward:/formRicercaFunzioniUtente");
 			}
 			}catch(Exception e){
+				e.printStackTrace();
 				logger.error(e.getMessage()+" on BusinessServiceController.inserimentoBusinessService");
 				gestioneException.gestisciException(model, e,"");
 			}
@@ -164,6 +168,7 @@ public class BusinessServiceController {
 			model.addObject("funzioniList",funzioniList);
 			model.setViewName("elencoFunzioniUtente");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.ricercaFunzioniUtente");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -186,6 +191,7 @@ public class BusinessServiceController {
 			model.addObject("ricercaFunzioniUtenteForm", new RicercaFunzioniUtenteForm());
 			model.setViewName("ricercaFunzioniUtente");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.formRicercaFunzioniUtente");
 			gestioneException.gestisciException(model, e,"");
 		}		
@@ -210,6 +216,7 @@ public class BusinessServiceController {
 			model.addObject("businessServiceForm", (BusinessServiceForm) session.getAttribute("businessServiceForm"));
 			model.setViewName("inserimentoBusinessService");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.ricercaFunzioniUtenteIndietro");
 			gestioneException.gestisciException(model, e,"");
 		}		
@@ -262,6 +269,7 @@ public class BusinessServiceController {
 			model.addObject("message","Le seguenti Funzioni Utente sono state associate!");
 			model.setViewName("ricercaFunzioniUtente");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.inserisciFunzioniUtente");
 			gestioneException.gestisciException(model, e,"Si sta cercando di associare delle Funzioni Utente già associate al Business Service selezionato!");
 			model.setViewName("forward:/formRicercaFunzioniUtente");
@@ -280,6 +288,7 @@ public class BusinessServiceController {
 			model.addObject("ricercaFunzioniUtenteForm", new RicercaFunzioniUtenteForm());
 			model.setViewName("ricercaFunzioniUtente");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.inserisciFunzioniUtenteIndietro!");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -294,7 +303,6 @@ public class BusinessServiceController {
 		return model; 
 	}	
 
-	@Transactional
 	@RequestMapping(value="/inserimentoAssociazioneBSFunzUtente", method = RequestMethod.POST, params="Annulla")
 	public ModelAndView inserimentoAssociazioneBSFunzUtenteAnnulla(ModelAndView model) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.inserimentoAssociazioneBSFunzUtenteAnnulla!");		
@@ -304,6 +312,7 @@ public class BusinessServiceController {
 			model.addObject("businessServiceList", businessServiceList);
 			model.setViewName("elencoBusinessService");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on usinessServiceController.inserimentoAssociazioneBSFunzUtenteAnnulla!");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -326,9 +335,11 @@ public class BusinessServiceController {
 			else {
 				popolaModelForms.popolaListaBusinessService(businessServiceList,businessServiceBeanList);
 			}
+			session.setAttribute("businessServicesList", businessServiceBeanList);
 			model.addObject("businessServiceBeanList", businessServiceBeanList);
 			model.setViewName("elencoBusinessService");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.visualizzaElencoBusinessServices");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -360,13 +371,14 @@ public class BusinessServiceController {
 			model.addAllObjects(selectboxes);
 			model.setViewName("modificaBusinessService");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaBusinessService");
 			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
 	
-	@Transactional
+	
 	@RequestMapping(value="/modificaBusinessService", method = RequestMethod.GET, params="Modifica")
 	public ModelAndView modificaBusinessService(BusinessServiceForm businessServiceForm, BindingResult errors, ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.modificaBusinessService!");
@@ -388,13 +400,17 @@ public class BusinessServiceController {
 			model.addObject("message","Il Business Service è stato modificato con successo!");
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.modificaBusinessService!");
-			gestioneException.gestisciException(model, e, "");
+			gestioneException.gestisciException(model, e, "Business Service");
+			selectboxes = caricaSelect.getSelectsInserimentoBusinessService("formBusinessService");
+			model.addAllObjects(selectboxes);
+			model.setViewName("modificaBusinessService");
 		}
 		return model;
 	}
 	
-	@Transactional
+	
 	@RequestMapping(value="/modificaBusinessService", method = RequestMethod.GET, params="Annulla")
 	public ModelAndView modificaBusinessServiceAnnulla(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.modificaBusinessServiceAnnulla!");
@@ -402,13 +418,14 @@ public class BusinessServiceController {
 		try{
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.visualizzaElencoBusinessServices");
 			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
 	
-	@Transactional
+	
 	@RequestMapping(value="/cancellaBusinessService", method = RequestMethod.GET)
 	public ModelAndView cancellaBusinessService(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.cancellaBusinessService!");
@@ -418,12 +435,15 @@ public class BusinessServiceController {
 		
 		try{
 			codiBusinessService = request.getParameter("codiBusinessService");
-			businessService = (DBusinessServices) gestioneDataBase.getBusinessServices(codiBusinessService);
+			businessService = (DBusinessServices) gestioneDataBase.getBusinessServices(codiBusinessService);			
+			gestioneDataBase.cancellaElencoAssociazioniBSFunzioniUtente(codiBusinessService);
+			gestioneDataBase.cancellaElencoAssociazioniBSProcesso(codiBusinessService);
 			gestioneDataBase.cancellaBusinessService(businessService);
 			model.addObject("presenzaMessaggio","si");
 			model.addObject("message","Il Business Service è stato cancellato con successo!");
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.cancellaBusinessService");
 			gestioneException.gestisciException(model, e,"");
 		}
@@ -438,36 +458,41 @@ public class BusinessServiceController {
 		String codiBusinessService;
 		String messaggio;
 		List<AssociazioneBSProcessoBean> associazioneBSProcessoBeanList = new ArrayList<AssociazioneBSProcessoBean>();
+		BusinessServiceBean businessServiceBean = new BusinessServiceBean();
 		
 		try{
 			messaggio = request.getParameter("messaggio");
 			codiBusinessService = request.getParameter("codiBusinessService");
 //			session.setAttribute("codiBusinessService", codiBusinessService);
 			DBusinessServices businessService = (DBusinessServices) gestioneDataBase.getBusinessServices(codiBusinessService);
-			DDipartimenti dDipartimento  = gestioneDataBase.getDipartimento(businessService.getDDipartimenti().getCodiDipartimento()+"");
-			DServiziModel dServiziModel = gestioneDataBase.getModelApplicativoFromDServiziModel(codiBusinessService);
-			DModelApplicativi dModelApplicativo = gestioneDataBase.getModelApplicativoFromDModelApplicativi(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");
+//			DDipartimenti dDipartimento  = businessService.getDDipartimenti();
+//			DServiziModel dServiziModel = gestioneDataBase.getModelApplicativoFromDServiziModel(codiBusinessService);
+//			DModelApplicativi dModelApplicativo = gestioneDataBase.getModelApplicativoFromDModelApplicativi(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");
+			popolaModelForms.popolaBusinessServiceBean(businessService, businessServiceBean);
 			List<DServiziFunzioni> dServiziFunzioniList = gestioneDataBase.getListaAssociazioniFunzioniUtenteBS(codiBusinessService);
 			List<DServiziProcessi> dserviziProcessiList = gestioneDataBase.getListaAssociazioniProcessiBS(codiBusinessService);
 			popolaModelForms.popolaAssociazioneBSProcessoBeanList(dserviziProcessiList,associazioneBSProcessoBeanList);
-			model.addObject("dDipartimento", dDipartimento);
-			model.addObject("dModelApplicativo", dModelApplicativo);
+//			model.addObject("dDipartimento", dDipartimento);
+//			model.addObject("dModelApplicativo", dModelApplicativo);	
+			session.setAttribute("dServiziFunzioniList", dServiziFunzioniList);
+			session.setAttribute("associazioneBSProcessoBeanList", associazioneBSProcessoBeanList);
+			session.setAttribute("businessService", businessServiceBean);
 			model.addObject("dServiziFunzioniList", dServiziFunzioniList);
 			model.addObject("associazioneBSProcessoBeanList", associazioneBSProcessoBeanList);
-			model.addObject("businessService", businessService);
+			model.addObject("businessService", businessServiceBean);
 			if(messaggio != null){
 				model.addObject("presenzaMessaggio","si");
 				model.addObject("message",messaggio);
 			}
 			model.setViewName("dettaglioBusinessService");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.dettaglioBusinessService");
 			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
 	}
 	
-	@Transactional
 	@RequestMapping(value="/cancellaAssociazioneFunzioneUtente", method = RequestMethod.GET)
 	public ModelAndView cancellaFunzioneUtente(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.cancellaAssociazioneFunzioneUtente!");
@@ -488,11 +513,10 @@ public class BusinessServiceController {
 			gestioneDataBase.cancellaFunzioneUtente(dServiziFunzioni);			
 			model.setViewName("forward:/dettaglioBusinessService?messaggio=La funzione Utente è stata cancellata con successo!");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.cancellaAssociazioneFunzioneUtente");
 			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
-	}
-	
-	
+	}	
 }

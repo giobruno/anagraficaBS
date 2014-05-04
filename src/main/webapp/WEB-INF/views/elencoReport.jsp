@@ -35,20 +35,20 @@
 			<legend>Elenco Reports</legend>				
 						<div class="div-table">
 								<div class="div-table-row">							 
-									<div class="div-table-col-center"><a href="reportController"><p class="visualizzaDesc">Report 1</p></a></div>														
+									<div class="div-table-col-center"><a href="reportController?report=1"><p class="visualizzaDesc">Elenco Business Services</p></a></div>														
 								</div>
 								<div class="div-table-row">							 
-									<div class="div-table-col-center"><a href="reportController"><p class="visualizzaDesc">Report 2</p></a></div>														
+									<div class="div-table-col-center"><a href="reportController?report=2"><p class="visualizzaDesc">Elenco Business Services dettaglio</p></a></div>														
 								</div>
 								<div class="div-table-row">							 
-									<div class="div-table-col-center"><a href="reportController"><p class="visualizzaDesc">Report 3</p></a></div>														
+									<div class="div-table-col-center"><a href="reportController?report=3"><p class="visualizzaDesc">Elenco Processi</p></a></div>														
 								</div>
 								<div class="div-table-row">							 
-									<div class="div-table-col-center"><a href="reportController"><p class="visualizzaDesc">Report 4</p></a></div>														
+									<div class="div-table-col-center"><a href="reportController?report=4"><p class="visualizzaDesc">Elenco Model Applicativi</p></a></div>														
 								</div>
 								<div class="div-table-row">							 
-									<div class="div-table-col-center"><a href="reportController"><p class="visualizzaDesc">Report 5</p></a></div>														
-								</div>
+									<div class="div-table-col-center"><a href="reportController?report=5"><p class="visualizzaDesc">Elenco Model Applicativi con Business Services Associati</p></a></div>														
+								</div>								
 							<div class="div-table-row">
 								<div class="div-table-col">
 								</div>

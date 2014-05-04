@@ -10,10 +10,10 @@
  	<div class="div-table">
 		<div class="div-table-row">
 		<div class="div-table-col">
-						<p class="visualizzaFormLegend">Business Services</p>						
+						<p class="visualizzaFormLegend">Business Service</p>						
 		</div>
 	</div>	
-	<div class="div-table-centrata">
+	<div class="div-table">
 	<div class="div-table-row">
 	<div style="text-align: right;"><a href="cancellaBusinessService?codiBusinessService=${businessService.codiBusinessService}" onclick="return conferma('Sei sicuro di voler cancellare il Business Service?')"><button>Elimina il Business Service</button></a>	</div>
 	</div>	
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	
-	<div class="div-table-centrata">
+	<div class="div-table">
 
 	
 	<div class="div-table-row">
@@ -75,13 +75,14 @@
 									<div class="div-table-col"><p>${businessService.descBusinessService}</p></div>
 									<div class="div-table-col"><p>${businessService.persRespBusinessService}</p></div>
 									<div class="div-table-col"><p>${businessService.textUrlBusinessService}</p></div>						
-									<div class="div-table-col"><p>${dDipartimento.textSiglaDipartimento}</p></div>
-									<div class="div-table-col"><p>${dModelApplicativo.descModelApplicativo}</p></div>
+									<div class="div-table-col"><p>${businessService.textSiglaDipartimento}</p></div>
+									<div class="div-table-col"><p>${businessService.descModelApplicativo}</p></div>
 									<div class="div-table-col"><p>${businessService.flagConvenzione ? 'SI' : 'NO'}</p></div> 
 						</div>
 						</div> 
 		 </fieldset>					
 					  </div>
+					  <br/>
 <c:if test="${businessService.flagConvenzione}">			  
 	<div class="div-table-row"> 		
 		<fieldset>
@@ -123,6 +124,7 @@
 						</div> 
 		 </fieldset>	
 		 </div>		
+		 <br/>
 	</c:if>
 		 <div class="div-table-row">			 
 			 <fieldset>
@@ -174,7 +176,8 @@
 	<br/>
 	<div class="div-table-row">
 	<div class="div-table-col-center" >							
-					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Indietro"></a>				
+					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Indietro"></a>
+					<a href="reportController?report=6&codiBusinessService=${businessService.codiBusinessService}"><input TYPE="button" name="Stampa" VALUE="Stampa"></a>				
 	</div>
 	
 	</div>

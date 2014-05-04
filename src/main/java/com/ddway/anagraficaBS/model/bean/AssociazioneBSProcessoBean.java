@@ -11,6 +11,7 @@ public class AssociazioneBSProcessoBean {
 	private Date dataInizioValidita;	
 	private String textSiglaProcesso;
 	private String dataFineValidita;
+	private String descProcesso;
 	
 	public AssociazioneBSProcessoBean(){}
 	
@@ -20,7 +21,7 @@ public class AssociazioneBSProcessoBean {
 										int codiCategoriaInfr,
 										Date dataInizioValidita,	
 										String textSiglaProcesso,
-										String dataFineValidita){
+										String dataFineValidita,String descProcesso){
 		
 		this.codiBusinessService = codiBusinessService;
 		this.codiCategoriaInfr = codiCategoriaInfr;
@@ -29,6 +30,16 @@ public class AssociazioneBSProcessoBean {
 		this.dataFineValidita = dataFineValidita;
 		this.dataInizioValidita = dataInizioValidita;
 		this.textSiglaProcesso = textSiglaProcesso;
+		this.descProcesso = descProcesso;
+	}
+	
+	
+	public String getDescProcesso() {
+		return descProcesso;
+	}
+
+	public void setDescProcesso(String descProcesso) {
+		this.descProcesso = descProcesso;
 	}
 
 	public int getCodiBusinessService() {

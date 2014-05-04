@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.ddway.anagraficaBS.model.bean.TriplaInfap;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.Authorities;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.AuthoritiesId;
@@ -45,9 +43,6 @@ public class GestioneDataBase {
 	
 	@Autowired
 	DServiziFunzioni dServiziFunzioni;
-	
-	@Autowired
-	DBusinessServices dBusinessService;
 	
 	@Autowired
 	DProcessi dProcessi;
@@ -159,7 +154,8 @@ public class GestioneDataBase {
 		log.info("Inizio metodo GestioneDataBase.inserisciBusinessService!");
 		
 		String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab order by tab.codiBusinessService desc";		
-		int codiBusinessService = 0;			
+		int codiBusinessService = 0;
+		DBusinessServices dBusinessService = new DBusinessServices();
 		
 		try{							
 			popolaModelDb.popolaDBusinessServiceBean(null,businessServiceForm,dBusinessService);
@@ -186,6 +182,7 @@ public class GestioneDataBase {
 		String query;
 		int codiBusinessService = 0;	
 		DServiziModel dServiziModel;			
+		DBusinessServices dBusinessService = new DBusinessServices();
 		
 		try{			
 			popolaModelDb.popolaDBusinessServiceBean(businessServiceFormOld,businessServiceForm,dBusinessService);
@@ -202,8 +199,8 @@ public class GestioneDataBase {
 					dataSourceService.update(dServiziModel);
 				}												
 			}			
-//			dataSourceService.insert(new DServiziModel (new DServiziModelId(codiBusinessService, new Date()), dBusinessService));
-			dataSourceService.insert(new DServiziModel(new DServiziModelId(businessServiceFormOld.getCodiBusinessService(), new Date()),(DModelApplicativi)getModelApplicativo(businessServiceForm.getCodiModelApplicativo()),dBusinessService, null));
+			DModelApplicativi dModelApplicativo = getModelApplicativo(businessServiceForm.getCodiModelApplicativo());
+			dataSourceService.insert(new DServiziModel(new DServiziModelId(businessServiceFormOld.getCodiBusinessService(), new Date()),dModelApplicativo,dBusinessService, null));
 		}catch(Exception e){
 			log.error(e.getMessage()+" on GestioneDataBase.modificaBusinessService");
 			throw e;
@@ -274,6 +271,45 @@ public class GestioneDataBase {
 	}
 	
 	@Transactional
+	public void cancellaElencoAssociazioniBSFunzioniUtente(String codiBusinessService) throws Exception{
+		log.info("Inizio metodo GestioneDataBase.cancellaElencoAssociazioniBSFunzioniUtente!");		
+		
+		List<DServiziFunzioni> resultList;
+		Iterator<DServiziFunzioni> itr;
+		
+		try{
+			resultList = getListaAssociazioniFunzioniUtenteBS(codiBusinessService);
+			itr = resultList.iterator();
+			while (itr.hasNext()) {
+				cancellaFunzioneUtente((DServiziFunzioni)itr.next());
+				}						
+			}catch(Exception e){
+			log.error(e.getMessage()+" on GestioneDataBase.cancellaElencoAssociazioniBSFunzioniUtente");
+			throw e;
+			}
+		}
+	
+	@Transactional
+	public void cancellaElencoAssociazioniBSProcesso(String codiBusinessService) throws Exception{
+		log.info("Inizio metodo GestioneDataBase.cancellaElencoAssociazioniBSProcesso!");		
+		
+		List<DServiziProcessi> resultList;
+		Iterator<DServiziProcessi> itr;
+		
+		try{
+			resultList = getListaAssociazioniProcessiBS(codiBusinessService);
+			itr = resultList.iterator();
+			while (itr.hasNext()) {
+				cancellaAssociazioneBSProcesso((DServiziProcessi)itr.next());
+				}						
+			}catch(Exception e){
+			log.error(e.getMessage()+" on GestioneDataBase.cancellaElencoAssociazioniBSProcesso");
+			throw e;
+			}
+		}
+
+	
+	@Transactional
 	public void cancellaAssociazioneBSProcesso(DServiziProcessi dServiziProcessi) throws Exception{
 		log.info("Inizio metodo GestioneDataBase.cancellaAssociazioneBSProcesso!");		
 		
@@ -306,15 +342,20 @@ public class GestioneDataBase {
 		public void inserisciAssociazioniBSFunzUtente(List<DServiziFunzioni> dServiziFunzioniList) throws Exception{
 			log.info("Inizio metodo GestioneDataBase.inserisciAssociazioneBSFunzUtente!");			
 			
+			DServiziFunzioni dServiziFunzioniGiaPresente;
 			Iterator<DServiziFunzioni> itr;
 			try{											
 				itr = dServiziFunzioniList.iterator();
 				while(itr.hasNext()){
 					DServiziFunzioni dServiziFunzione = new DServiziFunzioni();
 					dServiziFunzione = (DServiziFunzioni) itr.next();
-					dataSourceService.insert(dServiziFunzione);	
-				}
-				
+					dServiziFunzioniGiaPresente = (DServiziFunzioni) dataSourceService.findbyId(dServiziFunzione.getId());
+					if(dServiziFunzioniGiaPresente != null){
+						if(dServiziFunzioniGiaPresente.getDataFineAssociazione() != null)
+							dataSourceService.insert(dServiziFunzione);	
+					}
+					else dataSourceService.insert(dServiziFunzione);	
+				}				
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.inserisciAssociazioneBSFunzUtente");
 				throw e;
@@ -325,9 +366,15 @@ public class GestioneDataBase {
 		public void inserisciAssociazioneBSProcesso(DServiziProcessi dServiziProcessi) throws Exception{
 			log.info("Inizio metodo GestioneDataBase.inserisciAssociazioneBSProcesso!");		
 			
-			try{											
-				dataSourceService.insert(dServiziProcessi);
-				
+			DServiziProcessi dServiziProcessoGiaPresente;
+			
+			try{							
+				dServiziProcessoGiaPresente = (DServiziProcessi) dataSourceService.findbyId(dServiziProcessi.getId());
+				if(dServiziProcessoGiaPresente != null){
+					if(dServiziProcessoGiaPresente.getDataFineValidita() != null)
+						dataSourceService.insert(dServiziProcessi);
+				}
+				else dataSourceService.insert(dServiziProcessi);				
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.inserisciAssociazioneBSProcesso");
 				throw e;
@@ -465,9 +512,23 @@ public class GestioneDataBase {
 				throw e;
 			}
 			return elencoBusinessServices;	
+		}		
+		
+		public  List<DServiziModel> getElencoDServiziModel(int codiModelApplicativo) throws Exception{
+			log.debug("Start GestioneDataBase.getElencoBusinessServices method");
+			
+			List<DServiziModel> elencoDServiziModel;
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel tab where tab.DModelApplicativi.codiModelApplicativo = '"+codiModelApplicativo+"' and tab.dataFineAssociazione is null";
+			
+			try{		
+				elencoDServiziModel = (List<DServiziModel>) dataSourceService.genericquery(query);								
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getElencoBusinessServices");
+				throw e;
+			}
+			return elencoDServiziModel;	
 		}
 		
-		@Transactional
 		public  List<DProcessi> getElencoProcessi() throws Exception{
 			log.debug("Start GestioneDataBase.getElencoProcessi method");
 			
@@ -481,9 +542,38 @@ public class GestioneDataBase {
 				throw e;
 			}
 			return elencoProcessi;	
+		}		
+		
+		public  List<DModelApplicativi> getElencoModelApplicativi() throws Exception{
+			log.debug("Start GestioneDataBase.getElencoModelApplicativi method");
+			
+			List<DModelApplicativi> elencoModelApplicativi;
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab where tab.dataFineValidita is null order by tab.descModelApplicativo";
+			
+			try{		
+				elencoModelApplicativi = (List<DModelApplicativi>) dataSourceService.genericquery(query);								
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getElencoModelApplicativi");
+				throw e;
+			}
+			return elencoModelApplicativi;	
 		}
 		
-		@Transactional
+		public  List<DModelApplicativi> getElencoModelApplicativiNonValidi() throws Exception{
+			log.debug("Start GestioneDataBase.getElencoModelApplicativiNonValidi method");
+			
+			List<DModelApplicativi> elencoModelApplicativi;
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab where tab.dataFineValidita is not null order by tab.descModelApplicativo";
+			
+			try{		
+				elencoModelApplicativi = (List<DModelApplicativi>) dataSourceService.genericquery(query);								
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getElencoModelApplicativiNonValidi");
+				throw e;
+			}
+			return elencoModelApplicativi;	
+		}
+				
 		public  List<Users> getElencoUtenti(String username) throws Exception{
 			log.debug("Start GestioneDataBase.getElencoUtenti method");
 			
@@ -500,8 +590,7 @@ public class GestioneDataBase {
 			}
 			return elencoUtenti;	
 		}
-		
-		@Transactional
+				
 		public  Users getUtenteByUserName(String username) throws Exception{
 			log.debug("Start GestioneDataBase.getUtenteByUserName method");
 			
@@ -516,8 +605,7 @@ public class GestioneDataBase {
 			}
 			return elencoUtenti.get(0);	
 		}
-		
-		@Transactional
+				
 		public  DBusinessServices getBusinessServices(String cosiBusinessServise) throws Exception{
 			log.debug("Start GestioneDataBase.getBusinessServices method");
 			
@@ -534,8 +622,7 @@ public class GestioneDataBase {
 			}
 			return elencoBusinessServices.get(0);	
 		}
-		
-		@Transactional
+				
 		public  DServiziModel getModelApplicativoFromDServiziModel(String codiBusinessService) throws Exception{
 			log.debug("Start GestioneDataBase.getModelApplicativoFromDServiziModel method");
 			
@@ -551,7 +638,7 @@ public class GestioneDataBase {
 				throw e;
 			}
 			return modelApplicativoList.get(0);	
-		}
+		}		
 		
 		@Transactional
 		public  DModelApplicativi getModelApplicativoFromDModelApplicativi(String codiModelApplicativo) throws Exception{
@@ -740,6 +827,7 @@ public class GestioneDataBase {
 			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab order by tab.codiBusinessService desc";		
 			int codiBusinessService = 0;	
 			Iterator<DServiziFunzioni> itr;	
+			DBusinessServices dBusinessService = new DBusinessServices();
 			
 			try{							
 				popolaModelDb.popolaDBusinessServiceBean(null,businessServiceForm,dBusinessService);
@@ -750,8 +838,9 @@ public class GestioneDataBase {
 					dBusinessService = (DBusinessServices) maxCodiBusinessService.get(0);
 					codiBusinessService = dBusinessService.getCodiBusinessService();				
 				}
-//				dataSourceService.insert(new DServiziModel(new DServiziModelId(codiBusinessService, ),Integer.parseInt(businessServiceForm.getCodiModelApplicativo()),null));
-				dataSourceService.insert(new DServiziModel(new DServiziModelId(codiBusinessService, new Date()), dBusinessService));
+				DModelApplicativi dModelApplicativo = getModelApplicativo(businessServiceForm.getCodiModelApplicativo());
+				dataSourceService.insert(new DServiziModel(new DServiziModelId(codiBusinessService, new Date()),dModelApplicativo,dBusinessService, null));
+//				dataSourceService.insert(new DServiziModel(new DServiziModelId(codiBusinessService, new Date()), dBusinessService));
 				itr = dServiziFunzioniList.iterator();
 				while(itr.hasNext()){
 					dServiziFunzioni = (DServiziFunzioni) itr.next();
