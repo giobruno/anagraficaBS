@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ddway.anagraficaBS.model.bean.BusinessServiceBean;
 import com.ddway.anagraficaBS.model.bean.ModelApplicativoPiuBSAssoicatiBean;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
 import com.ddway.anagraficaBS.utility.GestioneException;
 import com.ddway.anagraficaBS.utility.GestioneMail;
 
@@ -32,15 +36,22 @@ public class HomeController {
 	public ModelAndView home(ModelAndView model) {
 		logger.info("Inizio metodo HomeController.home!");			
 		
-		model.setViewName("home");
+		model.setViewName("forward:/home");
 		return model;
 	}
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView home2(ModelAndView model) {
+	public ModelAndView home2(ModelAndView model,HttpSession session) {
 		logger.info("Inizio metodo HomeController.home2!");			
 		
-		model.setViewName("home");
+
+		Authentication auth;	
+		User user; 			
+		
+		String utente = (String) session.getAttribute("utente");
+		if(utente == null)
+			model.setViewName("home");
+		else model.setViewName("forward:/visualizzaElencoBusinessServices");
 		return model;
 	}
 	

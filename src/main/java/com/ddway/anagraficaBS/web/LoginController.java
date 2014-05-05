@@ -80,8 +80,8 @@ public class LoginController {
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public ModelAndView logout(ModelAndView model) {
 		logger.info("Inizio metodo LoginController.logout!");
- 
-		model.setViewName("home");
+		
+		model.setViewName("forward:/home");
 		return model;
  
 	}

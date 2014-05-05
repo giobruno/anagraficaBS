@@ -342,16 +342,19 @@ public class GestioneDataBase {
 		public void inserisciAssociazioniBSFunzUtente(List<DServiziFunzioni> dServiziFunzioniList) throws Exception{
 			log.info("Inizio metodo GestioneDataBase.inserisciAssociazioneBSFunzUtente!");			
 			
-			DServiziFunzioni dServiziFunzioniGiaPresente;
+			List<DServiziFunzioni> dServiziFunzioniGiaPresente;
 			Iterator<DServiziFunzioni> itr;
-			try{											
+			String query;
+			
+			try{						
 				itr = dServiziFunzioniList.iterator();
 				while(itr.hasNext()){
 					DServiziFunzioni dServiziFunzione = new DServiziFunzioni();
 					dServiziFunzione = (DServiziFunzioni) itr.next();
-					dServiziFunzioniGiaPresente = (DServiziFunzioni) dataSourceService.findbyId(dServiziFunzione.getId());
-					if(dServiziFunzioniGiaPresente != null){
-						if(dServiziFunzioniGiaPresente.getDataFineAssociazione() != null)
+					query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni tab where tab.id.codiBusinessService = '"+dServiziFunzione.getId().getCodiBusinessService()+"' and tab.id.codiArea = '"+dServiziFunzione.getId().getCodiArea()+"' and tab.id.codiApplicazione = '"+dServiziFunzione.getId().getCodiApplicazione()+"' and tab.id.codiFunzione = '"+dServiziFunzione.getId().getCodiFunzione()+"'";
+					dServiziFunzioniGiaPresente = (List<DServiziFunzioni>) dataSourceService.genericquery(query);
+					if(dServiziFunzioniGiaPresente != null && !dServiziFunzioniGiaPresente.isEmpty()){
+						if(dServiziFunzioniGiaPresente.get(0).getDataFineAssociazione() != null)
 							dataSourceService.insert(dServiziFunzione);	
 					}
 					else dataSourceService.insert(dServiziFunzione);	
@@ -366,12 +369,14 @@ public class GestioneDataBase {
 		public void inserisciAssociazioneBSProcesso(DServiziProcessi dServiziProcessi) throws Exception{
 			log.info("Inizio metodo GestioneDataBase.inserisciAssociazioneBSProcesso!");		
 			
-			DServiziProcessi dServiziProcessoGiaPresente;
+			List<DServiziProcessi> dServiziProcessoGiaPresente;
+			String query;
 			
-			try{							
-				dServiziProcessoGiaPresente = (DServiziProcessi) dataSourceService.findbyId(dServiziProcessi.getId());
-				if(dServiziProcessoGiaPresente != null){
-					if(dServiziProcessoGiaPresente.getDataFineValidita() != null)
+			try{
+				query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiBusinessService = '"+dServiziProcessi.getId().getCodiBusinessService()+"' and tab.id.codiProcesso = '"+dServiziProcessi.getId().getCodiProcesso()+"' and tab.id.codiCategoriaMac = '"+dServiziProcessi.getId().getCodiCategoriaMac()+"' and tab.id.codiCategoriaInfr = '"+dServiziProcessi.getId().getCodiCategoriaInfr()+"'";
+				dServiziProcessoGiaPresente = (List<DServiziProcessi>) dataSourceService.genericquery(query);
+				if(dServiziProcessoGiaPresente != null && !dServiziProcessoGiaPresente.isEmpty()){
+					if(dServiziProcessoGiaPresente.get(0).getDataFineValidita() != null)
 						dataSourceService.insert(dServiziProcessi);
 				}
 				else dataSourceService.insert(dServiziProcessi);				
