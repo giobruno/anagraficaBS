@@ -45,12 +45,11 @@ public class PdfReport6 extends AbstractPdfView {
 		List<AssociazioneBSProcessoBean> dserviziProcessiList = (List<AssociazioneBSProcessoBean>) request.getSession().getAttribute("associazioneBSProcessoBeanList");
 			  
 		    try{
+		    	String path = System.getProperty("jboss.server.config.url");
 		    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("iTextExample.pdf"));
-		        document.open();
-			    StringBuffer pathBuffer = request.getRequestURL();
-			    String path = pathBuffer.toString();
-			    String[] indirizzo = path.split("mop");
-			    Image logo = Image.getInstance("/properties/logoReport.png");
+		        document.open();			  
+			    String[] indirizzo = path.split("file:");
+			    Image logo = Image.getInstance(indirizzo[1]+"properties/logoReport.png");
 			    logo.scalePercent(40);
 			     
 			    Paragraph par = new Paragraph();

@@ -2,6 +2,7 @@ package com.ddway.anagraficaBS.utility;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
@@ -10,6 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
+
+import com.lowagie.text.Image;
+import com.lowagie.text.pdf.PdfWriter;
 
 @Component
 public class GestioneMail {	
@@ -29,8 +33,10 @@ public class GestioneMail {
 		String port_server_host;		
 		
 		try{
+			String path = System.getProperty("jboss.server.config.url");	    				  
+		    String[] indirizzo = path.split("file:");			
 //		   Leggo file di proprietà esterno
-		   filePprops = getFileProperties("/properties/email.properties");
+		   filePprops = getFileProperties(indirizzo[1]+"properties/email.properties");
 		   presenza_password = filePprops.getProperty("presenza_password");
 		   password = filePprops.getProperty("password");
 		   server_host = filePprops.getProperty("server_host");

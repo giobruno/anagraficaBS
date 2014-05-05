@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jboss.util.property.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
@@ -39,12 +40,11 @@ public class PdfReport2 extends AbstractPdfView {
 		List<BusinessServiceBean> businessServicesList = (List<BusinessServiceBean>) request.getSession().getAttribute("businessServicesList");	   
 					  
 		    try{
+		    	String path = System.getProperty("jboss.server.config.url");
 		    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("iTextExample.pdf"));
-		        document.open();
-			    StringBuffer pathBuffer = request.getRequestURL();
-			    String path = pathBuffer.toString();
-			    String[] indirizzo = path.split("mop");
-			    Image logo = Image.getInstance("/properties/logoReport.png");
+		        document.open();			  
+			    String[] indirizzo = path.split("file:");
+			    Image logo = Image.getInstance(indirizzo[1]+"properties/logoReport.png");
 			    logo.scalePercent(40);
 			     
 			    Paragraph par = new Paragraph();
