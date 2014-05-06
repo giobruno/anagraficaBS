@@ -78,7 +78,7 @@ public class AccountController {
 			popolaModelDb.popolaUsersBean(registrazioneForm, user);
 			gestioneDataBase.registraUtente(user);		
 			model.addObject("presenzaMessaggio","si");		
-			model.addObject("messaggio","La registrazione e' avvenuta con successo! Appena riceverai l'email di validazione del tuo account, potrai effettuare l'accesso!");
+			model.addObject("message","La registrazione e' avvenuta con successo! Appena riceverai l'email di validazione del tuo account, potrai effettuare l'accesso!");
 			model.setViewName("login");		
 		}catch(Exception e){
 			e.printStackTrace();
