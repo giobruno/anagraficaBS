@@ -90,7 +90,7 @@ public class ProcessiController {
 			popolaModelDb.popolaDProcessiBean(processoForm,dProcessi);
 			gestioneDataBase.inserisciProcesso(dProcessi);
 			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","Il nuovo processo è stato inserito con successo!");
+			model.addObject("message","Il nuovo processo e' stato inserito con successo!");
 			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
 			model.addObject("processiList", processiList);
 			model.setViewName("elencoProcessi");
@@ -166,13 +166,13 @@ public class ProcessiController {
 			popolaModelDb.popolaDServiziProcessiBean(associazioneBSProcessoForm,dServiziProcessi);
 			gestioneDataBase.inserisciAssociazioneBSProcesso(dServiziProcessi);			
 			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","L'associazione Business Service - Processo è stata inserita con successo!");
+			model.addObject("message","L'associazione Business Service - Processo e' stata inserita con successo!");
 			model.setViewName("forward:/dettaglioBusinessService?codiBusinessService="+associazioneBSProcessoForm.getCodiBusinessService());
 			session.removeAttribute("codiBusinessService");
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on ProcessiController.inserimentoAssociazioneBSProcesso");
-			gestioneException.gestisciException(model, e,"Il processo che si sta cercando di associare risulta già associato al Business Service selezionato!");
+			gestioneException.gestisciException(model, e,"Il processo che si sta cercando di associare risulta gia' associato al Business Service selezionato!");
 			model.setViewName("forward:/formAssociazioneBSProcesso");
 		}
 		return model;
@@ -200,7 +200,7 @@ public class ProcessiController {
 			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
 			if(processiList == null || processiList.isEmpty()){
 				model.addObject("presenzaMessaggio","si");
-				model.addObject("message","Non è stato inserito nessun processo nel sistema!");
+				model.addObject("message","Non e' stato inserito nessun processo nel sistema!");
 			}
 			model.addObject("processiList", processiList);
 			model.setViewName("elencoProcessi");
@@ -250,7 +250,7 @@ public class ProcessiController {
 			gestioneDataBase.modificaProcesso(processoForm,processoOld);
 			session.removeAttribute("processoOld");
 			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","Il Processo è stato modificato con successo!");
+			model.addObject("message","Il Processo e' stato modificato con successo!");
 			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
 			model.addObject("processiList", processiList);
 			model.setViewName("elencoProcessi");
@@ -336,11 +336,11 @@ public class ProcessiController {
 			popolaModelDb.popolaDServiziProcessiBean(associazioneBSProcessoForm,dServiziProcessi);
 			gestioneDataBase.modificaAssociazioneBSProcesso(dServiziProcessi,dServiziProcessiOld);	
 			session.removeAttribute("dServiziProcessiOld");
-			model.setViewName("forward:/dettaglioBusinessService?codiBusinessService="+associazioneBSProcessoForm.getCodiBusinessServiceOld()+"&messaggio='L'associazione Business Service - Processo è stata modificata con successo!'");
+			model.setViewName("forward:/dettaglioBusinessService?codiBusinessService="+associazioneBSProcessoForm.getCodiBusinessServiceOld()+"&messaggio='L'associazione Business Service - Processo e' stata modificata con successo!'");
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on ProcessiController.modificaAssociazioneBSProcesso");
-			gestioneException.gestisciException(model, e,"Il processo che si sta cercando di associare risulta già associato al Business Service selezionato!");
+			gestioneException.gestisciException(model, e,"Il processo che si sta cercando di associare risulta gia' associato al Business Service selezionato!");
 			model.setViewName("forward:/modificaAssociazioneBSProcessoForm");
 		}
 		return model;
@@ -381,7 +381,7 @@ public class ProcessiController {
 			codiCategoriaInfr = request.getParameter("codiCategoriaInfr");			
 			dServiziProcessi  = gestioneDataBase.getDServiziProcesso(codiBusinessService, codiProcesso, codiCategoriaMac, codiCategoriaInfr,dataInizioValidita);
 			gestioneDataBase.cancellaAssociazioneBSProcesso(dServiziProcessi);
-			model.setViewName("forward:/dettaglioBusinessService?messaggio=Il processo è stato cancellato con successo!");
+			model.setViewName("forward:/dettaglioBusinessService?messaggio=Il processo e' stato cancellato con successo!");
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.cancellaAssociazioneBSProcesso");
@@ -402,7 +402,7 @@ public class ProcessiController {
 			dProcesso = (DProcessi) gestioneDataBase.getProcesso(codiProcesso);
 			gestioneDataBase.cancellaProcesso(dProcesso);
 			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","Il processo è stato cancellato con successo!");
+			model.addObject("message","Il processo e' stato cancellato con successo!");
 			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
 			model.addObject("processiList", processiList);
 			model.setViewName("elencoProcessi");

@@ -2,18 +2,14 @@ package com.ddway.anagraficaBS.utility;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.internet.InternetAddress;
+
 import javax.mail.internet.MimeMessage;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
-
-import com.lowagie.text.Image;
-import com.lowagie.text.pdf.PdfWriter;
 
 @Component
 public class GestioneMail {	
@@ -35,7 +31,7 @@ public class GestioneMail {
 		try{
 			String path = System.getProperty("jboss.server.config.url");	    				  
 		    String[] indirizzo = path.split("file:");			
-//		   Leggo file di proprietà esterno
+//		   Leggo file di proprieta' esterno
 		   filePprops = getFileProperties(indirizzo[1]+"properties/email.properties");
 		   presenza_password = filePprops.getProperty("presenza_password");
 		   password = filePprops.getProperty("password");
@@ -55,9 +51,7 @@ public class GestioneMail {
            mailSender.setProtocol("smtp");		   
 		   mailSender.setJavaMailProperties(props);	      	   
 
-           MimeMessage msg = mailSender.createMimeMessage();		  
-		   msg.setFrom(new InternetAddress(from_address));
-		   msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddress));
+           MimeMessage msg = mailSender.createMimeMessage();		   
 		   msg.setSubject(subject);
 		   msg.setText(text);		   
 		   mailSender.send(msg);

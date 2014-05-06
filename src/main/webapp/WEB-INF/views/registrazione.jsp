@@ -77,7 +77,7 @@
 					<br/>
 			<div class="div-table-row">
 						<div class="div-table-col">
-									<p class="visualizzaForm">Se hai già un account, <a href="login">Accedi!</a></p>
+									<p class="visualizzaForm">Se hai gia' un account, <a href="login">Accedi!</a></p>
 					</div>
 					</div>	
 			

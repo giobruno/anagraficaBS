@@ -78,7 +78,7 @@ public class AccountController {
 			popolaModelDb.popolaUsersBean(registrazioneForm, user);
 			gestioneDataBase.registraUtente(user);		
 			model.addObject("presenzaMessaggio","si");		
-			model.addObject("messaggio","La registrazione è avvenuta con successo! Appena riceverai l'email di validazione del tuo account, potrai effettuare l'accesso!");
+			model.addObject("messaggio","La registrazione e' avvenuta con successo! Appena riceverai l'email di validazione del tuo account, potrai effettuare l'accesso!");
 			model.setViewName("login");		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -236,7 +236,7 @@ public class AccountController {
 			session.setAttribute("username",user.getUsername());
 			session.setAttribute("utente", user.getNome()+" "+user.getCognome());
 			model.addObject("presenzaMessaggio","si");		
-			model.addObject("message","La password è stata modificata con successo!");
+			model.addObject("message","La password e' stata modificata con successo!");
 			model.addObject("user", user);
 			model.setViewName("visualizzaAccount");
 		}catch(Exception e){
@@ -268,7 +268,7 @@ public class AccountController {
 			Users utente = (Users) gestioneDataBase.getUtente(userId);			
 			gestioneDataBase.abilitaUtente(utente);	
 			model.addObject("presenzaMessaggio","si");		
-			model.addObject("message","L' utente "+utente.getNome()+" "+utente.getCognome()+" è stato abilitato!");
+			model.addObject("message","L' utente "+utente.getNome()+" "+utente.getCognome()+" e' stato abilitato!");
 			List<Users> utentiList = (List<Users>) gestioneDataBase.getElencoUtenti(username);
 			model.addObject("utentiList", utentiList);
 			model.setViewName("elencoUtenti");
@@ -293,7 +293,7 @@ public class AccountController {
 			Users utente = (Users) gestioneDataBase.getUtente(userId);			
 			gestioneDataBase.disabilitaUtente(utente);	
 			model.addObject("presenzaMessaggio","si");		
-			model.addObject("message","L' utente "+utente.getNome()+" "+utente.getCognome()+" è stato disabilitato!");
+			model.addObject("message","L' utente "+utente.getNome()+" "+utente.getCognome()+" e' stato disabilitato!");
 			List<Users> utentiList = (List<Users>) gestioneDataBase.getElencoUtenti(username);
 			model.addObject("utentiList", utentiList);
 			model.setViewName("elencoUtenti");
@@ -318,7 +318,7 @@ public class AccountController {
 			Users utente = (Users) gestioneDataBase.getUtente(userId);			
 			gestioneDataBase.cancellaUtente(utente);	
 			model.addObject("presenzaMessaggio","si");		
-			model.addObject("message","L' utente "+utente.getNome()+" "+utente.getCognome()+" è stato cancellato!");
+			model.addObject("message","L' utente "+utente.getNome()+" "+utente.getCognome()+" e' stato cancellato!");
 			List<Users> utentiList = (List<Users>) gestioneDataBase.getElencoUtenti(username);
 			model.addObject("utentiList", utentiList);
 			model.setViewName("elencoUtenti");
@@ -339,7 +339,7 @@ public class AccountController {
 		
 		try{
 			model.addObject("presenzaMessaggio","si");		
-			model.addObject("message","La tua richiesta è stata inoltrata! A breve riceverai un'email all'indirizzo di posta elettronica utilizzato per registrarti, con i tuoi dati di accesso.");
+			model.addObject("message","La tua richiesta e' stata inoltrata! A breve riceverai un'email all'indirizzo di posta elettronica utilizzato per registrarti, con i tuoi dati di accesso.");
 			model.setViewName("login");
 		}catch(Exception e){
 			e.printStackTrace();

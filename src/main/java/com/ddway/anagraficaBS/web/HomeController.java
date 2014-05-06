@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ddway.anagraficaBS.model.bean.BusinessServiceBean;
 import com.ddway.anagraficaBS.model.bean.ModelApplicativoPiuBSAssoicatiBean;
-import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
 import com.ddway.anagraficaBS.utility.GestioneException;
-import com.ddway.anagraficaBS.utility.GestioneMail;
 
 @Controller
 public class HomeController {
@@ -68,7 +65,7 @@ public class HomeController {
 		logger.info("Inizio metodo HomeController.invioEmail!");
 			
 		try{
-			GestioneMail.sendEmail("bruno_giovanni@hotmail.it", "prova", "prova");
+//			GestioneMail.sendEmail("bruno_giovanni@hotmail.it", "prova", "prova");
 			model.addObject("presenzaMessaggio","si");
 			model.addObject("message","Email spedita con successo!");
 			model.setViewName("avviso");
@@ -98,7 +95,7 @@ public class HomeController {
 			itr1 = modelApplicativiNonValidiConBSAssociati.iterator();
 			while(itr1.hasNext()){
 				modelApplicativoPiuBSAssoicatiBean = (ModelApplicativoPiuBSAssoicatiBean) itr1.next();
-				avviso = "Il model applicativo '"+modelApplicativoPiuBSAssoicatiBean.getModelApplicativo().getDescModelApplicativo()+"' non è più valido!";
+				avviso = "Il model applicativo '"+modelApplicativoPiuBSAssoicatiBean.getModelApplicativo().getDescModelApplicativo()+"' non e' piu' valido!";
 				listaAvvisi.add(avviso);
 				businessServicelist = modelApplicativoPiuBSAssoicatiBean.getBusinessServiceBeanList();
 				itr2 = businessServicelist.iterator();

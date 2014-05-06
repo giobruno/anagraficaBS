@@ -153,7 +153,7 @@
 								
 								<c:forEach items="${associazioneBSProcessoBeanList}" var="item" >
 								<div class="div-table-row">				
-									<div class="div-table-col-center"><c:if test="${item.dataFineValidita != null}"><label><img src="resources/img/bulb-icon.png" title="Attenzione! Il processo '${item.textSiglaProcesso}' risulta non più valido! " alt="Alert Processo"></label></c:if></div>
+									<div class="div-table-col-center"><c:if test="${item.dataFineValidita != null}"><label><img src="resources/img/bulb-icon.png" title="Attenzione! Il processo '${item.textSiglaProcesso}' risulta non piu' valido! " alt="Alert Processo"></label></c:if></div>
 									<div class="div-table-col-center">${item.codiProcesso}</div>
 									<div class="div-table-col-center">${item.textSiglaProcesso}</div>								
 									<div class="div-table-col-center"><a href="modificaAssociazioneBSProcessoForm?codiProcesso=${item.codiProcesso}&codiBusinessService=${businessService.codiBusinessService}&codiCategoriaMac=${item.codiCategoriaMac}&codiCategoriaInfr=${item.codiCategoriaInfr}&dataInizioValidita=${item.dataInizioValidita}"><img src="resources/img/iconeModifica2.jpg"  width="30" height="20" title="Modifica Business Service"></a></div>

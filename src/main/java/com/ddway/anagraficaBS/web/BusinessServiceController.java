@@ -121,7 +121,7 @@ public class BusinessServiceController {
 			if(!businessServiceForm.getFlagConvenzione()){				
 				gestioneDataBase.inserisciBusinessService(businessServiceForm);
 				model.addObject("presenzaMessaggio","si");
-				model.addObject("message","Il nuovo Business Service è stato inserito con successo!");
+				model.addObject("message","Il nuovo Business Service e' stato inserito con successo!");
 //				List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
 //				model.addObject("businessServiceList", businessServiceList);
 				model.setViewName("forward:/visualizzaElencoBusinessServices");
@@ -250,7 +250,7 @@ public class BusinessServiceController {
 				model.addObject("elencoFunzioniForm", new ElencoFunzioniForm());
 				model.addObject("funzioniList",funzioniList);
 				model.addObject("presenzaMessaggio","si");
-				model.addObject("message","Non è stata selezionata nessuna Funzione Utente da associare!");
+				model.addObject("message","Non e' stata selezionata nessuna Funzione Utente da associare!");
 				model.setViewName("elencoFunzioniUtente");				
 				return model;
 			}	
@@ -271,7 +271,7 @@ public class BusinessServiceController {
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.inserisciFunzioniUtente");
-			gestioneException.gestisciException(model, e,"Si sta cercando di associare delle Funzioni Utente già associate al Business Service selezionato!");
+			gestioneException.gestisciException(model, e,"Si sta cercando di associare delle Funzioni Utente gia' associate al Business Service selezionato!");
 			model.setViewName("forward:/formRicercaFunzioniUtente");
 		}
 		return model; 
@@ -330,7 +330,7 @@ public class BusinessServiceController {
 			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
 			if(businessServiceList == null || businessServiceList.isEmpty()){
 				model.addObject("presenzaMessaggio","si");
-				model.addObject("message","Non è stato inserito nessun Business Service nel sistema!");
+				model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");
 			}
 			else {
 				popolaModelForms.popolaListaBusinessService(businessServiceList,businessServiceBeanList);
@@ -397,7 +397,7 @@ public class BusinessServiceController {
 			gestioneDataBase.modificaBusinessService(businessServiceForm,businessServiceFormOld);
 			session.removeAttribute("businessServiceFormOld");
 			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","Il Business Service è stato modificato con successo!");
+			model.addObject("message","Il Business Service e' stato modificato con successo!");
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -440,7 +440,7 @@ public class BusinessServiceController {
 			gestioneDataBase.cancellaElencoAssociazioniBSProcesso(codiBusinessService);
 			gestioneDataBase.cancellaBusinessService(businessService);
 			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","Il Business Service è stato cancellato con successo!");
+			model.addObject("message","Il Business Service e' stato cancellato con successo!");
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -511,7 +511,7 @@ public class BusinessServiceController {
 			codiFunzione = request.getParameter("codiFunzione");			
 			dServiziFunzioni  = gestioneDataBase.getFunzioneUtente(codiArea, codiApplicazione, codiFunzione, codiBusinessService,dataInizioAssociazione);
 			gestioneDataBase.cancellaFunzioneUtente(dServiziFunzioni);			
-			model.setViewName("forward:/dettaglioBusinessService?messaggio=La funzione Utente è stata cancellata con successo!");
+			model.setViewName("forward:/dettaglioBusinessService?messaggio=La funzione Utente e' stata cancellata con successo!");
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.cancellaAssociazioneFunzioneUtente");
