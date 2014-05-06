@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.slf4j.Logger;
@@ -51,10 +53,12 @@ public class GestioneMail {
            mailSender.setProtocol("smtp");		   
 		   mailSender.setJavaMailProperties(props);	      	   
 
-           MimeMessage msg = mailSender.createMimeMessage();		   
+           MimeMessage msg = mailSender.createMimeMessage();
+           msg.setFrom(new InternetAddress(from_address));
+		   msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddress));
 		   msg.setSubject(subject);
 		   msg.setText(text);		   
-		   mailSender.send(msg);
+		   mailSender.send(msg);		   
 		}catch(Exception e){
 			log.error(e.getMessage()+" on GestioneMail.sendEmail!");
 			throw e;

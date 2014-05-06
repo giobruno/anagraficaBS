@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ddway.anagraficaBS.model.bean.BusinessServiceBean;
 import com.ddway.anagraficaBS.model.bean.ModelApplicativoPiuBSAssoicatiBean;
 import com.ddway.anagraficaBS.utility.GestioneException;
+import com.ddway.anagraficaBS.utility.GestioneMail;
 
 @Controller
 public class HomeController {
@@ -65,9 +66,9 @@ public class HomeController {
 		logger.info("Inizio metodo HomeController.invioEmail!");
 			
 		try{
-//			GestioneMail.sendEmail("bruno_giovanni@hotmail.it", "prova", "prova");
+			GestioneMail.sendEmail("bruno_giovanni@hotmail.it", "prova", "prova");
 			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","Email spedita con successo!");
+			model.addObject("avviso","Email spedita con successo!");
 			model.setViewName("avviso");
 		}catch(Exception e){
 			e.printStackTrace();
