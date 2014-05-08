@@ -30,6 +30,7 @@
 
 
 <tiles:insertAttribute name="header" />
+<div style="height:100%;">
 <div class="PageWrapBis" id="central">	
 <div class="Page">
 <tiles:insertAttribute name="menu" />
@@ -41,7 +42,7 @@
 </div>
 
 <tiles:insertAttribute name="footer" />
-
+</div>
 </body>
 
 </html>

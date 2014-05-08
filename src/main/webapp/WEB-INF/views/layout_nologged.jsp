@@ -21,7 +21,7 @@
       <script src="resources/js/compilaCampoUser.js"></script>          
   </head>
 <body>
-
+<div style="height:100%;">
 <tiles:insertAttribute name="header" />
 
 <div class="PageWrapBis" id="central">	
@@ -32,7 +32,7 @@
 </div>
 
 <tiles:insertAttribute name="footer" />
-
+</div>
 </body>
 
 </html>
