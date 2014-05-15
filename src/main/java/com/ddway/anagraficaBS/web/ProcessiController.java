@@ -396,13 +396,21 @@ public class ProcessiController {
 			
 		String codiProcesso;
 		DProcessi dProcesso;
+		List<DServiziProcessi> dServiziProcessi;
 		
 		try{
-			codiProcesso = request.getParameter("codiProcesso");
-			dProcesso = (DProcessi) gestioneDataBase.getProcesso(codiProcesso);
-			gestioneDataBase.cancellaProcesso(dProcesso);
-			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","Il processo e' stato cancellato con successo!");
+			codiProcesso = request.getParameter("codiProcesso");			
+			dServiziProcessi = gestioneDataBase.getListaAssociazioniProcessiBS(null,codiProcesso);
+			if(dServiziProcessi == null || dServiziProcessi.isEmpty()){
+				dProcesso = (DProcessi) gestioneDataBase.getProcesso(codiProcesso);
+				gestioneDataBase.cancellaProcesso(dProcesso);
+				model.addObject("presenzaMessaggio","si");
+				model.addObject("message","Il processo e' stato cancellato con successo!");
+			}
+			else {
+				model.addObject("presenzaMessaggio","si");
+				model.addObject("message","Il processo non puo' essere cancellato perche' risulta associato ad almeno un Business Service!");
+			}			
 			List<DProcessi> processiList = (List<DProcessi>) gestioneDataBase.getElencoProcessi();
 			model.addObject("processiList", processiList);
 			model.setViewName("elencoProcessi");

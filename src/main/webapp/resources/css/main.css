@@ -1409,9 +1409,7 @@ textarea {
 		width: 81%;				
 		min-width:900px;
 		margin: 0px -200px 15px 0px;
-		min-height: 350px;
-	
-		
+		min-height: 350px;	
 		/*border-bottom: 1px solid #6cabd0;*/
 	}
 	
@@ -1422,6 +1420,7 @@ textarea {
 		height: 70%;		
 		margin: 0px 0px 15px 0px;
 		min-height: 440px;		
+		
 	}
 	
 	.Page .ContentAlertSpace

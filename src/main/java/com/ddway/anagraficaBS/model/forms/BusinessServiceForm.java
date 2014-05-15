@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BusinessServiceForm {
 	
+	private String codiBusinessService;
 	private String codiBusinessServiceOld;
 	private String codiDipartimento;
 	private String textSiglaDipartimento;
@@ -21,10 +22,12 @@ public class BusinessServiceForm {
 	
 	public BusinessServiceForm(){}
 
-	public BusinessServiceForm(String codiBusinessServiceOld,String codiDipartimento,String textSiglaDipartimento,String descDipartimento,
+	public BusinessServiceForm(String codiBusinessService,String codiBusinessServiceOld,String codiDipartimento,String textSiglaDipartimento,String descDipartimento,
 			String textNomeBusinessService,String descBusinessService,String persRespBusinessService,
 			String textUrlBusinessService,Boolean flagConvenzione,String codiModelApplicativo,String descModelApplicativo,String codiArea,String codiApplicazione  ){
-		this.codiBusinessServiceOld = this.codiBusinessServiceOld;
+		
+		this.codiBusinessService = codiBusinessService;
+		this.codiBusinessServiceOld = codiBusinessServiceOld;
 		this.codiDipartimento = codiDipartimento;
 		this.textSiglaDipartimento = textSiglaDipartimento;
 		this.descDipartimento = descDipartimento;
@@ -41,6 +44,14 @@ public class BusinessServiceForm {
 	
 	
 	
+	public String getCodiBusinessService() {
+		return codiBusinessService;
+	}
+
+	public void setCodiBusinessService(String codiBusinessService) {
+		this.codiBusinessService = codiBusinessService;
+	}
+
 	public String getCodiBusinessServiceOld() {
 		return codiBusinessServiceOld;
 	}

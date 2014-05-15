@@ -107,7 +107,7 @@
 	   			<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
 	   			<prop key="hibernate.query.factory_class">${hibernate.query.factory_class}</prop>	 
 	   			<prop key="hibernate.validator.apply_to_ddl">${hibernate.validator.apply_to_ddl}</prop>
-	   			<prop key="hibernate.validator.autoregister_listeners">${hibernate.validator.autoregister_listeners}</prop>  				   
+	   			<prop key="hibernate.validator.autoregister_listeners">${hibernate.validator.autoregister_listeners}</prop> 	   							   
 			</props>
 		</property>		
 	</bean>	

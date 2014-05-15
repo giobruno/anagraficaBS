@@ -38,11 +38,11 @@
 		<div class="div-table">			
 				
 			<div class="div-table-row">
-				<div class="div-table-col"><label for="textSiglaProcesso"> <img src="resources/img/query.png" alt="" title="">&nbsp;Sigla del Processo*:</label></div>
+				<div class="div-table-col"><label for="textSiglaProcesso"> &nbsp;Sigla del Processo*:</label></div>
 				<div class="div-table-col"><form:input style="width:297px"  maxlength="50"  id="textSiglaProcesso" path="textSiglaProcesso"/></div>				
 			</div>	
 			<div class="div-table-row">
-				<div class="div-table-col"><label for="descProcesso"> <img src="resources/img/query.png" alt="" title="">&nbsp;Descrizione*:</label></div>
+				<div class="div-table-col"><label for="descProcesso"> &nbsp;Descrizione*:</label></div>
 				<div class="div-table-col"><form:textarea cols="40" rows="3" path="descProcesso" id="descProcesso" onkeyup="maxlength(this,2000)"></form:textarea>			
 			</div>
 				

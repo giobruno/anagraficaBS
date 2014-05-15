@@ -22,6 +22,8 @@ public class AssociazioneBSProcessoFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
     	logger.info("Inizio metodo AssociazioneBSInfapFormValidator.validate!");
     	
+    	String regexNumber = "^[0-9]$";
+    	
     	AssociazioneBSProcessoForm form = (AssociazioneBSProcessoForm) target;    	
     	
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiBusinessService", "field.required.codiBusinessService", "Required field");
@@ -43,5 +45,6 @@ public class AssociazioneBSProcessoFormValidator implements Validator {
         
         if(!form.getMisuTmpSolareMinuti().equalsIgnoreCase(""))
         	ValidatorUtil.validateNumberFormat("misuTmpSolareMinuti", form.getMisuTmpSolareMinuti(), errors);
+        
        }
 }

@@ -17,7 +17,7 @@ public class ValidatorUtil {
 	private static Pattern pattern_email = Pattern.compile(EMAIL_PATTERN);
     private static Pattern pattern_password_format = Pattern.compile(FORMAT_PASSWORD_PATTERN);
     
-    private static final String NUMBER_PATTERN = "^[0-9]$";
+    private static final String NUMBER_PATTERN = "^[0-9]*$";
     private static Pattern pattern_number = Pattern.compile(NUMBER_PATTERN);
 	
 	public static void validateEmail(String fieldName,String email, Errors errors){

@@ -43,7 +43,7 @@
 									<form:option value="" label="--" />
 									<form:options items="${businessServiceList}" 
 										itemValue="codiBusinessService"
-										itemLabel="descBusinessService" />										
+										itemLabel="textNomeBusinessService" />										
 								</form:select>&nbsp;
 								</div>				
 		</div>

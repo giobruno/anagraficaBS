@@ -9,20 +9,22 @@ import com.ddway.anagraficaBS.model.bean.TriplaInfap;
 @Service
 public class ElencoFunzioniForm {
 	
-	private List<String> funzioniDaInserire;
+	private String[] funzioniDaInserire;
 	
 	public ElencoFunzioniForm(){};
 	
-	public ElencoFunzioniForm(List<String> funzioniDaInserire){
+	public ElencoFunzioniForm(String[] funzioniDaInserire){
 		
 		this.funzioniDaInserire = funzioniDaInserire;
 	}
 
-	public List<String> getFunzioniDaInserire() {
+	public String[] getFunzioniDaInserire() {
 		return funzioniDaInserire;
 	}
 
-	public void setFunzioniDaInserire(List<String> funzioniDaInserire) {
+	public void setFunzioniDaInserire(String[] funzioniDaInserire) {
 		this.funzioniDaInserire = funzioniDaInserire;
-	}	
+	}
+
+	
 }

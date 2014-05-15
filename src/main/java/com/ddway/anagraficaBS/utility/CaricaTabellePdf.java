@@ -53,25 +53,25 @@ public class CaricaTabellePdf {
 					 
 				     PdfPCell c1 = new PdfPCell(new Phrase("Nome Business Service",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			        
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				        
 				     c1 = new PdfPCell(new Phrase("Model Applicativo Associato",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1); c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 					 for(int i=0;i<businessServicesList.size();i++){
 						 businessService = businessServicesList.get(i);
-						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 						 table.addCell(new Phrase(businessService.getTextNomeBusinessService(),baseFont));
 						 table.addCell(new Phrase(businessService.getDescModelApplicativo(),baseFont));
 						 }
@@ -240,35 +240,35 @@ public class CaricaTabellePdf {
 					 
 				     PdfPCell c1 = new PdfPCell(new Phrase("Codice",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);		
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				        
 				     c1 = new PdfPCell(new Phrase("Sigla",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 				     c1 = new PdfPCell(new Phrase("Descrizione",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);	
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);	
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1); 
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);		
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 					 for(int i=0;i<processiList.size();i++){
 						 processo = processiList.get(i);			
-						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 						 table.addCell(new Phrase(processo.getCodiProcesso().toString(),baseFont));
 						 table.addCell(new Phrase(processo.getTextSiglaProcesso(),baseFont));
 						 table.addCell(new Phrase(processo.getDescProcesso(),baseFont));
@@ -295,35 +295,35 @@ public class CaricaTabellePdf {
 					 
 				     PdfPCell c1 = new PdfPCell(new Phrase("Codice",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);		
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				        
 				     c1 = new PdfPCell(new Phrase("Sigla",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 				     c1 = new PdfPCell(new Phrase("Descrizione",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);	
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);	
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1); 
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);		
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 					 for(int i=0;i<processiList.size();i++){
 						 associazioneBSProcessoBean = processiList.get(i);			
-						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 						 table.addCell(new Phrase(associazioneBSProcessoBean.getCodiProcesso()+"",baseFont));
 						 table.addCell(new Phrase(associazioneBSProcessoBean.getTextSiglaProcesso(),baseFont));
 						 table.addCell(new Phrase(associazioneBSProcessoBean.getDescProcesso(),baseFont));
@@ -350,35 +350,35 @@ public class CaricaTabellePdf {
 					 
 				     PdfPCell c1 = new PdfPCell(new Phrase("Area",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);		
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				        
 				     c1 = new PdfPCell(new Phrase("Applicazione",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 				     c1 = new PdfPCell(new Phrase("Funzione",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);	
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);	
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1); 
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);		
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 					 for(int i=0;i<funzioniList.size();i++){
 						 dServiziFunzioni = funzioniList.get(i);			
-						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 						 table.addCell(new Phrase(dServiziFunzioni.getDescArea().toString(),baseFont));
 						 table.addCell(new Phrase(dServiziFunzioni.getDescApplicazione(),baseFont));
 						 table.addCell(new Phrase(dServiziFunzioni.getDescFunzione(),baseFont));
@@ -405,26 +405,26 @@ public class CaricaTabellePdf {
 					 
 					 PdfPCell c1 = new PdfPCell(new Phrase("Descrizione",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
 				     
 				     c1 = new PdfPCell(new Phrase("Codice",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			        
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
 				     
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			        
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			        
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
 				     
 					 for(int i=0;i<modelApplicativiList.size();i++){
 						 modelApplicativo = modelApplicativiList.get(i);
-						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 						 table.addCell(new Phrase(modelApplicativo.getDescModelApplicativo(),baseFont));
 						 table.addCell(new Phrase(modelApplicativo.getCodiModelApplicativo().toString(),baseFont));						
 						 }
@@ -453,31 +453,32 @@ public class CaricaTabellePdf {
 					 
 				     PdfPCell c1 = new PdfPCell(new Phrase("Model Applicativo",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			        
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				        
 				     c1 = new PdfPCell(new Phrase("Business Services",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1); c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
 					 for(int i=0;i<modelApplicativiList.size();i++){
 						 modelApplicativo = modelApplicativiList.get(i);
 						 businessServiceListString = "";
-						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 						 table.addCell(new Phrase(modelApplicativo.getModelApplicativo().getDescModelApplicativo(),baseFont));
 						 for (int j = 0; j < modelApplicativo.getBusinessServiceBeanList().size(); j++) {
 							 businessServiceBean = modelApplicativo.getBusinessServiceBeanList().get(j);
 							 businessServiceListString = businessServiceListString+businessServiceBean.getTextNomeBusinessService()+"\n";
 						}
+						 businessServiceListString = businessServiceListString+"\n\n";
 						 table.addCell(new Phrase(businessServiceListString,baseFont));	
 						 }
 			 	}
@@ -502,17 +503,17 @@ public class CaricaTabellePdf {
 					 
 				     PdfPCell c1 = new PdfPCell(new Phrase("Nome Business Service",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			        
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				        
 				     c1 = new PdfPCell(new Phrase("Model Applicativo Associato",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
 				     
 					 for(int i=0;i<businessServicesList.size();i++){
 						 businessService = businessServicesList.get(i);
-						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 						 table.addCell(new Phrase(businessService.getTextNomeBusinessService(),baseFont));
 						 table.addCell(new Phrase(businessService.getDescModelApplicativo(),baseFont));
 						 }

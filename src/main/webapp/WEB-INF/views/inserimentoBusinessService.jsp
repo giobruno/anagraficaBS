@@ -26,23 +26,23 @@
 				
 				<div class="div-table">					
 					<div class="div-table-row">
-						<div class="div-table-col"><label for="textNomeBusinessService"> <img src="resources/img/query.png" alt="" title="">&nbsp;Nome del Business Service*:</label></div>
+						<div class="div-table-col"><label for="textNomeBusinessService"> &nbsp;Nome del Business Service*:</label></div>
 						<div class="div-table-col"><form:input style="width:297px"  maxlength="50"  id="textNomeBusinessService" path="textNomeBusinessService"/></div>							
 					</div>	
 					<div class="div-table-row">
-						<div class="div-table-col"><label for="descBusinessService"> <img src="resources/img/query.png" alt="" title="">&nbsp;Descrizione*:</label></div>
+						<div class="div-table-col"><label for="descBusinessService"> &nbsp;Descrizione*:</label></div>
 						<div class="div-table-col"><form:textarea cols="40" rows="3" path="descBusinessService" id="descBusinessService" onkeyup="maxlength(this,2000)"></form:textarea></div>						
 					</div>
 					<div class="div-table-row">
-						<div class="div-table-col"><label for="persRespBusinessService"> <img src="resources/img/query.png" alt="" title="">&nbsp;Responsabile*:</label></div>
+						<div class="div-table-col"><label for="persRespBusinessService"> &nbsp;Responsabile*:</label></div>
 						<div class="div-table-col"><form:input style="width:297px"  maxlength="50"  id="persRespBusinessService" path="persRespBusinessService"/></div>				
 					</div>
 					<div class="div-table-row">
-						<div class="div-table-col"><label for="textUrlBusinessService"> <img src="resources/img/query.png" alt="" title="">&nbsp;Url*:</label></div>
-						<div class="div-table-col"><form:input style="width:297px"  maxlength="50"  id="textUrlBusinessService" path="textUrlBusinessService"/></div>				
+						<div class="div-table-col"><label for="textUrlBusinessService"> &nbsp;Url*:</label></div>
+						<div class="div-table-col"><form:input style="width:297px"  maxlength="50" value="http://" id="textUrlBusinessService" path="textUrlBusinessService"/></div>				
 					</div>		
 					<div class="div-table-row">
-							    	<div class="div-table-col"><label for="codiDipartimento"> <img src="resources/img/query.png" alt="" title="">&nbsp;Dipartimento*:</label></div>
+							    	<div class="div-table-col"><label for="codiDipartimento"> &nbsp;Dipartimento*:</label></div>
 									<div class="div-table-col">
 										<form:select path="codiDipartimento" id="codiDipartimento" name="codiDipartimento" style="width:180px">
 											<form:option value="" label="--" />
@@ -53,7 +53,7 @@
 									</div>														
 					</div>	
 				<div class="div-table-row">
-					<div class="div-table-col"><label for="codiModelApplicativo"> <img src="resources/img/query.png" alt="" title="">&nbsp;Model Applicativo*:</label></div>
+					<div class="div-table-col"><label for="codiModelApplicativo"> &nbsp;Model Applicativo*:</label></div>
 					<div class="div-table-col">
 										<form:select path="codiModelApplicativo" id="codiModelApplicativo" name="codiModelApplicativo" style="width:180px">
 											<form:option value="" label="--" />
@@ -65,7 +65,7 @@
 									</div>							
 				</div>
 				<div class="div-table-row">
-						<div class="div-table-col"><label for="flagConvenzione"> <img src="resources/img/query.png" alt="" title="">&nbsp;Presenza convenzione*:</label></div>
+						<div class="div-table-col"><label for="flagConvenzione"> &nbsp;Presenza convenzione*:</label></div>
 						<div class="div-table-col">			
 								<form:radiobutton  path="flagConvenzione" id="flagConvenzione" value="true" /><label for="flagConvenzione">&nbsp;SI</label>
 								<form:radiobutton path="flagConvenzione" id="flagConvenzione" value="false" /><label for="flagConvenzione">&nbsp;NO</label>

@@ -176,7 +176,7 @@ public class GestioneDataBase {
 		}
 	
 	@Transactional
-	public int modificaBusinessService(BusinessServiceForm businessServiceForm,DBusinessServices businessServiceFormOld) throws Exception{
+	public int modificaBusinessService(BusinessServiceForm businessServiceForm,BusinessServiceForm businessServiceFormOld) throws Exception{
 		log.info("Inizio metodo GestioneDataBase.modificaBusinessService!");
 		
 		String query;
@@ -188,20 +188,23 @@ public class GestioneDataBase {
 			popolaModelDb.popolaDBusinessServiceBean(businessServiceFormOld,businessServiceForm,dBusinessService);
 			dataSourceService.update(dBusinessService);
 			
-			query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel tab where tab.id.codiBusinessService = '"+businessServiceFormOld.getCodiBusinessService()+"' ";
-			List<DServiziModel> dServiziModelList = (List<DServiziModel>) dataSourceService.genericquery(query);
-			if(dServiziModelList != null && !dServiziModelList.isEmpty()){
-				dServiziModel = dServiziModelList.get(0);
-				if(FormatUtility.formattaDataToString("yyyy-MM-dd",dServiziModel.getId().getDataInizioAssociazione()).equals(FormatUtility.formattaDataToString("yyyy-MM-dd", new Date() )))
-					dataSourceService.delete(dServiziModel);
-				else {
-					dServiziModel.setDataFineAssociazione(new Date());
-					dataSourceService.update(dServiziModel);
-				}												
-			}			
-			DModelApplicativi dModelApplicativo = getModelApplicativo(businessServiceForm.getCodiModelApplicativo());
-			dataSourceService.insert(new DServiziModel(new DServiziModelId(businessServiceFormOld.getCodiBusinessService(), new Date()),dModelApplicativo,dBusinessService, null));
-		}catch(Exception e){
+			if(!businessServiceFormOld.getCodiModelApplicativo().equalsIgnoreCase(businessServiceForm.getCodiModelApplicativo())){
+				query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel tab where tab.id.codiBusinessService = '"+businessServiceFormOld.getCodiBusinessServiceOld()+"' and tab.dataFineAssociazione is null ";
+				List<DServiziModel> dServiziModelList = (List<DServiziModel>) dataSourceService.genericquery(query);
+				if(dServiziModelList != null && !dServiziModelList.isEmpty()){
+					dServiziModel = dServiziModelList.get(0);
+					if(FormatUtility.formattaDataToString("yyyy-MM-dd",dServiziModel.getId().getDataInizioAssociazione()).equals(FormatUtility.formattaDataToString("yyyy-MM-dd", new Date() )))
+						dataSourceService.delete(dServiziModel);
+					else {
+						dServiziModel.setDataFineAssociazione(new Date());
+						dataSourceService.update(dServiziModel);
+					}												
+				}			
+			
+				DModelApplicativi dModelApplicativo = getModelApplicativo(businessServiceForm.getCodiModelApplicativo());		
+				dataSourceService.insert(new DServiziModel(new DServiziModelId(Integer.parseInt(businessServiceFormOld.getCodiBusinessServiceOld()), new Date()),dModelApplicativo,dBusinessService, null));
+			}
+			}catch(Exception e){
 			log.error(e.getMessage()+" on GestioneDataBase.modificaBusinessService");
 			throw e;
 			}
@@ -216,10 +219,9 @@ public class GestioneDataBase {
 		int codiBusinessService = 0;	
 		
 		try{		
-			processoOld.setDataFineValidita(new Date());
-			dataSourceService.update(processoOld);
 			popolaModelDb.popolaDProcessiBean(processoForm, dProcessi);
-			dataSourceService.insert(dProcessi);			
+			dProcessi.setCodiProcesso(processoOld.getCodiProcesso());
+			dataSourceService.update(dProcessi);			
 		}catch(Exception e){
 			log.error(e.getMessage()+" on GestioneDataBase.modificaProcesso");
 			throw e;
@@ -297,7 +299,7 @@ public class GestioneDataBase {
 		Iterator<DServiziProcessi> itr;
 		
 		try{
-			resultList = getListaAssociazioniProcessiBS(codiBusinessService);
+			resultList = getListaAssociazioniProcessiBS(codiBusinessService,null);
 			itr = resultList.iterator();
 			while (itr.hasNext()) {
 				cancellaAssociazioneBSProcesso((DServiziProcessi)itr.next());
@@ -503,12 +505,12 @@ public class GestioneDataBase {
 			return codiFunzioneList;	
 		}
 		
-		@Transactional
-		public  List<DBusinessServices> getElencoBusinessServices() throws Exception{
+		
+		public  List<DBusinessServices> getElencoBusinessServices(String responsabile) throws Exception{
 			log.debug("Start GestioneDataBase.getElencoBusinessServices method");
 			
 			List<DBusinessServices> elencoBusinessServices;
-			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null order by tab.descBusinessService";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null and tab.persRespBusinessService = '"+responsabile+"' order by tab.codiBusinessService";
 			
 			try{		
 				elencoBusinessServices = (List<DBusinessServices>) dataSourceService.genericquery(query);								
@@ -538,7 +540,7 @@ public class GestioneDataBase {
 			log.debug("Start GestioneDataBase.getElencoProcessi method");
 			
 			List<DProcessi> elencoProcessi;
-			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi tab where tab.dataFineValidita is null order by tab.descProcesso";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi tab where tab.dataFineValidita is null order by tab.codiProcesso";
 			
 			try{		
 				elencoProcessi = (List<DProcessi>) dataSourceService.genericquery(query);								
@@ -632,7 +634,7 @@ public class GestioneDataBase {
 			log.debug("Start GestioneDataBase.getModelApplicativoFromDServiziModel method");
 			
 			List<DServiziModel> modelApplicativoList;
-			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel tab where tab.id.codiBusinessService = '"+codiBusinessService+"'";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel tab where tab.id.codiBusinessService = '"+codiBusinessService+"' and tab.dataFineAssociazione is null";
 			
 			try{		
 				modelApplicativoList = (List<DServiziModel>) dataSourceService.genericquery(query);
@@ -645,7 +647,7 @@ public class GestioneDataBase {
 			return modelApplicativoList.get(0);	
 		}		
 		
-		@Transactional
+		
 		public  DModelApplicativi getModelApplicativoFromDModelApplicativi(String codiModelApplicativo) throws Exception{
 			log.debug("Start GestioneDataBase.getModelApplicativoFromDModelApplicativi method");
 			
@@ -681,7 +683,7 @@ public class GestioneDataBase {
 			return elencoProcessi.get(0);	
 		}
 		
-		@Transactional
+		
 		public  DModelApplicativi getModelApplicativo(String codiModelApplicativo) throws Exception{
 			log.debug("Start GestioneDataBase.getModelApplicativo method");
 			
@@ -788,13 +790,18 @@ public class GestioneDataBase {
 		}
 		
 		@Transactional
-		public  List<DServiziProcessi> getListaAssociazioniProcessiBS(String codiBusinessService) throws Exception{
+		public  List<DServiziProcessi> getListaAssociazioniProcessiBS(String codiBusinessService, String codiProcesso) throws Exception{
 			log.debug("Start GestioneDataBase.getListaAssociazioniProcessiBS method");
 			
 			List<DServiziProcessi> elencoProcessi;
-			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiBusinessService = '"+codiBusinessService+"' and tab.dataFineValidita is null";
+			String query;
+			String query1 = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiBusinessService = '"+codiBusinessService+"' and tab.dataFineValidita is null";
+			String query2 = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiProcesso = '"+codiProcesso+"' and tab.dataFineValidita is null";
 			
 			try{		
+				if(codiBusinessService == null)
+					query = query2;
+				else query = query1;
 				elencoProcessi = (List<DServiziProcessi>) dataSourceService.genericquery(query);				
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.getListaAssociazioniProcessiBS");

@@ -34,6 +34,7 @@ public class GestioneMail {
 			String path = System.getProperty("jboss.server.config.url");	    				  
 		    String[] indirizzo = path.split("file:");			
 //		   Leggo file di proprieta' esterno
+		    System.out.println(indirizzo[1]+"properties/email.properties");
 		   filePprops = getFileProperties(indirizzo[1]+"properties/email.properties");
 		   presenza_password = filePprops.getProperty("presenza_password");
 		   password = filePprops.getProperty("password");
@@ -75,7 +76,7 @@ public class GestioneMail {
 	        file.createNewFile();				
 			props.load(new FileInputStream(file));
 		}catch(Exception e){
-			log.error("Exception invoked in method WebServiceCall.getFileProperties: "+e.toString());
+			log.error("Exception invoked in method GestioneMail.getFileProperties: "+e.toString());
 			e.printStackTrace();
 			throw e;
 			}		

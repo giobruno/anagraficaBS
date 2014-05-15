@@ -71,12 +71,12 @@ private static final Logger log = LoggerFactory.getLogger(PopolaModelBeans.class
 						businessServiceBean.setCodiBusinessService(dServiziModel.getDBusinessServices().getCodiBusinessService().toString());
 						businessServiceBean.setTextNomeBusinessService(dServiziModel.getDBusinessServices().getTextNomeBusinessService());
 						businessServiceBeanList.add(businessServiceBean);
-					}					
-				}	
-				modelApplicativoPiuBSAssoicatiBean = new ModelApplicativoPiuBSAssoicatiBean();
-				modelApplicativoPiuBSAssoicatiBean.setModelApplicativo(modelApplicativo);
-				modelApplicativoPiuBSAssoicatiBean.setBusinessServiceBeanList(businessServiceBeanList);
-				modelApplicativoPiuBSAssoicatiBeanList.add(modelApplicativoPiuBSAssoicatiBean);
+					}			
+					modelApplicativoPiuBSAssoicatiBean = new ModelApplicativoPiuBSAssoicatiBean();
+					modelApplicativoPiuBSAssoicatiBean.setModelApplicativo(modelApplicativo);
+					modelApplicativoPiuBSAssoicatiBean.setBusinessServiceBeanList(businessServiceBeanList);
+					modelApplicativoPiuBSAssoicatiBeanList.add(modelApplicativoPiuBSAssoicatiBean);
+				}					
 			}
 			}
 		}catch(Exception e){

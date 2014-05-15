@@ -23,7 +23,7 @@ public class ElencoFunzioniFormValidator implements Validator {
     	
     	ElencoFunzioniForm form = (ElencoFunzioniForm) target;
     	
-    	if(form.getFunzioniDaInserire() == null || form.getFunzioniDaInserire().isEmpty())
+    	if(form.getFunzioniDaInserire() == null || form.getFunzioniDaInserire().length == 0)
     		errors.reject("field.required", "Required field");
 //    		rejectValue("funzioniDaInserire", "field.required", "Required field");    	
     	

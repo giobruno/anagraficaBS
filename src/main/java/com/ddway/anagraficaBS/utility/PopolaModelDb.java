@@ -119,21 +119,21 @@ public class PopolaModelDb {
 		}		
 	}
 	
-	public void popolaDBusinessServiceBean(DBusinessServices businessServiceFormOld,BusinessServiceForm businessServiceForm, DBusinessServices dBusinessService) throws Exception{
+	public void popolaDBusinessServiceBean(BusinessServiceForm businessServiceFormOld,BusinessServiceForm businessServiceForm, DBusinessServices dBusinessService) throws Exception{
 		log.info("Inizio metodo PopolaModelDb.popolaDBusinessServiceBean!");
 		
 		try{
 			if(businessServiceForm != null){
 				if(businessServiceFormOld != null){
-					dBusinessService.setCodiBusinessService(businessServiceFormOld.getCodiBusinessService());	
-					dBusinessService.setFlagConvenzione(businessServiceFormOld.getFlagConvenzione());
+					dBusinessService.setCodiBusinessService(Integer.parseInt(businessServiceFormOld.getCodiBusinessServiceOld()));						
 				}
 				else dBusinessService.setFlagConvenzione(businessServiceForm.getFlagConvenzione());
 				dBusinessService.setDDipartimenti(new DDipartimenti(Integer.parseInt(businessServiceForm.getCodiDipartimento())));
 				dBusinessService.setDescBusinessService(businessServiceForm.getDescBusinessService());
 				dBusinessService.setTextNomeBusinessService(businessServiceForm.getTextNomeBusinessService());
 				dBusinessService.setPersRespBusinessService(businessServiceForm.getPersRespBusinessService());
-				dBusinessService.setTextUrlBusinessService(businessServiceForm.getTextUrlBusinessService());					
+				dBusinessService.setTextUrlBusinessService(businessServiceForm.getTextUrlBusinessService());
+				dBusinessService.setFlagConvenzione(businessServiceForm.getFlagConvenzione());
 				dBusinessService.setDataInizioValidita(new Date());
 				dBusinessService.setDataFineValidita(null);						
 			}			
@@ -170,6 +170,14 @@ public class PopolaModelDb {
 				dServiziProcessi.setDCategorieInfr(dCategorieInfr);
 				dServiziProcessi.setDCategorieMac(dCategorieMac);
 				dServiziProcessi.setDataFineValidita(null);
+				if(associazioneBSProcessoForm.getMisuTmpLavorativoMinuti().equalsIgnoreCase(""))
+					associazioneBSProcessoForm.setMisuTmpLavorativoMinuti("0");
+				if(associazioneBSProcessoForm.getMisuTmpLavorativoOre().equalsIgnoreCase(""))
+					associazioneBSProcessoForm.setMisuTmpLavorativoOre("0");
+				if(associazioneBSProcessoForm.getMisuTmpSolareMinuti().equalsIgnoreCase(""))
+					associazioneBSProcessoForm.setMisuTmpSolareMinuti("0");
+				if(associazioneBSProcessoForm.getMisuTmpSolareOre().equalsIgnoreCase(""))
+					associazioneBSProcessoForm.setMisuTmpSolareOre("0");
 				dServiziProcessi.setMisuTmpLavorativo((Integer.parseInt(associazioneBSProcessoForm.getMisuTmpLavorativoOre())*60)+Integer.parseInt(associazioneBSProcessoForm.getMisuTmpLavorativoMinuti()));
 				dServiziProcessi.setMisuTmpSolare((Integer.parseInt(associazioneBSProcessoForm.getMisuTmpSolareOre())*60)+Integer.parseInt(associazioneBSProcessoForm.getMisuTmpSolareMinuti()));
 				dServiziProcessi.setOrarioLavFine(new Date(0, 0, 0, Integer.parseInt(associazioneBSProcessoForm.getOrarioLavFineOre()), Integer.parseInt(associazioneBSProcessoForm.getOrarioLavFineMinuti())));
@@ -216,8 +224,8 @@ public class PopolaModelDb {
 		try{
 			if(elencoFunzioniForm != null && ricercaFunzioniUtenteForm != null && dServiziFunzioniList != null){					
 								
-				for(int i=0;i<elencoFunzioniForm.getFunzioniDaInserire().size();i++){
-					funzioneSplit = elencoFunzioniForm.getFunzioniDaInserire().get(i).split("/");
+				for(int i=0;i<elencoFunzioniForm.getFunzioniDaInserire().length;i++){
+					funzioneSplit = elencoFunzioniForm.getFunzioniDaInserire()[i].split("/");
 					dServiziFunzioneId = new DServiziFunzioniId();
 					dServiziFunzioneId.setCodiBusinessService(codiBusinessService);
 					dServiziFunzioneId.setDataInizioAssociazione(new Date());

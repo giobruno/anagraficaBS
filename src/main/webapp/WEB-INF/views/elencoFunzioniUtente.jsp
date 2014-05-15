@@ -38,25 +38,31 @@
  
 		<fieldset>
 			<legend>Selezionare le funzioni da associare</legend>				
-							<table  width="100%"  border="0">
-							<tr>
-							<th><p class="visualizzaDesc">Area</p></th>
-							<th><p class="visualizzaDesc">Applicazione</p></th>							
-							<th><p class="visualizzaDesc">Funzione Utente</p></th>
-							<th><p class="visualizzaDesc">Seleziona</p></th>														
+							<div class="div-table">
+								<div class="div-table-row">
+									<div class="div-table-col"><p class="visualizzaDesc">Area</p></div>
+									<div class="div-table-col"><p class="visualizzaDesc">Applicazione</p></div>							
+									<div class="div-table-col"><p class="visualizzaDesc">Funzione Utente</p></div>
+									<div class="div-table-col-center"><p class="visualizzaDesc">Seleziona</p></div>
+								</div>													
 
-							<tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
-							<c:forEach items="${funzioniList}" var="item" >
-							<tr>
-							<th>${item.descArea}</th>
-							<th>${item.descApplicazione}</th>
-							<th>${item.descFunzione}</th>
-							<th>	
-								<form:checkbox path="funzioniDaInserire" id="funzioniDaInserire"  value="${item.codiArea}/${item.descArea}/${item.codiApplicazione}/${item.descApplicazione}/${item.codiFunzione}/${item.descFunzione}"/>
-								<label for="funzioniDaInserire"></label>
-							</th>																					
-							</c:forEach> 					
-					  </table>
+								<div class="div-table-row">
+									<div class="div-table-col">
+									</div>
+								</div>
+								
+								<c:forEach items="${funzioniList}" var="item" >
+									<div class="div-table-row">
+										<div class="div-table-col">${item.descArea}</div>
+										<div class="div-table-col">${item.descApplicazione}</div>
+										<div class="div-table-col">${item.descFunzione}</div>
+										<div class="div-table-col-center">	
+											<form:checkbox path="funzioniDaInserire" id="funzioniDaInserire"  value="${item.codiArea}/${item.descArea}/${item.codiApplicazione}/${item.descApplicazione}/${item.codiFunzione}/${item.descFunzione}"/>
+											<label for="funzioniDaInserire"></label>
+										</div>	
+									</div>														
+								</c:forEach> 					
+						 	 </div>
 		 </fieldset>		 	 
 	</div>
 	

@@ -28,7 +28,7 @@
 				<div class="div-table-col"></div>
 			</div>
 	 <div class="div-table-row">
- 		<p class="erroreForm"><form:errors path="codiArea"/> </p>
+ 		<p class="erroreForm"><form:errors path="*"/> </p>
  		<br/>
 		<fieldset>
 		
@@ -110,7 +110,7 @@
 				</div>
 	</c:if>
 	 -->
-	 <c:if test="${dServiziFunzioniList != null}">
+	 <c:if test="${dServiziFunzioniListAssociate != null}">
 	 <div class="div-table-centrata">				  
 	<div class="div-table-row">
  		<div class="div-table-col">
@@ -129,7 +129,7 @@
 								</div>
 							</div>		
 							
-							<c:forEach items="${dServiziFunzioniList}" var="item" >
+							<c:forEach items="${dServiziFunzioniListAssociate}" var="item" >
 							<div class="div-table-row">				
 										<div class="div-table-col-center">${item.descArea}</div>	
 										<div class="div-table-col-center">${item.descApplicazione}</div>	

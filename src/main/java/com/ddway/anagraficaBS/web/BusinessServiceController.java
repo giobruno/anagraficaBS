@@ -263,7 +263,7 @@ public class BusinessServiceController {
 			gestioneDataBase.inserisciAssociazioniBSFunzUtente(dServiziFunzioniList);
 			selectboxes = caricaSelect.getSelectsRicercaFunzioniUtenteForm("formRicercaFunzioniUtente");			
 			model.addAllObjects(selectboxes);
-			model.addObject("dServiziFunzioniList",dServiziFunzioniList);	
+			model.addObject("dServiziFunzioniListAssociate",dServiziFunzioniList);	
 			model.addObject("ricercaFunzioniUtenteForm", new RicercaFunzioniUtenteForm());			
 			model.addObject("presenzaMessaggio","si");
 			model.addObject("message","Le seguenti Funzioni Utente sono state associate!");
@@ -303,21 +303,25 @@ public class BusinessServiceController {
 		return model; 
 	}	
 
-	@RequestMapping(value="/inserimentoAssociazioneBSFunzUtente", method = RequestMethod.POST, params="Annulla")
-	public ModelAndView inserimentoAssociazioneBSFunzUtenteAnnulla(ModelAndView model) throws Exception { 
-		logger.info("Inizio metodo BusinessServiceController.inserimentoAssociazioneBSFunzUtenteAnnulla!");		
-		
-		try{
-			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
-			model.addObject("businessServiceList", businessServiceList);
-			model.setViewName("elencoBusinessService");
-		}catch(Exception e){
-			e.printStackTrace();
-			logger.error(e.getMessage()+" on usinessServiceController.inserimentoAssociazioneBSFunzUtenteAnnulla!");
-			gestioneException.gestisciException(model, e,"");
-		}
-		return model; 
-	}
+//	@RequestMapping(value="/inserimentoAssociazioneBSFunzUtente", method = RequestMethod.POST, params="Annulla")
+//	public ModelAndView inserimentoAssociazioneBSFunzUtenteAnnulla(ModelAndView model) throws Exception { 
+//		logger.info("Inizio metodo BusinessServiceController.inserimentoAssociazioneBSFunzUtenteAnnulla!");		
+//		
+//		String responsabile;
+//		
+//		responsabile = (String) session.getAttribute("utente");
+//		
+//		try{
+//			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(responsabile);
+//			model.addObject("businessServiceList", businessServiceList);
+//			model.setViewName("elencoBusinessService");
+//		}catch(Exception e){
+//			e.printStackTrace();
+//			logger.error(e.getMessage()+" on usinessServiceController.inserimentoAssociazioneBSFunzUtenteAnnulla!");
+//			gestioneException.gestisciException(model, e,"");
+//		}
+//		return model; 
+//	}
 	
 	@Transactional
 	@RequestMapping(value="/visualizzaElencoBusinessServices", method = RequestMethod.GET)
@@ -325,9 +329,11 @@ public class BusinessServiceController {
 		logger.info("Inizio metodo BusinessServiceController.visualizzaElencoBusinessServices!");			
 		
 		List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();
+		String responsabile;
 		
+		responsabile = (String) session.getAttribute("utente");
 		try{			
-			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
+			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(responsabile);
 			if(businessServiceList == null || businessServiceList.isEmpty()){
 				model.addObject("presenzaMessaggio","si");
 				model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");
@@ -366,7 +372,7 @@ public class BusinessServiceController {
 			businessService = (DBusinessServices) gestioneDataBase.getBusinessServices(codiBusinessService);
 			dServiziModel = (DServiziModel) gestioneDataBase.getModelApplicativoFromDServiziModel(codiBusinessService+"");
 			popolaModelForms.popolaBusinessServiceForm(businessService, dServiziModel,businessServiceFormAutoWired);
-			session.setAttribute("businessServiceFormOld", businessService);
+			session.setAttribute("businessServiceFormOld", businessServiceFormAutoWired);
 			model.addObject("businessServiceForm", businessServiceFormAutoWired);
 			model.addAllObjects(selectboxes);
 			model.setViewName("modificaBusinessService");
@@ -393,7 +399,7 @@ public class BusinessServiceController {
 				model.setViewName("modificaBusinessService");
 				return model;
 			}
-			DBusinessServices businessServiceFormOld = (DBusinessServices) session.getAttribute("businessServiceFormOld");
+			BusinessServiceForm businessServiceFormOld = (BusinessServiceForm) session.getAttribute("businessServiceFormOld");
 			gestioneDataBase.modificaBusinessService(businessServiceForm,businessServiceFormOld);
 			session.removeAttribute("businessServiceFormOld");
 			model.addObject("presenzaMessaggio","si");
@@ -470,7 +476,7 @@ public class BusinessServiceController {
 //			DModelApplicativi dModelApplicativo = gestioneDataBase.getModelApplicativoFromDModelApplicativi(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");
 			popolaModelForms.popolaBusinessServiceBean(businessService, businessServiceBean);
 			List<DServiziFunzioni> dServiziFunzioniList = gestioneDataBase.getListaAssociazioniFunzioniUtenteBS(codiBusinessService);
-			List<DServiziProcessi> dserviziProcessiList = gestioneDataBase.getListaAssociazioniProcessiBS(codiBusinessService);
+			List<DServiziProcessi> dserviziProcessiList = gestioneDataBase.getListaAssociazioniProcessiBS(codiBusinessService,null);
 			popolaModelForms.popolaAssociazioneBSProcessoBeanList(dserviziProcessiList,associazioneBSProcessoBeanList);
 //			model.addObject("dDipartimento", dDipartimento);
 //			model.addObject("dModelApplicativo", dModelApplicativo);	

@@ -47,25 +47,22 @@ public class PdfReport6 extends AbstractPdfView {
 		    try{
 		    	String path = System.getProperty("jboss.server.config.url");
 		    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("iTextExample.pdf"));
-		        document.open();			  
+		        			  
 			    String[] indirizzo = path.split("file:");
 			    Image logo = Image.getInstance(indirizzo[1]+"properties/logoReport.png");
-			    logo.scalePercent(40);
+			    logo.scalePercent(39);
 			     
-			    Paragraph par = new Paragraph();
-			    par = new Paragraph();		   
+			    Paragraph par = new Paragraph();			    
 		        par.add(new Chunk (logo, 0, 0, true));
 		        HeaderFooter header = new HeaderFooter(par, false);
 		        header.setBorder(0);
 		        document.setHeader(header); 
-			    document.add(logo);
-			    document.add(new Paragraph("   "));
-		        document.add(new Paragraph("   "));
+		        document.open();			    
+		        
 		    	Paragraph titolo = new Paragraph("Dettaglio Business Service", titoloFont);
 		    	titolo.setAlignment(Element.ALIGN_CENTER);
-		        document.add(titolo);		    	
-		       
-		        document.add(new Paragraph("   "));
+		        document.add(titolo);				       
+		        
 		        document.add(new Paragraph("   "));		 		        
 		        CaricaTabellePdf caricaTabellePdf = new CaricaTabellePdf();	        
 		        PdfPTable tabellaBusinessService = caricaTabellePdf.caricaTabellaBusinessService(businessServiceBean);
@@ -76,9 +73,8 @@ public class PdfReport6 extends AbstractPdfView {
 			        document.add(new Paragraph("   "));	
 			        titolo = new Paragraph("Elenco Funzioni Utente Associate al Business Service", titoloFont);
 			    	titolo.setAlignment(Element.ALIGN_CENTER);
-			        document.add(titolo);
+			        document.add(titolo);			        
 			        
-			        document.add(new Paragraph("   "));
 			        document.add(new Paragraph("   "));		  	      		        
 			        PdfPTable tabellaFunzioniUtente = caricaTabellePdf.caricaTabellaFunzioniUtente(dServiziFunzioniList);
 			        document.add(tabellaFunzioniUtente);

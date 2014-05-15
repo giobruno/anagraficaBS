@@ -48,9 +48,9 @@
 			<legend>Business Services</legend>				
 						<div class="div-table">
 								<div class="div-table-row">							 
-									<div class="div-table-col-center"><p class="visualizzaDesc">Codice Processo</p></div>
-									<div class="div-table-col-center"><p class="visualizzaDesc">Sigla Processo</p></div>	
-									<div class="div-table-col-center"><p class="visualizzaDesc">Descrizione Processo</p></div>					
+									<div class="div-table-col"><p class="visualizzaDesc">Codice Processo</p></div>
+									<div class="div-table-col"><p class="visualizzaDesc">Sigla Processo</p></div>	
+									<div class="div-table-col"><p class="visualizzaDesc">Descrizione Processo</p></div>					
 									<div class="div-table-col-center"><p class="visualizzaDesc">Modifica</p></div>
 									<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>
 														
@@ -62,9 +62,9 @@
 							
 							<c:forEach items="${processiList}" var="item" >
 							<div class="div-table-row">				
-								<div class="div-table-col-center">${item.codiProcesso}</div>
-								<div class="div-table-col-center">${item.textSiglaProcesso}</div>	
-								<div class="div-table-col-center">${item.descProcesso}</div>							
+								<div class="div-table-col">${item.codiProcesso}</div>
+								<div class="div-table-col">${item.textSiglaProcesso}</div>	
+								<div class="div-table-col">${item.descProcesso}</div>							
 								<div class="div-table-col-center"><a href="modificaProcessoForm?codiProcesso=${item.codiProcesso}"><img src="resources/img/iconeModifica2.jpg"  width="30" height="20" title="Modifica Processo"></a></div>
 								<div class="div-table-col-center"><a href="cancellaProcesso?codiProcesso=${item.codiProcesso}" onclick="return conferma('Sei sicuro di voler cancellare questo processo?')"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Processo"></a></div>
 							</div>
@@ -100,7 +100,7 @@
 	<div class="div-table-row">
 	<div class="div-table-col-center" >					
 					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Homepage"></a>
-					<a href="reportController?report=3"><input TYPE="button" name="Stampa" VALUE="Stampa"></a>
+					<a href="reportController?report=3" target=”_blank”><input TYPE="button" name="Stampa" VALUE="Stampa"></a>
 	</div>	
 	</div>
 	

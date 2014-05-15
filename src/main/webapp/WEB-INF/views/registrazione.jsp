@@ -43,27 +43,27 @@
 		
 		<div class="div-table">	
 			<div class="div-table-row">
-					    	<div class="div-table-col"><label for="nome"> <img src="resources/img/query.png" alt="" title="">&nbsp;Nome*:</label></div>
+					    	<div class="div-table-col"><label for="nome"> &nbsp;Nome*:</label></div>
 							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="nome" path="nome" onblur="getUsername()"/></div>
 			</div>
 			<div class="div-table-row">
-							<div class="div-table-col"><label for="cognome"> <img src="resources/img/query.png" alt="" title="">&nbsp;Cognome*:</label></div>
+							<div class="div-table-col"><label for="cognome"> &nbsp;Cognome*:</label></div>
 							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="cognome" path="cognome" onblur="getUsername()"/></div>			
 			</div>
 			<div class="div-table-row">
-							<div class="div-table-col"><label for="username"> <img src="resources/img/query.png" alt="" title="">&nbsp;Nome Utente*:</label></div>
+							<div class="div-table-col"><label for="username"> &nbsp;Nome Utente*:</label></div>
 							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="username" path="username"/></div>
 			</div>
 			<div class="div-table-row">
-							<div class="div-table-col"><label for="email"> <img src="resources/img/query.png" alt="" title="">&nbsp;Indirizzo email*:</label></div>
+							<div class="div-table-col"><label for="email"> &nbsp;Indirizzo email*:</label></div>
 							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="email" path="email"  /></div>							
 			</div>
 			<div class="div-table-row">
-							<div class="div-table-col"><label for="password"> <img src="resources/img/query.png" alt="" title="">&nbsp;Password*:</label></div>
+							<div class="div-table-col"><label for="password"> &nbsp;Password*:</label></div>
 							<div class="div-table-col"><form:input style="width:200px"  type="password" maxlength="150" id="password" path="password"/></div>							
 			</div>
 			<div class="div-table-row">
-							<div class="div-table-col"><label for="confermaPassword"> <img src="resources/img/query.png" alt="" title="">&nbsp;Conferma Password*:</label></div>
+							<div class="div-table-col"><label for="confermaPassword"> &nbsp;Conferma Password*:</label></div>
 							<div class="div-table-col"><form:input style="width:200px"  type="password" maxlength="150" id="confermaPassword" path="confermaPassword"/></div>							
 			</div></div>
 			</fieldset>

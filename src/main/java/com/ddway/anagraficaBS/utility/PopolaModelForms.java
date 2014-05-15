@@ -141,6 +141,8 @@ public class PopolaModelForms {
 		Iterator itr;
 		DBusinessServices dbusinessService;
 		BusinessServiceBean businessServiceBean;
+		List<DServiziProcessi> dServiziProcessi;
+		List<DServiziFunzioni> dServiziFunzioni;
 		
 		try{
 			if(businessServiceList != null && !businessServiceList.isEmpty()){
@@ -157,7 +159,17 @@ public class PopolaModelForms {
 					DServiziModel dServiziModel = gestioneDataBase.getModelApplicativoFromDServiziModel(dbusinessService.getCodiBusinessService()+"");
 					DModelApplicativi dModelApplicativo = gestioneDataBase.getModelApplicativoFromDModelApplicativi(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");
 					
-					businessServiceBean.setDescModelApplicativo(dModelApplicativo.getDescModelApplicativo());		
+					businessServiceBean.setDescModelApplicativo(dModelApplicativo.getDescModelApplicativo());
+					dServiziProcessi = gestioneDataBase.getListaAssociazioniProcessiBS(dbusinessService.getCodiBusinessService()+"", null);
+					if(dServiziProcessi == null || dServiziProcessi.isEmpty())
+						businessServiceBean.setPresenzaProcessiAssociati(false);
+					else businessServiceBean.setPresenzaProcessiAssociati(true);
+					if(dbusinessService.getFlagConvenzione()){
+						dServiziFunzioni = gestioneDataBase.getListaAssociazioniFunzioniUtenteBS(dbusinessService.getCodiBusinessService()+"");
+						if(dServiziFunzioni == null || dServiziFunzioni.isEmpty())
+							businessServiceBean.setPresenzaFUAssociate(false);
+						else businessServiceBean.setPresenzaFUAssociate(true);
+					}
 					businessServiceBeanList.add(businessServiceBean);
 				}
 			}

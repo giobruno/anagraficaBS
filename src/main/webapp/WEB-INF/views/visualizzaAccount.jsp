@@ -20,13 +20,7 @@
 	<div class="div-table-col">
 					</div>
 	</div>
-	
-			<div class="div-table-row">
-				<div class="div-table-col"></div>
-			</div>
-			<div class="div-table-row">
-				<div class="div-table-col"></div>
-			</div>
+			
 			<p class="visualizzaFormLegend">Gestione Account</p><br/><br/>
 	 <div class="div-table-row">
 	 

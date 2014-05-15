@@ -10,6 +10,8 @@ public class BusinessServiceBean {
 	private String persRespBusinessService;	
 	private String descModelApplicativo;
 	private Boolean flagConvenzione;
+	private Boolean presenzaProcessiAssociati;
+	private Boolean presenzaFUAssociate = true;
 	
 	public BusinessServiceBean(){}
 	
@@ -19,7 +21,8 @@ public class BusinessServiceBean {
 										String textNomeBusinessService,
 										String persRespBusinessService,
 										String descModelApplicativo,
-										Boolean flagConvenzione){
+										Boolean flagConvenzione,
+										Boolean presenzaProcessiAssociati,Boolean presenzaFUAssociate){
 		
 		this.codiBusinessService = codiBusinessService;
 		this.descBusinessService = descBusinessService;
@@ -29,8 +32,27 @@ public class BusinessServiceBean {
 		this.persRespBusinessService = persRespBusinessService;
 		this.descModelApplicativo = descModelApplicativo;
 		this.flagConvenzione = flagConvenzione;
+		this.presenzaProcessiAssociati = presenzaProcessiAssociati;
+		this.presenzaFUAssociate = presenzaFUAssociate;
 	}
 	
+	
+	public Boolean getPresenzaFUAssociate() {
+		return presenzaFUAssociate;
+	}
+
+	public void setPresenzaFUAssociate(Boolean presenzaFUAssociate) {
+		this.presenzaFUAssociate = presenzaFUAssociate;
+	}
+
+	public Boolean getPresenzaProcessiAssociati() {
+		return presenzaProcessiAssociati;
+	}
+
+	public void setPresenzaProcessiAssociati(Boolean presenzaProcessiAssociati) {
+		this.presenzaProcessiAssociati = presenzaProcessiAssociati;
+	}
+
 	public String getTextUrlBusinessService() {
 		return textUrlBusinessService;
 	}

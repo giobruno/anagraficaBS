@@ -28,9 +28,9 @@
   </head>
 <body >
 
-
-<tiles:insertAttribute name="header" />
 <div style="height:100%;">
+<tiles:insertAttribute name="header" />
+
 <div class="PageWrapBis" id="central">	
 <div class="Page">
 <tiles:insertAttribute name="menu" />
