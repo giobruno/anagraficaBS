@@ -31,6 +31,10 @@ public class RegistrazioneFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "field.required.password", "Required field");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confermaPassword", "field.required.confermaPassword", "Required field");
         
+        if(!form.getNome().equalsIgnoreCase(""))
+        	ValidatorUtil.validateStringFormat("nome",form.getNome(), errors); 
+        if(!form.getCognome().equalsIgnoreCase(""))
+        	ValidatorUtil.validateStringFormat("cognome",form.getCognome(), errors); 
         if(!form.getEmail().equalsIgnoreCase(""))
         	ValidatorUtil.validateEmail("email",form.getEmail(), errors); 
         

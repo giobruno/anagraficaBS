@@ -140,4 +140,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/modificaPassword.jsp" />
 	</definition>
 	
+	<definition name="recuperoDatiAccesso" extends="base.definition">
+		<put-attribute name="title" value="recuperoDatiAccesso" />
+		<put-attribute name="body" value="/WEB-INF/views/recuperoDatiAccesso.jsp" />
+	</definition>
+	
 </tiles-definitions>

@@ -19,6 +19,9 @@ public class ValidatorUtil {
     
     private static final String NUMBER_PATTERN = "^[0-9]*$";
     private static Pattern pattern_number = Pattern.compile(NUMBER_PATTERN);
+    
+    private static final String STRING_PATTERN = "^[a-zA-Z]*$";
+    private static Pattern pattern_string = Pattern.compile(STRING_PATTERN);
 	
 	public static void validateEmail(String fieldName,String email, Errors errors){
 		logger.info("Inizio metodo ValidatorUtil.validateEmail!");
@@ -44,4 +47,11 @@ public class ValidatorUtil {
         }
     }
     
+    public static void validateStringFormat(String fieldName,String number, Errors errors){
+    	logger.info("Inizio metodo ValidatorUtil.validateStringFormat!");
+        matcher = pattern_string.matcher(number);
+        if(!matcher.matches()){
+            errors.rejectValue(fieldName, "field.errorFormat."+fieldName);
+        }
+    }
 }

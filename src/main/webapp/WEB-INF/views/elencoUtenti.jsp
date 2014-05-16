@@ -63,11 +63,11 @@
 								
 								<c:if test="${item.enabled}">
 									<div class="div-table-col-center"><a href="disabilitaUtente?userId=${item.userId}">
-									<img src="resources/img/abilitato.jpg"  width="30" height="20" title="Utente Abilitato"></a></div>
+									<img src="resources/img/abilitato.jpg"  width="20" height="20" title="Utente Abilitato"></a></div>
 								</c:if>
 								<c:if test="${!item.enabled}">
 									<div class="div-table-col-center"><a href="abilitaUtente?userId=${item.userId}">
-									<img src="resources/img/nonAbilitato.jpg"  width="30" height="20" title="Abilita Utente"></a></div>
+									<img src="resources/img/nonAbilitato.jpg"  width="20" height="20" title="Abilita Utente"></a></div>
 								</c:if>
 				<!-- 					<div class="div-table-col-center"><a href="#"><img src="resources/img/inviaPassword.jpg"  width="30" height="20" title="Invia Password"></a></div>
 							<div class="div-table-col-center"><a href="cancellaUtente?userId=${item.userId}"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Utente"></a></div>     -->

@@ -737,7 +737,7 @@ public class GestioneDataBase {
 			return elencoCategorieMac.get(0);	
 		}
 		
-		@Transactional
+		
 		public  Users getUtente(String userId) throws Exception{
 			log.debug("Start GestioneDataBase.getUtente method");
 			
@@ -755,7 +755,27 @@ public class GestioneDataBase {
 			return elencoUtenti.get(0);	
 		}
 		
-		@Transactional
+		public  Users getAdministretor() throws Exception{
+			log.debug("Start GestioneDataBase.getAdministretor method");
+			
+			List<Object[]> elencoUtenti;
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.Users u, com.ddway.anagraficaBS.model.db.anagraficaBS.Authorities a  where u.userId = a.id.userId and a.id.roleId = 1";
+			Users admin;
+			
+			try{		
+				elencoUtenti = (List<Object[]>) dataSourceService.genericquery(query);	
+				if(elencoUtenti == null || elencoUtenti.isEmpty())
+					throw new Exception("Nessun Utente Amministratore trovato ne sistema!");
+				Object[] obj = elencoUtenti.get(0);
+				admin = (Users) obj[0];
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getAdministretor");
+				throw e;
+			}
+			return admin;	
+		}
+		
+		
 		public  DDipartimenti getDipartimento(String codiDipartimento) throws Exception{
 			log.debug("Start GestioneDataBase.getDipartimento method");
 			
@@ -773,7 +793,7 @@ public class GestioneDataBase {
 			return elencoDipartimenti.get(0);	
 		}
 		
-		@Transactional
+		
 		public  List<DServiziFunzioni> getListaAssociazioniFunzioniUtenteBS(String codiBusinessService) throws Exception{
 			log.debug("Start GestioneDataBase.getListaAssociazioniFunzioniUtenteBS method");
 			
@@ -789,7 +809,7 @@ public class GestioneDataBase {
 			return elencoFunzioni;	
 		}
 		
-		@Transactional
+		
 		public  List<DServiziProcessi> getListaAssociazioniProcessiBS(String codiBusinessService, String codiProcesso) throws Exception{
 			log.debug("Start GestioneDataBase.getListaAssociazioniProcessiBS method");
 			
@@ -810,7 +830,7 @@ public class GestioneDataBase {
 			return elencoProcessi;	
 		}
 		
-		@Transactional
+		
 		public  DServiziProcessi getDServiziProcesso(String codiBusinessService,String codiProcesso,String codiCategoriaMac,String codiCategoriaInfr,String dataInizioValidita) throws Exception{
 			log.debug("Start GestioneDataBase.getDServiziProcesso method");
 			

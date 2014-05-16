@@ -52,7 +52,7 @@
 			</div>
 			<div class="div-table-row">
 							<div class="div-table-col"><label for="username"> &nbsp;Nome Utente*:</label></div>
-							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="username" path="username"/></div>
+							<div class="div-table-col"><form:input style="width:200px"  maxlength="150" id="username" path="username" readonly="true"/></div>
 			</div>
 			<div class="div-table-row">
 							<div class="div-table-col"><label for="email"> &nbsp;Indirizzo email*:</label></div>

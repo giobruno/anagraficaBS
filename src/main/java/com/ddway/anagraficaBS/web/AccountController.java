@@ -18,6 +18,7 @@ import com.ddway.anagraficaBS.model.forms.RegistrazioneForm;
 import com.ddway.anagraficaBS.service.IDataSourceService;
 import com.ddway.anagraficaBS.utility.GestioneDataBase;
 import com.ddway.anagraficaBS.utility.GestioneException;
+import com.ddway.anagraficaBS.utility.GestioneMail;
 import com.ddway.anagraficaBS.utility.PopolaModelDb;
 import com.ddway.anagraficaBS.utility.PopolaModelForms;
 import com.ddway.anagraficaBS.web.dto.AccountFormValidator;
@@ -69,6 +70,10 @@ public class AccountController {
 	public ModelAndView registrazione(RegistrazioneForm registrazioneForm, BindingResult errors, ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo AccountController.registrazione!");
 		
+		String messaggio;
+		String oggetto;
+		Users administrator;
+		
 		try{
 			validator.validate(registrazioneForm, errors);
 			if(errors.hasErrors()){
@@ -77,6 +82,10 @@ public class AccountController {
 			}		
 			popolaModelDb.popolaUsersBean(registrazioneForm, user);
 			gestioneDataBase.registraUtente(user);		
+			administrator = (Users) gestioneDataBase.getAdministretor();
+			messaggio = "Salve "+administrator.getNome()+" "+administrator.getCognome()+",\n\nil signor "+user.getNome()+" "+user.getCognome()+" si e' appena registrato al portale 'AnagraficaBS' ed e' in attesa di essere abilitato per effettuare l'accesso.\n\nCordiali Saluti.\n\nassistenza.utilita@tesoro.it ";
+			oggetto= "Registrazione nuovo utente su 'AnagraficaBS''";
+			GestioneMail.sendEmail(administrator.getEmail(), oggetto, messaggio);
 			model.addObject("presenzaMessaggio","si");		
 			model.addObject("message","La registrazione e' avvenuta con successo! Appena riceverai l'email di validazione del tuo account, potrai effettuare l'accesso!");
 			model.setViewName("login");		
@@ -261,12 +270,17 @@ public class AccountController {
 			
 		String userId;
 		String username;
+		String messaggio;
+		String oggetto;
 		
 		try{
 			username = (String) session.getAttribute("username");
 			userId = (String) request.getParameter("userId");
 			Users utente = (Users) gestioneDataBase.getUtente(userId);			
 			gestioneDataBase.abilitaUtente(utente);	
+			messaggio = "Ciao "+utente.getNome()+",\n\nti informiamo che il tuo account registrato al portale 'AnagraficaBS' e' stato attivato! \nAdesso potrai effettuare l'accesso.\n\nCordiali Saluti.\n\nassistenza.utilita@tesoro.it ";
+			oggetto= "Abilitazione account portale 'AnagraficaBS'";
+			GestioneMail.sendEmail(utente.getEmail(), oggetto, messaggio);
 			model.addObject("presenzaMessaggio","si");		
 			model.addObject("message","L' utente "+utente.getNome()+" "+utente.getCognome()+" e' stato abilitato!");
 			List<Users> utentiList = (List<Users>) gestioneDataBase.getElencoUtenti(username);
@@ -325,6 +339,25 @@ public class AccountController {
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.cancellaUtente");
+			gestioneException.gestisciException(model, e,"");
+		}
+		return model;
+	}
+	
+	@RequestMapping(value="/richiestaDatiAccessoForm", method = RequestMethod.GET)
+	public ModelAndView richiestaDatiAccessoForm(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
+		logger.info("Inizio metodo AccountController.richiestaDatiAccessoForm!");
+			
+		String userId;
+		String username;
+		
+		try{
+			model.addObject("presenzaMessaggio","si");		
+			model.addObject("message","La tua richiesta e' stata inoltrata! A breve riceverai un'email all'indirizzo di posta elettronica utilizzato per registrarti, con i tuoi dati di accesso.");
+			model.setViewName("login");
+		}catch(Exception e){
+			e.printStackTrace();
+			logger.error(e.getMessage()+" on AccountController.richiestaDatiAccessoForm");
 			gestioneException.gestisciException(model, e,"");
 		}
 		return model;
