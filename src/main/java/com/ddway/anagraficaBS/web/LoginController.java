@@ -48,6 +48,7 @@ public class LoginController {
 			session.setAttribute("username", user.getUsername());
 			users = (Users) gestioneDataBase.getUtenteByUserName(user.getUsername());
 			session.setAttribute("utente", users.getNome()+" "+users.getCognome());
+			session.setAttribute("user", users);
 			gestioneControlli.controlloValiditaModelAplicativi(session);
 			model.setViewName("forward:/visualizzaElencoBusinessServices");
 		}catch(Exception e){

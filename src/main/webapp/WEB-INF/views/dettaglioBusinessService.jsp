@@ -56,12 +56,8 @@
 								<div class="div-table-row">			
 									<div class="div-table-col"><p class="visualizzaDesc">Codice</p></div>			 
 									<div class="div-table-col"><p class="visualizzaDesc">Nome</p></div>						
-									<div class="div-table-col"><p class="visualizzaDesc">Descrizione</p></div>
-									<div class="div-table-col"><p class="visualizzaDesc">Responsabile</p></div>
-									<div class="div-table-col"><p class="visualizzaDesc">Url</p></div>						
-									<div class="div-table-col"><p class="visualizzaDesc">Dipartimento</p></div>
-									<div class="div-table-col"><p class="visualizzaDesc">Model applicativo</p></div>
-									<div class="div-table-col"><p class="visualizzaDesc">Presenza convenzione</p></div>
+									<div class="div-table-col"><p class="visualizzaDesc">Descrizione</p></div>									
+									<div class="div-table-col"><p class="visualizzaDesc">Convenzione</p></div>
 														
 								</div>
 							<div class="div-table-row">
@@ -72,13 +68,28 @@
 						<div class="div-table-row">							 
 									<div class="div-table-col"><p>${businessService.codiBusinessService}</p></div>
 									<div class="div-table-col"><p>${businessService.textNomeBusinessService}</p></div>						
-									<div class="div-table-col"><p>${businessService.descBusinessService}</p></div>
+									<div class="div-table-col"><p>${businessService.descBusinessService}</p></div>									
+									<div class="div-table-col"><p>${businessService.flagConvenzione ? 'SI' : 'NO'}</p></div> 
+						</div>
+						
+						<div class="div-table-row">										
+									<div class="div-table-col"><p class="visualizzaDesc">Responsabile</p></div>
+									<div class="div-table-col"><p class="visualizzaDesc">Url</p></div>						
+									<div class="div-table-col"><p class="visualizzaDesc">Dipartimento</p></div>
+									<div class="div-table-col"><p class="visualizzaDesc">Model applicativo</p></div>													
+								</div>
+							<div class="div-table-row">
+								<div class="div-table-col">
+								</div>
+							</div>		
+							
+						<div class="div-table-row">										
 									<div class="div-table-col"><p>${businessService.persRespBusinessService}</p></div>
 									<div class="div-table-col"><p>${businessService.textUrlBusinessService}</p></div>						
 									<div class="div-table-col"><p>${businessService.textSiglaDipartimento}</p></div>
-									<div class="div-table-col"><p>${businessService.descModelApplicativo}</p></div>
-									<div class="div-table-col"><p>${businessService.flagConvenzione ? 'SI' : 'NO'}</p></div> 
+									<div class="div-table-col"><p>${businessService.descModelApplicativo}</p></div>									
 						</div>
+						
 						</div> 
 		 </fieldset>					
 					  </div>
@@ -141,7 +152,9 @@
 									<div class="div-table-row">							 
 										<div class="div-table-col"><p class="visualizzaDesc">&nbsp;</p></div>	
 										<div class="div-table-col"><p class="visualizzaDesc">Codice</p></div>
-										<div class="div-table-col"><p class="visualizzaDesc">Processo</p></div>					
+										<div class="div-table-col"><p class="visualizzaDesc">Processo</p></div>		
+										<div class="div-table-col"><p class="visualizzaDesc">Categoria Mac</p></div>
+										<div class="div-table-col"><p class="visualizzaDesc">Categoria Infr</p></div>			
 										<div class="div-table-col-center"><p class="visualizzaDesc">Modifica</p></div>
 										<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>
 															
@@ -155,7 +168,9 @@
 								<div class="div-table-row">				
 									<div class="div-table-col"><c:if test="${item.dataFineValidita != null}"><label><img src="resources/img/bulb-icon.png" title="Attenzione! Il processo '${item.textSiglaProcesso}' risulta non piu' valido! " alt="Alert Processo"></label></c:if></div>
 									<div class="div-table-col">${item.codiProcesso}</div>
-									<div class="div-table-col">${item.textSiglaProcesso}</div>								
+									<div class="div-table-col">${item.textSiglaProcesso}</div>	
+									<div class="div-table-col">${item.descCategoriaMac}</div>	
+									<div class="div-table-col">${item.descCategoriaInfr}</div>								
 									<div class="div-table-col-center"><a href="modificaAssociazioneBSProcessoForm?codiProcesso=${item.codiProcesso}&codiBusinessService=${businessService.codiBusinessService}&codiCategoriaMac=${item.codiCategoriaMac}&codiCategoriaInfr=${item.codiCategoriaInfr}&dataInizioValidita=${item.dataInizioValidita}"><img src="resources/img/iconeModifica2.jpg"  width="30" height="20" title="Modifica Business Service"></a></div>
 									<div class="div-table-col-center"><a href="cancellaAssociazioneBSProcesso?codiProcesso=${item.codiProcesso}&codiBusinessService=${businessService.codiBusinessService}&codiCategoriaMac=${item.codiCategoriaMac}&codiCategoriaInfr=${item.codiCategoriaInfr}&dataInizioValidita=${item.dataInizioValidita}" onclick="return conferma('Sei sicuro di voler cancellare questo processo?')"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Business Service"></a></div>
 								</div>

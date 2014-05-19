@@ -369,19 +369,10 @@ public class GestioneDataBase {
 		
 		@Transactional
 		public void inserisciAssociazioneBSProcesso(DServiziProcessi dServiziProcessi) throws Exception{
-			log.info("Inizio metodo GestioneDataBase.inserisciAssociazioneBSProcesso!");		
-			
-			List<DServiziProcessi> dServiziProcessoGiaPresente;
-			String query;
+			log.info("Inizio metodo GestioneDataBase.inserisciAssociazioneBSProcesso!");				
 			
 			try{
-				query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiBusinessService = '"+dServiziProcessi.getId().getCodiBusinessService()+"' and tab.id.codiProcesso = '"+dServiziProcessi.getId().getCodiProcesso()+"' and tab.id.codiCategoriaMac = '"+dServiziProcessi.getId().getCodiCategoriaMac()+"' and tab.id.codiCategoriaInfr = '"+dServiziProcessi.getId().getCodiCategoriaInfr()+"'";
-				dServiziProcessoGiaPresente = (List<DServiziProcessi>) dataSourceService.genericquery(query);
-				if(dServiziProcessoGiaPresente != null && !dServiziProcessoGiaPresente.isEmpty()){
-					if(dServiziProcessoGiaPresente.get(0).getDataFineValidita() != null)
-						dataSourceService.insert(dServiziProcessi);
-				}
-				else dataSourceService.insert(dServiziProcessi);				
+				 dataSourceService.insert(dServiziProcessi);				
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.inserisciAssociazioneBSProcesso");
 				throw e;
@@ -506,13 +497,16 @@ public class GestioneDataBase {
 		}
 		
 		
-		public  List<DBusinessServices> getElencoBusinessServices(String responsabile) throws Exception{
+		public  List<DBusinessServices> getElencoBusinessServices(Users utente, String role) throws Exception{
 			log.debug("Start GestioneDataBase.getElencoBusinessServices method");
 			
 			List<DBusinessServices> elencoBusinessServices;
-			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null and tab.persRespBusinessService = '"+responsabile+"' order by tab.codiBusinessService";
+			String query; 
 			
 			try{		
+				if(role.equalsIgnoreCase("admin"))
+					query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null  order by tab.codiBusinessService";
+				else query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null and tab.persRespBusinessService = '"+utente.getNome()+" "+utente.getCognome()+"' order by tab.codiBusinessService";
 				elencoBusinessServices = (List<DBusinessServices>) dataSourceService.genericquery(query);								
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.getElencoBusinessServices");
@@ -605,9 +599,28 @@ public class GestioneDataBase {
 			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.Users tab where tab.username = '"+username+"'";
 			
 			try{		
-				elencoUtenti = (List<Users>) dataSourceService.genericquery(query);								
+				elencoUtenti = (List<Users>) dataSourceService.genericquery(query);	
+				if(elencoUtenti == null || elencoUtenti.isEmpty())
+					return null;
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.getUtenteByUserName");
+				throw e;
+			}
+			return elencoUtenti.get(0);	
+		}
+		
+		public  Users getUtenteByEmail(String email) throws Exception{
+			log.debug("Start GestioneDataBase.getUtenteByEmail method");
+			
+			List<Users> elencoUtenti;
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.Users tab where tab.email = '"+email+"'";
+			
+			try{		
+				elencoUtenti = (List<Users>) dataSourceService.genericquery(query);	
+				if(elencoUtenti == null || elencoUtenti.isEmpty())
+					return null;
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getUtenteByEmail");
 				throw e;
 			}
 			return elencoUtenti.get(0);	
@@ -791,6 +804,23 @@ public class GestioneDataBase {
 				throw e;
 			}
 			return elencoDipartimenti.get(0);	
+		}
+		
+		public List<Authorities> getAuthorities(Users utente) throws Exception{
+			log.debug("Start GestioneDataBase.getAuthorities method");
+			
+			List<Authorities> elencoAuthorities;
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.Authorities tab where tab.id.userId = '"+utente.getUserId()+"'";
+			
+			try{		
+				elencoAuthorities = (List<Authorities>) dataSourceService.genericquery(query);	
+				if(elencoAuthorities == null || elencoAuthorities.isEmpty())
+					throw new Exception("Nessun Ruolo trovato con il codice "+utente.getUserId());						
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getAuthorities");
+				throw e;
+			}
+			return elencoAuthorities;	
 		}
 		
 		

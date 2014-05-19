@@ -20,12 +20,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ddway.anagraficaBS.model.bean.AssociazioneBSProcessoBean;
 import com.ddway.anagraficaBS.model.bean.BusinessServiceBean;
 import com.ddway.anagraficaBS.model.bean.TriplaInfap;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Authorities;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziModel;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
+import com.ddway.anagraficaBS.model.forms.AssociazioneBSFunzUtenteForm;
 import com.ddway.anagraficaBS.model.forms.BusinessServiceForm;
 import com.ddway.anagraficaBS.model.forms.ElencoFunzioniForm;
 import com.ddway.anagraficaBS.model.forms.RicercaFunzioniUtenteForm;
@@ -175,6 +178,58 @@ public class BusinessServiceController {
 		return model; 
 	}
 	
+	@RequestMapping(value="/formSelezioneBS", method = RequestMethod.GET)
+	public ModelAndView formSelezioneBS(ModelAndView model,HttpSession session, HttpServletRequest request) { 
+		logger.info("Inizio metodo BusinessServiceController.formSelezioneBS!");		
+		
+		List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();
+		Users utente;
+		List<Authorities> authorities;
+		String role = "standard";
+		
+		utente = (Users) session.getAttribute("user");
+		try{
+			authorities = gestioneDataBase.getAuthorities(utente);
+			if(authorities.size() == 2)
+				role = "admin";
+				List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(utente,role);
+			if(businessServiceList == null || businessServiceList.isEmpty()){
+				model.addObject("presenzaMessaggio","si");
+				model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");
+			}						
+			model.addObject("associazioneBSFunzUtenteForm", new AssociazioneBSFunzUtenteForm());
+			model.addObject("businessServiceList", businessServiceList);
+			model.setViewName("selezioneBS");			
+		}catch(Exception e){
+			e.printStackTrace();
+			logger.error(e.getMessage()+" on BusinessServiceController.formSelezioneBS");
+			gestioneException.gestisciException(model, e,"");
+		}		
+		return model; 
+	}
+	
+	@RequestMapping(value="/selezioneBS", method = RequestMethod.GET, params="Avanti")
+	public ModelAndView selezioneBS(AssociazioneBSFunzUtenteForm associazioneBSFunzUtenteForm,ModelAndView model,HttpSession session, HttpServletRequest request) { 
+		logger.info("Inizio metodo BusinessServiceController.selezioneBS!");			
+		
+		try{			
+			model.setViewName("forward:/formRicercaFunzioniUtente?codiBusinessService="+associazioneBSFunzUtenteForm.getCodiBusinessService());			
+		}catch(Exception e){
+			e.printStackTrace();
+			logger.error(e.getMessage()+" on BusinessServiceController.selezioneBS");
+			gestioneException.gestisciException(model, e,"");
+		}		
+		return model; 
+	}
+	
+	@RequestMapping(value="/selezioneBS", method = RequestMethod.GET, params="Annulla")
+	public ModelAndView selezioneBSAnnulla(ModelAndView model) throws Exception { 
+		logger.info("Inizio metodo BusinessServiceController.selezioneBSAnnulla!");			
+
+		model.setViewName("forward:/visualizzaElencoBusinessServices");
+		return model; 
+	}
+	
 	@RequestMapping(value="/formRicercaFunzioniUtente", method = RequestMethod.GET)
 	public ModelAndView formRicercaFunzioniUtente(ModelAndView model,HttpSession session, HttpServletRequest request) { 
 		logger.info("Inizio metodo BusinessServiceController.formRicercaFunzioniUtente!");		
@@ -263,10 +318,11 @@ public class BusinessServiceController {
 			gestioneDataBase.inserisciAssociazioniBSFunzUtente(dServiziFunzioniList);
 			selectboxes = caricaSelect.getSelectsRicercaFunzioniUtenteForm("formRicercaFunzioniUtente");			
 			model.addAllObjects(selectboxes);
-			model.addObject("dServiziFunzioniListAssociate",dServiziFunzioniList);	
+			List<DServiziFunzioni> hallDServiziFunzioniList = gestioneDataBase.getListaAssociazioniFunzioniUtenteBS(codiBusinessService.toString());
+			model.addObject("dServiziFunzioniListAssociate",hallDServiziFunzioniList);	
 			model.addObject("ricercaFunzioniUtenteForm", new RicercaFunzioniUtenteForm());			
 			model.addObject("presenzaMessaggio","si");
-			model.addObject("message","Le seguenti Funzioni Utente sono state associate!");
+			model.addObject("message","Le Funzioni Utente sono state associate con successo!");
 			model.setViewName("ricercaFunzioniUtente");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -328,12 +384,19 @@ public class BusinessServiceController {
 	public ModelAndView visualizzaElencoBusinessServices(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.visualizzaElencoBusinessServices!");			
 		
+		session.removeAttribute("codiBusinessService");
+		session.removeAttribute("businessServiceList");
 		List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();
-		String responsabile;
+		Users utente;
+		List<Authorities> authorities;
+		String role = "standard";
 		
-		responsabile = (String) session.getAttribute("utente");
-		try{			
-			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(responsabile);
+		utente = (Users) session.getAttribute("user");
+		try{
+			authorities = gestioneDataBase.getAuthorities(utente);
+			if(authorities.size() == 2)
+				role = "admin";
+				List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(utente,role);
 			if(businessServiceList == null || businessServiceList.isEmpty()){
 				model.addObject("presenzaMessaggio","si");
 				model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");

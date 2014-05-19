@@ -3,9 +3,9 @@
 
 <body>
 
-<div class="Content bgA3">	
+<div class="ContentHome bgA3">	
    
-	<form:form name='form' action="richiestaDatiAccesso" method='GET' commandName="emailForm">
+	<form:form name='form' action="richiestaDatiAccesso" method='GET' commandName="accountForm">
 	
 	<div class="div-table">
 	
@@ -33,6 +33,15 @@
  	<div class="div-table-centrata"> 	 	
  	 <div class="div-table-row">
  	 <p class="erroreForm"><form:errors path="*"/> </p>
+ 	 <div class="div-table-row">
+					<c:if test="${presenzaMessaggio == 'si'}" >
+							<div class="div-table-row">
+								<div class="div-table-col">
+										<p class="visualizzaForm" style="color:red;">${message}</p>
+								</div>
+							</div>
+							</c:if>
+							</div>
  	 
  	 <br/>
  	 

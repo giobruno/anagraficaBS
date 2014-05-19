@@ -7,7 +7,9 @@ public class AssociazioneBSProcessoBean {
 	private int codiBusinessService;
 	private int codiProcesso;
 	private int codiCategoriaMac;
+	private String descCategoriaMac;
 	private int codiCategoriaInfr;
+	private String descCategoriaInfr;
 	private Date dataInizioValidita;	
 	private String textSiglaProcesso;
 	private String dataFineValidita;
@@ -18,7 +20,9 @@ public class AssociazioneBSProcessoBean {
 	public AssociazioneBSProcessoBean(int codiBusinessService,
 										int codiProcesso,
 										int codiCategoriaMac,
+										String descCategoriaMac,
 										int codiCategoriaInfr,
+										String descCategoriaInfr,
 										Date dataInizioValidita,	
 										String textSiglaProcesso,
 										String dataFineValidita,String descProcesso){
@@ -26,6 +30,8 @@ public class AssociazioneBSProcessoBean {
 		this.codiBusinessService = codiBusinessService;
 		this.codiCategoriaInfr = codiCategoriaInfr;
 		this.codiCategoriaMac = codiCategoriaMac;
+		this.descCategoriaMac = descCategoriaMac;
+		this.descCategoriaInfr = descCategoriaInfr;
 		this.codiProcesso = codiProcesso;
 		this.dataFineValidita = dataFineValidita;
 		this.dataInizioValidita = dataInizioValidita;
@@ -34,6 +40,22 @@ public class AssociazioneBSProcessoBean {
 	}
 	
 	
+	public String getDescCategoriaMac() {
+		return descCategoriaMac;
+	}
+
+	public void setDescCategoriaMac(String descCategoriaMac) {
+		this.descCategoriaMac = descCategoriaMac;
+	}
+
+	public String getDescCategoriaInfr() {
+		return descCategoriaInfr;
+	}
+
+	public void setDescCategoriaInfr(String descCategoriaInfr) {
+		this.descCategoriaInfr = descCategoriaInfr;
+	}
+
 	public String getDescProcesso() {
 		return descProcesso;
 	}

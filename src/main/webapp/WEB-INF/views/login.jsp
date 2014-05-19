@@ -88,7 +88,7 @@
 					</div>
 					<div class="div-table-row">
 						<div class="div-table-col">
-									<p class="visualizzaForm">Hai dimenticato i dati per accedere al sistema? <a href="richiestaDatiAccesso">Richiedili subito!</a></p>
+									<p class="visualizzaForm">Hai dimenticato i dati per accedere al sistema? <a href="richiestaDatiAccessoForm">Richiedili subito!</a></p>
 					</div>
 					</div>	
 			

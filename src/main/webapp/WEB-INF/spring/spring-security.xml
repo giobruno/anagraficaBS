@@ -22,6 +22,8 @@
 		<intercept-url pattern="/resources/**" access="permitAll" />		
 		<intercept-url pattern="/formRegistrazione" access="permitAll" />
 		<intercept-url pattern="/registrazione" access="permitAll" />
+		<intercept-url pattern="/richiestaDatiAccessoForm" access="permitAll" />
+		<intercept-url pattern="/richiestaDatiAccesso" access="permitAll" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
 		
 	<!-- 	<intercept-url pattern="/formBusinessService" access="hasRole('STANDARD')" />

@@ -24,19 +24,18 @@ public class AccountFormValidator implements Validator {
     	
     	AccountForm form = (AccountForm) target;
     	
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "field.required.nome", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cognome", "field.required.cognome", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "field.required.username", "Required field");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required.email", "Required field");      
-        
-        ValidatorUtil.validateEmail("email",form.getEmail(), errors);  
-//        validatePasswordFormat("password",form.getPassword(),errors);
-//
-//        if(StringUtils.hasText(form.getPassword()) && StringUtils.hasText(form.getConfermaPassword())) {
-//        	
-//        	if(!form.getPassword().equalsIgnoreCase(form.getConfermaPassword())){
-//                errors.rejectValue("Password", "field.confirmPassword.different");
-//            }
-//        }
+    	if(form.getNome() != null){
+	        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "field.required.nome", "Required field");
+	        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cognome", "field.required.cognome", "Required field");
+	        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "field.required.username", "Required field");
+	        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required.email", "Required field");   
+	        if(!form.getEmail().equalsIgnoreCase(""))
+	        	ValidatorUtil.validateEmail("email",form.getEmail(), errors);  
+    	}
+    	else {
+    		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required.email", "Required field"); 
+    		if(!form.getEmail().equalsIgnoreCase(""))
+    			ValidatorUtil.validateEmail("email",form.getEmail(), errors);
+    	}
        }
 }

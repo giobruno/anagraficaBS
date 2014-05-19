@@ -37,7 +37,7 @@
 		<div class="div-table">		
 			
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiArea"> <img src="resources/img/query.png" alt="" title="">&nbsp;Filtra per Area*:</label></div>
+			<div class="div-table-col"><label for="codiArea">&nbsp;Filtra per Area*:</label></div>
 			<div class="div-table-col">
 								<form:select  path="codiArea" id="codiArea" name="codiArea" style="width:180px">
 									<form:option value="" label="--" />
@@ -48,7 +48,7 @@
 								</form:select>
 							</div>							
 		
-			<div class="div-table-col"><label for="codiApplicazione"> <img src="resources/img/query.png" alt="" title="">&nbsp;Filtra per Applicazione:</label></div>
+			<div class="div-table-col"><label for="codiApplicazione">&nbsp;Filtra per Applicazione:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiApplicazione" id="codiApplicazione" name="codiApplicazione" style="width:180px">
 									<form:option value="" label="--" />
@@ -119,9 +119,9 @@
 						<div class="div-table">
 								<br/>
 								<div class="div-table-row">						
-									<div class="div-table-col-center"><p class="visualizzaDesc">Area</p></div>	
-									<div class="div-table-col-center"><p class="visualizzaDesc">Applicazione</p></div>		 
-									<div class="div-table-col-center"><p class="visualizzaDesc">Funzione Utente</p></div>									
+									<div class="div-table-col"><p class="visualizzaDesc">Area</p></div>	
+									<div class="div-table-col"><p class="visualizzaDesc">Applicazione</p></div>		 
+									<div class="div-table-col"><p class="visualizzaDesc">Funzione Utente</p></div>									
 								<!--  	<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>   	-->		 											
 								</div>
 							<div class="div-table-row">
@@ -131,9 +131,9 @@
 							
 							<c:forEach items="${dServiziFunzioniListAssociate}" var="item" >
 							<div class="div-table-row">				
-										<div class="div-table-col-center">${item.descArea}</div>	
-										<div class="div-table-col-center">${item.descApplicazione}</div>	
-										<div class="div-table-col-center">${item.descFunzione}</div>								
+										<div class="div-table-col">${item.descArea}</div>	
+										<div class="div-table-col">${item.descApplicazione}</div>	
+										<div class="div-table-col">${item.descFunzione}</div>								
 							<!-- 	<div class="div-table-col-center"><a href="cancellaAssociazioneFunzioneUtente?codiFunzione=${item.id.codiFunzione}&codiArea=${item.id.codiArea}&codiApplicazione=${item.id.codiApplicazione}&codiBusinessService=${item.id.codiBusinessService}&dataInizioAssociazione=${item.id.dataInizioAssociazione}"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Funzione Utente"></a></div>  -->
 							</div>
 							</c:forEach>

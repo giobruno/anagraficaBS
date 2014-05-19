@@ -54,7 +54,7 @@
 									<form:option value="" label="--" />
 									<form:options items="${codiProcessoList}" 
 										itemValue="codiProcesso"
-										itemLabel="descProcesso" />										
+										itemLabel="textSiglaProcesso" />										
 								</form:select>
 							</div>							
 		</div>

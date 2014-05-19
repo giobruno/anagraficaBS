@@ -20,9 +20,7 @@ public class AssociazioneBSProcessoFormValidator implements Validator {
     }
 
     public void validate(Object target, Errors errors) {
-    	logger.info("Inizio metodo AssociazioneBSInfapFormValidator.validate!");
-    	
-    	String regexNumber = "^[0-9]$";
+    	logger.info("Inizio metodo AssociazioneBSInfapFormValidator.validate!");    	
     	
     	AssociazioneBSProcessoForm form = (AssociazioneBSProcessoForm) target;    	
     	
@@ -37,14 +35,18 @@ public class AssociazioneBSProcessoFormValidator implements Validator {
         if(!form.getMisuTmpLavorativoOre().equalsIgnoreCase(""))
         	ValidatorUtil.validateNumberFormat("misuTmpLavorativoOre", form.getMisuTmpLavorativoOre(), errors);
         
-        if(!form.getMisuTmpLavorativoMinuti().equalsIgnoreCase(""))
+        if(!form.getMisuTmpLavorativoMinuti().equalsIgnoreCase("")){
         	ValidatorUtil.validateNumberFormat("misuTmpLavorativoMinuti", form.getMisuTmpLavorativoMinuti(), errors);
-        
+        	if(Integer.parseInt(form.getMisuTmpLavorativoMinuti()) < 0 || Integer.parseInt(form.getMisuTmpLavorativoMinuti()) > 59)
+        		errors.rejectValue("misuTmpLavorativoMinuti", "field.misuTmpLavorativoMinuti.maxError","field.required");
+        	}        
         if(!form.getMisuTmpSolareOre().equalsIgnoreCase(""))
         	ValidatorUtil.validateNumberFormat("misuTmpSolareOre", form.getMisuTmpSolareOre(), errors);
         
-        if(!form.getMisuTmpSolareMinuti().equalsIgnoreCase(""))
+        if(!form.getMisuTmpSolareMinuti().equalsIgnoreCase("")){
         	ValidatorUtil.validateNumberFormat("misuTmpSolareMinuti", form.getMisuTmpSolareMinuti(), errors);
-        
+        	if(Integer.parseInt(form.getMisuTmpSolareMinuti()) < 0 || Integer.parseInt(form.getMisuTmpSolareMinuti()) > 59)
+        		errors.rejectValue("misuTmpSolareMinuti", "field.misuTmpSolareMinuti.maxError","field.required");
+        	}        
        }
 }

@@ -68,6 +68,9 @@ public class PopolaModelForms {
 	public void popolaAssociazioneBSProcessoForm(DServiziProcessi dServiziProcessi,AssociazioneBSProcessoForm associazioneBSProcessoForm) throws Exception{
 		log.info("Inizio metodo PopolaModelForms.popolaAssociazioneBSProcessoForm!");
 		
+		String misuTmpLavorativoOre;
+		String misuTmpSolareOre;
+		
 		try{
 			if(dServiziProcessi != null && associazioneBSProcessoForm != null){
 				associazioneBSProcessoForm.setCodiBusinessServiceOld(dServiziProcessi.getDBusinessServices().getCodiBusinessService()+"");
@@ -78,11 +81,13 @@ public class PopolaModelForms {
 				associazioneBSProcessoForm.setOrarioLavIniOre(dServiziProcessi.getOrarioLavIni().getHours()+"");	
 				associazioneBSProcessoForm.setOrarioLavIniMinuti(dServiziProcessi.getOrarioLavIni().getMinutes()+"");
 				associazioneBSProcessoForm.setOrarioLavFineOre(dServiziProcessi.getOrarioLavFine().getHours()+"");	
-				associazioneBSProcessoForm.setOrarioLavFineMinuti(dServiziProcessi.getOrarioLavFine().getMinutes()+"");				
-				associazioneBSProcessoForm.setMisuTmpLavorativoMinuti(dServiziProcessi.getMisuTmpLavorativo().toString());
-				associazioneBSProcessoForm.setMisuTmpLavorativoOre("");				
-				associazioneBSProcessoForm.setMisuTmpSolareMinuti(dServiziProcessi.getMisuTmpSolare().toString());
-				associazioneBSProcessoForm.setMisuTmpSolareOre("");
+				associazioneBSProcessoForm.setOrarioLavFineMinuti(dServiziProcessi.getOrarioLavFine().getMinutes()+"");		
+				misuTmpLavorativoOre = Math.floor(dServiziProcessi.getMisuTmpLavorativo()/60)+"";
+				associazioneBSProcessoForm.setMisuTmpLavorativoMinuti(dServiziProcessi.getMisuTmpLavorativo()%60+"");
+				associazioneBSProcessoForm.setMisuTmpLavorativoOre(misuTmpLavorativoOre.substring(0,misuTmpLavorativoOre.length()-2));	
+				misuTmpSolareOre = Math.floor(dServiziProcessi.getMisuTmpSolare()/60)+"";
+				associazioneBSProcessoForm.setMisuTmpSolareMinuti(dServiziProcessi.getMisuTmpSolare()%60+"");
+				associazioneBSProcessoForm.setMisuTmpSolareOre(misuTmpSolareOre.substring(0,misuTmpSolareOre.length()-2));
 			}			
 		}catch(Exception e){
 			log.error(e.getMessage()+" on PopolaModelForms.popolaAssociazioneBSProcessoForm!");
@@ -103,7 +108,7 @@ public class PopolaModelForms {
 			throw e;
 		}		
 	}
-	
+	@Transactional
 	public void popolaAssociazioneBSProcessoBeanList(List<DServiziProcessi> dserviziProcessiList,List<AssociazioneBSProcessoBean> associazioneBSProcessoBeanList) throws Exception{
 		log.info("Inizio metodo PopolaModelForms.popolaAssociazioneBSProcessoBeanList!");
 		
@@ -118,7 +123,9 @@ public class PopolaModelForms {
 					dServiziProcessi = (DServiziProcessi) itr.next();
 					associazioneBSProcessoBean.setCodiBusinessService(dServiziProcessi.getId().getCodiBusinessService());
 					associazioneBSProcessoBean.setCodiCategoriaInfr(dServiziProcessi.getId().getCodiCategoriaInfr());
+					associazioneBSProcessoBean.setDescCategoriaInfr(dServiziProcessi.getDCategorieInfr().getDescCategoriaInfr());
 					associazioneBSProcessoBean.setCodiCategoriaMac(dServiziProcessi.getId().getCodiCategoriaMac());
+					associazioneBSProcessoBean.setDescCategoriaMac(dServiziProcessi.getDCategorieMac().getDescCategoriaMac());
 					associazioneBSProcessoBean.setCodiProcesso(dServiziProcessi.getId().getCodiProcesso());
 					associazioneBSProcessoBean.setDataInizioValidita(dServiziProcessi.getId().getDataInizioValidita());
 					associazioneBSProcessoBean.setDataFineValidita(dServiziProcessi.getDProcessi().getDataFineValidita() == null ? null: dServiziProcessi.getDProcessi().getDataFineValidita()+"");					

@@ -21,6 +21,7 @@ import com.ddway.anagraficaBS.utility.GestioneException;
 import com.ddway.anagraficaBS.utility.GestioneMail;
 import com.ddway.anagraficaBS.utility.PopolaModelDb;
 import com.ddway.anagraficaBS.utility.PopolaModelForms;
+import com.ddway.anagraficaBS.validation.Validator;
 import com.ddway.anagraficaBS.web.dto.AccountFormValidator;
 import com.ddway.anagraficaBS.web.dto.ModificaPasswordFormValidator;
 import com.ddway.anagraficaBS.web.dto.RegistrazioneFormValidator;
@@ -34,7 +35,7 @@ public class AccountController {
 	IDataSourceService dataSourceService;
 	
 	@Autowired
-	RegistrazioneFormValidator validator;
+	RegistrazioneFormValidator registrazioneFormValidator;
 	
 	@Autowired
 	AccountFormValidator accountFormValidator;
@@ -56,6 +57,9 @@ public class AccountController {
 	
 	@Autowired
 	ModificaPasswordFormValidator modificaPasswordFormValidator;
+	
+	@Autowired
+	Validator validator;
  
 	@RequestMapping(value="/formRegistrazione", method = RequestMethod.GET)
 	public ModelAndView formRegistrazione(ModelAndView model, HttpSession session, HttpServletRequest request) { 
@@ -75,7 +79,9 @@ public class AccountController {
 		Users administrator;
 		
 		try{
-			validator.validate(registrazioneForm, errors);
+			registrazioneFormValidator.validate(registrazioneForm, errors);
+			if(!errors.hasErrors())
+				validator.controlloUtenteGiaPresente(registrazioneForm,errors);
 			if(errors.hasErrors()){
 				model.setViewName("registrazione");
 				return model;
@@ -348,13 +354,10 @@ public class AccountController {
 	public ModelAndView richiestaDatiAccessoForm(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo AccountController.richiestaDatiAccessoForm!");
 			
-		String userId;
-		String username;
-		
-		try{
-			model.addObject("presenzaMessaggio","si");		
-			model.addObject("message","La tua richiesta e' stata inoltrata! A breve riceverai un'email all'indirizzo di posta elettronica utilizzato per registrarti, con i tuoi dati di accesso.");
-			model.setViewName("login");
+				
+		try{	
+			model.addObject("accountForm",new AccountForm());
+			model.setViewName("recuperoDatiAccesso");
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.richiestaDatiAccessoForm");
@@ -364,16 +367,32 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/richiestaDatiAccesso", method = RequestMethod.GET)
-	public ModelAndView richiestaDatiAccesso(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
+	public ModelAndView richiestaDatiAccesso(AccountForm accountForm,BindingResult errors,ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo AccountController.richiestaDatiAccesso!");
-			
-		String userId;
-		String username;
+		
+		Users user;
+		String oggetto;
+		String messaggio;
 		
 		try{
-			model.addObject("presenzaMessaggio","si");		
-			model.addObject("message","La tua richiesta e' stata inoltrata! A breve riceverai un'email all'indirizzo di posta elettronica utilizzato per registrarti, con i tuoi dati di accesso.");
-			model.setViewName("login");
+			accountFormValidator.validate(accountForm, errors);
+			if(errors.hasErrors()){
+				model.setViewName("recuperoDatiAccesso");
+				return model;
+				}
+			user = gestioneDataBase.getUtenteByEmail(accountForm.getEmail());
+			if(user == null){
+				model.addObject("message","Non risulta nessun utente registrato con l'email inserita! Assicurarsi di aver inserito l'email giusta!");
+				model.setViewName("recuperoDatiAccesso");
+			}
+			else {
+				messaggio = "Salve "+user.getNome()+" "+user.getCognome()+",\n\ndi seguito i dati del tuo account per accedere al portale 'AnagraficaBS':\n\n nome utente: '"+user.getUsername()+"'\n\npassword: '"+user.getPassword()+"'\n\nCordiali Saluti.\n\nassistenza.utilita@tesoro.it ";
+				oggetto= "Recupero dati account AnagraficaBS";
+				GestioneMail.sendEmail(user.getEmail(), oggetto, messaggio);
+				model.addObject("message","La tua richiesta e' stata inoltrata! A breve riceverai un'email con i tuoi dati di accesso.");
+				model.setViewName("login");
+			}				
+			model.addObject("presenzaMessaggio","si");					
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on AccountController.richiestaDatiAccesso");

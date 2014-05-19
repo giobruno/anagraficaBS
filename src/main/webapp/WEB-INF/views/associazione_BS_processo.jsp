@@ -65,7 +65,7 @@
 									<form:option value="00" label="--" />
 									<form:options items="${codiCategoriaMacList}" 
 										itemValue="codiCategoriaMac"
-										itemLabel="descCategoriaMac" />										
+										itemLabel="codiDescCategoriaMac" />										
 								</form:select>
 							</div>							
 		</div>
