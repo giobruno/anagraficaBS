@@ -131,17 +131,11 @@ public class ProcessiController {
 		HashMap<String, List> selectboxes;
 		AssociazioneBSProcessoForm associazioneBSProcessoForm = new AssociazioneBSProcessoForm();
 		String codiBusinessService;
-		List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();
-		Users utente;
-		List<Authorities> authorities;
-		String role = "standard";
+		List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();		
+		List<DBusinessServices> businessServiceList;
 		
-		utente = (Users) session.getAttribute("user");		
 		try{
-			authorities = gestioneDataBase.getAuthorities(utente);
-			if(authorities.size() == 2)
-				role = "admin";
-				List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(utente,role);
+			businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(session);
 			if(businessServiceList == null || businessServiceList.isEmpty()){
 				model.addObject("presenzaMessaggio","si");
 				model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");
@@ -191,7 +185,7 @@ public class ProcessiController {
 				model.setViewName("associazione_BS_processo");
 				return model;
 			}			
-			query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiBusinessService = '"+dServiziProcessi.getId().getCodiBusinessService()+"' and tab.id.codiProcesso = '"+dServiziProcessi.getId().getCodiProcesso()+"' and tab.id.codiCategoriaMac = '"+dServiziProcessi.getId().getCodiCategoriaMac()+"' and tab.id.codiCategoriaInfr = '"+dServiziProcessi.getId().getCodiCategoriaInfr()+"'";
+			query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiBusinessService = '"+associazioneBSProcessoForm.getCodiBusinessService()+"' and tab.id.codiProcesso = '"+associazioneBSProcessoForm.getCodiProcesso()+"' and tab.id.codiCategoriaMac = '"+associazioneBSProcessoForm.getCodiCategoriaMac()+"' and tab.id.codiCategoriaInfr = '"+associazioneBSProcessoForm.getCodiCategoriaInfr()+"'";
 			dServiziProcessoGiaPresente = (List<DServiziProcessi>) dataSourceService.genericquery(query);
 			if(dServiziProcessoGiaPresente != null && !dServiziProcessoGiaPresente.isEmpty()){
 				if(dServiziProcessoGiaPresente.get(0).getDataFineValidita() == null){
@@ -334,8 +328,9 @@ public class ProcessiController {
 		HashMap<String, List> selectboxes;
 		AssociazioneBSProcessoForm associazioneBSProcessoForm = new AssociazioneBSProcessoForm();
 		DServiziProcessi dServiziProcessi;
+		List<DBusinessServices> businessServiceList;
 		
-		try{
+		try{			
 			dataInizioValidita = request.getParameter("dataInizioValidita");
 			codiBusinessService = request.getParameter("codiBusinessService");
 			codiProcesso = request.getParameter("codiProcesso");
@@ -343,7 +338,13 @@ public class ProcessiController {
 			codiCategoriaInfr = request.getParameter("codiCategoriaInfr");			
 			dServiziProcessi  = gestioneDataBase.getDServiziProcesso(codiBusinessService, codiProcesso, codiCategoriaMac, codiCategoriaInfr,dataInizioValidita);
 			session.setAttribute("dServiziProcessiOld", dServiziProcessi);
-			popolaModelForms.popolaAssociazioneBSProcessoForm(dServiziProcessi, associazioneBSProcessoForm);
+			popolaModelForms.popolaAssociazioneBSProcessoForm(dServiziProcessi, associazioneBSProcessoForm);			
+			businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(session);
+			if(businessServiceList == null || businessServiceList.isEmpty()){
+				model.addObject("presenzaMessaggio","si");
+				model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");				
+			}
+			else model.addObject("businessServiceList", businessServiceList);
 			selectboxes = caricaSelect.getSelectsInserimentoAssociazioneBSProcesso("formAssociazioneBSProcesso");	
 			model.addObject("associazioneBSProcessoForm", associazioneBSProcessoForm);
 			model.addAllObjects(selectboxes);
@@ -364,19 +365,27 @@ public class ProcessiController {
 		HashMap<String, List> selectboxes;		
 		DServiziProcessi dServiziProcessiOld;
 		DServiziProcessi dServiziProcessi = new DServiziProcessi();
+		List<DBusinessServices> businessServiceList;
 		
 		try{		
-			modificaAssociazioneBSProcessoFormValidator.validate(associazioneBSProcessoForm, errors);
 			dServiziProcessiOld = (DServiziProcessi) session.getAttribute("dServiziProcessiOld");
+			associazioneBSProcessoForm.setCodiBusinessService(dServiziProcessiOld.getId().getCodiBusinessService()+"");
+			modificaAssociazioneBSProcessoFormValidator.validate(associazioneBSProcessoForm, errors);			
 			if(errors.hasErrors()){
 				associazioneBSProcessoForm.setCodiBusinessService(dServiziProcessiOld.getId().getCodiBusinessService()+"");
 				selectboxes = caricaSelect.getSelectsInserimentoAssociazioneBSProcesso("formAssociazioneBSProcesso");
 				model.addAllObjects(selectboxes);				
+				businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(session);
+				if(businessServiceList == null || businessServiceList.isEmpty()){
+					model.addObject("presenzaMessaggio","si");
+					model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");				
+				}
+				else model.addObject("businessServiceList", businessServiceList);
 				model.addObject("associazioneBSProcessoForm", associazioneBSProcessoForm);
 				model.setViewName("modifica_associazione_BS_processo");
 				return model;
 			}			
-			dServiziProcessiOld = (DServiziProcessi) session.getAttribute("dServiziProcessiOld");
+			dServiziProcessiOld = (DServiziProcessi) session.getAttribute("dServiziProcessiOld");			
 			popolaModelDb.popolaDServiziProcessiBean(associazioneBSProcessoForm,dServiziProcessi);
 			gestioneDataBase.modificaAssociazioneBSProcesso(dServiziProcessi,dServiziProcessiOld);	
 			session.removeAttribute("dServiziProcessiOld");

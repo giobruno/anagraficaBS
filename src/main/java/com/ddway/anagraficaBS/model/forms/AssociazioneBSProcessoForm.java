@@ -2,6 +2,7 @@ package com.ddway.anagraficaBS.model.forms;
 
 public class AssociazioneBSProcessoForm {
 	
+	private String textNomeBusinessService;
 	private String codiBusinessServiceOld;
 	private String codiBusinessService;
 	private String codiProcesso;
@@ -20,10 +21,11 @@ public class AssociazioneBSProcessoForm {
 	
 	public AssociazioneBSProcessoForm(){}
 	
-	public AssociazioneBSProcessoForm(String codiBusinessServiceOld,String codiBusinessService,String codiProcesso,String codiCategoriaMac,
+	public AssociazioneBSProcessoForm(String textNomeBusinessService,String codiBusinessServiceOld,String codiBusinessService,String codiProcesso,String codiCategoriaMac,
 			String codiCategoriaInfr, String orarioLavIniOre, String orarioLavIniMinuti,String orarioLavFineOre, 
 			String orarioLavFineMinuti,String misuTmpLavorativoGiorni, String misuTmpLavorativoOre,String misuTmpLavorativoMinuti,String misuTmpSolareGiorni,String misuTmpSolareOre,String misuTmpSolareMinuti ){
 		
+		this.textNomeBusinessService = textNomeBusinessService;
 		this.codiBusinessServiceOld = codiBusinessServiceOld;
 		this.codiBusinessService = codiBusinessService;
 		this.codiProcesso = codiProcesso;
@@ -42,6 +44,14 @@ public class AssociazioneBSProcessoForm {
 	}
 	
 	
+
+	public String getTextNomeBusinessService() {
+		return textNomeBusinessService;
+	}
+
+	public void setTextNomeBusinessService(String textNomeBusinessService) {
+		this.textNomeBusinessService = textNomeBusinessService;
+	}
 
 	public String getCodiBusinessServiceOld() {
 		return codiBusinessServiceOld;

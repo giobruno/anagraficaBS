@@ -96,13 +96,13 @@ public class HomeController {
 			itr1 = modelApplicativiNonValidiConBSAssociati.iterator();
 			while(itr1.hasNext()){
 				modelApplicativoPiuBSAssoicatiBean = (ModelApplicativoPiuBSAssoicatiBean) itr1.next();
-				avviso = "Il model applicativo '"+modelApplicativoPiuBSAssoicatiBean.getModelApplicativo().getDescModelApplicativo()+"' non e' piu' valido!";
+				avviso = "IL MODEL APPLICATIVO '"+modelApplicativoPiuBSAssoicatiBean.getModelApplicativo().getDescModelApplicativo()+"' NON E' PIU' VALIDO!";
 				listaAvvisi.add(avviso);
 				businessServicelist = modelApplicativoPiuBSAssoicatiBean.getBusinessServiceBeanList();
 				itr2 = businessServicelist.iterator();
 				while(itr2.hasNext()){
 					businessServiceBean = (BusinessServiceBean) itr2.next();
-					avviso = "E' necessario associare un altro model applicativo al Business Service '"+businessServiceBean.getTextNomeBusinessService()+"'!";
+					avviso = "-- E' necessario associare un altro model applicativo al Business Service '"+businessServiceBean.getTextNomeBusinessService()+"'!";
 					listaAvvisi.add(avviso);
 				}				
 			}	

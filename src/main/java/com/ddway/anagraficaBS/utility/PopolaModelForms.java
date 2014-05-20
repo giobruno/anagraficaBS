@@ -123,9 +123,9 @@ public class PopolaModelForms {
 					dServiziProcessi = (DServiziProcessi) itr.next();
 					associazioneBSProcessoBean.setCodiBusinessService(dServiziProcessi.getId().getCodiBusinessService());
 					associazioneBSProcessoBean.setCodiCategoriaInfr(dServiziProcessi.getId().getCodiCategoriaInfr());
-					associazioneBSProcessoBean.setDescCategoriaInfr(dServiziProcessi.getDCategorieInfr().getDescCategoriaInfr());
+					associazioneBSProcessoBean.setDescCategoriaInfr(dServiziProcessi.getId().getCodiCategoriaInfr() == 0 ? "" : dServiziProcessi.getId().getCodiCategoriaInfr()+" - "+dServiziProcessi.getDCategorieInfr().getDescCategoriaInfr());
 					associazioneBSProcessoBean.setCodiCategoriaMac(dServiziProcessi.getId().getCodiCategoriaMac());
-					associazioneBSProcessoBean.setDescCategoriaMac(dServiziProcessi.getDCategorieMac().getDescCategoriaMac());
+					associazioneBSProcessoBean.setDescCategoriaMac(dServiziProcessi.getId().getCodiCategoriaMac() == 0 ? "" : dServiziProcessi.getId().getCodiCategoriaMac()+" - "+dServiziProcessi.getDCategorieMac().getDescCategoriaMac());
 					associazioneBSProcessoBean.setCodiProcesso(dServiziProcessi.getId().getCodiProcesso());
 					associazioneBSProcessoBean.setDataInizioValidita(dServiziProcessi.getId().getDataInizioValidita());
 					associazioneBSProcessoBean.setDataFineValidita(dServiziProcessi.getDProcessi().getDataFineValidita() == null ? null: dServiziProcessi.getDProcessi().getDataFineValidita()+"");					

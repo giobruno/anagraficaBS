@@ -35,9 +35,9 @@
 		<legend>Compila il seguente form per inserire una nuova Associazione Business Service - Processo</legend>		
 		
 		<div class="div-table">	
-			<c:set value="${associazioneBSProcessoForm.codiBusinessService != null && associazioneBSProcessoForm.codiBusinessService != '' ? true : false}" var="disabled"></c:set>
+			<c:set value="${associazioneBSProcessoForm.codiBusinessService == null  ? false : true}" var="disabled"></c:set>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiBusinessService"> <img src="resources/img/query.png" alt="" title="">&nbsp;Business Service*:</label></div>
+			<div class="div-table-col"><label for="codiBusinessService"> &nbsp;Business Service*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiBusinessService" id="codiBusinessService" name="codiBusinessService" style="width:180px" disabled="${disabled}">
 									<form:option value="" label="--" />
@@ -48,7 +48,7 @@
 								</div>				
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiProcesso"> <img src="resources/img/query.png" alt="" title="">&nbsp;Processo*:</label></div>
+			<div class="div-table-col"><label for="codiProcesso"> &nbsp;Processo*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiProcesso" id="codiProcesso" name="codiProcesso" style="width:180px">
 									<form:option value="" label="--" />
@@ -59,7 +59,7 @@
 							</div>							
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiCategoriaMac"> <img src="resources/img/query.png" alt="" title="">&nbsp;Categoria Mac*:</label></div>
+			<div class="div-table-col"><label for="codiCategoriaMac"> &nbsp;Categoria Mac*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiCategoriaMac" id="codiCategoriaMac" name="codiCategoriaMac" style="width:180px">
 									<form:option value="00" label="--" />
@@ -70,7 +70,7 @@
 							</div>							
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiCategoriaInfr"> <img src="resources/img/query.png" alt="" title="">&nbsp;Categoria Infr*:</label></div>
+			<div class="div-table-col"><label for="codiCategoriaInfr"> &nbsp;Categoria Infr*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiCategoriaInfr" id="codiCategoriaInfr" name="codiCategoriaInfr" style="width:180px">
 									<form:option value="00" label="--" />
@@ -81,7 +81,7 @@
 							</div>								
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="orarioLavIni"> <img src="resources/img/query.png" alt="" title="">&nbsp;Inizio Orario Lavorativo*:</label></div>
+			<div class="div-table-col"><label for="orarioLavIni"> &nbsp;Inizio Orario Lavorativo*:</label></div>
 			<div class="div-table-col">
 								<form:select path="orarioLavIniOre" id="orarioLavIniOre" name="orarioLavIniOre" style="width:50px">
 									<form:option value="00" label="00" />
@@ -175,7 +175,7 @@
 								
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="orarioLavFine"> <img src="resources/img/query.png" alt="" title="">&nbsp;Fine Orario Lavorativo*:</label></div>
+			<div class="div-table-col"><label for="orarioLavFine"> &nbsp;Fine Orario Lavorativo*:</label></div>
 			<div class="div-table-col">
 								<form:select path="orarioLavFineOre" id="orarioLavFineOre" name="orarioLavFineOre" style="width:50px">
 									<form:option value="00" label="00" />
@@ -269,7 +269,7 @@
 			</div>				
 			
 			<div class="div-table-row">			
-			<div class="div-table-col"><label for="misuTmpLavorativo"> <img src="resources/img/query.png" alt="" title="">&nbsp;Tempo Lavorativo*:</label></div>
+			<div class="div-table-col"><label for="misuTmpLavorativo"> <img src="resources/img/query.png" alt="" title="Tempo Medio Lavorativo di ripristino di un processo espresso in ore e minuti">&nbsp;Tempo Lavorativo*:</label></div>
 			<div class="div-table-col">
 			<!-- 		<label for="misuTmpSolare">Giorni</label><form:input style="width:50px"  maxlength="4"  id="misuTmpLavorativoGiorni" path="misuTmpLavorativoGiorni"/>   -->
 					<label for="misuTmpLavorativo">Ore</label><form:input style="width:50px"  maxlength="4"  id="misuTmpLavorativoOre" path="misuTmpLavorativoOre"/>
@@ -279,7 +279,7 @@
 			</div>
 			
 			<div class="div-table-row">
-			<div class="div-table-col"><label for="misuTmpSolare"> <img src="resources/img/query.png" alt="" title="">&nbsp;Tempo Solare*:</label></div>
+			<div class="div-table-col"><label for="misuTmpSolare"> <img src="resources/img/query.png" alt="" title="Tempo Medio Solare di ripristino di un processo espresso in ore e minuti">&nbsp;Tempo Solare*:</label></div>
 			<div class="div-table-col">
 		<!-- 			<label for="misuTmpSolare">Giorni</label><form:input style="width:50px"  maxlength="4"  id="misuTmpSolareGiorni" path="misuTmpSolareGiorni"/>  -->
 					<label for="misuTmpSolare">Ore</label><form:input style="width:50px"  maxlength="4"  id="misuTmpSolareOre" path="misuTmpSolareOre"/>

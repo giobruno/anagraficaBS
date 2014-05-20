@@ -6,7 +6,7 @@
 
 <div class="Content bgA3">
 		
- <form:form name="form" method="GET" action="inserisciFunzioniUtente" commandName="elencoFunzioniForm">
+ <form:form name="form" method="POST" action="inserisciFunzioniUtente" commandName="elencoFunzioniForm">
 	<div class="div-table">
 		<div class="div-table-row">
 		<div class="div-table-col">
@@ -98,7 +98,7 @@
 		</c:if>		
 					
 					<input TYPE="submit" name="Associa" VALUE="Associa" >
-					<input TYPE="submit" name="Annulla" VALUE="Annulla">
+					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Annulla"></a>
 	</div>
 	
 	</div>

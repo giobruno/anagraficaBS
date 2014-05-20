@@ -79,7 +79,7 @@
 						<div class="div-table-col-center" >
 							<input TYPE="submit" name="Indietro" VALUE="Indietro">
 							<input type="submit" name="Ricerca"  value="Ricerca" />	
-							<input TYPE="submit" name="Annulla" VALUE="Annulla">							
+							<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Annulla"></a>							
 						</div>
 		</div>	
 		

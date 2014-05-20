@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -497,13 +500,20 @@ public class GestioneDataBase {
 		}
 		
 		
-		public  List<DBusinessServices> getElencoBusinessServices(Users utente, String role) throws Exception{
+		public  List<DBusinessServices> getElencoBusinessServices(HttpSession session) throws Exception{
 			log.debug("Start GestioneDataBase.getElencoBusinessServices method");
 			
 			List<DBusinessServices> elencoBusinessServices;
-			String query; 
+			String query; 			
+			Users utente;
+			List<Authorities> authorities;
+			String role = "standard";				
 			
 			try{		
+				utente = (Users) session.getAttribute("user");
+				authorities = getAuthorities(utente);
+				if(authorities.size() == 2)
+					role = "admin";
 				if(role.equalsIgnoreCase("admin"))
 					query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null  order by tab.codiBusinessService";
 				else query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null and tab.persRespBusinessService = '"+utente.getNome()+" "+utente.getCognome()+"' order by tab.codiBusinessService";

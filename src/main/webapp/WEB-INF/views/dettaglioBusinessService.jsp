@@ -54,7 +54,7 @@
 			<legend>Dettaglio Business Service</legend>				
 						<div class="div-table">
 								<div class="div-table-row">			
-									<div class="div-table-col"><p class="visualizzaDesc">Codice</p></div>			 
+						<!-- 		<div class="div-table-col"><p class="visualizzaDesc">Codice</p></div>			   -->	 
 									<div class="div-table-col"><p class="visualizzaDesc">Nome</p></div>						
 									<div class="div-table-col"><p class="visualizzaDesc">Descrizione</p></div>									
 									<div class="div-table-col"><p class="visualizzaDesc">Convenzione</p></div>
@@ -66,7 +66,7 @@
 							</div>		
 							
 						<div class="div-table-row">							 
-									<div class="div-table-col"><p>${businessService.codiBusinessService}</p></div>
+								<!-- 	<div class="div-table-col"><p>${businessService.codiBusinessService}</p></div>    -->
 									<div class="div-table-col"><p>${businessService.textNomeBusinessService}</p></div>						
 									<div class="div-table-col"><p>${businessService.descBusinessService}</p></div>									
 									<div class="div-table-col"><p>${businessService.flagConvenzione ? 'SI' : 'NO'}</p></div> 

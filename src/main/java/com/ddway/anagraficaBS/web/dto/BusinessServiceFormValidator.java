@@ -26,7 +26,8 @@ public class BusinessServiceFormValidator implements Validator {
     	
     	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textNomeBusinessService", "field.required.textNomeBusinessService", "Required field");
     	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descBusinessService", "field.required.descBusinessService", "Required field");
-    	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persRespBusinessService", "field.required.persRespBusinessService", "Required field");
+    	if(form.getPersRespBusinessService() != null)
+    		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persRespBusinessService", "field.required.persRespBusinessService", "Required field");
     	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "textUrlBusinessService", "field.required.textUrlBusinessService", "Required field");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiDipartimento", "field.required.codiDipartimento", "Required field");                        
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiModelApplicativo", "field.required.codiModelApplicativo", "Required field");  

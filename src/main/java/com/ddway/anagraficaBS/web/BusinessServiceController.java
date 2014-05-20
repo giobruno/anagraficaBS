@@ -83,7 +83,10 @@ public class BusinessServiceController {
 	PopolaModelForms popolaModelForms;
 	
 	@Autowired
-	GestioneException gestioneException;	
+	GestioneException gestioneException;
+	
+	@Autowired
+	GestioneControlli gestioneControlli;
 	
 	@RequestMapping(value="/formBusinessService", method = RequestMethod.GET)
 	public ModelAndView formBusinessService(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
@@ -112,6 +115,7 @@ public class BusinessServiceController {
 		logger.info("Inizio metodo BusinessServiceController.inserimentoBusinessService!");
 		
 		HashMap<String, List> selectboxes;
+		String utente;
 		
 		try{			
 			businessServiceFormValidator.validate(businessServiceForm, errors);
@@ -121,18 +125,22 @@ public class BusinessServiceController {
 				model.setViewName("inserimentoBusinessService");
 				return model;
 			}		
-			if(!businessServiceForm.getFlagConvenzione()){				
+//			if(!businessServiceForm.getFlagConvenzione()){		
+			if(businessServiceForm.getPersRespBusinessService() == null){
+				utente = (String) session.getAttribute("utente");
+				businessServiceForm.setPersRespBusinessService(utente);
+			}
 				gestioneDataBase.inserisciBusinessService(businessServiceForm);
 				model.addObject("presenzaMessaggio","si");
 				model.addObject("message","Il nuovo Business Service e' stato inserito con successo!");
 //				List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
 //				model.addObject("businessServiceList", businessServiceList);
 				model.setViewName("forward:/visualizzaElencoBusinessServices");
-			}
-			else {
-				session.setAttribute("businessServiceForm", businessServiceForm);				
-				model.setViewName("forward:/formRicercaFunzioniUtente");
-			}
+//			}
+//			else {
+//				session.setAttribute("businessServiceForm", businessServiceForm);				
+//				model.setViewName("forward:/formRicercaFunzioniUtente");
+//			}
 			}catch(Exception e){
 				e.printStackTrace();
 				logger.error(e.getMessage()+" on BusinessServiceController.inserimentoBusinessService");
@@ -159,6 +167,7 @@ public class BusinessServiceController {
 		try{			
 			ricercaFunzioniUtenteFormValidator.validate(ricercaFunzioniUtenteForm, errors);
 			if(errors.hasErrors()){			
+				ricercaFunzioniUtenteForm.setCodiArea(null);
 				selectboxes = caricaSelect.getSelectsRicercaFunzioniUtenteForm("formRicercaFunzioniUtente");
 				model.addAllObjects(selectboxes);				
 				model.setViewName("ricercaFunzioniUtente");
@@ -167,9 +176,17 @@ public class BusinessServiceController {
 			ricercaFunzioniUtenteForm.setDescArea(gestioneDataBase.getDescArea(ricercaFunzioniUtenteForm.getCodiArea()));
 			session.setAttribute("ricercaFunzioniUtenteForm", ricercaFunzioniUtenteForm);
 			funzioniList = gestioneDataBase.getListaFunzioniUtente(ricercaFunzioniUtenteForm);
-			model.addObject("elencoFunzioniForm", new ElencoFunzioniForm());
-			model.addObject("funzioniList",funzioniList);
-			model.setViewName("elencoFunzioniUtente");
+			if(funzioniList == null || funzioniList.isEmpty()){
+				int codiBusinessService = (Integer) session.getAttribute("codiBusinessService");
+				model.addObject("presenzaMessaggio","si");
+				model.addObject("message","Non e' stata trovata nessuna Funzione Utente con i criteri di ricerca inseriti!");
+				model.setViewName("forward:/formRicercaFunzioniUtente?codiBusinessService="+codiBusinessService);
+			}
+			else {
+				model.addObject("elencoFunzioniForm", new ElencoFunzioniForm());
+				model.addObject("funzioniList",funzioniList);
+				model.setViewName("elencoFunzioniUtente");
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on BusinessServiceController.ricercaFunzioniUtente");
@@ -182,17 +199,11 @@ public class BusinessServiceController {
 	public ModelAndView formSelezioneBS(ModelAndView model,HttpSession session, HttpServletRequest request) { 
 		logger.info("Inizio metodo BusinessServiceController.formSelezioneBS!");		
 		
-		List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();
-		Users utente;
-		List<Authorities> authorities;
-		String role = "standard";
+		List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();		
+		List<DBusinessServices> businessServiceList;
 		
-		utente = (Users) session.getAttribute("user");
 		try{
-			authorities = gestioneDataBase.getAuthorities(utente);
-			if(authorities.size() == 2)
-				role = "admin";
-				List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(utente,role);
+			businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(session);
 			if(businessServiceList == null || businessServiceList.isEmpty()){
 				model.addObject("presenzaMessaggio","si");
 				model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");
@@ -286,7 +297,7 @@ public class BusinessServiceController {
 		return model; 
 	}
 	
-	@RequestMapping(value="/inserisciFunzioniUtente", method = RequestMethod.GET, params="Associa")
+	@RequestMapping(value="/inserisciFunzioniUtente", method = RequestMethod.POST, params="Associa")
 	public ModelAndView inserisciFunzioniUtente(ElencoFunzioniForm elencoFunzioniForm,BindingResult errors, ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.inserisciFunzioniUtente!");
 				
@@ -333,7 +344,7 @@ public class BusinessServiceController {
 		return model; 
 	}
 	
-	@RequestMapping(value="/inserisciFunzioniUtente", method = RequestMethod.GET, params="Indietro")
+	@RequestMapping(value="/inserisciFunzioniUtente", method = RequestMethod.POST, params="Indietro")
 	public ModelAndView inserisciFunzioniUtenteIndietro(ModelAndView model) { 
 		logger.info("Inizio metodo BusinessServiceController.inserisciFunzioniUtenteIndietro!");		
 		
@@ -351,13 +362,13 @@ public class BusinessServiceController {
 		return model; 
 	}
 	
-	@RequestMapping(value="/inserisciFunzioniUtente", method = RequestMethod.GET, params="Annulla")
-	public ModelAndView inserisciFunzioniUtenteAnnulla(ModelAndView model) throws Exception { 
-		logger.info("Inizio metodo BusinessServiceController.inserisciFunzioniUtenteAnnulla!");				
-
-		model.setViewName("forward:/visualizzaElencoBusinessServices");
-		return model; 
-	}	
+//	@RequestMapping(value="/inserisciFunzioniUtente", method = RequestMethod.POST, params="Annulla")
+//	public ModelAndView inserisciFunzioniUtenteAnnulla(ModelAndView model) throws Exception { 
+//		logger.info("Inizio metodo BusinessServiceController.inserisciFunzioniUtenteAnnulla!");				
+//
+//		model.setViewName("forward:/visualizzaElencoBusinessServices");
+//		return model; 
+//	}	
 
 //	@RequestMapping(value="/inserimentoAssociazioneBSFunzUtente", method = RequestMethod.POST, params="Annulla")
 //	public ModelAndView inserimentoAssociazioneBSFunzUtenteAnnulla(ModelAndView model) throws Exception { 
@@ -387,16 +398,11 @@ public class BusinessServiceController {
 		session.removeAttribute("codiBusinessService");
 		session.removeAttribute("businessServiceList");
 		List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();
-		Users utente;
-		List<Authorities> authorities;
-		String role = "standard";
+		List<DBusinessServices> businessServiceList;		
 		
-		utente = (Users) session.getAttribute("user");
 		try{
-			authorities = gestioneDataBase.getAuthorities(utente);
-			if(authorities.size() == 2)
-				role = "admin";
-				List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(utente,role);
+			gestioneControlli.controlloValiditaModelAplicativi(session);
+			businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(session);
 			if(businessServiceList == null || businessServiceList.isEmpty()){
 				model.addObject("presenzaMessaggio","si");
 				model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");

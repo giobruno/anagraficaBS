@@ -38,7 +38,7 @@
 							<c:if test="${listaAvvisi != null}">
 								<c:forEach items="${listaAvvisi}" var="item" >
 									<div class="div-table-row">							 
-										<div class="div-table-col-center"> <p><font color="red"> ${item}</font></div>																						
+										<div class="div-table-col"> <p><font color="red"> ${item}</font></div>																						
 									</div>
 								</c:forEach>
 							</c:if>
@@ -50,7 +50,28 @@
 							</div>									
 						 
 		 </fieldset>		
-		</div> </div></div></div> 
+		</div> </div>
+		<br/>
+		<div class="div-table-row">
+			<div class="div-table-col-center" >		
+					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Home" VALUE="Home"></a>
+	</div>
+	
+	</div>
+	<br/>
+	<div class="div-table-row">
+				<div class="div-table-col"></div>
+	</div>
+		
+		</div></div> 
+		<br/>
+		<div class="div-table">
+			<div class="div-table-row">
+				<div class="div-table-col"></div>
+	</div>
+	</div>
+		
+		<br/>
 				
 			
 				

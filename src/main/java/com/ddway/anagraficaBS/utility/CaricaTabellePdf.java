@@ -403,12 +403,12 @@ public class CaricaTabellePdf {
 					 table.setWidthPercentage(100f);
 					 table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 					 
-					 PdfPCell c1 = new PdfPCell(new Phrase("Descrizione",boldFont));
+					 PdfPCell c1 = new PdfPCell(new Phrase("Codice",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
 				     
-				     c1 = new PdfPCell(new Phrase("Codice",boldFont));
+				     c1 = new PdfPCell(new Phrase("Descrizione",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			        
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
@@ -425,8 +425,8 @@ public class CaricaTabellePdf {
 					 for(int i=0;i<modelApplicativiList.size();i++){
 						 modelApplicativo = modelApplicativiList.get(i);
 						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-						 table.addCell(new Phrase(modelApplicativo.getDescModelApplicativo(),baseFont));
-						 table.addCell(new Phrase(modelApplicativo.getCodiModelApplicativo().toString(),baseFont));						
+						 table.addCell(new Phrase(modelApplicativo.getCodiModelApplicativo().toString(),baseFont));	
+						 table.addCell(new Phrase(modelApplicativo.getDescModelApplicativo(),baseFont));											
 						 }
 			 	}
 			}catch(Exception e){

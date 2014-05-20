@@ -52,7 +52,7 @@
 								<div class="div-table-row">		
 									<div class="div-table-col"><p class="visualizzaDesc"><c:if test="${!item.presenzaFUAssociate}">&nbsp;</c:if></p></div>
 							     	<div class="div-table-col"><p class="visualizzaDesc"><c:if test="${!item.presenzaProcessiAssociati}">&nbsp;</c:if></p></div>					 
-									<div class="div-table-col"><p class="visualizzaDesc">Codice</p></div>			 
+						<!-- 				<div class="div-table-col"><p class="visualizzaDesc">Codice</p></div>		 -->	 
 									<div class="div-table-col"><p class="visualizzaDesc">Nome</p></div>												
 									<div class="div-table-col"><p class="visualizzaDesc">Responsabile</p></div>												
 									<div class="div-table-col"><p class="visualizzaDesc">Dipartimento</p></div>
@@ -70,7 +70,7 @@
 							<div class="div-table-row">	
 									<div class="div-table-col"><c:if test="${!item.presenzaFUAssociate}"><label><img src="resources/img/bulb-icon.png" title="Attenzione! Non risulta nessuna Funzione Utente associata a questo Business Service! " alt="Alert Processo"></label></c:if></div>	
 									<div class="div-table-col"><c:if test="${!item.presenzaProcessiAssociati}"><label><img src="resources/img/bulb-icon.png" title="Attenzione! Non risulta nessun Processo associato a questo Business Service! " alt="Alert Processo"></label></c:if></div>		
-									<div class="div-table-col"><p>${item.codiBusinessService}</p></div>
+							<!-- 		<div class="div-table-col"><p>${item.codiBusinessService}</p></div>     -->
 									<div class="div-table-col"><p>${item.textNomeBusinessService}</p></div>										
 									<div class="div-table-col"><p>${item.persRespBusinessService}</p></div>															
 									<div class="div-table-col"><p>${item.textSiglaDipartimento}</p></div>

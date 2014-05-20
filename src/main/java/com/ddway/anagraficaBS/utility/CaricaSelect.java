@@ -11,12 +11,14 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.ddway.anagraficaBS.model.bean.CategorieMac;
+import com.ddway.anagraficaBS.model.bean.Utente;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.Users;
 import com.ddway.anagraficaBS.model.db.common.TblArea;
 import com.ddway.anagraficaBS.model.db.infap.TblApplicazione;
 import com.ddway.anagraficaBS.service.IDataSourceService;
@@ -86,11 +88,33 @@ public class CaricaSelect {
 		log.debug("Start CaricaSelect.getSelectsInserimentoBusinessService method");
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
+		Iterator<Users> itr;
+		Utente utente;
+		Users user;
+		List<Utente> utentiList = new ArrayList<Utente>();
+		
 		try{		
 			List<DDipartimenti> dipartimentiList = (List<DDipartimenti>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti tab order by tab.textSiglaDipartimento","Dipartimenti");
 			selectLists.put("dipartimentiList", dipartimentiList);	
-			List<DModelApplicativi> modelApplicativiList = (List<DModelApplicativi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab order by tab.descModelApplicativo","Model Applicativi");	
-			selectLists.put("modelApplicativiList", modelApplicativiList);				
+			List<DModelApplicativi> modelApplicativiList = (List<DModelApplicativi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab where tab.dataFineValidita is null order by tab.descModelApplicativo","Model Applicativi");	
+			selectLists.put("modelApplicativiList", modelApplicativiList);
+			
+			List<Users> usersList = (List<Users>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.Users tab order by tab.cognome","Utenti");	
+			itr = usersList.iterator();
+			while(itr.hasNext()){
+				user = itr.next();
+				utente = new Utente();
+				utente.setUserId(user.getUserId());
+				utente.setUsername(user.getUsername());
+				utente.setNome(user.getNome());
+				utente.setCognome(user.getCognome());				
+				utente.setNomeCognome(user.getNome()+" "+user.getCognome());
+				utente.setEmail(user.getEmail());
+				utente.setPassword(user.getPassword());
+				utente.setEnabled(user.isEnabled());
+				utentiList.add(utente);
+			}
+			selectLists.put("utentiList", utentiList);
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoBusinessService");
 			throw e;
@@ -132,7 +156,7 @@ public class CaricaSelect {
 //			selectLists.put("businessServiceList", businessServiceList);		
 			List<DProcessi> codiProcessoList = (List<DProcessi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi tab where tab.dataFineValidita is null order by tab.descProcesso", "Processi" );
 			selectLists.put("codiProcessoList", codiProcessoList);		
-			List<DCategorieMac> codiCategoriaMacList = (List<DCategorieMac>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac tab order by tab.descCategoriaMac","Categoria Mac");
+			List<DCategorieMac> codiCategoriaMacList = (List<DCategorieMac>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac tab where tab.codiCategoriaMac != 0 order by tab.codiCategoriaMac","Categoria Mac");
 			itr = codiCategoriaMacList.iterator();
 			while(itr.hasNext()){
 				dCategorieMac = itr.next();
@@ -144,7 +168,7 @@ public class CaricaSelect {
 				categorieMaclist.add(categorieMac);
 			}
 			selectLists.put("codiCategoriaMacList", categorieMaclist);		
-			List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr tab order by tab.descCategoriaInfr","Categoria Infr");
+			List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr tab where tab.codiCategoriaInfr != 0 order by tab.descCategoriaInfr","Categoria Infr");
 			selectLists.put("codiCategoriaInfrList", codiCategoriaInfrList);
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSProcesso");
