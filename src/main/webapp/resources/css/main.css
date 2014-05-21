@@ -1383,6 +1383,8 @@ textarea {
 	/************************************************************************/
 	/*** Page layout ***/
 	/************************************************************************/
+	
+	
 	.Page
 	{
 		float:left;
@@ -1413,13 +1415,33 @@ textarea {
 		/*border-bottom: 1px solid #6cabd0;*/
 	}
 	
+	.Page .Content .Scroll
+	{
+		width:900px !important;width /**/:200px;
+   		height:400px !important;height /**/: 200px;
+    	overflow:auto;padding: 4px;
+  /*  	border:1px solid #EEE;border-right:0 solid;  */
+	 /* 	margin: 0px -200px 15px 0px;*/
+		
+	}
+	
+	.Page .Content .Scroll2
+	{
+		width:900px !important;width /**/:200px;
+   		height:200px !important;height /**/: 200px;
+    	overflow:auto;padding: 4px;
+  /*  	border:1px solid #EEE;border-right:0 solid;  */
+	 /* 	margin: 0px -200px 15px 0px;*/
+		
+	}
+	
 	.Page .ContentHome
 	{
 		float:left;
 		width: 100%;	
 		height: 70%;		
 		margin: 0px 0px 15px 0px;
-		min-height: 440px;		
+		min-height: 600px;		
 		
 	}
 	

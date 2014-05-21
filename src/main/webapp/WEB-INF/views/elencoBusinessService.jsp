@@ -47,7 +47,8 @@
 	 <div class="div-table-row">
  
 		<fieldset>
-			<legend>Business Services</legend>				
+			<legend>Business Services</legend>		
+			<div class="Scroll">		
 						<div class="div-table">
 								<div class="div-table-row">		
 									<div class="div-table-col"><p class="visualizzaDesc"><c:if test="${!item.presenzaFUAssociate}">&nbsp;</c:if></p></div>
@@ -81,6 +82,7 @@
 							</div>
 							</c:forEach>
 						</div> 
+						</div>
 		 </fieldset>					
 					  </div>
 					  

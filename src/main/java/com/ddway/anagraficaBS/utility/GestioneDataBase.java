@@ -332,8 +332,10 @@ public class GestioneDataBase {
 		log.info("Inizio metodo GestioneDataBase.modificaAssociazioneBSProcesso!");		
 		
 		try{
-			dServiziProcessiOld.setDataFineValidita(new Date());						
-			dataSourceService.update(dServiziProcessiOld);
+			dServiziProcessiOld.setDataFineValidita(new Date());		
+			if(FormatUtility.formattaDataToString("yyyy-MM-dd",dServiziProcessiOld.getId().getDataInizioValidita()).equals(FormatUtility.formattaDataToString("yyyy-MM-dd", new Date() )))
+				dataSourceService.delete(dServiziProcessiOld);
+			else dataSourceService.update(dServiziProcessiOld);
 			dataSourceService.insert(dServiziProcessi);
 		}catch(Exception e){
 			log.error(e.getMessage()+" on GestioneDataBase.modificaAssociazioneBSProcesso");

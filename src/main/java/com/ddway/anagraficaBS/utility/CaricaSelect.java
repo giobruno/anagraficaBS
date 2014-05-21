@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.ddway.anagraficaBS.model.bean.CategorieMac;
+import com.ddway.anagraficaBS.model.bean.TabellaArea;
 import com.ddway.anagraficaBS.model.bean.Utente;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr;
@@ -182,9 +183,24 @@ public class CaricaSelect {
 		log.debug("Start CaricaSelect.getSelectsRicercaFunzioniUtenteForm method");
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
+		Iterator<TblArea> itr;
+		TblArea tblArea;
+		TabellaArea tabellaArea;
+		List<TabellaArea> tabellaAreaList = new ArrayList<TabellaArea>();
+		
 		try{				
 			List<TblArea> codiAreaList = (List<TblArea>) getlistvaluesCommon("from com.ddway.anagraficaBS.model.db.common.TblArea tab order by tab.sdescrizione", "Aree");	
-			selectLists.put("codiAreaList", codiAreaList);			
+			itr = codiAreaList.iterator();
+			while(itr.hasNext()){
+				tblArea = itr.next();
+				tabellaArea = new TabellaArea();
+				tabellaArea.setIdTblArea(tblArea.getIdTblArea());
+				tabellaArea.setScodeArea(tblArea.getScodeArea());
+				tabellaArea.setSdescrizione(tblArea.getSdescrizione());
+				tabellaArea.setScodedescrizione(tblArea.getScodeArea()+" - "+tblArea.getSdescrizione());
+				tabellaAreaList.add(tabellaArea);
+			}
+			selectLists.put("codiAreaList", tabellaAreaList);			
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSFunzUtente");
 			throw e;

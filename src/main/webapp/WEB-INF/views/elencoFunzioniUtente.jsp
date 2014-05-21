@@ -20,7 +20,7 @@
 				<div class="div-table-row">
 				<div class="div-table-col"></div>
 	</div>
-	<div class="div-table-centrata">
+	<div class="div-table">
 
 	
 	<div class="div-table-row">
@@ -37,7 +37,8 @@
 	 <div class="div-table-row">
  
 		<fieldset>
-			<legend>Selezionare le funzioni da associare</legend>				
+			<legend>Selezionare le funzioni da associare</legend>	
+			<div class="Scroll">			
 							<div class="div-table">
 								<div class="div-table-row">
 									<div class="div-table-col"><p class="visualizzaDesc">Area</p></div>
@@ -51,6 +52,8 @@
 									</div>
 								</div>
 								
+								
+								
 								<c:forEach items="${funzioniList}" var="item" >
 									<div class="div-table-row">
 										<div class="div-table-col">${item.descArea}</div>
@@ -63,6 +66,7 @@
 									</div>														
 								</c:forEach> 					
 						 	 </div>
+						 	 </div>
 		 </fieldset>		 	 
 	</div>
 	
@@ -73,21 +77,7 @@
  <div class="div-table"> 
 	
 
-	<div class="div-table-row">
-	<div class="div-table-col">
-					 
-	</div>
-	</div>
-	<div class="div-table-row">
-	<div class="div-table-col">
-					 
-	</div>
-	</div>
-	<div class="div-table-row">
-	<div class="div-table-col">
-					 
-	</div>
-	</div>
+	
 	
 	<div class="div-table-row">
 	<div class="div-table-col-center" >

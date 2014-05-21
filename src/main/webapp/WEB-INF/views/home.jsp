@@ -1,5 +1,5 @@
 <div class="ContentHome" align="center">
-<br/><br/><br/>
+<br/><br/><br/><br/><br/><br/>
 	<div class="panelGeneric" style="width: 500px; height: 300px;" align="center">
 		<img alt="logo Anagrafica BS" src="resources/img/registry2.png" height="60">
 		<div id="panelIn">

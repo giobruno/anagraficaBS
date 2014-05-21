@@ -43,7 +43,7 @@
 									<form:option value="" label="--" />
 									<form:options items="${codiAreaList}" 
 										itemValue="scodeArea"
-										itemLabel="sdescrizione" />	
+										itemLabel="scodedescrizione" />	
 										<form:hidden path="descArea" value="${sdescrizione}"/>										
 								</form:select>
 							</div>							

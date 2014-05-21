@@ -37,7 +37,7 @@
 		<div class="div-table">	
 			<c:set value="${associazioneBSProcessoForm.codiBusinessService == null  ? false : true}" var="disabled"></c:set>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiBusinessService"> &nbsp;Business Service*:</label></div>
+			<div class="div-table-col"><label for="codiBusinessService">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Service*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiBusinessService" id="codiBusinessService" name="codiBusinessService" style="width:180px" disabled="${disabled}">
 									<form:option value="" label="--" />
@@ -48,7 +48,7 @@
 								</div>				
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiProcesso"> &nbsp;Processo*:</label></div>
+			<div class="div-table-col"><label for="codiProcesso">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Processo*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiProcesso" id="codiProcesso" name="codiProcesso" style="width:180px">
 									<form:option value="" label="--" />
@@ -59,7 +59,7 @@
 							</div>							
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiCategoriaMac"> &nbsp;Categoria Mac*:</label></div>
+			<div class="div-table-col"><label for="codiCategoriaMac">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Categoria Mac*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiCategoriaMac" id="codiCategoriaMac" name="codiCategoriaMac" style="width:180px">
 									<form:option value="00" label="--" />
@@ -70,7 +70,7 @@
 							</div>							
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiCategoriaInfr"> &nbsp;Categoria Infr*:</label></div>
+			<div class="div-table-col"><label for="codiCategoriaInfr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Categoria Infr*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiCategoriaInfr" id="codiCategoriaInfr" name="codiCategoriaInfr" style="width:180px">
 									<form:option value="00" label="--" />
@@ -81,19 +81,19 @@
 							</div>								
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="orarioLavIni"> &nbsp;Inizio Orario Lavorativo*:</label></div>
+			<div class="div-table-col"><label for="orarioLavIni">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inizio Orario Lavorativo*:</label></div>
 			<div class="div-table-col">
 								<form:select path="orarioLavIniOre" id="orarioLavIniOre" name="orarioLavIniOre" style="width:50px">
-									<form:option value="00" label="00" />
-									<form:option value="01" label="01" />
-									<form:option value="02" label="02" />
-									<form:option value="03" label="03" />
-									<form:option value="04" label="04" />
-									<form:option value="05" label="05" />
-									<form:option value="06" label="06" />
-									<form:option value="07" label="07" />
-									<form:option value="08" label="08" />
-									<form:option value="09" label="09" />
+									<form:option value="0" label="00" />
+									<form:option value="1" label="01" />
+									<form:option value="2" label="02" />
+									<form:option value="3" label="03" />
+									<form:option value="4" label="04" />
+									<form:option value="5" label="05" />
+									<form:option value="6" label="06" />
+									<form:option value="7" label="07" />
+									<form:option value="8" label="08" />
+									<form:option value="9" label="09" />
 									<form:option value="10" label="10" />
 									<form:option value="11" label="11" />
 									<form:option value="12" label="12" />
@@ -110,16 +110,16 @@
 									<form:option value="23" label="23" />																											
 								</form:select>			
 								<form:select path="orarioLavIniMinuti" id="orarioLavIniMinuti" name="orarioLavIniMinuti" style="width:50px">
-									<form:option value="00" label="00" />
-									<form:option value="01" label="01" />
-									<form:option value="02" label="02" />
-									<form:option value="03" label="03" />
-									<form:option value="04" label="04" />
-									<form:option value="05" label="05" />
-									<form:option value="06" label="06" />
-									<form:option value="07" label="07" />
-									<form:option value="08" label="08" />
-									<form:option value="09" label="09" />
+									<form:option value="0" label="00" />
+									<form:option value="1" label="01" />
+									<form:option value="2" label="02" />
+									<form:option value="3" label="03" />
+									<form:option value="4" label="04" />
+									<form:option value="5" label="05" />
+									<form:option value="6" label="06" />
+									<form:option value="7" label="07" />
+									<form:option value="8" label="08" />
+									<form:option value="9" label="09" />
 									<form:option value="10" label="10" />
 									<form:option value="11" label="11" />
 									<form:option value="12" label="12" />
@@ -175,19 +175,19 @@
 								
 		</div>
 		<div class="div-table-row">
-			<div class="div-table-col"><label for="orarioLavFine"> &nbsp;Fine Orario Lavorativo*:</label></div>
+			<div class="div-table-col"><label for="orarioLavFine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fine Orario Lavorativo*:</label></div>
 			<div class="div-table-col">
 								<form:select path="orarioLavFineOre" id="orarioLavFineOre" name="orarioLavFineOre" style="width:50px">
-									<form:option value="00" label="00" />
-									<form:option value="01" label="01" />
-									<form:option value="02" label="02" />
-									<form:option value="03" label="03" />
-									<form:option value="04" label="04" />
-									<form:option value="05" label="05" />
-									<form:option value="06" label="06" />
-									<form:option value="07" label="07" />
-									<form:option value="08" label="08" />
-									<form:option value="09" label="09" />
+									<form:option value="0" label="00" />
+									<form:option value="1" label="01" />
+									<form:option value="2" label="02" />
+									<form:option value="3" label="03" />
+									<form:option value="4" label="04" />
+									<form:option value="5" label="05" />
+									<form:option value="6" label="06" />
+									<form:option value="7" label="07" />
+									<form:option value="8" label="08" />
+									<form:option value="9" label="09" />
 									<form:option value="10" label="10" />
 									<form:option value="11" label="11" />
 									<form:option value="12" label="12" />
@@ -204,16 +204,16 @@
 									<form:option value="23" label="23" />										
 								</form:select>							
 								<form:select path="orarioLavFineMinuti" id="orarioLavFineMinuti" name="orarioLavFineMinuti" style="width:50px">
-									<form:option value="00" label="00" />
-									<form:option value="01" label="01" />
-									<form:option value="02" label="02" />
-									<form:option value="03" label="03" />
-									<form:option value="04" label="04" />
-									<form:option value="05" label="05" />
-									<form:option value="06" label="06" />
-									<form:option value="07" label="07" />
-									<form:option value="08" label="08" />
-									<form:option value="09" label="09" />
+									<form:option value="0" label="00" />
+									<form:option value="1" label="01" />
+									<form:option value="2" label="02" />
+									<form:option value="3" label="03" />
+									<form:option value="4" label="04" />
+									<form:option value="5" label="05" />
+									<form:option value="6" label="06" />
+									<form:option value="7" label="07" />
+									<form:option value="8" label="08" />
+									<form:option value="9" label="09" />
 									<form:option value="10" label="10" />
 									<form:option value="11" label="11" />
 									<form:option value="12" label="12" />

@@ -51,7 +51,7 @@
 	 <div class="div-table-row">
  
 		<fieldset>
-			<legend>Dettaglio Business Service</legend>				
+			<legend>Dettaglio Business Service</legend>							
 						<div class="div-table">
 								<div class="div-table-row">			
 						<!-- 		<div class="div-table-col"><p class="visualizzaDesc">Codice</p></div>			   -->	 
@@ -90,14 +90,15 @@
 									<div class="div-table-col"><p>${businessService.descModelApplicativo}</p></div>									
 						</div>
 						
-						</div> 
+						</div> 						
 		 </fieldset>					
 					  </div>
 					  <br/>
 <c:if test="${dServiziFunzioniList != null}">			  
 	<div class="div-table-row"> 		
 		<fieldset>
-			<legend>Funzioni Utente Associate al Business Service</legend>				
+			<legend>Funzioni Utente Associate al Business Service</legend>	
+			<div class="Scroll2">			
 						<div class="div-table">
 								<div class="div-table-row">			
 									<div class="div-table-col">						
@@ -124,7 +125,7 @@
 										<div class="div-table-col">${item.descArea}</div>	
 										<div class="div-table-col">${item.descApplicazione}</div>	
 										<div class="div-table-col">${item.descFunzione}</div>								
-								<div class="div-table-col-center"><a href="cancellaAssociazioneFunzioneUtente?codiFunzione=${item.id.codiFunzione}&codiArea=${item.id.codiArea}&codiApplicazione=${item.id.codiApplicazione}&codiBusinessService=${businessService.codiBusinessService}&dataInizioAssociazione=${item.id.dataInizioAssociazione}" onclick="return conferma('Sei sicuro di voler cancellare questa funzione utente?')"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Funzione Utente"></a></div>
+								<div class="div-table-col-center"><a href="cancellaAssociazioneFunzioneUtente?codiFunzione=${item.id.codiFunzione}&codiArea=${item.id.codiArea}&codiApplicazione=${item.id.codiApplicazione}&codiBusinessService=${businessService.codiBusinessService}&dataInizioAssociazione=${item.id.dataInizioAssociazione}" onclick="return conferma('Sei sicuro di voler cancellare questa funzione utente?')"><img src="resources/img/iconeCancella2.jpg"  width="20" height="20" title="Cancella Funzione Utente"></a></div>
 							</div>
 							</c:forEach>
 							<br/>	
@@ -133,6 +134,7 @@
 							<div class="div-table-centrata">								
 							</div>					
 						</div> 
+						</div>
 		 </fieldset>	
 		 </div>		
 		 <br/>
@@ -140,6 +142,7 @@
 		 <div class="div-table-row">			 
 			 <fieldset>
 				<legend>Processi Associati al Business Service</legend>		
+				<div class="Scroll2">
 				<div class="div-table">
 								<div class="div-table-row">			
 									<div class="div-table-col">						
@@ -151,7 +154,7 @@
 							<div class="div-table">
 									<div class="div-table-row">							 
 										<div class="div-table-col"><p class="visualizzaDesc">&nbsp;</p></div>	
-										<div class="div-table-col"><p class="visualizzaDesc">Codice</p></div>
+								<!-- 		<div class="div-table-col"><p class="visualizzaDesc">Codice</p></div>    -->
 										<div class="div-table-col"><p class="visualizzaDesc">Processo</p></div>		
 										<div class="div-table-col"><p class="visualizzaDesc">Categoria Mac</p></div>
 										<div class="div-table-col"><p class="visualizzaDesc">Categoria Infr</p></div>			
@@ -167,15 +170,16 @@
 								<c:forEach items="${associazioneBSProcessoBeanList}" var="item" >
 								<div class="div-table-row">				
 									<div class="div-table-col"><c:if test="${item.dataFineValidita != null}"><label><img src="resources/img/bulb-icon.png" title="Attenzione! Il processo '${item.textSiglaProcesso}' risulta non piu' valido! " alt="Alert Processo"></label></c:if></div>
-									<div class="div-table-col">${item.codiProcesso}</div>
+							<!-- 		<div class="div-table-col">${item.codiProcesso}</div>      -->
 									<div class="div-table-col">${item.textSiglaProcesso}</div>	
 									<div class="div-table-col">${item.descCategoriaMac}</div>	
 									<div class="div-table-col">${item.descCategoriaInfr}</div>								
-									<div class="div-table-col-center"><a href="modificaAssociazioneBSProcessoForm?codiProcesso=${item.codiProcesso}&codiBusinessService=${businessService.codiBusinessService}&codiCategoriaMac=${item.codiCategoriaMac}&codiCategoriaInfr=${item.codiCategoriaInfr}&dataInizioValidita=${item.dataInizioValidita}"><img src="resources/img/iconeModifica2.jpg"  width="30" height="20" title="Modifica Business Service"></a></div>
-									<div class="div-table-col-center"><a href="cancellaAssociazioneBSProcesso?codiProcesso=${item.codiProcesso}&codiBusinessService=${businessService.codiBusinessService}&codiCategoriaMac=${item.codiCategoriaMac}&codiCategoriaInfr=${item.codiCategoriaInfr}&dataInizioValidita=${item.dataInizioValidita}" onclick="return conferma('Sei sicuro di voler cancellare questo processo?')"><img src="resources/img/iconeCancella2.jpg"  width="30" height="20" title="Cancella Business Service"></a></div>
+									<div class="div-table-col-center"><a href="modificaAssociazioneBSProcessoForm?codiProcesso=${item.codiProcesso}&codiBusinessService=${businessService.codiBusinessService}&codiCategoriaMac=${item.codiCategoriaMac}&codiCategoriaInfr=${item.codiCategoriaInfr}&dataInizioValidita=${item.dataInizioValidita}"><img src="resources/img/iconeModifica2.jpg"  width="20" height="20" title="Modifica Business Service"></a></div>
+									<div class="div-table-col-center"><a href="cancellaAssociazioneBSProcesso?codiProcesso=${item.codiProcesso}&codiBusinessService=${businessService.codiBusinessService}&codiCategoriaMac=${item.codiCategoriaMac}&codiCategoriaInfr=${item.codiCategoriaInfr}&dataInizioValidita=${item.dataInizioValidita}" onclick="return conferma('Sei sicuro di voler cancellare questo processo?')"><img src="resources/img/iconeCancella2.jpg"  width="20" height="20" title="Cancella Business Service"></a></div>
 								</div>
 								</c:forEach>
 							</div> 
+							</div>
 			 </fieldset>					
 						  
 					 

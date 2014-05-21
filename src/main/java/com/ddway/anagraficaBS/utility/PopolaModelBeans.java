@@ -67,10 +67,12 @@ private static final Logger log = LoggerFactory.getLogger(PopolaModelBeans.class
 					itr2 = dServiziModelList.iterator();
 					while(itr2.hasNext()){
 						dServiziModel = (DServiziModel) itr2.next();
-						businessServiceBean = new BusinessServiceBean();
-						businessServiceBean.setCodiBusinessService(dServiziModel.getDBusinessServices().getCodiBusinessService().toString());
-						businessServiceBean.setTextNomeBusinessService(dServiziModel.getDBusinessServices().getTextNomeBusinessService());
-						businessServiceBeanList.add(businessServiceBean);
+						if(dServiziModel.getDBusinessServices().getDataFineValidita() == null){
+							businessServiceBean = new BusinessServiceBean();
+							businessServiceBean.setCodiBusinessService(dServiziModel.getDBusinessServices().getCodiBusinessService().toString());
+							businessServiceBean.setTextNomeBusinessService(dServiziModel.getDBusinessServices().getTextNomeBusinessService());
+							businessServiceBeanList.add(businessServiceBean);
+							}
 					}			
 					modelApplicativoPiuBSAssoicatiBean = new ModelApplicativoPiuBSAssoicatiBean();
 					modelApplicativoPiuBSAssoicatiBean.setModelApplicativo(modelApplicativo);

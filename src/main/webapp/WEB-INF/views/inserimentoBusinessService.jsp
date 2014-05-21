@@ -36,7 +36,7 @@
 					</div>
 					<sec:authorize access="hasRole('ADMIN')" >
 					<div class="div-table-row">
-							    	<div class="div-table-col"><label for="persRespBusinessService"> &nbsp;Responsabile*:</label></div>
+							    	<div class="div-table-col"><label for="persRespBusinessService">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Responsabile*:</label></div>
 									<div class="div-table-col">
 										<form:select path="persRespBusinessService" id="persRespBusinessService" name="persRespBusinessService" style="width:300px">
 											<form:option value="" label="--" />
@@ -58,7 +58,7 @@
 						<div class="div-table-col"><form:input style="width:297px"  maxlength="50" value="http://" id="textUrlBusinessService" path="textUrlBusinessService"/></div>				
 					</div>		
 					<div class="div-table-row">
-							    	<div class="div-table-col"><label for="codiDipartimento"> &nbsp;Dipartimento*:</label></div>
+							    	<div class="div-table-col"><label for="codiDipartimento">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dipartimento*:</label></div>
 									<div class="div-table-col">
 										<form:select path="codiDipartimento" id="codiDipartimento" name="codiDipartimento" style="width:300px">
 											<form:option value="" label="--" />
@@ -69,7 +69,7 @@
 									</div>														
 					</div>	
 				<div class="div-table-row">
-					<div class="div-table-col"><label for="codiModelApplicativo"> &nbsp;Model Applicativo*:</label></div>
+					<div class="div-table-col"><label for="codiModelApplicativo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Model Applicativo*:</label></div>
 					<div class="div-table-col">
 										<form:select path="codiModelApplicativo" id="codiModelApplicativo" name="codiModelApplicativo" style="width:300px">
 											<form:option value="" label="--" />

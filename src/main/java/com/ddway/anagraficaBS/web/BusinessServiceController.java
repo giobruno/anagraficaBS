@@ -401,6 +401,7 @@ public class BusinessServiceController {
 		List<DBusinessServices> businessServiceList;		
 		
 		try{
+			session.removeAttribute("modelApplicativiNonValidiConBSAssociati");
 			gestioneControlli.controlloValiditaModelAplicativi(session);
 			businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(session);
 			if(businessServiceList == null || businessServiceList.isEmpty()){

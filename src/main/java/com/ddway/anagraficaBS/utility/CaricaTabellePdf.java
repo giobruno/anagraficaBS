@@ -293,17 +293,17 @@ public class CaricaTabellePdf {
 					 table.setWidthPercentage(100f);
 					 table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 					 
-				     PdfPCell c1 = new PdfPCell(new Phrase("Codice",boldFont));
+				     PdfPCell c1 = new PdfPCell(new Phrase("Processo",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);		
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				        
-				     c1 = new PdfPCell(new Phrase("Sigla",boldFont));
+				     c1 = new PdfPCell(new Phrase("Categoria Mac",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				     
-				     c1 = new PdfPCell(new Phrase("Descrizione",boldFont));
+				     c1 = new PdfPCell(new Phrase("Categoria Infr",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);			
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
@@ -323,10 +323,10 @@ public class CaricaTabellePdf {
 				     
 					 for(int i=0;i<processiList.size();i++){
 						 associazioneBSProcessoBean = processiList.get(i);			
-						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-						 table.addCell(new Phrase(associazioneBSProcessoBean.getCodiProcesso()+"",baseFont));
+						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);						 
 						 table.addCell(new Phrase(associazioneBSProcessoBean.getTextSiglaProcesso(),baseFont));
-						 table.addCell(new Phrase(associazioneBSProcessoBean.getDescProcesso(),baseFont));
+						 table.addCell(new Phrase(associazioneBSProcessoBean.getDescCategoriaMac()+"",baseFont));
+						 table.addCell(new Phrase(associazioneBSProcessoBean.getDescCategoriaInfr(),baseFont));
 						 }
 			 	}
 			}catch(Exception e){
@@ -399,7 +399,7 @@ public class CaricaTabellePdf {
 			
 			try{
 			 	if (modelApplicativiList !=null && !modelApplicativiList.isEmpty()) {
-					 table = (new PdfPTable(2));
+					 table = (new PdfPTable(3));
 					 table.setWidthPercentage(100f);
 					 table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 					 
@@ -409,24 +409,35 @@ public class CaricaTabellePdf {
 				     table.addCell(c1);	
 				     
 				     c1 = new PdfPCell(new Phrase("Descrizione",boldFont));
-				     c1.setBorder(Rectangle.NO_BORDER);			        
+				     c1.setBorder(Rectangle.NO_BORDER);
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
 				     
 				     c1 = new PdfPCell(new Phrase("",boldFont));
-				     c1.setBorder(Rectangle.NO_BORDER);			        
+				     c1.setBorder(Rectangle.NO_BORDER);
+				     c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+				     table.addCell(c1);	
+				     
+				     c1 = new PdfPCell(new Phrase("",boldFont));
+				     c1.setBorder(Rectangle.NO_BORDER);
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
 				     c1 = new PdfPCell(new Phrase("",boldFont));
-				     c1.setBorder(Rectangle.NO_BORDER);			        
+				     c1.setBorder(Rectangle.NO_BORDER);
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
+				     table.addCell(c1);	
+				     c1 = new PdfPCell(new Phrase("",boldFont));
+				     c1.setBorder(Rectangle.NO_BORDER);
+				     c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				     table.addCell(c1);	
 				     
 					 for(int i=0;i<modelApplicativiList.size();i++){
 						 modelApplicativo = modelApplicativiList.get(i);
 						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 						 table.addCell(new Phrase(modelApplicativo.getCodiModelApplicativo().toString(),baseFont));	
-						 table.addCell(new Phrase(modelApplicativo.getDescModelApplicativo(),baseFont));											
+						 table.addCell(new Phrase(modelApplicativo.getDescModelApplicativo().toString(),baseFont));	
+						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
+						 table.addCell(new Phrase("",baseFont));	
 						 }
 			 	}
 			}catch(Exception e){
@@ -435,6 +446,7 @@ public class CaricaTabellePdf {
 			}			
 		 	return table;
 		 	}
+	
 	@Transactional
 	public PdfPTable caricaTabellaReport5 (List<ModelApplicativoPiuBSAssoicatiBean> modelApplicativiList) throws Exception{
 		log.info("Inizio metodo CaricaTabellePdf.caricaTabellaReport5!");
@@ -471,6 +483,7 @@ public class CaricaTabellePdf {
 				     
 					 for(int i=0;i<modelApplicativiList.size();i++){
 						 modelApplicativo = modelApplicativiList.get(i);
+						 if(modelApplicativo.getBusinessServiceBeanList() != null && !modelApplicativo.getBusinessServiceBeanList().isEmpty()){
 						 businessServiceListString = "";
 						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
 						 table.addCell(new Phrase(modelApplicativo.getModelApplicativo().getDescModelApplicativo(),baseFont));
@@ -479,8 +492,9 @@ public class CaricaTabellePdf {
 							 businessServiceListString = businessServiceListString+businessServiceBean.getTextNomeBusinessService()+"\n";
 						}
 						 businessServiceListString = businessServiceListString+"\n\n";
-						 table.addCell(new Phrase(businessServiceListString,baseFont));	
+						 table.addCell(new Phrase(businessServiceListString,baseFont));							 
 						 }
+			 	}
 			 	}
 			}catch(Exception e){
 				log.error(e.getMessage()+" on method CaricaTabellePdf.caricaTabellaReport5!");
