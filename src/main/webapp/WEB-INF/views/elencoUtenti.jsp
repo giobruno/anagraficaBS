@@ -44,8 +44,8 @@
 			<legend>Business Services</legend>				
 						<div class="div-table">
 								<div class="div-table-row">							 
-									<div class="div-table-col-center"><p class="visualizzaDesc">Nome</p></div>	
-									<div class="div-table-col-center"><p class="visualizzaDesc">Cognome</p></div>					
+									<div class="div-table-col"><p class="visualizzaDesc">Nome</p></div>	
+									<div class="div-table-col"><p class="visualizzaDesc">Cognome</p></div>					
 									<div class="div-table-col-center"><p class="visualizzaDesc">Abilita</p></div>
 								<!-- 	<div class="div-table-col-center"><p class="visualizzaDesc">Invia Password</p></div>
 									<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>    -->
@@ -58,8 +58,8 @@
 							
 							<c:forEach items="${utentiList}" var="item" >
 							<div class="div-table-row">				
-								<div class="div-table-col-center">${item.nome}</div>	
-								<div class="div-table-col-center">${item.cognome}</div>							
+								<div class="div-table-col">${item.nome}</div>	
+								<div class="div-table-col">${item.cognome}</div>							
 								
 								<c:if test="${item.enabled}">
 									<div class="div-table-col-center"><a href="disabilitaUtente?userId=${item.userId}">
