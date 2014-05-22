@@ -35,11 +35,12 @@
 			<legend>Elenco Reports</legend>				
 						<div class="div-table">
 								<div class="div-table-row">							 
-									<div class="div-table-col"><a href="reportController?report=1" target=”_blank”><p class="visualizzaDesc">Elenco Business Services</p></a></div>														
+									<div class="div-table-col"><a href="reportController?report=2" target=”_blank”><p class="visualizzaDesc">Elenco Business Services</p></a></div>														
 								</div>
-								<div class="div-table-row">							 
+							<!-- 	<div class="div-table-row">							 
 									<div class="div-table-col"><a href="reportController?report=2" target=”_blank”><p class="visualizzaDesc">Elenco Business Services dettaglio</p></a></div>														
 								</div>
+							 -->
 								<div class="div-table-row">							 
 									<div class="div-table-col"><a href="reportController?report=3" target=”_blank”><p class="visualizzaDesc">Elenco Processi</p></a></div>														
 								</div>

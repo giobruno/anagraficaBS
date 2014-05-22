@@ -561,7 +561,7 @@ public class GestioneDataBase {
 			log.debug("Start GestioneDataBase.getElencoModelApplicativi method");
 			
 			List<DModelApplicativi> elencoModelApplicativi;
-			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab where tab.dataFineValidita is null order by tab.descModelApplicativo";
+			String query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab where tab.dataFineValidita is null order by tab.codiModelApplicativo";
 			
 			try{		
 				elencoModelApplicativi = (List<DModelApplicativi>) dataSourceService.genericquery(query);								

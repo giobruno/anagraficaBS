@@ -56,7 +56,7 @@ public class PdfReport5 extends AbstractPdfView {
 		        document.setHeader(header); 
 		        document.open();			    
 		        
-		    	Paragraph titolo = new Paragraph("Elenco Model Applicativi", titoloFont);
+		    	Paragraph titolo = new Paragraph("Elenco Model Applicativi con Business Service Associati", titoloFont);
 		    	titolo.setAlignment(Element.ALIGN_CENTER);
 		        document.add(titolo);		    	
 		       

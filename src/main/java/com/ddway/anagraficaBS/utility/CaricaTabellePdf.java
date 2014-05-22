@@ -396,48 +396,39 @@ public class CaricaTabellePdf {
 		
 			DModelApplicativi modelApplicativo;
 			PdfPTable table = null;
+			float[] columnWidths = new float[] {15f, 100f};            
 			
 			try{
 			 	if (modelApplicativiList !=null && !modelApplicativiList.isEmpty()) {
-					 table = (new PdfPTable(3));
+					 table = (new PdfPTable(2));
 					 table.setWidthPercentage(100f);
+					 table.setWidths(columnWidths);
 					 table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 					 
 					 PdfPCell c1 = new PdfPCell(new Phrase("Codice",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);				     
 				     table.addCell(c1);	
 				     
 				     c1 = new PdfPCell(new Phrase("Descrizione",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
-				     table.addCell(c1);	
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);			
+				     table.addCell(c1);					    
 				     
 				     c1 = new PdfPCell(new Phrase("",boldFont));
-				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
-				     table.addCell(c1);	
-				     
-				     c1 = new PdfPCell(new Phrase("",boldFont));
-				     c1.setBorder(Rectangle.NO_BORDER);
+				     c1.setBorder(Rectangle.NO_BORDER);			
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);	
 				     c1 = new PdfPCell(new Phrase("",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
-				     table.addCell(c1);	
-				     c1 = new PdfPCell(new Phrase("",boldFont));
-				     c1.setBorder(Rectangle.NO_BORDER);
-				     c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
-				     table.addCell(c1);	
+				     table.addCell(c1);				     
 				     
 					 for(int i=0;i<modelApplicativiList.size();i++){
-						 modelApplicativo = modelApplicativiList.get(i);
+						 modelApplicativo = modelApplicativiList.get(i);			
 						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-						 table.addCell(new Phrase(modelApplicativo.getCodiModelApplicativo().toString(),baseFont));	
-						 table.addCell(new Phrase(modelApplicativo.getDescModelApplicativo().toString(),baseFont));	
-						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
-						 table.addCell(new Phrase("",baseFont));	
+						 table.addCell(new Phrase(modelApplicativo.getCodiModelApplicativo().toString(),baseFont));							 
+						 table.addCell(new Phrase(modelApplicativo.getDescModelApplicativo().toString(),baseFont));							
 						 }
 			 	}
 			}catch(Exception e){

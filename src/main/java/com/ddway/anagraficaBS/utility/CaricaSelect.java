@@ -189,7 +189,7 @@ public class CaricaSelect {
 		List<TabellaArea> tabellaAreaList = new ArrayList<TabellaArea>();
 		
 		try{				
-			List<TblArea> codiAreaList = (List<TblArea>) getlistvaluesCommon("from com.ddway.anagraficaBS.model.db.common.TblArea tab order by tab.sdescrizione", "Aree");	
+			List<TblArea> codiAreaList = (List<TblArea>) getlistvaluesCommon("from com.ddway.anagraficaBS.model.db.common.TblArea tab order by tab.idTblArea", "Aree");	
 			itr = codiAreaList.iterator();
 			while(itr.hasNext()){
 				tblArea = itr.next();

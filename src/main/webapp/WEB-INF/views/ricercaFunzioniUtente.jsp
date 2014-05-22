@@ -15,7 +15,7 @@
 	</div>
 	</div>
 	</div>
-		<div class="div-table-centrata">
+		<div class="div-table">
 	<div class="div-table-row">
 	<div class="div-table-col">
 					</div>
@@ -70,11 +70,7 @@
 					</div>
 		</div>
 		
-		<div class="div-table-row">
-			<div class="div-table-col">
-					 &nbsp;
-							</div>
-							</div>
+		
 		<div class="div-table-row">
 						<div class="div-table-col-center" >
 							<input TYPE="submit" name="Indietro" VALUE="Indietro">
@@ -86,36 +82,18 @@
 						<div class="div-table-row">
 							<div class="div-table-col"></div>
 						</div>
-					</div>
-	 
-	 
-				
+					</div>			
 					
-					<br/>
-					<br/>
-					<div class="div-table-row">
-							<div class="div-table-col">
-								
-							</div>
-					</div>
-					
+					<br/>					
 					</form:form>	
-				<!-- 	<c:if test="${presenzaMessaggio == 'si'}" >	
-					<div class="div-table-center">
-							<div class="div-table-row">
-						<div class="div-table-col">
-							<p class="visualizzaForm" style="color:red;">${message}</p>
-					</div>
-				</div>	
-				</div>
-	</c:if>
-	 -->
+				
 	 <c:if test="${dServiziFunzioniListAssociate != null}">
-	 <div class="div-table-centrata">				  
+	 <div class="div-table">				  
 	<div class="div-table-row">
  		<div class="div-table-col">
 		<fieldset>
-			<legend>Riepilogo Funzioni Utente Associate</legend>							
+			<legend>Riepilogo Funzioni Utente Associate</legend>	
+					<div class="Scroll">						
 						<div class="div-table">
 								<br/>
 								<div class="div-table-row">						
@@ -138,14 +116,19 @@
 							</div>
 							</c:forEach>
 							<br/>		
+							
 							</div>
-							<div class="div-table">
-							<div class="div-table-centrata">								
-							</div>					
-						</div> 
+					</div>
+							
 		 </fieldset>	
-		 </div>
-		 </div>
+		 <br/>
+		  </div>
+		  </div>
+		 <div class="div-table-row">
+					<div class="div-table-col-center" >							
+					<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Homepage" VALUE="Homepage"></a>							
+				</div>
+		</div>	 
 		 </div>
 		<br/>
 		 
