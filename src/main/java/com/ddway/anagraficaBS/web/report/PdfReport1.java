@@ -38,11 +38,9 @@ public class PdfReport1 extends AbstractPdfView {
 		List<BusinessServiceBean> businessServicesList = (List<BusinessServiceBean>) request.getSession().getAttribute("businessServicesList");	   
 				  
 		    try{
-		    	String path = System.getProperty("jboss.server.config.url");
-		    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("iTextExample.pdf"));
-		        			  
-			    String[] indirizzo = path.split("file:");
-			    Image logo = Image.getInstance(indirizzo[1]+"properties/logoReport.png");
+		    	String relativeWebPath = "resources/img/logoReport.png";
+		    	String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
+		    	Image logo = Image.getInstance(absoluteDiskPath);
 			    logo.scalePercent(39);
 			     
 			    Paragraph par = new Paragraph();			    

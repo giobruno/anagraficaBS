@@ -23,6 +23,7 @@ import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.HeaderFooter;
 import com.lowagie.text.Image;
+import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
@@ -45,18 +46,17 @@ public class PdfReport6 extends AbstractPdfView {
 		List<AssociazioneBSProcessoBean> dserviziProcessiList = (List<AssociazioneBSProcessoBean>) request.getSession().getAttribute("associazioneBSProcessoBeanList");
 			  
 		    try{
-		    	String path = System.getProperty("jboss.server.config.url");
-		    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("iTextExample.pdf"));
-		        			  
-			    String[] indirizzo = path.split("file:");
-			    Image logo = Image.getInstance(indirizzo[1]+"properties/logoReport.png");
-			    logo.scalePercent(39);
+		    	String relativeWebPath = "resources/img/logoReport.png";
+		    	String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
+		    	Image logo = Image.getInstance(absoluteDiskPath);
+			    logo.scalePercent(57);
 			     
 			    Paragraph par = new Paragraph();			    
 		        par.add(new Chunk (logo, 0, 0, true));
 		        HeaderFooter header = new HeaderFooter(par, false);
 		        header.setBorder(0);
 		        document.setHeader(header); 
+		        document.setPageSize(PageSize.A4.rotate());
 		        document.open();			    
 		        
 		    	Paragraph titolo = new Paragraph("Dettaglio Business Service", titoloFont);

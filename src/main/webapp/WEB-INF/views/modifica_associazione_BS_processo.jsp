@@ -35,8 +35,31 @@
 		<legend>Compila il seguente form per inserire una nuova Associazione Business Service - Processo</legend>		
 		
 		<div class="div-table">	
-			
+		
 		<div class="div-table-row">
+			<div class="div-table-col"><label for="textNomeBusinessService">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Service*:</label></div>
+			<div class="div-table-col"><form:textarea style="width:200px"  maxlength="4"  id="textNomeBusinessService" path="textNomeBusinessService" readonly="true"/></div>
+		</div>
+		<div class="div-table-row">
+			<div class="div-table-col"><label for="siglaProcesso">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Processo*:</label></div>
+			<div class="div-table-col"><form:input style="width:200px"  maxlength="4"  id="siglaProcesso" path="siglaProcesso" readonly="true"/></div>							
+		</div>
+		<div class="div-table-row">
+			<div class="div-table-col"><label for="descCategoriaMac">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Categoria Mac*:</label></div>
+			<div class="div-table-col"><form:textarea style="width:200px"  maxlength="4"  id="descCategoriaMac" path="descCategoriaMac" readonly="true"/></div>							
+		</div>
+		<div class="div-table-row">
+			<div class="div-table-col"><label for="descCategoriaInfr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Categoria Infr*:</label></div>
+			<div class="div-table-col"><form:input style="width:200px"  maxlength="4"  id="descCategoriaInfr" path="descCategoriaInfr" readonly="true"/></div>								
+		</div>
+			
+			
+		<form:hidden path="codiBusinessService"/>
+		<form:hidden path="codiProcesso"/>
+		<form:hidden path="codiCategoriaMac"/>
+		<form:hidden path="codiCategoriaInfr"/>
+		
+	<!-- 	<div class="div-table-row">
 			<div class="div-table-col"><label for="codiBusinessService">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Service*:</label></div>
 			<div class="div-table-col">
 								<form:select path="codiBusinessService" id="codiBusinessService" name="codiBusinessService" style="width:300px" disabled="true"> 
@@ -80,6 +103,7 @@
 								</form:select>
 							</div>								
 		</div>
+ -->
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="orarioLavIni">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inizio Orario Lavorativo*:</label></div>
 			<div class="div-table-col">

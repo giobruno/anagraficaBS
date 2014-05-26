@@ -6,8 +6,11 @@ public class AssociazioneBSProcessoForm {
 	private String codiBusinessServiceOld;
 	private String codiBusinessService;
 	private String codiProcesso;
+	private String siglaProcesso;
 	private String codiCategoriaMac;
+	private String descCategoriaMac;
 	private String codiCategoriaInfr;	
+	private String descCategoriaInfr;
 	private String orarioLavIniOre;
 	private String orarioLavIniMinuti;
 	private String orarioLavFineOre;
@@ -21,16 +24,19 @@ public class AssociazioneBSProcessoForm {
 	
 	public AssociazioneBSProcessoForm(){}
 	
-	public AssociazioneBSProcessoForm(String textNomeBusinessService,String codiBusinessServiceOld,String codiBusinessService,String codiProcesso,String codiCategoriaMac,
-			String codiCategoriaInfr, String orarioLavIniOre, String orarioLavIniMinuti,String orarioLavFineOre, 
+	public AssociazioneBSProcessoForm(String textNomeBusinessService,String codiBusinessServiceOld,String codiBusinessService,String codiProcesso,String siglaProcesso,String codiCategoriaMac,String descCategoriaMac,
+			String codiCategoriaInfr,String descCategoriaInfr, String orarioLavIniOre, String orarioLavIniMinuti,String orarioLavFineOre, 
 			String orarioLavFineMinuti,String misuTmpLavorativoGiorni, String misuTmpLavorativoOre,String misuTmpLavorativoMinuti,String misuTmpSolareGiorni,String misuTmpSolareOre,String misuTmpSolareMinuti ){
 		
 		this.textNomeBusinessService = textNomeBusinessService;
 		this.codiBusinessServiceOld = codiBusinessServiceOld;
 		this.codiBusinessService = codiBusinessService;
 		this.codiProcesso = codiProcesso;
+		this.siglaProcesso = siglaProcesso;
 		this.codiCategoriaMac = codiCategoriaMac;
+		this.descCategoriaMac = descCategoriaMac;
 		this.codiCategoriaInfr = codiCategoriaInfr;
+		this.descCategoriaInfr = descCategoriaInfr;
 		this.orarioLavIniOre = orarioLavIniOre;
 		this.orarioLavIniMinuti  = orarioLavIniMinuti;
 		this.orarioLavFineOre = orarioLavFineOre;
@@ -44,6 +50,30 @@ public class AssociazioneBSProcessoForm {
 	}
 	
 	
+
+	public String getSiglaProcesso() {
+		return siglaProcesso;
+	}
+
+	public void setSiglaProcesso(String siglaProcesso) {
+		this.siglaProcesso = siglaProcesso;
+	}
+
+	public String getDescCategoriaMac() {
+		return descCategoriaMac;
+	}
+
+	public void setDescCategoriaMac(String descCategoriaMac) {
+		this.descCategoriaMac = descCategoriaMac;
+	}
+
+	public String getDescCategoriaInfr() {
+		return descCategoriaInfr;
+	}
+
+	public void setDescCategoriaInfr(String descCategoriaInfr) {
+		this.descCategoriaInfr = descCategoriaInfr;
+	}
 
 	public String getTextNomeBusinessService() {
 		return textNomeBusinessService;

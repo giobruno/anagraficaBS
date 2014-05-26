@@ -289,12 +289,17 @@ public class CaricaTabellePdf {
 			
 			try{
 			 	if (processiList !=null && !processiList.isEmpty()) {
-					 table = (new PdfPTable(3));
+					 table = (new PdfPTable(4));
 					 table.setWidthPercentage(100f);
 					 table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 					 
 				     PdfPCell c1 = new PdfPCell(new Phrase("Processo",boldFont));
 				     c1.setBorder(Rectangle.NO_BORDER);		
+				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
+				     table.addCell(c1);
+				     
+				     c1 = new PdfPCell(new Phrase("Descrizione",boldFont));
+				     c1.setBorder(Rectangle.NO_BORDER);			
 				     c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 				     table.addCell(c1);
 				        
@@ -325,6 +330,7 @@ public class CaricaTabellePdf {
 						 associazioneBSProcessoBean = processiList.get(i);			
 						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);						 
 						 table.addCell(new Phrase(associazioneBSProcessoBean.getTextSiglaProcesso(),baseFont));
+						 table.addCell(new Phrase(associazioneBSProcessoBean.getDescProcesso(),baseFont));
 						 table.addCell(new Phrase(associazioneBSProcessoBean.getDescCategoriaMac()+"",baseFont));
 						 table.addCell(new Phrase(associazioneBSProcessoBean.getDescCategoriaInfr(),baseFont));
 						 }
@@ -379,8 +385,8 @@ public class CaricaTabellePdf {
 					 for(int i=0;i<funzioniList.size();i++){
 						 dServiziFunzioni = funzioniList.get(i);			
 						 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-						 table.addCell(new Phrase(dServiziFunzioni.getDescArea().toString(),baseFont));
-						 table.addCell(new Phrase(dServiziFunzioni.getDescApplicazione(),baseFont));
+						 table.addCell(new Phrase(dServiziFunzioni.getId().getCodiArea()+" - "+ dServiziFunzioni.getDescArea().toString(),baseFont));
+						 table.addCell(new Phrase(dServiziFunzioni.getId().getCodiApplicazione()+" - "+dServiziFunzioni.getDescApplicazione(),baseFont));
 						 table.addCell(new Phrase(dServiziFunzioni.getDescFunzione(),baseFont));
 						 }
 			 	}

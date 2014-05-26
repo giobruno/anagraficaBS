@@ -316,6 +316,7 @@ public class ProcessiController {
 		return model;
 	}
 	
+	@Transactional
 	@RequestMapping(value="/modificaAssociazioneBSProcessoForm", method = RequestMethod.GET)
 	public ModelAndView modificaAssociazioneBSProcesso(ModelAndView model, HttpSession session, HttpServletRequest request) throws Exception { 
 		logger.info("Inizio metodo BusinessServiceController.modificaAssociazioneBSProcesso!");
@@ -388,31 +389,30 @@ public class ProcessiController {
 				return model;
 			}
 			dServiziProcessiOld = (DServiziProcessi) session.getAttribute("dServiziProcessiOld");			
-			query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiBusinessService = '"+associazioneBSProcessoForm.getCodiBusinessService()+"' and tab.id.codiProcesso = '"+associazioneBSProcessoForm.getCodiProcesso()+"' and tab.id.codiCategoriaMac = '"+associazioneBSProcessoForm.getCodiCategoriaMac()+"' and tab.id.codiCategoriaInfr = '"+associazioneBSProcessoForm.getCodiCategoriaInfr()+"'";
-			dServiziProcessoGiaPresente = (List<DServiziProcessi>) dataSourceService.genericquery(query);
-			if(dServiziProcessoGiaPresente != null && !dServiziProcessoGiaPresente.isEmpty()){
-				if(dServiziProcessoGiaPresente.get(0).getDataFineValidita() == null){
-					associazioneBSProcessoForm.setCodiBusinessService(dServiziProcessiOld.getId().getCodiBusinessService()+"");
-					model.addObject("presenzaMessaggio","si");
-					model.addObject("message","L'associazione Business Service - Processo che si sta tentando di inserire risulta gia' presente nel sistema!");
-					businessServiceList = (List<DBusinessServices>) session.getAttribute("businessServiceList");
-					selectboxes = caricaSelect.getSelectsInserimentoAssociazioneBSProcesso("formAssociazioneBSProcesso");
-					model.addAllObjects(selectboxes);
-					businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(session);
-					if(businessServiceList == null || businessServiceList.isEmpty()){
-						model.addObject("presenzaMessaggio","si");
-						model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");				
-					}
-					else model.addObject("businessServiceList", businessServiceList);
-					model.addObject("associazioneBSProcessoForm",associazioneBSProcessoForm);
-					model.setViewName("modifica_associazione_BS_processo");
-					}
-				}else{			
+//			query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziProcessi tab where tab.id.codiBusinessService = '"+associazioneBSProcessoForm.getCodiBusinessService()+"' and tab.id.codiProcesso = '"+associazioneBSProcessoForm.getCodiProcesso()+"' and tab.id.codiCategoriaMac = '"+associazioneBSProcessoForm.getCodiCategoriaMac()+"' and tab.id.codiCategoriaInfr = '"+associazioneBSProcessoForm.getCodiCategoriaInfr()+"'";
+//			dServiziProcessoGiaPresente = (List<DServiziProcessi>) dataSourceService.genericquery(query);
+//			if(dServiziProcessoGiaPresente != null && !dServiziProcessoGiaPresente.isEmpty()){
+//				if(dServiziProcessoGiaPresente.get(0).getDataFineValidita() == null){
+//					associazioneBSProcessoForm.setCodiBusinessService(dServiziProcessiOld.getId().getCodiBusinessService()+"");
+//					model.addObject("presenzaMessaggio","si");
+//					model.addObject("message","L'associazione Business Service - Processo che si sta tentando di inserire risulta gia' presente nel sistema!");
+//					businessServiceList = (List<DBusinessServices>) session.getAttribute("businessServiceList");
+//					selectboxes = caricaSelect.getSelectsInserimentoAssociazioneBSProcesso("formAssociazioneBSProcesso");
+//					model.addAllObjects(selectboxes);
+//					businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(session);
+//					if(businessServiceList == null || businessServiceList.isEmpty()){
+//						model.addObject("presenzaMessaggio","si");
+//						model.addObject("message","Non e' stato inserito nessun Business Service nel sistema!");				
+//					}
+//					else model.addObject("businessServiceList", businessServiceList);
+//					model.addObject("associazioneBSProcessoForm",associazioneBSProcessoForm);
+//					model.setViewName("modifica_associazione_BS_processo");
+//					}
+//				}else{			
 					popolaModelDb.popolaDServiziProcessiBean(associazioneBSProcessoForm,dServiziProcessi);
 					gestioneDataBase.modificaAssociazioneBSProcesso(dServiziProcessi,dServiziProcessiOld);	
 					session.removeAttribute("dServiziProcessiOld");
 					model.setViewName("forward:/dettaglioBusinessService?codiBusinessService="+associazioneBSProcessoForm.getCodiBusinessServiceOld()+"&messaggio='L'associazione Business Service - Processo e' stata modificata con successo!'");
-				}
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on ProcessiController.modificaAssociazioneBSProcesso");

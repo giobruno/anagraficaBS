@@ -517,8 +517,8 @@ public class GestioneDataBase {
 				if(authorities.size() == 2)
 					role = "admin";
 				if(role.equalsIgnoreCase("admin"))
-					query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null  order by tab.codiBusinessService";
-				else query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null and tab.persRespBusinessService = '"+utente.getNome()+" "+utente.getCognome()+"' order by tab.codiBusinessService";
+					query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null  order by tab.textNomeBusinessService";
+				else query = "from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null and tab.persRespBusinessService = '"+utente.getNome()+" "+utente.getCognome()+"' order by tab.textNomeBusinessService";
 				elencoBusinessServices = (List<DBusinessServices>) dataSourceService.genericquery(query);								
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.getElencoBusinessServices");

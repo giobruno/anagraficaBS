@@ -97,8 +97,7 @@
 <c:if test="${dServiziFunzioniList != null}">			  
 	<div class="div-table-row"> 		
 		<fieldset>
-			<legend>Funzioni Utente Associate al Business Service</legend>	
-			<div class="Scroll2">			
+			<legend>Funzioni Utente Associate al Business Service</legend>							
 						<div class="div-table">
 								<div class="div-table-row">			
 									<div class="div-table-col">						
@@ -106,8 +105,10 @@
 									</div>
 								</div>
 						</div>
+						<br/>
+				<div class="Scroll2">
 						<div class="div-table">
-								<br/>
+								
 								<div class="div-table-row">						
 									<div class="div-table-col"><p class="visualizzaDesc">Area</p></div>	
 									<div class="div-table-col"><p class="visualizzaDesc">Applicazione</p></div>		 
@@ -141,16 +142,16 @@
 	</c:if>
 		 <div class="div-table-row">			 
 			 <fieldset>
-				<legend>Processi Associati al Business Service</legend>		
-				<div class="Scroll2">
+				<legend>Processi Associati al Business Service</legend>						
 				<div class="div-table">
 								<div class="div-table-row">			
 									<div class="div-table-col">						
 										<a href="formAssociazioneBSProcesso?codiBusinessService=${businessService.codiBusinessService}" ><button>Associa un nuovo Processo</button></a>
 									</div>
 								</div>
-						</div>		
-						<br/>
+						</div>
+						<br/>	
+				<div class="Scroll2">							
 							<div class="div-table">
 									<div class="div-table-row">							 
 										<div class="div-table-col"><p class="visualizzaDesc">&nbsp;</p></div>	
@@ -158,7 +159,7 @@
 										<div class="div-table-col"><p class="visualizzaDesc">Processo</p></div>		
 										<div class="div-table-col"><p class="visualizzaDesc">Categoria Mac</p></div>
 										<div class="div-table-col"><p class="visualizzaDesc">Categoria Infr</p></div>			
-										<div class="div-table-col-center"><p class="visualizzaDesc">Modifica</p></div>
+										<div class="div-table-col-center"><p class="visualizzaDesc">Visualizza/Modifica</p></div>
 										<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>
 															
 									</div>

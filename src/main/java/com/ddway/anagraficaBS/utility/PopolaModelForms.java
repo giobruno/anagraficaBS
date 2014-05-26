@@ -74,10 +74,14 @@ public class PopolaModelForms {
 		try{
 			if(dServiziProcessi != null && associazioneBSProcessoForm != null){
 				associazioneBSProcessoForm.setCodiBusinessServiceOld(dServiziProcessi.getDBusinessServices().getCodiBusinessService()+"");
-				associazioneBSProcessoForm.setCodiBusinessService(dServiziProcessi.getDBusinessServices().getCodiBusinessService()+"");				
+				associazioneBSProcessoForm.setCodiBusinessService(dServiziProcessi.getDBusinessServices().getCodiBusinessService()+"");	
+				associazioneBSProcessoForm.setTextNomeBusinessService(dServiziProcessi.getDBusinessServices().getTextNomeBusinessService());
 				associazioneBSProcessoForm.setCodiCategoriaInfr(dServiziProcessi.getDCategorieInfr().getCodiCategoriaInfr()+"");
+				associazioneBSProcessoForm.setDescCategoriaInfr(dServiziProcessi.getDCategorieInfr().getDescCategoriaInfr());
 				associazioneBSProcessoForm.setCodiCategoriaMac(dServiziProcessi.getDCategorieMac().getCodiCategoriaMac()+"");
+				associazioneBSProcessoForm.setDescCategoriaMac(dServiziProcessi.getDCategorieMac().getDescCategoriaMac());
 				associazioneBSProcessoForm.setCodiProcesso(dServiziProcessi.getDProcessi().getCodiProcesso()+"");
+				associazioneBSProcessoForm.setSiglaProcesso(dServiziProcessi.getDProcessi().getTextSiglaProcesso());
 				associazioneBSProcessoForm.setOrarioLavIniOre(dServiziProcessi.getOrarioLavIni().getHours()+"");	
 				associazioneBSProcessoForm.setOrarioLavIniMinuti(dServiziProcessi.getOrarioLavIni().getMinutes()+"");
 				associazioneBSProcessoForm.setOrarioLavFineOre(dServiziProcessi.getOrarioLavFine().getHours()+"");	

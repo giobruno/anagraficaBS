@@ -169,7 +169,7 @@ public class CaricaSelect {
 				categorieMaclist.add(categorieMac);
 			}
 			selectLists.put("codiCategoriaMacList", categorieMaclist);		
-			List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr tab where tab.codiCategoriaInfr != 0 order by tab.descCategoriaInfr","Categoria Infr");
+			List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr tab where tab.codiCategoriaInfr != 0 order by tab.codiCategoriaInfr","Categoria Infr");
 			selectLists.put("codiCategoriaInfrList", codiCategoriaInfrList);
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSProcesso");

@@ -42,11 +42,9 @@ public class PdfReport5 extends AbstractPdfView {
 		request.getSession().removeAttribute("modelApplicativiList");
 			  
 		    try{
-		    	String path = System.getProperty("jboss.server.config.url");
-		    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("iTextExample.pdf"));
-		        			  
-			    String[] indirizzo = path.split("file:");
-			    Image logo = Image.getInstance(indirizzo[1]+"properties/logoReport.png");
+		    	String relativeWebPath = "resources/img/logoReport.png";
+		    	String absoluteDiskPath = getServletContext().getRealPath(relativeWebPath);
+		    	Image logo = Image.getInstance(absoluteDiskPath);
 			    logo.scalePercent(39);
 			     
 			    Paragraph par = new Paragraph();			    
