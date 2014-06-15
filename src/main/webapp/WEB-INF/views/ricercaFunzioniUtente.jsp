@@ -73,9 +73,9 @@
 		
 		<div class="div-table-row">
 						<div class="div-table-col-center" >
-							<input TYPE="submit" name="Indietro" VALUE="Indietro">
+						<!-- 	<input TYPE="submit" name="Indietro" VALUE="Indietro">    -->
 							<input type="submit" name="Ricerca"  value="Ricerca" />	
-							<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Annulla"></a>							
+							<a href="visualizzaElencoBusinessServices"><input TYPE="button" name="Annulla" VALUE="Esci"></a>							
 						</div>
 		</div>	
 		

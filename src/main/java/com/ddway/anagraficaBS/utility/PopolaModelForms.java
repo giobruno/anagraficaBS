@@ -106,6 +106,8 @@ public class PopolaModelForms {
 			if(processoForm != null && dprocessi != null){
 				processoForm.setDescProcesso(dprocessi.getDescProcesso());
 				processoForm.setTextSiglaProcesso(dprocessi.getTextSiglaProcesso());
+				processoForm.setFlagCatMac(dprocessi.getFlagCatMac());
+				processoForm.setFlagCatInfr(dprocessi.getFlagCatInfr());
 			}			
 		}catch(Exception e){
 			log.error(e.getMessage()+" on PopolaModelForms.popolaProcessoForm!");

@@ -4,7 +4,7 @@
 <div class="Content bgA3">
 	
  
-	<form:form name='form' action="inserimentoAssociazioneBSProcesso" method='GET' commandName="associazioneBSProcessoForm">
+	<form:form name='form' action="inserimentoAssociazioneBSProcessoWizard" method='GET' commandName="associazioneBSProcessoForm">
 	 <div class="div-table">
 	
 	<div class="div-table-row">
@@ -34,23 +34,15 @@
 		
 		<legend>Compila il seguente form per inserire una nuova Associazione Business Service - Processo</legend>		
 		
-		<div class="div-table">			
-			<c:set value="${presenzaBS == 'SI'  ? true : false}" var="disabled"></c:set>
-		<div class="div-table-row">
-			<div class="div-table-col"><label for="codiBusinessService">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Service*:</label></div>
-			<div class="div-table-col">
-								<form:select path="codiBusinessService" id="codiBusinessService" name="codiBusinessService" style="width:180px" disabled="${disabled}">
-									<form:option value="" label="--" />
-									<form:options items="${businessServiceList}" 
-										itemValue="codiBusinessService"
-										itemLabel="textNomeBusinessService" />										
-								</form:select>&nbsp;
-								</div>				
-		</div>
+		<div class="div-table">	
+			<div class="div-table-row">
+			<div class="div-table-col"><label for="textNomeBusinessService">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Business Service*:</label></div>
+			<div class="div-table-col"><form:textarea style="width:200px"  maxlength="4"  id="textNomeBusinessService" path="textNomeBusinessService" readonly="true"/></div>
+		</div>		
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiProcesso">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Processo*:</label></div>
 			<div class="div-table-col">
-								<form:select path="codiProcesso" id="codiProcesso" name="codiProcesso" style="width:180px">
+								<form:select path="codiProcesso" id="codiProcesso" name="codiProcesso" style="width:206px">
 									<form:option value="" label="--" />
 									<form:options items="${codiProcessoList}" 
 										itemValue="codiProcesso"
@@ -61,7 +53,7 @@
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiCategoriaMac">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Categoria Mac*:</label></div>
 			<div class="div-table-col">
-								<form:select path="codiCategoriaMac" id="codiCategoriaMac" name="codiCategoriaMac" style="width:180px">
+								<form:select path="codiCategoriaMac" id="codiCategoriaMac" name="codiCategoriaMac" style="width:206px">
 									<form:option value="00" label="--" />
 									<form:options items="${codiCategoriaMacList}" 
 										itemValue="codiCategoriaMac"
@@ -72,7 +64,7 @@
 		<div class="div-table-row">
 			<div class="div-table-col"><label for="codiCategoriaInfr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Categoria Infr*:</label></div>
 			<div class="div-table-col">
-								<form:select path="codiCategoriaInfr" id="codiCategoriaInfr" name="codiCategoriaInfr" style="width:180px">
+								<form:select path="codiCategoriaInfr" id="codiCategoriaInfr" name="codiCategoriaInfr" style="width:206px">
 									<form:option value="00" label="--" />
 									<form:options items="${codiCategoriaInfrList}" 
 										itemValue="codiCategoriaInfr"
@@ -309,9 +301,17 @@
 					<div class="div-table-row">
 						<div class="div-table-col-center" >
 						
-						<input type="reset" name="Cancella" value="Cancella"/>
-						<input type="submit" name="Associa"  value="Associa" />							
+						<input type="submit" name="Indietro" value="Indietro"/>
+						<input type="submit" name="Associa"  value="Associa Processo" />
+						<c:choose>
+						<c:when test="${codiBusinessService != null}">					
+							<a href="formRicercaFunzioniUtente?codiBusinessService=${codiBusinessService}"><input type="button" name="Avanti"  value="Avanti" /></a>	
+							<input type="submit" name="Annulla"  value="Esci" />
+						</c:when>	
+						<c:otherwise>		
 						<input type="submit" name="Annulla"  value="Annulla" />
+						</c:otherwise>	
+						</c:choose>
 					</div>
 				</div>
 	

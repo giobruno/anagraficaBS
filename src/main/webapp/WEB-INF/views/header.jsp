@@ -21,7 +21,7 @@
 
 <div id="header2"><a href="home">
 <div id="imgsx"></div>
-<div id="title">Anagrafica dei Servizi di Business 1.0</div>
+<div id="title">Anagrafica dei Servizi di Business</div>
 <div id="imgdx"></div></a>
 </div>
 

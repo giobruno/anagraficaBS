@@ -51,7 +51,9 @@
 								<div class="div-table-row">							 
 							<!-- 		<div class="div-table-col"><p class="visualizzaDesc">Codice Processo</p></div>     -->
 									<div class="div-table-col"><p class="visualizzaDesc">Sigla Processo</p></div>	
-									<div class="div-table-col"><p class="visualizzaDesc">Descrizione Processo</p></div>					
+									<div class="div-table-col"><p class="visualizzaDesc">Descrizione Processo</p></div>		
+									<div class="div-table-col"><p class="visualizzaDesc">Categoria Mac</p></div>	
+									<div class="div-table-col"><p class="visualizzaDesc">Categoria Infr</p></div>				
 									<div class="div-table-col-center"><p class="visualizzaDesc">Modifica</p></div>
 									<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>
 														
@@ -65,7 +67,9 @@
 							<div class="div-table-row">				
 					<!-- 			<div class="div-table-col">${item.codiProcesso}</div>    -->
 								<div class="div-table-col">${item.textSiglaProcesso}</div>	
-								<div class="div-table-col">${item.descProcesso}</div>							
+								<div class="div-table-col">${item.descProcesso}</div>	
+								<div class="div-table-col">${item.flagCatMac ? 'SI' : 'NO'}</div>
+								<div class="div-table-col">${item.flagCatInfr ? 'SI' : 'NO'}</div>						
 								<div class="div-table-col-center"><a href="modificaProcessoForm?codiProcesso=${item.codiProcesso}"><img src="resources/img/iconeModifica2.jpg"  width="30" height="20" title="Modifica Processo"></a></div>
 								<div class="div-table-col-center"><a href="cancellaProcesso?codiProcesso=${item.codiProcesso}" onclick="return conferma('Sei sicuro di voler cancellare questo processo?')"><img src="resources/img/iconeCancella2.jpg"  width="20" height="20" title="Cancella Processo"></a></div>
 							</div>

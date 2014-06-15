@@ -7,13 +7,17 @@ public class ProcessoForm {
 	
 	private String textSiglaProcesso;
 	private String descProcesso;
+	private Boolean flagCatMac;
+	private Boolean flagCatInfr;
 	
 	public ProcessoForm(){}
 	
-	public ProcessoForm(String textSiglaProcesso,String descProcesso){
+	public ProcessoForm(String textSiglaProcesso,String descProcesso,Boolean flagCatMac,Boolean flagCatInfr){
 		
 		this.textSiglaProcesso = textSiglaProcesso;
 		this.descProcesso = descProcesso;
+		this.flagCatMac = flagCatMac;
+		this.flagCatInfr = flagCatInfr;
 	}
 
 	public String getTextSiglaProcesso() {
@@ -30,5 +34,22 @@ public class ProcessoForm {
 
 	public void setDescProcesso(String descProcesso) {
 		this.descProcesso = descProcesso;
+	}
+
+	public Boolean getFlagCatMac() {
+		return flagCatMac;
+	}
+
+	public void setFlagCatMac(Boolean flagCatMac) {
+		this.flagCatMac = flagCatMac;
+	}
+
+	public Boolean getFlagCatInfr() {
+		return flagCatInfr;
+	}
+
+	public void setFlagCatInfr(Boolean flagCatInfr) {
+		this.flagCatInfr = flagCatInfr;
 	}	
+	
 }

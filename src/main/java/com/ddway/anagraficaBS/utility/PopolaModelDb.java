@@ -110,6 +110,8 @@ public class PopolaModelDb {
 			if(processoForm != null){
 				dProcessi.setTextSiglaProcesso(processoForm.getTextSiglaProcesso());
 				dProcessi.setDescProcesso(processoForm.getDescProcesso());
+				dProcessi.setFlagCatMac(processoForm.getFlagCatMac());
+				dProcessi.setFlagCatInfr(processoForm.getFlagCatInfr());
 				dProcessi.setDataInizioValidita(new Date());
 				dProcessi.setDataFineValidita(null);							
 			}			

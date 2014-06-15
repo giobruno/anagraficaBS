@@ -148,29 +148,17 @@ public class CaricaSelect {
 		
 		HashMap<String, List> selectLists= new HashMap<String, List>();
 		List<CategorieMac> categorieMaclist = new ArrayList<CategorieMac>();
-		CategorieMac categorieMac;
-		DCategorieMac dCategorieMac;
-		Iterator<DCategorieMac> itr;
+		List<DCategorieInfr> codiCategoriaInfrList;
 		
 		try{
 //			List<DBusinessServices> businessServiceList = (List<DBusinessServices>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices tab where tab.dataFineValidita is null order by tab.descBusinessService","Business Services");
 //			selectLists.put("businessServiceList", businessServiceList);		
 			List<DProcessi> codiProcessoList = (List<DProcessi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi tab where tab.dataFineValidita is null order by tab.descProcesso", "Processi" );
 			selectLists.put("codiProcessoList", codiProcessoList);		
-			List<DCategorieMac> codiCategoriaMacList = (List<DCategorieMac>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac tab where tab.codiCategoriaMac != 0 order by tab.codiCategoriaMac","Categoria Mac");
-			itr = codiCategoriaMacList.iterator();
-			while(itr.hasNext()){
-				dCategorieMac = itr.next();
-				categorieMac = new CategorieMac();
-				categorieMac.setCodiCategoriaMac(dCategorieMac.getCodiCategoriaMac());
-				categorieMac.setDescCategoriaMac(dCategorieMac.getDescCategoriaMac());
-				categorieMac.setFlagMacLavSol(dCategorieMac.getFlagMacLavSol());
-				categorieMac.setCodiDescCategoriaMac(dCategorieMac.getCodiCategoriaMac()+" - "+dCategorieMac.getDescCategoriaMac());
-				categorieMaclist.add(categorieMac);
-			}
-			selectLists.put("codiCategoriaMacList", categorieMaclist);		
-			List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr tab where tab.codiCategoriaInfr != 0 order by tab.codiCategoriaInfr","Categoria Infr");
-			selectLists.put("codiCategoriaInfrList", codiCategoriaInfrList);
+//			categorieMaclist = getCategoriaMacList();
+//			selectLists.put("codiCategoriaMacList", categorieMaclist);		
+//			codiCategoriaInfrList = getCategoriaInfrList();
+//			selectLists.put("codiCategoriaInfrList", codiCategoriaInfrList);
 		}catch(Exception e){
 			log.error(e.getMessage()+" on CaricaSelect.getSelectsInserimentoAssociazioneBSProcesso");
 			throw e;
@@ -215,4 +203,32 @@ public class CaricaSelect {
 		return codiApplicazioneList;
 	}	
 	
+	public  List<CategorieMac> getCategoriaMacList() throws Exception{
+		log.debug("Start CaricaSelect.getCategoriaMacList method");
+		
+		CategorieMac categorieMac;
+		DCategorieMac dCategorieMac;
+		Iterator<DCategorieMac> itr;
+		List<CategorieMac> categorieMaclist = new ArrayList<CategorieMac>();
+		
+		List<DCategorieMac> codiCategoriaMacList = (List<DCategorieMac>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac tab where tab.codiCategoriaMac != 0 order by tab.codiCategoriaMac","Categoria Mac");
+		itr = codiCategoriaMacList.iterator();
+		while(itr.hasNext()){
+			dCategorieMac = itr.next();
+			categorieMac = new CategorieMac();
+			categorieMac.setCodiCategoriaMac(dCategorieMac.getCodiCategoriaMac());
+			categorieMac.setDescCategoriaMac(dCategorieMac.getDescCategoriaMac());
+			categorieMac.setFlagMacLavSol(dCategorieMac.getFlagMacLavSol());
+			categorieMac.setCodiDescCategoriaMac(dCategorieMac.getCodiCategoriaMac()+" - "+dCategorieMac.getDescCategoriaMac());
+			categorieMaclist.add(categorieMac);
+		}
+		return categorieMaclist;
+	}
+	
+	public  List<DCategorieInfr> getCategoriaInfrList() throws Exception{
+		log.debug("Start CaricaSelect.getCategoriaInfrList method");
+		
+		List<DCategorieInfr> codiCategoriaInfrList = (List<DCategorieInfr>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr tab where tab.codiCategoriaInfr != 0 order by tab.codiCategoriaInfr","Categoria Infr");
+		return codiCategoriaInfrList;
+	}
 }

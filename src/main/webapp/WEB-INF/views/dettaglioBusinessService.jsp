@@ -94,52 +94,7 @@
 		 </fieldset>					
 					  </div>
 					  <br/>
-<c:if test="${dServiziFunzioniList != null}">			  
-	<div class="div-table-row"> 		
-		<fieldset>
-			<legend>Funzioni Utente Associate al Business Service</legend>							
-						<div class="div-table">
-								<div class="div-table-row">			
-									<div class="div-table-col">						
-										<a href="formRicercaFunzioniUtente?codiBusinessService=${businessService.codiBusinessService}" ><button>Associa nuove Funzioni Utente</button></a>
-									</div>
-								</div>
-						</div>
-						<br/>
-				<div class="Scroll2">
-						<div class="div-table">
-								
-								<div class="div-table-row">						
-									<div class="div-table-col"><p class="visualizzaDesc">Area</p></div>	
-									<div class="div-table-col"><p class="visualizzaDesc">Applicazione</p></div>		 
-									<div class="div-table-col"><p class="visualizzaDesc">Funzione Utente</p></div>									
-									<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>
-														
-								</div>
-							<div class="div-table-row">
-								<div class="div-table-col">
-								</div>
-							</div>		
-							
-							<c:forEach items="${dServiziFunzioniList}" var="item" >
-							<div class="div-table-row">				
-										<div class="div-table-col">${item.descArea}</div>	
-										<div class="div-table-col">${item.descApplicazione}</div>	
-										<div class="div-table-col">${item.descFunzione}</div>								
-								<div class="div-table-col-center"><a href="cancellaAssociazioneFunzioneUtente?codiFunzione=${item.id.codiFunzione}&codiArea=${item.id.codiArea}&codiApplicazione=${item.id.codiApplicazione}&codiBusinessService=${businessService.codiBusinessService}&dataInizioAssociazione=${item.id.dataInizioAssociazione}" onclick="return conferma('Sei sicuro di voler cancellare questa funzione utente?')"><img src="resources/img/iconeCancella2.jpg"  width="20" height="20" title="Cancella Funzione Utente"></a></div>
-							</div>
-							</c:forEach>
-							<br/>	
-							</div>
-							<div class="div-table">
-							<div class="div-table-centrata">								
-							</div>					
-						</div> 
-						</div>
-		 </fieldset>	
-		 </div>		
-		 <br/>
-	</c:if>
+
 		 <div class="div-table-row">			 
 			 <fieldset>
 				<legend>Processi Associati al Business Service</legend>						
@@ -185,6 +140,53 @@
 						  
 					 
 					  </div>
+					  <br/>
+			<c:if test="${dServiziFunzioniList != null}">			  
+	<div class="div-table-row"> 		
+		<fieldset>
+			<legend>Funzioni Utente Associate al Business Service</legend>							
+						<div class="div-table">
+								<div class="div-table-row">			
+									<div class="div-table-col">						
+										<a href="formRicercaFunzioniUtente?codiBusinessService=${businessService.codiBusinessService}" ><button>Associa nuove Funzioni Utente</button></a>
+									</div>
+								</div>
+						</div>
+						<br/>
+				<div class="Scroll2">
+						<div class="div-table">
+								
+								<div class="div-table-row">						
+									<div class="div-table-col"><p class="visualizzaDesc">Area</p></div>	
+									<div class="div-table-col"><p class="visualizzaDesc">Applicazione</p></div>		 
+									<div class="div-table-col"><p class="visualizzaDesc">Funzione Utente</p></div>									
+									<div class="div-table-col-center"><p class="visualizzaDesc">Cancella</p></div>
+														
+								</div>
+							<div class="div-table-row">
+								<div class="div-table-col">
+								</div>
+							</div>		
+							
+							<c:forEach items="${dServiziFunzioniList}" var="item" >
+							<div class="div-table-row">				
+										<div class="div-table-col">${item.descArea}</div>	
+										<div class="div-table-col">${item.descApplicazione}</div>	
+										<div class="div-table-col">${item.descFunzione}</div>								
+								<div class="div-table-col-center"><a href="cancellaAssociazioneFunzioneUtente?codiFunzione=${item.id.codiFunzione}&codiArea=${item.id.codiArea}&codiApplicazione=${item.id.codiApplicazione}&codiBusinessService=${businessService.codiBusinessService}&dataInizioAssociazione=${item.id.dataInizioAssociazione}" onclick="return conferma('Sei sicuro di voler cancellare questa funzione utente?')"><img src="resources/img/iconeCancella2.jpg"  width="20" height="20" title="Cancella Funzione Utente"></a></div>
+							</div>
+							</c:forEach>
+							<br/>	
+							</div>
+							<div class="div-table">
+							<div class="div-table-centrata">								
+							</div>					
+						</div> 
+						</div>
+		 </fieldset>	
+		 </div>		
+		 <br/>
+	</c:if>
 				 	 
 	</div>
 	

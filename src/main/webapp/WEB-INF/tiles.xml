@@ -55,6 +55,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/associazione_BS_processo.jsp" />
 	</definition>
 	
+	<definition name="associazione_BS_processo_wizard" extends="base.definition">
+		<put-attribute name="title" value="associazione_BS_processo_wizard" />
+		<put-attribute name="body" value="/WEB-INF/views/associazione_BS_processo_wizard.jsp" />
+	</definition>
+	
 	<definition name="modifica_associazione_BS_processo" extends="base.definition">
 		<put-attribute name="title" value="modifica_associazione_BS_processo" />
 		<put-attribute name="body" value="/WEB-INF/views/modifica_associazione_BS_processo.jsp" />

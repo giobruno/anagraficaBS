@@ -20,6 +20,12 @@
         <property name="dataFineValidita" type="date">
             <column name="DATA_FINE_VALIDITA" length="0" />
         </property>
+         <property name="flagCatMac" type="java.lang.Boolean">
+            <column name="FLAG_CAT_MAC" />
+        </property>
+         <property name="flagCatInfr" type="java.lang.Boolean">
+            <column name="FLAG_CAT_INFR" />
+        </property>
         <set name="DServiziProcessis" table="d_servizi_processi" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="CODI_PROCESSO" not-null="true" />

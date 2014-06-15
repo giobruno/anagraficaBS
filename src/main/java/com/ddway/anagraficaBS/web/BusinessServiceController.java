@@ -125,7 +125,7 @@ public class BusinessServiceController {
 				model.setViewName("inserimentoBusinessService");
 				return model;
 			}		
-//			if(!businessServiceForm.getFlagConvenzione()){		
+			if(!businessServiceForm.getFlagConvenzione()){		
 			if(businessServiceForm.getPersRespBusinessService() == null){
 				utente = (String) session.getAttribute("utente");
 				businessServiceForm.setPersRespBusinessService(utente);
@@ -136,11 +136,11 @@ public class BusinessServiceController {
 //				List<DBusinessServices> businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices();
 //				model.addObject("businessServiceList", businessServiceList);
 				model.setViewName("forward:/visualizzaElencoBusinessServices");
-//			}
-//			else {
-//				session.setAttribute("businessServiceForm", businessServiceForm);				
-//				model.setViewName("forward:/formRicercaFunzioniUtente");
-//			}
+			}
+			else {
+				session.setAttribute("businessServiceForm", businessServiceForm);				
+				model.setViewName("forward:/formAssociazioneBSProcessoWizard?codiBusinessService=wizard");
+			}
 			}catch(Exception e){
 				e.printStackTrace();
 				logger.error(e.getMessage()+" on BusinessServiceController.inserimentoBusinessService");

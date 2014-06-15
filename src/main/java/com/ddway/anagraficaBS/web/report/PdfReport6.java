@@ -68,6 +68,19 @@ public class PdfReport6 extends AbstractPdfView {
 		        PdfPTable tabellaBusinessService = caricaTabellePdf.caricaTabellaBusinessService(businessServiceBean);
 		        document.add(tabellaBusinessService);
 		        
+		        if(dserviziProcessiList != null && !dserviziProcessiList.isEmpty()){
+			        document.add(new Paragraph("   "));
+			        document.add(new Paragraph("   "));	
+			        titolo = new Paragraph("Elenco Processi Associate al Business Service", titoloFont);
+			    	titolo.setAlignment(Element.ALIGN_CENTER);
+			        document.add(titolo);
+			        
+			        document.add(new Paragraph("   "));
+			        document.add(new Paragraph("   "));		       			        
+			        PdfPTable tabellaProcessi = caricaTabellePdf.caricaTabellaProcessi(dserviziProcessiList);
+			        document.add(tabellaProcessi);
+			        }
+		        
 		        if(dServiziFunzioniList != null && !dServiziFunzioniList.isEmpty()){
 			        document.add(new Paragraph("   "));
 			        document.add(new Paragraph("   "));	
@@ -79,19 +92,6 @@ public class PdfReport6 extends AbstractPdfView {
 			        PdfPTable tabellaFunzioniUtente = caricaTabellePdf.caricaTabellaFunzioniUtente(dServiziFunzioniList);
 			        document.add(tabellaFunzioniUtente);
 		        }
-		        
-		        if(dserviziProcessiList != null && !dserviziProcessiList.isEmpty()){
-			        document.add(new Paragraph("   "));
-			        document.add(new Paragraph("   "));	
-			        titolo = new Paragraph("Elenco Processi Associate al Business Service", titoloFont);
-			    	titolo.setAlignment(Element.ALIGN_CENTER);
-			        document.add(titolo);
-			        
-			        document.add(new Paragraph("   "));
-			        document.add(new Paragraph("   "));		       			        
-			        PdfPTable tabellaProcessi = caricaTabellePdf.caricaTabellaProcessi(dserviziProcessiList);
-			        document.add(tabellaProcessi);	
-		    }
 		        
 		    }catch(Exception e){
 		        e.printStackTrace();

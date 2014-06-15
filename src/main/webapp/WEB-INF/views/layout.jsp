@@ -24,7 +24,10 @@
       <script src="resources/js/check_tutti.js"></script>
       <script src="resources/js/mostraMessaggio.js"></script> 
       <script src="resources/js/confermaSubmit.js"></script>       
-      <script src="resources/js/compilaCampoUser.js"></script>   
+      <script src="resources/js/compilaCampoUser.js"></script>  
+      <script src="resources/js/popup.js"></script>
+      <script src="resources/js/caricaCategoriaInfr.js"></script>
+      <script src="resources/js/caricaCategoriaMac.js"></script>    
   </head>
 <body >
 

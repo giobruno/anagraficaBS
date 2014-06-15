@@ -19,6 +19,8 @@ public class DProcessi implements java.io.Serializable {
 	private String descProcesso;
 	private Date dataInizioValidita;
 	private Date dataFineValidita;
+	private Boolean flagCatMac;
+	private Boolean flagCatInfr;
 	private Set<DServiziProcessi> DServiziProcessis = new HashSet<DServiziProcessi>(
 			0);
 
@@ -26,12 +28,14 @@ public class DProcessi implements java.io.Serializable {
 	}
 
 	public DProcessi(String textSiglaProcesso, String descProcesso,
-			Date dataInizioValidita, Date dataFineValidita,
+			Date dataInizioValidita, Date dataFineValidita,Boolean flagCatMac,Boolean flagCatInfr,
 			Set<DServiziProcessi> DServiziProcessis) {
 		this.textSiglaProcesso = textSiglaProcesso;
 		this.descProcesso = descProcesso;
 		this.dataInizioValidita = dataInizioValidita;
 		this.dataFineValidita = dataFineValidita;
+		this.flagCatMac = flagCatMac;
+		this.flagCatInfr = flagCatInfr;
 		this.DServiziProcessis = DServiziProcessis;
 	}
 
@@ -73,6 +77,22 @@ public class DProcessi implements java.io.Serializable {
 
 	public void setDataFineValidita(Date dataFineValidita) {
 		this.dataFineValidita = dataFineValidita;
+	}
+	
+	public Boolean getFlagCatMac() {
+		return flagCatMac;
+	}
+
+	public void setFlagCatMac(Boolean flagCatMac) {
+		this.flagCatMac = flagCatMac;
+	}
+
+	public Boolean getFlagCatInfr() {
+		return flagCatInfr;
+	}
+
+	public void setFlagCatInfr(Boolean flagCatInfr) {
+		this.flagCatInfr = flagCatInfr;
 	}
 
 	public Set<DServiziProcessi> getDServiziProcessis() {

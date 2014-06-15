@@ -43,7 +43,21 @@
 			<div class="div-table-row">
 				<div class="div-table-col"><label for="descProcesso"> &nbsp;Descrizione*:</label></div>
 				<div class="div-table-col"><form:textarea cols="40" rows="3" path="descProcesso" id="descProcesso" onkeyup="maxlength(this,2000)"></form:textarea></div>				
-			</div>			
+			</div>	
+			<div class="div-table-row">
+						<div class="div-table-col"><label for="flagCatMac"> &nbsp;Categoria Mac*:</label></div>
+						<div class="div-table-col">			
+								<form:radiobutton  path="flagCatMac" id="flagCatMac" value="true" /><label for="flagCatMac">&nbsp;SI</label>
+								<form:radiobutton path="flagCatMac" id="flagCatMac" value="false" /><label for="flagCatMac">&nbsp;NO</label>
+						</div>					
+			</div>
+			<div class="div-table-row">
+						<div class="div-table-col"><label for="flagCatInfr"> &nbsp;Categoria Infr*:</label></div>
+						<div class="div-table-col">			
+								<form:radiobutton  path="flagCatInfr" id="flagCatInfr" value="true" /><label for="flagCatInfr">&nbsp;SI</label>
+								<form:radiobutton path="flagCatInfr" id="flagCatInfr" value="false" /><label for="flagCatInfr">&nbsp;NO</label>
+						</div>					
+			</div>		
 		
 			</div>
 			</fieldset>
