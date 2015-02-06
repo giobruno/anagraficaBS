@@ -81,17 +81,21 @@
 				
 				<table width="100%"  style="margin: 0px" cellspacing=0 cellpadding=0>
 		<tr height="13px">
-		<!-- 	<td align="left" >
+		<!-- 
+		 	<td align="left" >
 				<a href = "javascript:void(0)" style="font-size: 10px; font-family: Verdana;color:white;font-weight:bold;" onclick = "document.getElementById('popup_assistenza').style.display='block';document.getElementById('fade').style.display='block'">ASSISTENZA</a>
 			</td>
 		 -->
+		
 			<td align="center" width="70%" style="font-size: 11px; font-family: Verdana; color:white;font-weight:bold;">
 				Powered By Sogei S.p.A. - 2014
 			</td>
-	<!-- 		<td align="right" width="15%">
+		<!--  
+	 		<td align="right" width="15%">
 				<a href = "javascript:void(0)" style="font-size: 10px; font-family: Verdana;color:white;font-weight:bold;" onclick = "document.getElementById('popup_credits').style.display='block';document.getElementById('fade').style.display='block'">CREDITS</a>
 			</td>
-	 -->
+		-->
+	 
 		</tr>
 	</table>
 				
