@@ -93,7 +93,9 @@
                         <value>/database_anagraficaBS_mapping/DServiziModel.hbm.xml</value>
                         <value>/database_anagraficaBS_mapping/DServiziProcessi.hbm.xml</value> 
                         <value>/database_anagraficaBS_mapping/Roles.hbm.xml</value>
-                        <value>/database_anagraficaBS_mapping/Users.hbm.xml</value>                                                                                                   
+                        <value>/database_anagraficaBS_mapping/Users.hbm.xml</value>   
+                        <value>/database_anagraficaBS_mapping/DPesoDip.hbm.xml</value>
+                        <value>/database_anagraficaBS_mapping/DPesoBs.hbm.xml</value>                                                                                                
                 </list>
         </property>
 		<property name="hibernateProperties">

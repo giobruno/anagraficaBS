@@ -27,8 +27,8 @@ public class GestioneControlli {
 	public GestioneControlli(){}
 	
 	@Transactional
-	public void controlloValiditaModelAplicativi(HttpSession session) throws Exception{
-		log.info("Inizio metodo GestioneControlli.controlloValiditaModelAplicativi!");		
+	public void controlloValiditaModelApplicativi(HttpSession session) throws Exception{
+		log.info("Inizio metodo GestioneControlli.controlloValiditaModelApplicativi!");		
 		
 		List<ModelApplicativoPiuBSAssoicatiBean> modelApplicativiNonValidi;
 		List<ModelApplicativoPiuBSAssoicatiBean> modelApplicativiNonValidiConBSAssociati = new ArrayList<ModelApplicativoPiuBSAssoicatiBean>();
@@ -48,7 +48,7 @@ public class GestioneControlli {
 				session.setAttribute("modelApplicativiNonValidiConBSAssociati", modelApplicativiNonValidiConBSAssociati);
 		}catch(Exception e){
 			e.printStackTrace();
-			log.info(e+" on method GestioneControlli.controlloValiditaModelAplicativi!");
+			log.info(e+" on method GestioneControlli.controlloValiditaModelApplicativi!");
 			throw e;
 		}
 	}

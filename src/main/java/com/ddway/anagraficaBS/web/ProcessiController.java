@@ -37,7 +37,7 @@ import com.ddway.anagraficaBS.web.dto.ProcessoFormValidator;
 @Controller
 public class ProcessiController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ProcessiController.class);
 	
 	@Autowired
 	IDataSourceService dataSourceService;

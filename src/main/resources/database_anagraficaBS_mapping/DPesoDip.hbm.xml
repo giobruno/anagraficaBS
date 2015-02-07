@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 6, 2015 5:02:35 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ddway.anagraficaBS.model.db.anagraficaBS.DPesoDip" table="d_peso_dip" catalog="anagraficabs">
+        <composite-id name="id" class="com.ddway.anagraficaBS.model.db.anagraficaBS.DPesoDipId">
+            <key-property name="codiDipartimento" type="int">
+                <column name="codi_dipartimento" />
+            </key-property>
+            <key-property name="dataInizioAssociazione" type="date">
+                <column name="data_inizio_associazione" length="0" />
+            </key-property>
+        </composite-id>
+        <property name="misuPesoDip" type="big_decimal">
+            <column name="misu_peso_dip" precision="5" />
+        </property>
+        <property name="dataFineAssociazione" type="date">
+            <column name="data_fine_associazione" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

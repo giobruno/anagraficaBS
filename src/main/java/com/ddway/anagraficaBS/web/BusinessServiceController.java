@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ddway.anagraficaBS.model.bean.AssociazioneBSProcessoBean;
 import com.ddway.anagraficaBS.model.bean.BusinessServiceBean;
+import com.ddway.anagraficaBS.model.bean.ModelApplicativoPiuBSAssoicatiBean;
 import com.ddway.anagraficaBS.model.bean.TriplaInfap;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.Authorities;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
@@ -399,10 +400,12 @@ public class BusinessServiceController {
 		session.removeAttribute("businessServiceList");
 		List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();
 		List<DBusinessServices> businessServiceList;		
+		List<ModelApplicativoPiuBSAssoicatiBean> modelApplicativiNonValidiConBSAssociatisession = null;
 		
 		try{
-			session.removeAttribute("modelApplicativiNonValidiConBSAssociati");
-			gestioneControlli.controlloValiditaModelAplicativi(session);
+			modelApplicativiNonValidiConBSAssociatisession = (List<ModelApplicativoPiuBSAssoicatiBean>) session.getAttribute("modelApplicativiNonValidiConBSAssociati");
+			if(modelApplicativiNonValidiConBSAssociatisession == null)
+				gestioneControlli.controlloValiditaModelApplicativi(session);
 			businessServiceList = (List<DBusinessServices>) gestioneDataBase.getElencoBusinessServices(session);
 			if(businessServiceList == null || businessServiceList.isEmpty()){
 				model.addObject("presenzaMessaggio","si");

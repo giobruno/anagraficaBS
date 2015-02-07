@@ -22,6 +22,11 @@ public class ValidatorUtil {
     
     private static final String STRING_PATTERN = "^[a-zA-Z]*$";
     private static Pattern pattern_string = Pattern.compile(STRING_PATTERN);
+    
+    private static final String BIG_DECIMAL_PATTERN = "^(\\d{1,3}\\.(\\d{3}\\.)*\\d{3}|\\d+)(,\\d{1,2})?$";
+    private static Pattern pattern_bigDecimal = Pattern.compile(BIG_DECIMAL_PATTERN);
+    
+   
 	
 	public static void validateEmail(String fieldName,String email, Errors errors){
 		logger.info("Inizio metodo ValidatorUtil.validateEmail!");
@@ -50,6 +55,14 @@ public class ValidatorUtil {
     public static void validateStringFormat(String fieldName,String number, Errors errors){
     	logger.info("Inizio metodo ValidatorUtil.validateStringFormat!");
         matcher = pattern_string.matcher(number);
+        if(!matcher.matches()){
+            errors.rejectValue(fieldName, "field.errorFormat."+fieldName);
+        }
+    }
+    
+    public static void validateBigDecimalFormat(String fieldName,String number, Errors errors){
+    	logger.info("Inizio metodo ValidatorUtil.validateBigDecimalFormat!");
+        matcher = pattern_bigDecimal.matcher(number);
         if(!matcher.matches()){
             errors.rejectValue(fieldName, "field.errorFormat."+fieldName);
         }

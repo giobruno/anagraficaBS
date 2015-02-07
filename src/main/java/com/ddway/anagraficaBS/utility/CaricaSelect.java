@@ -95,10 +95,8 @@ public class CaricaSelect {
 		List<Utente> utentiList = new ArrayList<Utente>();
 		
 		try{		
-			List<DDipartimenti> dipartimentiList = (List<DDipartimenti>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti tab order by tab.textSiglaDipartimento","Dipartimenti");
-			selectLists.put("dipartimentiList", dipartimentiList);	
-			List<DModelApplicativi> modelApplicativiList = (List<DModelApplicativi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab where tab.dataFineValidita is null order by tab.descModelApplicativo","Model Applicativi");	
-			selectLists.put("modelApplicativiList", modelApplicativiList);
+			List<DDipartimenti> dipartimentiList = getDipartimentiList();	
+			List<DModelApplicativi> modelApplicativiList = getModelApplicativiList();
 			
 			List<Users> usersList = (List<Users>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.Users tab order by tab.cognome","Utenti");	
 			itr = usersList.iterator();
@@ -201,6 +199,20 @@ public class CaricaSelect {
 		
 		List<TblApplicazione> codiApplicazioneList = (List<TblApplicazione>) getlistvaluesInfap("from com.ddway.anagraficaBS.model.db.infap.TblApplicazione tab where tab.scodeArea = '"+codiArea+"' order by tab.sdescrizioneBreve", "Applicazioni");
 		return codiApplicazioneList;
+	}
+	
+	public  List<DDipartimenti> getDipartimentiList() throws Exception{
+		log.debug("Start CaricaSelect.getDipartimentiList method");
+		
+		List<DDipartimenti> dipartimentiList = (List<DDipartimenti>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti tab order by tab.textSiglaDipartimento","Dipartimenti");
+		return dipartimentiList;
+	}
+	
+	public  List<DModelApplicativi> getModelApplicativiList() throws Exception{
+		log.debug("Start CaricaSelect.getModelApplicativiList method");
+		
+		List<DModelApplicativi> modelApplicativiList = (List<DModelApplicativi>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi tab where tab.dataFineValidita is null order by tab.descModelApplicativo","Model Applicativi");	
+		return modelApplicativiList;
 	}	
 	
 	public  List<CategorieMac> getCategoriaMacList() throws Exception{

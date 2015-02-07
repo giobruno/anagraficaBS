@@ -109,6 +109,7 @@
 					<a href="reportController?report=3" target=”_blank”><input TYPE="button" name="Stampa" VALUE="Stampa"></a>
 	</div>	
 	</div>
+	<br/>
 	
 	 </div>     
 </div>
