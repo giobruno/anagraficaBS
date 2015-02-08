@@ -542,17 +542,11 @@ public class BusinessServiceController {
 		try{
 			messaggio = request.getParameter("messaggio");
 			codiBusinessService = request.getParameter("codiBusinessService");
-//			session.setAttribute("codiBusinessService", codiBusinessService);
 			DBusinessServices businessService = (DBusinessServices) gestioneDataBase.getBusinessServices(codiBusinessService);
-//			DDipartimenti dDipartimento  = businessService.getDDipartimenti();
-//			DServiziModel dServiziModel = gestioneDataBase.getModelApplicativoFromDServiziModel(codiBusinessService);
-//			DModelApplicativi dModelApplicativo = gestioneDataBase.getModelApplicativoFromDModelApplicativi(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");
 			popolaModelForms.popolaBusinessServiceBean(businessService, businessServiceBean);
 			List<DServiziFunzioni> dServiziFunzioniList = gestioneDataBase.getListaAssociazioniFunzioniUtenteBS(codiBusinessService);
 			List<DServiziProcessi> dserviziProcessiList = gestioneDataBase.getListaAssociazioniProcessiBS(codiBusinessService,null);
 			popolaModelForms.popolaAssociazioneBSProcessoBeanList(dserviziProcessiList,associazioneBSProcessoBeanList);
-//			model.addObject("dDipartimento", dDipartimento);
-//			model.addObject("dModelApplicativo", dModelApplicativo);	
 			session.setAttribute("dServiziFunzioniList", dServiziFunzioniList);
 			session.setAttribute("associazioneBSProcessoBeanList", associazioneBSProcessoBeanList);
 			session.setAttribute("businessService", businessServiceBean);

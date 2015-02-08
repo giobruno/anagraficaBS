@@ -60,7 +60,7 @@
 									<div class="div-table-col"><p class="visualizzaDesc">Model applicativo</p></div>
 									<div class="div-table-col"><p class="visualizzaDesc">Presenza convenzione</p></div>						
 									<div class="div-table-col-center"><p class="visualizzaDesc">Modifica</p></div>	
-									<div class="div-table-col-center"><p class="visualizzaDesc">Dettaglio</p></div>													
+									<div class="div-table-col-center"><p class="visualizzaDesc">Dettaglio</p></div>																				
 								</div>
 							<div class="div-table-row">
 								<div class="div-table-col">
@@ -78,7 +78,7 @@
 									<div class="div-table-col"><p>${item.descModelApplicativo}</p></div>
 									<div class="div-table-col"><p>${item.flagConvenzione ? 'SI' : 'NO'}</p></div> 													
 								<div class="div-table-col-center"><a href="modificaBusinessServiceForm?codiBusinessService=${item.codiBusinessService}"><img src="resources/img/iconeModifica2.jpg"  width="30" height="20" title="Modifica Business Service"></a></div>
-								<div class="div-table-col-center"><a href="dettaglioBusinessService?codiBusinessService=${item.codiBusinessService}"><img src="resources/img/dettaglio.jpg"  width="30" height="20" title="Visualizza Dettaglio"></a></div>							
+								<div class="div-table-col-center"><a href="dettaglioBusinessService?codiBusinessService=${item.codiBusinessService}"><img src="resources/img/dettaglio.jpg"  width="30" height="20" title="Visualizza Dettaglio"></a></div>								
 							</div>
 							</c:forEach>
 						</div> 

@@ -1,5 +1,7 @@
 package com.ddway.anagraficaBS.model.bean;
 
+import java.math.BigDecimal;
+
 public class BusinessServiceBean {
 	
 	private String codiBusinessService;
@@ -12,6 +14,8 @@ public class BusinessServiceBean {
 	private Boolean flagConvenzione;
 	private Boolean presenzaProcessiAssociati;
 	private Boolean presenzaFUAssociate = true;
+	private int codiDipartimento;
+	private BigDecimal misuPesoBs;
 	
 	public BusinessServiceBean(){}
 	
@@ -37,6 +41,23 @@ public class BusinessServiceBean {
 	}
 	
 	
+	
+	public BigDecimal getMisuPesoBs() {
+		return misuPesoBs;
+	}
+
+	public void setMisuPesoBs(BigDecimal misuPesoBs) {
+		this.misuPesoBs = misuPesoBs;
+	}
+
+	public int getCodiDipartimento() {
+		return codiDipartimento;
+	}
+
+	public void setCodiDipartimento(int codiDipartimento) {
+		this.codiDipartimento = codiDipartimento;
+	}
+
 	public Boolean getPresenzaFUAssociate() {
 		return presenzaFUAssociate;
 	}

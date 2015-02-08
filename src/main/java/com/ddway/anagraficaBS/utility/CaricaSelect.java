@@ -95,8 +95,10 @@ public class CaricaSelect {
 		List<Utente> utentiList = new ArrayList<Utente>();
 		
 		try{		
-			List<DDipartimenti> dipartimentiList = getDipartimentiList();	
+			List<DDipartimenti> dipartimentiList = getDipartimentiList();
+			selectLists.put("dipartimentiList", dipartimentiList);
 			List<DModelApplicativi> modelApplicativiList = getModelApplicativiList();
+			selectLists.put("modelApplicativiList", modelApplicativiList);
 			
 			List<Users> usersList = (List<Users>) getlistvalues("from com.ddway.anagraficaBS.model.db.anagraficaBS.Users tab order by tab.cognome","Utenti");	
 			itr = usersList.iterator();

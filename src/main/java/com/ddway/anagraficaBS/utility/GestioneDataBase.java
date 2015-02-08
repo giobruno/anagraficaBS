@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ddway.anagraficaBS.model.bean.BusinessServiceBean;
 import com.ddway.anagraficaBS.model.bean.DipartimentoBean;
 import com.ddway.anagraficaBS.model.bean.TriplaInfap;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.Authorities;
@@ -23,6 +24,8 @@ import com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieInfr;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DCategorieMac;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DDipartimenti;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DPesoBs;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DPesoBsId;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DPesoDip;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DPesoDipId;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
@@ -60,6 +63,9 @@ public class GestioneDataBase {
 	
 	@Autowired
 	DModelApplicativi dModelApplicativo;
+	
+	@Autowired
+	CaricaSelect caricaSelect;
 	
 	public GestioneDataBase() {}
 	
@@ -530,7 +536,25 @@ public class GestioneDataBase {
 				throw e;
 			}
 			return elencoBusinessServices;	
-		}		
+		}
+		
+		
+		public  List<DBusinessServices> getElencoBusinessServicesByCodDipartimento(int codiDipartimento) throws Exception{
+			log.debug("Start GestioneDataBase.getElencoBusinessServicesByCodDipartimento method");
+			
+			List<DBusinessServices> elencoBusinessServices;
+			String query = null; 			
+
+			try{
+				query = "from DBusinessServices tab where tab.DDipartimenti.codiDipartimento = '"+codiDipartimento+"' and tab.dataFineValidita is null  order by tab.textNomeBusinessService";
+				
+				elencoBusinessServices = (List<DBusinessServices>) dataSourceService.genericquery(query);								
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getElencoBusinessServicesByCodDipartimento");
+				throw e;
+			}
+			return elencoBusinessServices;	
+		}
 		
 		public  List<DServiziModel> getElencoDServiziModel(int codiModelApplicativo) throws Exception{
 			log.debug("Start GestioneDataBase.getElencoBusinessServices method");
@@ -565,29 +589,64 @@ public class GestioneDataBase {
 		public  List<DipartimentoBean> getElencoDipartimentiWithPesi() throws Exception{
 			log.debug("Start GestioneDataBase.getElencoDipartimentiWithPesi method");
 			
-			List<Object[]> elencoDipartimenti;
 			List<DipartimentoBean> dipartimenti = new ArrayList<DipartimentoBean>();
-			DipartimentoBean dipartimento = null;
+			DipartimentoBean dipartimentoBean = null;
+			List<DDipartimenti> dipartimentiList = null;
+			DDipartimenti dipartimento = null;
+			DPesoDip pesoDip = null;
 			
-			String query = "Select a.textSiglaDipartimento, b.id.codiDipartimento, b.misuPesoDip from DDipartimenti a, DPesoDip b where a.codiDipartimento = b.id.codiDipartimento and b.dataFineAssociazione is null ";
-			
-			try{		
-				elencoDipartimenti = (List<Object[]>) dataSourceService.genericquery(query);	
-				if(elencoDipartimenti != null){
-					for (int i = 0; i < elencoDipartimenti.size(); i++) {
-						Object[] obj = elencoDipartimenti.get(i);
-						dipartimento = new DipartimentoBean();
-						dipartimento.setTextSiglaDipartimento((String) obj[0]);
-						dipartimento.setCodiDipartimento((Integer) obj[1]);
-						dipartimento.setMisuPesoDip((BigDecimal) obj[2]);	
-						dipartimenti.add(dipartimento);
-					}					
+			try{
+				
+				dipartimentiList = (List<DDipartimenti>) caricaSelect.getDipartimentiList();
+				if(dipartimentiList != null){			
+					for (int i = 0; i < dipartimentiList.size(); i++) {
+						dipartimento = dipartimentiList.get(i);
+						pesoDip = getDPesoDipByCodiDipartimento(dipartimento.getCodiDipartimento()+"");	
+						dipartimentoBean = new DipartimentoBean();
+						dipartimentoBean.setTextSiglaDipartimento(dipartimento.getTextSiglaDipartimento());
+						dipartimentoBean.setCodiDipartimento(dipartimento.getCodiDipartimento());
+						dipartimentoBean.setMisuPesoDip(pesoDip != null ? pesoDip.getMisuPesoDip() : new BigDecimal("0.00"));	
+						dipartimenti.add(dipartimentoBean);
+					}
 				}
-			}catch(Exception e){
+				}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.getElencoDipartimentiWithPesi");
 				throw e;
 			}
 			return dipartimenti;	
+		}
+		
+		@Transactional
+		public  List<BusinessServiceBean> getElencoBSDipWithPesi(int codiDipartimento) throws Exception{
+			log.debug("Start GestioneDataBase.getElencoBSDipWithPesi method");
+			
+			List<BusinessServiceBean> businessServiceBeanList = new ArrayList<BusinessServiceBean>();
+			BusinessServiceBean businessServiceBean = null;
+			List<DBusinessServices> businessServicesList = null;
+			DBusinessServices businessService = null;
+			DPesoBs pesoBs= null;
+			
+			try{
+				
+				businessServicesList = (List<DBusinessServices>) getElencoBusinessServicesByCodDipartimento(codiDipartimento);
+				if(businessServicesList != null){			
+					for (int i = 0; i < businessServicesList.size(); i++) {
+						businessService = businessServicesList.get(i);
+						pesoBs = getDPesoBsByCodiBusinessService(businessService.getCodiBusinessService()+"");	
+						businessServiceBean = new BusinessServiceBean();
+						businessServiceBean.setTextNomeBusinessService(businessService.getTextNomeBusinessService());
+						businessServiceBean.setCodiBusinessService(businessService.getCodiBusinessService()+"");
+						businessServiceBean.setTextSiglaDipartimento(businessService.getDDipartimenti().getTextSiglaDipartimento());
+						businessServiceBean.setCodiDipartimento(businessService.getDDipartimenti().getCodiDipartimento());
+						businessServiceBean.setMisuPesoBs(pesoBs != null ? pesoBs.getMisuPesoBs() : new BigDecimal("0.00"));	
+						businessServiceBeanList.add(businessServiceBean);
+					}
+				}
+				}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getElencoBSDipWithPesi");
+				throw e;
+			}
+			return businessServiceBeanList;	
 		}
 		
 		public  List<DModelApplicativi> getElencoModelApplicativi() throws Exception{
@@ -860,7 +919,7 @@ public class GestioneDataBase {
 			try{		
 				dPesoDipList = (List<DPesoDip>) dataSourceService.genericquery(query);	
 				if(dPesoDipList == null || dPesoDipList.isEmpty())
-					throw new Exception("Nessun DPesoDip trovato con il codice "+codiDipartimento);						
+					return null;										
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.getDPesoDipByCodiDipartimento");
 				throw e;
@@ -868,27 +927,73 @@ public class GestioneDataBase {
 			return dPesoDipList.get(0);	
 		}
 		
+		public  DPesoBs getDPesoBsByCodiBusinessService(String codiBusinessService) throws Exception{
+			log.debug("Start GestioneDataBase.getDPesoBsByCodiBusinessService method");
+			
+			List<DPesoBs> dDPesoBsList = null;
+			String query = "from DPesoBs tab where tab.id.codiBusinessService = '"+codiBusinessService+"' and tab.dataFineAssociazione is null";
+			
+			try{		
+				dDPesoBsList = (List<DPesoBs>) dataSourceService.genericquery(query);	
+				if(dDPesoBsList == null || dDPesoBsList.isEmpty())
+					return null;										
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.getDPesoBsByCodiBusinessService");
+				throw e;
+			}
+			return dDPesoBsList.get(0);	
+		}
+		
 		@Transactional
-		public  void modificaDPesoDip(DPesoDip pesoDip,String velorePesoModificato) throws Exception{
+		public  void modificaDPesoDip(int codiDipartimento,DPesoDip pesoDip,String velorePesoModificato) throws Exception{
 			log.debug("Start GestioneDataBase.modificaDPesoDip method");
 			
 			DPesoDip pesoDipNew = new DPesoDip();
 			DPesoDipId pesoDipIdNew = new DPesoDipId();
 			
-			try{		
-				if(FormatUtility.formattaDataToString("yyyy-MM-dd",pesoDip.getId().getDataInizioAssociazione()).equals(FormatUtility.formattaDataToString("yyyy-MM-dd", new Date() ))){
-					dataSourceService.delete(pesoDip);		
-				}else {
-					pesoDip.setDataFineAssociazione(new Date());
-					dataSourceService.update(pesoDip);
-				}	
-				pesoDipIdNew.setCodiDipartimento(pesoDip.getId().getCodiDipartimento());
+			try{
+				if(pesoDip != null){
+					if(FormatUtility.formattaDataToString("yyyy-MM-dd",pesoDip.getId().getDataInizioAssociazione()).equals(FormatUtility.formattaDataToString("yyyy-MM-dd", new Date() ))){
+						dataSourceService.delete(pesoDip);		
+					}else {
+						pesoDip.setDataFineAssociazione(new Date());
+						dataSourceService.update(pesoDip);
+					}
+					}
+				pesoDipIdNew.setCodiDipartimento(codiDipartimento);
 				pesoDipIdNew.setDataInizioAssociazione(new Date());
 				pesoDipNew.setId(pesoDipIdNew);
 				pesoDipNew.setMisuPesoDip(new BigDecimal(velorePesoModificato.replace(",", ".")));
 				dataSourceService.insert(pesoDipNew);				
 			}catch(Exception e){
 				log.error(e.getMessage()+" on GestioneDataBase.modificaDPesoDip");
+				throw e;
+			}			
+		}
+		
+		@Transactional
+		public  void modificaDPesoBs(int codiBusinessService,DPesoBs pesoBs,String velorePesoModificato) throws Exception{
+			log.debug("Start GestioneDataBase.modificaDPesoBs method");
+			
+			DPesoBs pesoBsNew = new DPesoBs();
+			DPesoBsId pesoBsIdNew = new DPesoBsId();
+			
+			try{
+				if(pesoBs != null){
+					if(FormatUtility.formattaDataToString("yyyy-MM-dd",pesoBs.getId().getDataInizioAssociazione()).equals(FormatUtility.formattaDataToString("yyyy-MM-dd", new Date() ))){
+						dataSourceService.delete(pesoBs);		
+					}else {
+						pesoBs.setDataFineAssociazione(new Date());
+						dataSourceService.update(pesoBs);
+					}
+					}
+				pesoBsIdNew.setCodiBusinessService(codiBusinessService);
+				pesoBsIdNew.setDataInizioAssociazione(new Date());
+				pesoBsNew.setId(pesoBsIdNew);
+				pesoBsNew.setMisuPesoBs(new BigDecimal(velorePesoModificato.replace(",", ".")));
+				dataSourceService.insert(pesoBsNew);				
+			}catch(Exception e){
+				log.error(e.getMessage()+" on GestioneDataBase.modificaDPesoBs");
 				throw e;
 			}			
 		}

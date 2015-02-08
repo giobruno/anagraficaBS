@@ -5,7 +5,7 @@
 
 <div class="Content bgA3">	
 
-<form:form name='form' action="modificaPesiDipartimenti" method='GET' commandName="modificaPesiForm">
+<form:form name='form' action="modificaPesiBS" method='GET' commandName="modificaPesiForm">
 	
 	<div class="div-table">
 	
@@ -23,7 +23,7 @@
 					</div>
 	</div>
 			
-			<p class="visualizzaFormLegend">Elenco Dipartimenti</p><br/><br/>
+			<p class="visualizzaFormLegend">Elenco Pesi Business Services</p><br/><br/>
 	 <div class="div-table-row">
 	 
  	<div class="div-table-centrata">
@@ -34,23 +34,25 @@
  	 	
 		<fieldset >
 		
-		<legend>Dipartimenti</legend>
+		<legend>Pesi Business Services</legend>
 		<div class="div-table-centrata">
 		 <div class="div-table-row">		
 			<div class="div-table-col-center">
 		
 					<div class="div-table-centrata">
 								<div class="div-table-row">									
-									<div class="div-table-col"><p class="visualizzaDesc">Dipartimento</p></div>	
-									<div class="div-table-col"><p class="visualizzaDesc">Valore Peso</p></div>															
+									<div class="div-table-col"><p class="visualizzaDesc">Business Service</p></div>
+									<div class="div-table-col"><p class="visualizzaDesc">Dipartimento BS</p></div>	
+									<div class="div-table-col"><p class="visualizzaDesc">Valore Peso BS</p></div>															
 								</div>
 							<div class="div-table-row">
 								<div class="div-table-col">
 								</div>
 							</div>		
 							
-							<c:forEach items="${dipartimentiList}" var="item" varStatus="status">
+							<c:forEach items="${businessServiceBeanList}" var="item" varStatus="status">
 							<div class="div-table-row">						
+								<div class="div-table-col">${item.textNomeBusinessService}</div>	
 								<div class="div-table-col">${item.textSiglaDipartimento}</div>	
 								<div class="div-table-col"><form:input style="width:100px" maxlength="6" id="valoriPesiList" path="valoriPesiList" value="${modificaPesiForm.valoriPesiList[status.index]}"/></div>		
 							</div>

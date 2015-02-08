@@ -15,7 +15,14 @@
 	</div>	
 	<div class="div-table">
 	<div class="div-table-row">
-	<div style="text-align: right;"><a href="cancellaBusinessService?codiBusinessService=${businessService.codiBusinessService}" onclick="return conferma('Sei sicuro di voler cancellare il Business Service?')"><button>Elimina il Business Service</button></a>	</div>
+	<div class="div-table-col">
+		<div style="text-align: right;"><a href="cancellaBusinessService?codiBusinessService=${businessService.codiBusinessService}" onclick="return conferma('Sei sicuro di voler cancellare il Business Service?')"><button>Elimina il Business Service</button></a>	</div>
+	</div>
+	<sec:authorize access="hasRole('ADMIN')" >
+		<div class="div-table-col">
+			<div style="text-align: left;"><a href="visualizzaElencoPesiBS?codiDipartimento=${businessService.codiDipartimento}" ><button>Associa/Modifica Valore Peso</button></a>	</div>
+		</div>
+	</sec:authorize>
 	</div>	
 	</div>
 <!-- <div class="div-table-centrata">	
@@ -58,6 +65,7 @@
 									<div class="div-table-col"><p class="visualizzaDesc">Nome</p></div>						
 									<div class="div-table-col"><p class="visualizzaDesc">Descrizione</p></div>									
 									<div class="div-table-col"><p class="visualizzaDesc">Convenzione</p></div>
+									<div class="div-table-col"><p class="visualizzaDesc">Valore Peso</p></div>
 														
 								</div>
 							<div class="div-table-row">
@@ -69,7 +77,8 @@
 								<!-- 	<div class="div-table-col"><p>${businessService.codiBusinessService}</p></div>    -->
 									<div class="div-table-col"><p>${businessService.textNomeBusinessService}</p></div>						
 									<div class="div-table-col"><p>${businessService.descBusinessService}</p></div>									
-									<div class="div-table-col"><p>${businessService.flagConvenzione ? 'SI' : 'NO'}</p></div> 
+									<div class="div-table-col"><p>${businessService.flagConvenzione ? 'SI' : 'NO'}</p></div>
+									<div class="div-table-col"><p>${businessService.misuPesoBs}</p></div> 
 						</div>
 						
 						<div class="div-table-row">										

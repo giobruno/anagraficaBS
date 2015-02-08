@@ -1,5 +1,6 @@
 package com.ddway.anagraficaBS.utility;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import com.ddway.anagraficaBS.model.bean.AssociazioneBSProcessoBean;
 import com.ddway.anagraficaBS.model.bean.BusinessServiceBean;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DBusinessServices;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DModelApplicativi;
+import com.ddway.anagraficaBS.model.db.anagraficaBS.DPesoBs;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DProcessi;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioni;
 import com.ddway.anagraficaBS.model.db.anagraficaBS.DServiziFunzioniId;
@@ -168,6 +170,7 @@ public class PopolaModelForms {
 					businessServiceBean.setPersRespBusinessService(dbusinessService.getPersRespBusinessService());
 					businessServiceBean.setFlagConvenzione(dbusinessService.getFlagConvenzione());
 					businessServiceBean.setTextSiglaDipartimento(dbusinessService.getDDipartimenti().getTextSiglaDipartimento());
+					businessServiceBean.setCodiDipartimento(dbusinessService.getDDipartimenti().getCodiDipartimento());
 					
 					DServiziModel dServiziModel = gestioneDataBase.getModelApplicativoFromDServiziModel(dbusinessService.getCodiBusinessService()+"");
 					DModelApplicativi dModelApplicativo = gestioneDataBase.getModelApplicativoFromDModelApplicativi(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");
@@ -196,6 +199,8 @@ public class PopolaModelForms {
 	public void popolaBusinessServiceBean(DBusinessServices dbusinessService,BusinessServiceBean businessServiceBean) throws Exception{
 		log.info("Inizio metodo PopolaModelForms.popolaBusinessServiceBean!");
 		
+		DPesoBs pesoBs = null;
+		
 		try{
 			if(dbusinessService != null){							
 					businessServiceBean.setCodiBusinessService(dbusinessService.getCodiBusinessService()+"");
@@ -205,6 +210,10 @@ public class PopolaModelForms {
 					businessServiceBean.setPersRespBusinessService(dbusinessService.getPersRespBusinessService());
 					businessServiceBean.setFlagConvenzione(dbusinessService.getFlagConvenzione());
 					businessServiceBean.setTextSiglaDipartimento(dbusinessService.getDDipartimenti().getTextSiglaDipartimento());
+					businessServiceBean.setCodiDipartimento(dbusinessService.getDDipartimenti().getCodiDipartimento());
+					
+					pesoBs = (DPesoBs) gestioneDataBase.getDPesoBsByCodiBusinessService(dbusinessService.getCodiBusinessService()+"");
+					businessServiceBean.setMisuPesoBs(pesoBs != null ? pesoBs.getMisuPesoBs() : new BigDecimal("0.00"));
 					
 					DServiziModel dServiziModel = gestioneDataBase.getModelApplicativoFromDServiziModel(dbusinessService.getCodiBusinessService()+"");
 					DModelApplicativi dModelApplicativo = gestioneDataBase.getModelApplicativoFromDModelApplicativi(dServiziModel.getDModelApplicativi().getCodiModelApplicativo()+"");

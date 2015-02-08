@@ -90,14 +90,24 @@
 		<put-attribute name="body" value="/WEB-INF/views/elencoProcessi.jsp" />
 	</definition>
 	
-	<definition name="elencoDipartimenti" extends="base.definition">
+	<definition name="elencoPesiDipartimenti" extends="base.definition">
 		<put-attribute name="title" value="elencoProcessi" />
-		<put-attribute name="body" value="/WEB-INF/views/elencoDipartimenti.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/elencoPesiDipartimenti.jsp" />
+	</definition>
+	
+	<definition name="elencoPesiBS" extends="base.definition">
+		<put-attribute name="title" value="elencoProcessi" />
+		<put-attribute name="body" value="/WEB-INF/views/elencoPesiBS.jsp" />
 	</definition>
 	
 	<definition name="modificaPesiDipartimenti" extends="base.definition">
 		<put-attribute name="title" value="elencoProcessi" />
 		<put-attribute name="body" value="/WEB-INF/views/modificaPesiDipartimenti.jsp" />
+	</definition>
+	
+	<definition name="modificaPesiBS" extends="base.definition">
+		<put-attribute name="title" value="elencoProcessi" />
+		<put-attribute name="body" value="/WEB-INF/views/modificaPesiBS.jsp" />
 	</definition>
 	
 	<definition name="modificaPesiDipartimentiWithoutPesi" extends="base.definition">

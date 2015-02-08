@@ -6,25 +6,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import com.ddway.anagraficaBS.model.forms.ModificaPesiDipartimentiForm;
+
+import com.ddway.anagraficaBS.model.forms.ModificaPesiForm;
 
 @Component
-public class ModificaPesiDipartimentiFormValidator implements Validator {
+public class ModificaPesiFormValidator implements Validator {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ModificaPesiDipartimentiFormValidator.class);
+	private static final Logger logger = LoggerFactory.getLogger(ModificaPesiFormValidator.class);
 
-    public ModificaPesiDipartimentiFormValidator(){}   
+    public ModificaPesiFormValidator(){}   
 
     public boolean supports(Class<?> clazz) {
-        return ModificaPesiDipartimentiFormValidator.class.equals(clazz);
+        return ModificaPesiFormValidator.class.equals(clazz);
     }
 
     public void validate(Object target, Errors errors) {
     	logger.info("Inizio metodo ModificaPesiDipartimentiFormValidator.validate!");
     	
-    	ModificaPesiDipartimentiForm form = (ModificaPesiDipartimentiForm) target;
+    	ModificaPesiForm form = (ModificaPesiForm) target;
     	String peso = null;
     	BigDecimal sum = new BigDecimal("0.00");
     	
