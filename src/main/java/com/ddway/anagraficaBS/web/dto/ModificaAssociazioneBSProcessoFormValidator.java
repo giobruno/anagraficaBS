@@ -11,7 +11,7 @@ import com.ddway.anagraficaBS.model.forms.AssociazioneBSProcessoForm;
 @Component
 public class ModificaAssociazioneBSProcessoFormValidator implements Validator {
 	
-	private static final Logger logger = LoggerFactory.getLogger(AssociazioneBSProcessoFormValidator.class);
+	private static final Logger logger = LoggerFactory.getLogger(ModificaAssociazioneBSProcessoFormValidator.class);
 
     public ModificaAssociazioneBSProcessoFormValidator(){}   
 

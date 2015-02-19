@@ -9,7 +9,7 @@ import org.springframework.validation.Errors;
 
 public class ValidatorUtil {
 	
-	private static final Logger logger = LoggerFactory.getLogger(RegistrazioneFormValidator.class);
+	private static final Logger logger = LoggerFactory.getLogger(ValidatorUtil.class);
 
 	private static Matcher matcher;
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
