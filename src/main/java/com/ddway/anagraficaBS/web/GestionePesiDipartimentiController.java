@@ -44,7 +44,7 @@ public class GestionePesiDipartimentiController {
 			}
 			session.setAttribute("dipartimentiList", dipartimentiList);
 			model.addObject("dipartimentiList", dipartimentiList);
-			model.setViewName("elencoDipartimenti");
+			model.setViewName("elencoPesiDipartimenti");
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(e.getMessage()+" on GestionePesiDipartimentiController.visualizzaElencoDipartimenti");
@@ -68,7 +68,7 @@ public class GestionePesiDipartimentiController {
 				}
 			}			
 			model.addObject("dipartimentiList", dipartimentiList);
-			model.addObject("modificaPesiDipartimentiForm",modificaPesiForm);
+			model.addObject("modificaPesiForm",modificaPesiForm);
 			model.setViewName("modificaPesiDipartimenti");
 		}catch(Exception e){
 			e.printStackTrace();
