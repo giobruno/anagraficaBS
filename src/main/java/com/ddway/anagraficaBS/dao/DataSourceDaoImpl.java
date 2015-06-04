@@ -105,11 +105,11 @@ private static final Logger log = LoggerFactory.getLogger(DataSourceDaoImpl.clas
 	}
 	
 	@Override
-	public Object findbyId(String beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException  {		
+	public Object findbyId(Class beanName, int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException  {		
 		log.info("Start DataSourceDaoImpl.findbyId method");
 		try {						
-			Object tabellaCorrente = (Object) Class.forName(beanName).newInstance();		
-			tabellaCorrente   = (Object) sessionFactoryAnagraficaBS.getCurrentSession().get(tabellaCorrente.getClass(), id);
+			Object tabellaCorrente =(Object) sessionFactoryAnagraficaBS.getCurrentSession().get(beanName, id);		
+			
 	        log.info("DataSourceDaoImpl.findbyId successful");
 	        return tabellaCorrente;
 	        }catch (RuntimeException re) {
